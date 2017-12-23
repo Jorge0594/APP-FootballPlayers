@@ -11,7 +11,7 @@ branches:
 
 script:
   - npm run lint
-  - ng test
+  - npm test
 
 before_install:
   - export CHROME_BIN=chromium-browser
