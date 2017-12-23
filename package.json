@@ -5,6 +5,7 @@
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
+    "test": "ng test",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
@@ -20,6 +21,7 @@
     "@angular/http": "5.0.3",
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
+    "@angular/router": "^5.1.2",
     "@ionic-native/core": "4.4.0",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
@@ -31,7 +33,22 @@
     "zone.js": "0.8.18"
   },
   "devDependencies": {
+    "@angular/cli": "^1.6.2",
     "@ionic/app-scripts": "3.1.6",
+    "@types/jasmine": "^2.8.2",
+    "@types/node": "^8.5.2",
+    "codecov": "^3.0.0",
+    "ionic-mocks": "^1.0.4",
+    "jasmine-core": "^2.8.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-remap-istanbul": "^0.6.0",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.8.0",
+    "tslint-eslint-rules": "^4.1.1",
     "typescript": "2.4.2"
   },
   "description": "An Ionic project"
