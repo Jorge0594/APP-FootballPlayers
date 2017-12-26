@@ -11,7 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 let component : MyApp;
 let fixture : ComponentFixture<MyApp>
 
-describe('Initial test',()=>{
+describe('Home page',()=>{
     beforeEach(async()=>{
         TestBed.configureTestingModule({
                 declarations:[MyApp],
