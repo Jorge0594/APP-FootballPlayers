@@ -8,10 +8,11 @@ import { createComponentView } from '@angular/core/src/view/view';
 import { IonicModule,IonicErrorHandler} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoginPage } from '../pages/login/login';
 let component : MyApp;
 let fixture : ComponentFixture<MyApp>
 
-describe('Home page',()=>{
+describe('Creations of pages',()=>{
     beforeEach(async()=>{
         TestBed.configureTestingModule({
                 declarations:[MyApp],
@@ -41,7 +42,11 @@ describe('Home page',()=>{
         expect(component).toBeTruthy();
     });
 
-    it('Initialises with a root page of HomePage',()=>{
-        expect(component['rootPage']).toBe(HomePage);
+    it('Initialises HomePage',()=>{
+        expect(component['homePage']).toBe(HomePage);
     });
+
+     it('Initialises with a root page of LoginPage',()=>{
+        expect(component.rootPage).toBe(LoginPage);
+     });
 });
