@@ -1,5 +1,5 @@
 import { MyApp } from '../app/app.component';
-import { HomePage } from '../pages/home/home';
+import { TabHome } from '../pages/home-tabs/Tabs/home/home';
 import { ErrorHandler} from '@angular/core';
 import { Http, HttpModule, Headers, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { Component } from '@angular/core/src/metadata/directives';

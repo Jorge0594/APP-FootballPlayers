@@ -1,5 +1,5 @@
 import { MyApp } from '../app/app.component';
-import { HomePage } from '../pages/home/home';
+import { TabHome } from '../pages/home-tabs/Tabs/home/home';
 import { ErrorHandler} from '@angular/core';
 import { Component } from '@angular/core/src/metadata/directives';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
@@ -43,7 +43,7 @@ describe('Creations of pages',()=>{
     });
 
     it('Initialises HomePage',()=>{
-        expect(component['homePage']).toBe(HomePage);
+        expect(component['homePage']).toBe(TabHome);
     });
 
      it('Initialises with a root page of LoginPage',()=>{

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { HomePage } from '../home/home';
+import { HomeTabsPage } from '../home-tabs/home-tabs';
 
 @IonicPage()
 @Component({
@@ -18,7 +18,7 @@ export class LoginPage {
   }
 
   goHomePage(){
-    this.navCtrl.push(HomePage);
+    this.navCtrl.push(HomeTabsPage);
   }
 
 }

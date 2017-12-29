@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from '../app/app.component';
-import { HomePage } from '../pages/home/home';
+import { TabHome } from '../pages/home-tabs/Tabs/home/home';
 import { LoginPage } from '../pages/login/login';
 
 let component: LoginPage;

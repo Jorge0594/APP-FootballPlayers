@@ -4,28 +4,40 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { PlayerService } from '../../src/app/services/player.service'
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
 import { LoginPage } from '../pages/login/login';
+import { HomeTabsPage } from '../pages/home-tabs/home-tabs';
+import { TabHome } from '../pages/home-tabs/Tabs/home/home';
+import { TabTeam } from '../pages/home-tabs/Tabs/team/tab-team';
+import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    LoginPage
+    LoginPage,
+    HomeTabsPage,
+    TabHome,
+    TabTeam,
+    TabLeague
   ],
   imports: [
     HttpModule,
     BrowserModule,
+    SuperTabsModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    LoginPage
+    LoginPage,
+    HomeTabsPage,
+    TabHome,
+    TabTeam,
+    TabLeague
   ],
   providers: [
     HttpModule,
