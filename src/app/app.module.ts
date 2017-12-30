@@ -7,6 +7,8 @@ import { HttpModule } from '@angular/http';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { PlayerService } from '../../src/app/services/player.service'
+import { LoginService } from '../../src/app/services/login.service';
+import { HttpClient } from '../../src/app/services/httpClient.service';
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
@@ -42,6 +44,8 @@ import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
   providers: [
     HttpModule,
     PlayerService,
+    LoginService,
+    HttpClient,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

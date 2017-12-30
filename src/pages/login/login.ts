@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HomeTabsPage } from '../home-tabs/home-tabs';
+import { LoginService } from '../../app/services/login.service';
 
 @IonicPage()
 @Component({
@@ -10,15 +11,20 @@ import { HomeTabsPage } from '../home-tabs/home-tabs';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loginService:LoginService) {
   }
 
   ionViewDidLoad() {
     
   }
 
-  goHomePage(){
-    this.navCtrl.push(HomeTabsPage);
+  goHomePage(username:string, password:string){
+    this.loginService.login(username,password).subscribe(
+      reponse => {
+        this.navCtrl.push(HomeTabsPage);
+      },
+      error => console.error(error)
+    );
   }
 
 }

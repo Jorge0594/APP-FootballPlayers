@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class PlayerService{
 
-    players: any;
+    private players: any;
 
     constructor(public http:Http){};
 
