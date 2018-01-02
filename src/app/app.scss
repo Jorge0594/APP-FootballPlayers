@@ -8,6 +8,8 @@
 
 #nav-title{
     display: block;
+    float:left;
+    max-width: 150px;
     margin-top: 10px;
 }
 
@@ -17,6 +19,14 @@ ion-header{
 }
 
 ion-nav{
+   position: relative;
+    display:block;
+}
+
+#profile-button{
+    border-color: black;
+    border-radius: 35%;
     position: relative;
+    float: right;
     display:block;
 }
