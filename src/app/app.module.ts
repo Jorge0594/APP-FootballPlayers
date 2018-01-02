@@ -9,6 +9,7 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
 import { PlayerService } from '../../src/app/services/player.service'
 import { LoginService } from '../../src/app/services/login.service';
 import { HttpClient } from '../../src/app/services/httpClient.service';
+import { TeamService } from '../../src/app/services/team.service';
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
@@ -45,6 +46,7 @@ import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
     HttpModule,
     PlayerService,
     LoginService,
+    TeamService,
     HttpClient,
     StatusBar,
     SplashScreen,
