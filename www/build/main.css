@@ -25964,7 +25964,29 @@ super-tabs-toolbar > ion-toolbar.toolbar.scroll-tabs .tab-buttons-container .ind
   margin-top: -2px;
 }
 
-.ios page-login .scroll-content, .md page-login .scroll-content {
+#nav-icon {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+#nav-title {
+  display: block;
+  margin-top: 10px;
+}
+
+ion-header {
+  position: absolute;
+  display: block;
+}
+
+ion-nav {
+  position: relative;
+  display: block;
+}
+
+page-home-tabs .scroll-content {
   background-color: #ffffff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -25976,6 +25998,19 @@ super-tabs-toolbar > ion-toolbar.toolbar.scroll-tabs .tab-buttons-container .ind
   -ms-flex-direction: column;
   flex-direction: column;
   overflow: hidden;
+}
+
+.scroll-bar-indicator {
+  display: none;
+}
+
+.ios page-login, .md page-login {
+  /*.scroll-content {
+	    background-color: #ffffff;
+	    display: flex;
+	    flex-direction: column;
+	    overflow: hidden;
+	  }*/
 }
 
 .ios page-login img, .md page-login img {
