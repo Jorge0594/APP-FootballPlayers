@@ -25,8 +25,6 @@ export class LoginPage {
       },
       error => console.error(error)
     );
-
-    this.navCtrl.push(HomeTabsPage);
   }
 
 }

@@ -30,7 +30,9 @@ export class HttpClient{
     //All server request they need to be logged.
     get(url:any){
         return this.http.get((BASE_URL + url),{headers:this.authTokens}).map(
-            reponse => reponse.json(),
+            response => {
+                console.log(response.json())
+                return response.json()},
             error => console.error(error.json())
         );
     }
@@ -51,12 +53,17 @@ export class HttpClient{
         return this.isLogged;
     }
 
-    setLoggedUser(value: Boolean){
+    setIsLoggedUser(value: Boolean){
         this.isLogged = value;
     }
 
     getUserLogged(){
         return this.userLoged;
+    }
+
+    setUserLogged(user:any){
+        console.log("Llamo a setUserLogged");
+        this.userLoged = user;
     }
 
     getAuthTokens(){

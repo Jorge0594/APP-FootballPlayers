@@ -26032,7 +26032,6 @@ page-home-tabs .scroll-content {
 }
 
 .ios page-login #cloud-layer, .md page-login #cloud-layer {
-  background-image: url(../assets/images/cloud-layer.png);
   background-size: cover;
   width: 100%;
   height: 100%;
