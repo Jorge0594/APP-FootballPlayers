@@ -10,8 +10,8 @@ const BASE_URL = "http://localhost:8080/";
 @Injectable()
 export class HttpClient{
 
-    private isLogged : Boolean = false;
-    private userLoged: any;
+    private logged : Boolean = false;
+    private userLoged: any;//No hace falta
     private authTokens: Headers;
 
     constructor (private http: Http){}
@@ -20,7 +20,7 @@ export class HttpClient{
     generateAuthTokens(username:String, password: String){
         let headers = new Headers();
         let credentials = btoa(username + ":" + password);
-        if(this.isLogged == true){
+        if(this.logged == true){
             headers.append("Authorization","Basic " + credentials);
             this.authTokens = headers;
         }
@@ -49,12 +49,12 @@ export class HttpClient{
 
     }
     
-    isLoggedUser(){
-        return this.isLogged;
+    isLogged(){
+        return this.logged;
     }
 
-    setIsLoggedUser(value: Boolean){
-        this.isLogged = value;
+    setLogged(value: Boolean){
+        this.logged = value;
     }
 
     getUserLogged(){
@@ -62,7 +62,6 @@ export class HttpClient{
     }
 
     setUserLogged(user:any){
-        console.log("Llamo a setUserLogged");
         this.userLoged = user;
     }
 

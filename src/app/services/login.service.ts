@@ -16,7 +16,7 @@ export class LoginService{
             return Observable.throw("Server error (401):Por favor introduzca el nombre de usuario correcto");
         }else{
 
-            this.http.setIsLoggedUser(true);
+            this.http.setLogged(true);
             this.http.generateAuthTokens(username,password);
 
             return this.http.get("iniciarSesion/" + role).map(
@@ -44,7 +44,7 @@ export class LoginService{
     }
 
     getIsUserLogged(){
-        return this.http.isLoggedUser();
+        return this.http.isLogged();
     }
 
 

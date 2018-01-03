@@ -2,6 +2,10 @@
   <h1>Soy el home</h1>
   <ion-list>
     <ion-item>Soy el item 1</ion-item>
-    <ion-item>{{loginService.getUser()?.equipo}}</ion-item>
+    <ion-item>{{userService.getUserLogged()?.equipo}}</ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="userService.getUserMatches()!= undefined">
+    <ion-item *ngFor = "let match of userService.getUserMatches()">{{match?.id}}</ion-item>
   </ion-list>
 </ion-content>

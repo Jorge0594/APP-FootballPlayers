@@ -10,6 +10,8 @@ import { PlayerService } from '../../src/app/services/player.service'
 import { LoginService } from '../../src/app/services/login.service';
 import { HttpClient } from '../../src/app/services/httpClient.service';
 import { TeamService } from '../../src/app/services/team.service';
+import { MatchService } from '../../src/app/services/match.service';
+import { UserService } from '../../src/app/services/user.service';
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
@@ -47,7 +49,9 @@ import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
     PlayerService,
     LoginService,
     TeamService,
+    MatchService,
     HttpClient,
+    UserService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
