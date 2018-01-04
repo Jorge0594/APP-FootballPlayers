@@ -30,7 +30,7 @@ var TabHome = (function () {
     }
     TabHome = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\home\home.html"*/'\n\n<ion-content hideScroll= "true">\n\n  <ion-list>\n\n    <ion-item>\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col>#</ion-col>\n\n          <ion-col>Equipo</ion-col>\n\n          <ion-col>G</ion-col>\n\n          <ion-col>E</ion-col>\n\n          <ion-col>P</ion-col>\n\n          <ion-col>GF</ion-col>\n\n          <ion-col>GC</ion-col>\n\n          <ion-col><strong>PTS</strong></ion-col>\n\n        </ion-row>\n\n          <ion-list *ngIf = "userService.getUserLeague() != undefined ">\n\n            <ion-item *ngFor ="let team of userService.getUserLeague()">\n\n              <ion-row>\n\n                <ion-col>{{team.posicion}}</ion-col>\n\n                <ion-col>{{team.nombre}}</ion-col>\n\n                <ion-col>{{team.partidosGanados}}</ion-col>\n\n                <ion-col>{{team.partidosEmpatados}}</ion-col>\n\n                <ion-col>{{team.partidosPerdidos}}</ion-col>\n\n                <ion-col>{{team.goles}}</ion-col>\n\n                <ion-col>{{team.golesEncajados}}</ion-col>\n\n                <ion-col>{{team.puntos}}</ion-col>\n\n              </ion-row>\n\n            </ion-item>\n\n          </ion-list>\n\n      </ion-grid>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\home\home.html"*/'\n\n<ion-content hideScroll= "true" width ="100%">\n\n  <ion-grid>\n\n      <ion-row>\n\n          <ion-col col-xs-1>#</ion-col>\n\n          <ion-col col-3 id = "team-name">Equipo</ion-col>\n\n          <ion-col col-xs-1>PJ</ion-col>\n\n          <ion-col col-xs-1>G</ion-col>\n\n          <ion-col col-xs-1>E</ion-col>\n\n          <ion-col col-xs-1>P</ion-col>\n\n          <ion-col col-xs-1>GF</ion-col>\n\n          <ion-col col-xs-1>GC</ion-col>\n\n          <ion-col col-xs-2><strong>PT</strong></ion-col>\n\n        </ion-row>\n\n            <ion-row *ngFor ="let team of userService.getUserLeague()">\n\n                <ion-col col-xs-1>{{team?.posicion}}</ion-col>\n\n                <ion-col col-3 id= "team-name">FC Barcelona</ion-col>\n\n                <ion-col col-xs-1>{{team?.partidosJugados}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.partidosGanados}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.partidosEmpatados}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.partidosPerdidos}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.goles}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.golesEncajados}}</ion-col>\n\n                <ion-col col-xs-2>{{team?.puntos}}</ion-col>\n\n            </ion-row>\n\n      </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__app_services_httpClient_service__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */]])
     ], TabHome);
@@ -266,7 +266,6 @@ var LoginPage = (function () {
             _this.menuController.enable(true);
             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_tabs_home_tabs__["a" /* HomeTabsPage */]);
         }, function (error) { return console.error(error); });
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_tabs_home_tabs__["a" /* HomeTabsPage */]);
     };
     LoginPage.prototype.ionViewDidLoad = function () {
         this.menuController.enable(false);
@@ -659,7 +658,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var BASE_URL = "http://localhost:8080/";
+var BASE_URL = "http://192.168.1.39:8080/";
 var HttpClient = (function () {
     function HttpClient(http) {
         this.http = http;

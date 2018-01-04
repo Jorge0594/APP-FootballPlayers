@@ -8,13 +8,18 @@ page-home{
 	ion-item{
 		//background:rgb(167, 226, 152)!important;
 		padding: 0px!important;
-		width: 92%!important;
-		margin: 0px auto!important;
+		width: 100%!important;
 		position: relative;
 	}
 
 	span{
 		color:white;
+	}
+	ion-grid{
+		width:100%;	
+	}
+	ion-content{
+		width:100%;
 	}
 
 	#jornada{
@@ -27,8 +32,14 @@ page-home{
 		margin-left:0px;
 		display: block;
 	}
+
+	#team-name{
+		text-align: left!important;
+	}
 	ion-col{
 		text-align: center;
+		margin:0px!important;
+		font-size: 92%!important;
 	}
 	#partido{
 		background: yellow;

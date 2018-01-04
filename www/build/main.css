@@ -26016,13 +26016,20 @@ page-home .scroll-bar-indicator {
 
 page-home ion-item {
   padding: 0px !important;
-  width: 92% !important;
-  margin: 0px auto !important;
+  width: 100% !important;
   position: relative;
 }
 
 page-home span {
   color: white;
+}
+
+page-home ion-grid {
+  width: 100%;
+}
+
+page-home ion-content {
+  width: 100%;
 }
 
 page-home #jornada {
@@ -26036,8 +26043,14 @@ page-home #jornada {
   display: block;
 }
 
+page-home #team-name {
+  text-align: left !important;
+}
+
 page-home ion-col {
   text-align: center;
+  margin: 0px !important;
+  font-size: 92% !important;
 }
 
 page-home #partido {

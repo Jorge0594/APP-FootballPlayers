@@ -24,7 +24,6 @@ export class LoginPage {
       },
       error => console.error(error)
     );
-    this.navCtrl.setRoot(HomeTabsPage);
   }
 
   ionViewDidLoad(){

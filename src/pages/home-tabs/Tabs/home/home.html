@@ -1,35 +1,27 @@
 
-<ion-content hideScroll= "true">
-  <ion-list>
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col>#</ion-col>
-          <ion-col>Equipo</ion-col>
-          <ion-col>G</ion-col>
-          <ion-col>E</ion-col>
-          <ion-col>P</ion-col>
-          <ion-col>GF</ion-col>
-          <ion-col>GC</ion-col>
-          <ion-col><strong>PTS</strong></ion-col>
+<ion-content hideScroll= "true" width ="100%">
+  <ion-grid>
+      <ion-row>
+          <ion-col col-xs-1>#</ion-col>
+          <ion-col col-3 id = "team-name">Equipo</ion-col>
+          <ion-col col-xs-1>PJ</ion-col>
+          <ion-col col-xs-1>G</ion-col>
+          <ion-col col-xs-1>E</ion-col>
+          <ion-col col-xs-1>P</ion-col>
+          <ion-col col-xs-1>GF</ion-col>
+          <ion-col col-xs-1>GC</ion-col>
+          <ion-col col-xs-2><strong>PT</strong></ion-col>
         </ion-row>
-          <ion-list *ngIf = "userService.getUserLeague() != undefined ">
-            <ion-item *ngFor ="let team of userService.getUserLeague()">
-              <ion-row>
-                <ion-col>{{team.posicion}}</ion-col>
-                <ion-col>{{team.nombre}}</ion-col>
-                <ion-col>{{team.partidosGanados}}</ion-col>
-                <ion-col>{{team.partidosEmpatados}}</ion-col>
-                <ion-col>{{team.partidosPerdidos}}</ion-col>
-                <ion-col>{{team.goles}}</ion-col>
-                <ion-col>{{team.golesEncajados}}</ion-col>
-                <ion-col>{{team.puntos}}</ion-col>
-              </ion-row>
-            </ion-item>
-          </ion-list>
+            <ion-row *ngFor ="let team of userService.getUserLeague()">
+                <ion-col col-xs-1>{{team?.posicion}}</ion-col>
+                <ion-col col-3 id= "team-name">FC Barcelona</ion-col>
+                <ion-col col-xs-1>{{team?.partidosJugados}}</ion-col>
+                <ion-col col-xs-1>{{team?.partidosGanados}}</ion-col>
+                <ion-col col-xs-1>{{team?.partidosEmpatados}}</ion-col>
+                <ion-col col-xs-1>{{team?.partidosPerdidos}}</ion-col>
+                <ion-col col-xs-1>{{team?.goles}}</ion-col>
+                <ion-col col-xs-1>{{team?.golesEncajados}}</ion-col>
+                <ion-col col-xs-2>{{team?.puntos}}</ion-col>
+            </ion-row>
       </ion-grid>
-    </ion-item>
-  </ion-list>
-
-  
 </ion-content>

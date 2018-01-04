@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
 
-const BASE_URL = "http://localhost:8080/";
+const BASE_URL = "http://192.168.1.39:8080/";
 
 @Injectable()
 export class HttpClient{
