@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { HttpClient } from './httpClient.service';
 import { TeamService } from './team.service';
+import { LeagueService } from './league.service';
 import { MatchService } from './match.service';
 import 'rxjs/Rx';
 
@@ -13,7 +14,8 @@ export class UserService{
     private userLeague: any;
     private userMatches: any;
 
-    constructor(private http: HttpClient, private teamService:TeamService, private matchService: MatchService){}
+    constructor(private http: HttpClient, private teamService:TeamService,
+        private matchService: MatchService, private leagueService: LeagueService){}
 
 
     generateUserData(){
@@ -22,7 +24,12 @@ export class UserService{
                 console.log("response");
                 this.user = response;
                 this.teamService.getPlayerTeamById(response.equipo).subscribe(
-                    team => this.userTeam = team
+                    team =>{
+                        this.userTeam = team;
+                        this.leagueService.getStandings(team.liga).subscribe(
+                            league => this.userLeague = league
+                        )
+                    }
                 )
                 this.matchService.getMatchTeamById(response.equipo).subscribe(
                     matches => this.userMatches = matches

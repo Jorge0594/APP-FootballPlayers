@@ -26036,6 +26036,10 @@ page-home #jornada {
   display: block;
 }
 
+page-home ion-col {
+  text-align: center;
+}
+
 page-home #partido {
   background: yellow;
   float: left;

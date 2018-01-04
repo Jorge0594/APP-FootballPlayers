@@ -1,32 +1,35 @@
 
 <ion-content hideScroll= "true">
-  <h1>Soy el home</h1>
-  <p>
-      <button ion-button primary menuToggle>Toggle Menu</button>
-    </p>
   <ion-list>
     <ion-item>
       <ion-grid>
-          <ion-row>
-              <ion-col id ="partido">4654156165151515151551</ion-col>
-            <ion-col id="jornada">
-              <span>1</span>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-    </ion-item>
-  </ion-list>
-
-  <ion-list *ngIf="userService.getUserMatches()!= undefined">
-    <ion-item *ngFor = "let match of userService.getUserMatches()">
-      <ion-grid>
         <ion-row>
-          <ion-col id = "partido">
-            {{match?.equipoVisitante.nombre}}
-          </ion-col>
-          <ion-col id="jornada">{{match?.jornada}}</ion-col>
+          <ion-col>#</ion-col>
+          <ion-col>Equipo</ion-col>
+          <ion-col>G</ion-col>
+          <ion-col>E</ion-col>
+          <ion-col>P</ion-col>
+          <ion-col>GF</ion-col>
+          <ion-col>GC</ion-col>
+          <ion-col><strong>PTS</strong></ion-col>
         </ion-row>
+          <ion-list *ngIf = "userService.getUserLeague() != undefined ">
+            <ion-item *ngFor ="let team of userService.getUserLeague()">
+              <ion-row>
+                <ion-col>{{team.posicion}}</ion-col>
+                <ion-col>{{team.nombre}}</ion-col>
+                <ion-col>{{team.partidosGanados}}</ion-col>
+                <ion-col>{{team.partidosEmpatados}}</ion-col>
+                <ion-col>{{team.partidosPerdidos}}</ion-col>
+                <ion-col>{{team.goles}}</ion-col>
+                <ion-col>{{team.golesEncajados}}</ion-col>
+                <ion-col>{{team.puntos}}</ion-col>
+              </ion-row>
+            </ion-item>
+          </ion-list>
       </ion-grid>
     </ion-item>
   </ion-list>
+
+  
 </ion-content>

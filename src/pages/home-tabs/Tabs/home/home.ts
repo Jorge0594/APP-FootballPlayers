@@ -13,11 +13,7 @@ export class TabHome {
 
   userMatches: any;
   constructor(public navCtrl: NavController, private http:HttpClient, private userService: UserService) {
-    //this.loginService.getPlayerLogged();
-    //console.log(this.loginService.getUser());
-    /*this.matchService.getMatchTeamById(this.loginService.getUser().equipo).subscribe(
-      matches => this.userMatches = matches
-    )*/
+  
   }
 
 }

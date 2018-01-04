@@ -15,9 +15,4 @@ export class HomeTabsPage {
   tabLeagueRoot = TabLeague;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController) {}
-
-  ionViewDidLoad(){
-    this.menuController.enable(true);
-  }
-
 }
