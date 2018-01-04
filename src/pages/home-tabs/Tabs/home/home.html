@@ -1,11 +1,32 @@
+
 <ion-content hideScroll= "true">
   <h1>Soy el home</h1>
+  <p>
+      <button ion-button primary menuToggle>Toggle Menu</button>
+    </p>
   <ion-list>
-    <ion-item>Soy el item 1</ion-item>
-    <ion-item>{{userService.getUserLogged()?.equipo}}</ion-item>
+    <ion-item>
+      <ion-grid>
+          <ion-row>
+              <ion-col id ="partido">4654156165151515151551</ion-col>
+            <ion-col id="jornada">
+              <span>1</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-item>
   </ion-list>
 
   <ion-list *ngIf="userService.getUserMatches()!= undefined">
-    <ion-item *ngFor = "let match of userService.getUserMatches()">{{match?.id}}</ion-item>
+    <ion-item *ngFor = "let match of userService.getUserMatches()">
+      <ion-grid>
+        <ion-row>
+          <ion-col id = "partido">
+            {{match?.equipoVisitante.nombre}}
+          </ion-col>
+          <ion-col id="jornada">{{match?.jornada}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
   </ion-list>
 </ion-content>

@@ -26,26 +26,5 @@ export class LoginService{
         }
     }
 
-    isLoggedUser(){
-    }
-
-    getPlayerLogged(){
-        return this.http.get("jugadores/usuario").subscribe(
-            response => {
-                console.log("response");
-                this.http.setUserLogged(response);
-            },
-            error => console.error(error)
-        )
-    }
-
-    getUser(){
-        return this.http.getUserLogged();
-    }
-
-    getIsUserLogged(){
-        return this.http.isLogged();
-    }
-
 
 };

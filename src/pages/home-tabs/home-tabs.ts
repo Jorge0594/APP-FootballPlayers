@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { UserService } from '../../app/services/user.service';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 import { TabHome } from './Tabs/home/home';
 import { TabTeam } from './Tabs/team/tab-team';
@@ -12,12 +10,14 @@ import { TabLeague } from './Tabs/league/league-tab';
   templateUrl: 'home-tabs.html',
 })
 export class HomeTabsPage {
-
   tabHomeRoot = TabHome;
   tabTeamRoot = TabTeam;
   tabLeagueRoot = TabLeague;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
-    this.userService.generateUserData();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController) {}
+
+  ionViewDidLoad(){
+    this.menuController.enable(true);
   }
 
 }

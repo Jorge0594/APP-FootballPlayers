@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import { HomeTabsPage } from '../home-tabs/home-tabs';
 import { LoginService } from '../../app/services/login.service';
+import { UserService } from '../../app/services/user.service'
 
 @IonicPage()
 @Component({
@@ -11,20 +12,17 @@ import { LoginService } from '../../app/services/login.service';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loginService:LoginService) {
-  }
-
-  ionViewDidLoad() {
-    
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+     private loginService:LoginService, private userService: UserService) {}
 
   goHomePage(username:string, password:string){
     this.loginService.login(username,password).subscribe(
       reponse => {
-        this.navCtrl.push(HomeTabsPage);
+        this.userService.generateUserData();
+        this.navCtrl.setRoot(HomeTabsPage);
       },
       error => console.error(error)
     );
+    this.navCtrl.setRoot(HomeTabsPage);
   }
-
 }

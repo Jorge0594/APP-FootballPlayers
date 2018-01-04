@@ -26010,8 +26010,36 @@ page-home-tabs .scroll-content {
   overflow: hidden;
 }
 
-.scroll-bar-indicator {
+page-home .scroll-bar-indicator {
   display: none;
+}
+
+page-home ion-item {
+  padding: 0px !important;
+  width: 92% !important;
+  margin: 0px auto !important;
+  position: relative;
+}
+
+page-home span {
+  color: white;
+}
+
+page-home #jornada {
+  text-align: center;
+  float: right;
+  max-width: 30px;
+  height: 30px !important;
+  width: 30px !important;
+  background: green;
+  margin-left: 0px;
+  display: block;
+}
+
+page-home #partido {
+  background: yellow;
+  float: left;
+  display: block;
 }
 
 .ios page-login, .md page-login {

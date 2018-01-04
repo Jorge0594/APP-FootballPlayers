@@ -11,7 +11,6 @@ const BASE_URL = "http://localhost:8080/";
 export class HttpClient{
 
     private logged : Boolean = false;
-    private userLoged: any;//No hace falta
     private authTokens: Headers;
 
     constructor (private http: Http){}
@@ -56,15 +55,7 @@ export class HttpClient{
     setLogged(value: Boolean){
         this.logged = value;
     }
-
-    getUserLogged(){
-        return this.userLoged;
-    }
-
-    setUserLogged(user:any){
-        this.userLoged = user;
-    }
-
+    
     getAuthTokens(){
         return this.authTokens;
     }

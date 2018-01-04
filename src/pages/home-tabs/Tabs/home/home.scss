@@ -1,4 +1,38 @@
-.scroll-bar-indicator
-{
-	display: none;
+
+page-home{
+
+	.scroll-bar-indicator{
+		display: none;
+	}
+
+	ion-item{
+		//background:rgb(167, 226, 152)!important;
+		padding: 0px!important;
+		width: 92%!important;
+		margin: 0px auto!important;
+		position: relative;
+	}
+
+	span{
+		color:white;
+	}
+
+	#jornada{
+		text-align: center;
+		float:right;
+		max-width: 30px;
+		height: 30px!important;
+		width: 30px!important;
+		background: green;
+		margin-left:0px;
+		display: block;
+	}
+
+	#partido{
+		background: yellow;
+		float:left;
+		display:block;
+	}
 }
+
+
