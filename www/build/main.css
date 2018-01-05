@@ -26010,55 +26010,47 @@ page-home-tabs .scroll-content {
   overflow: hidden;
 }
 
-page-home .scroll-bar-indicator {
-  display: none;
-}
-
-page-home ion-item {
+page-home ion-col {
+  text-align: center;
+  font-size: 95%;
   padding: 0px !important;
-  width: 100% !important;
-  position: relative;
-}
-
-page-home span {
-  color: white;
+  min-width: 25px !important;
 }
 
 page-home ion-grid {
-  width: 100%;
+  padding: 0px !important;
 }
 
-page-home ion-content {
-  width: 100%;
+page-home #colum-titles {
+  background: #0084ff;
+  color: white;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  margin-bottom: 0px !important;
 }
 
-page-home #jornada {
-  text-align: center;
-  float: right;
-  max-width: 30px;
-  height: 30px !important;
-  width: 30px !important;
-  background: green;
-  margin-left: 0px;
-  display: block;
+page-home #title-team {
+  text-align: left !important;
+}
+
+page-home .team-info {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+page-home #team-position {
+  color: white;
+  background: red;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
 }
 
 page-home #team-name {
   text-align: left !important;
   min-width: 80px;
-}
-
-page-home ion-grid {
-  padding: 0px;
-  margin: 0px;
-}
-
-page-home ion-col {
-  text-align: center;
-  margin-bottom: 20px !important;
-  font-size: 95%;
-  padding: 0px !important;
-  min-width: 25px !important;
+  padding-left: 5px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
 }
 
 page-home #partido {

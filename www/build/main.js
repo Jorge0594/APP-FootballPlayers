@@ -30,7 +30,7 @@ var TabHome = (function () {
     }
     TabHome = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\home\home.html"*/'\n\n<ion-content hideScroll= "true" width ="100%">\n\n  <ion-grid>\n\n      <ion-row>\n\n          <ion-col col-xs-1>#</ion-col>\n\n          <ion-col col-4 id = "team-name">Equipo</ion-col>\n\n          <ion-col col-xs-1>PJ</ion-col>\n\n          <ion-col col-xs-1>G</ion-col>\n\n          <ion-col col-xs-1>E</ion-col>\n\n          <ion-col col-xs-1>P</ion-col>\n\n          <ion-col col-xs-1>GF</ion-col>\n\n          <ion-col col-xs-1>GC</ion-col>\n\n          <ion-col col-xs-2><strong>PT</strong></ion-col>\n\n        </ion-row>\n\n            <ion-row *ngFor ="let team of userService.getUserLeague()">\n\n                <ion-col col-xs-1>{{team?.posicion}}</ion-col>\n\n                <ion-col col-4 id= "team-name">{{team?.nombre}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.partidosJugados}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.partidosGanados}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.partidosEmpatados}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.partidosPerdidos}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.goles}}</ion-col>\n\n                <ion-col col-xs-1>{{team?.golesEncajados}}</ion-col>\n\n                <ion-col col-xs-2><strong>{{team?.puntos}}</strong></ion-col>\n\n            </ion-row>\n\n      </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\home\home.html"*/'\n\n<ion-content  width ="100%">\n\n  <ion-grid>\n\n    <ion-row id="colum-titles">\n\n        <ion-col col-xs-1>#</ion-col>\n\n        <ion-col col-4 id="title-team">Equipo</ion-col>\n\n        <ion-col col-xs-1>PJ</ion-col>\n\n        <ion-col col-xs-1>G</ion-col>\n\n        <ion-col col-xs-1>E</ion-col>\n\n        <ion-col col-xs-1>P</ion-col>\n\n        <ion-col col-xs-1>GF</ion-col>\n\n        <ion-col col-xs-1>GC</ion-col>\n\n        <ion-col col-xs-2><strong>PT</strong></ion-col>\n\n    </ion-row>\n\n    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">\n\n        <ion-row *ngFor ="let team of userService.getUserLeague()" id= "colum-content">\n\n            <ion-col col-xs-1 id="team-position">{{team?.posicion}}</ion-col>\n\n                <ion-col col-4 id= "team-name">{{team?.nombre}}</ion-col>\n\n                <ion-col col-xs-1 class="team-info">{{team?.partidosJugados}}</ion-col>\n\n                <ion-col col-xs-1 class="team-info">{{team?.partidosGanados}}</ion-col>\n\n                <ion-col col-xs-1 class="team-info">{{team?.partidosEmpatados}}</ion-col>\n\n                <ion-col col-xs-1 class="team-info">{{team?.partidosPerdidos}}</ion-col>\n\n                <ion-col col-xs-1 class="team-info">{{team?.goles}}</ion-col>\n\n                <ion-col col-xs-1 class="team-info">{{team?.golesEncajados}}</ion-col>\n\n                <ion-col col-xs-2 class="team-info"><strong>{{team?.puntos}}</strong></ion-col>\n\n        </ion-row>\n\n    </ion-scroll>\n\n  </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__app_services_httpClient_service__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */]])
     ], TabHome);
@@ -798,16 +798,10 @@ var UserService = (function () {
             console.log("response");
             _this.user = response;
             _this.teamService.getPlayerTeamById(response.equipo).subscribe(function (team) {
-                if (team != null || team != undefined) {
-                    _this.userTeam = team;
-                    _this.leagueService.getStandings(team.liga).subscribe(function (league) { return _this.userLeague = league; });
-                    _this.matchService.getMatchTeamById(response.equipo).subscribe(function (matches) { return _this.userMatches = matches; });
-                }
-                ;
+                _this.userTeam = team;
+                _this.leagueService.getStandings(team.liga).subscribe(function (league) { return _this.userLeague = league; });
             });
-            /*this.matchService.getMatchTeamById(response.equipo).subscribe(
-                matches => this.userMatches = matches
-            )*/
+            _this.matchService.getMatchTeamById(response.equipo).subscribe(function (matches) { return _this.userMatches = matches; });
         }, function (error) { return console.error(error); });
     };
     UserService.prototype.isLogged = function () {
@@ -827,10 +821,10 @@ var UserService = (function () {
     };
     UserService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */],
+            __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */]])
     ], UserService);
     return UserService;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=user.service.js.map

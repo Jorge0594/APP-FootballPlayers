@@ -1,53 +1,54 @@
 
 page-home{
 
-	.scroll-bar-indicator{
-		display: none;
-	}
-
-	ion-item{
-		//background:rgb(167, 226, 152)!important;
-		padding: 0px!important;
-		width: 100%!important;
-		position: relative;
-	}
-
-	span{
-		color:white;
-	}
-	ion-grid{
-		width:100%;	
-	}
-	ion-content{
-		width:100%;
-	}
-
-	#jornada{
+	ion-col{
 		text-align: center;
-		float:right;
-		max-width: 30px;
-		height: 30px!important;
-		width: 30px!important;
-		background: green;
-		margin-left:0px;
-		display: block;
+		font-size: 95%;
+		padding:0px!important;
+		min-width: 25px!important;
+	}
+
+	ion-grid{
+		padding:0px!important;
+	}
+
+	#colum-content{
+		//padding-top: 5px!important;
+		//padding-bottom: 15px!important;
+	}
+
+	#colum-titles{
+		background: rgb(0, 132, 255);
+		color:white;
+		padding-top:5px!important;
+		padding-bottom:5px!important;
+		margin-bottom: 0px!important;
+	}
+
+	#title-team{
+		text-align: left!important;
+	}
+
+	.team-info{
+		padding-top: 10px!important;
+		padding-bottom: 10px!important;
+	}
+
+	#team-position{
+		color: white;
+		background: red;
+		padding-top: 10px!important;
+		padding-bottom: 10px!important;
 	}
 
 	#team-name{
 		text-align: left!important;
 		min-width: 80px;
+		padding-left:5px!important; 
+		padding-top: 10px!important;
+		padding-bottom: 10px!important;
 	}
-	ion-grid{
-		padding: 0px;
-		margin: 0px;
-	}
-	ion-col{
-		text-align: center;
-		margin-bottom:20px!important;
-		font-size: 95%;
-		padding:0px!important;
-		min-width: 25px!important;
-	}
+	
 	#partido{
 		background: yellow;
 		float:left;
