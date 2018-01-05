@@ -25,15 +25,20 @@ export class UserService{
                 this.user = response;
                 this.teamService.getPlayerTeamById(response.equipo).subscribe(
                     team =>{
-                        this.userTeam = team;
-                        this.leagueService.getStandings(team.liga).subscribe(
-                            league => this.userLeague = league
-                        )
+                        if(team != null || team != undefined){
+                            this.userTeam = team;
+                            this.leagueService.getStandings(team.liga).subscribe(
+                                league => this.userLeague = league
+                            );
+                            this.matchService.getMatchTeamById(response.equipo).subscribe(
+                                matches => this.userMatches = matches
+                            );
+                        };
                     }
                 )
-                this.matchService.getMatchTeamById(response.equipo).subscribe(
+                /*this.matchService.getMatchTeamById(response.equipo).subscribe(
                     matches => this.userMatches = matches
-                )
+                )*/
             },
             error => console.error(error)
         )

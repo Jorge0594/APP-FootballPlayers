@@ -26045,12 +26045,20 @@ page-home #jornada {
 
 page-home #team-name {
   text-align: left !important;
+  min-width: 80px;
+}
+
+page-home ion-grid {
+  padding: 0px;
+  margin: 0px;
 }
 
 page-home ion-col {
   text-align: center;
-  margin: 0px !important;
-  font-size: 92% !important;
+  margin-bottom: 20px !important;
+  font-size: 95%;
+  padding: 0px !important;
+  min-width: 25px !important;
 }
 
 page-home #partido {

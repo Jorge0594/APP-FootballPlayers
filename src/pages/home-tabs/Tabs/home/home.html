@@ -3,7 +3,7 @@
   <ion-grid>
       <ion-row>
           <ion-col col-xs-1>#</ion-col>
-          <ion-col col-3 id = "team-name">Equipo</ion-col>
+          <ion-col col-4 id = "team-name">Equipo</ion-col>
           <ion-col col-xs-1>PJ</ion-col>
           <ion-col col-xs-1>G</ion-col>
           <ion-col col-xs-1>E</ion-col>
@@ -14,14 +14,14 @@
         </ion-row>
             <ion-row *ngFor ="let team of userService.getUserLeague()">
                 <ion-col col-xs-1>{{team?.posicion}}</ion-col>
-                <ion-col col-3 id= "team-name">FC Barcelona</ion-col>
+                <ion-col col-4 id= "team-name">{{team?.nombre}}</ion-col>
                 <ion-col col-xs-1>{{team?.partidosJugados}}</ion-col>
                 <ion-col col-xs-1>{{team?.partidosGanados}}</ion-col>
                 <ion-col col-xs-1>{{team?.partidosEmpatados}}</ion-col>
                 <ion-col col-xs-1>{{team?.partidosPerdidos}}</ion-col>
                 <ion-col col-xs-1>{{team?.goles}}</ion-col>
                 <ion-col col-xs-1>{{team?.golesEncajados}}</ion-col>
-                <ion-col col-xs-2>{{team?.puntos}}</ion-col>
+                <ion-col col-xs-2><strong>{{team?.puntos}}</strong></ion-col>
             </ion-row>
       </ion-grid>
 </ion-content>
