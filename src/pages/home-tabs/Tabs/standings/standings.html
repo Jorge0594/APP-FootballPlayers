@@ -15,14 +15,14 @@
     <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">
         <ion-row *ngFor ="let team of userService.getUserLeague()" id= "colum-content">
             <ion-col col-xs-1 id="team-position">{{team?.posicion}}</ion-col>
-                <ion-col col-4 id= "team-name">{{team?.nombre}}</ion-col>
-                <ion-col col-xs-1 class="team-info">{{team?.partidosJugados}}</ion-col>
-                <ion-col col-xs-1 class="team-info">{{team?.partidosGanados}}</ion-col>
-                <ion-col col-xs-1 class="team-info">{{team?.partidosEmpatados}}</ion-col>
-                <ion-col col-xs-1 class="team-info">{{team?.partidosPerdidos}}</ion-col>
-                <ion-col col-xs-1 class="team-info">{{team?.goles}}</ion-col>
-                <ion-col col-xs-1 class="team-info">{{team?.golesEncajados}}</ion-col>
-                <ion-col col-xs-2 class="team-info"><strong>{{team?.puntos}}</strong></ion-col>
+            <ion-col col-4 id= "team-name">{{team?.nombre}}</ion-col>
+            <ion-col col-xs-1 class="team-info">{{team?.partidosJugados}}</ion-col>
+            <ion-col col-xs-1 class="team-info">{{team?.partidosGanados}}</ion-col>
+            <ion-col col-xs-1 class="team-info">{{team?.partidosEmpatados}}</ion-col>
+            <ion-col col-xs-1 class="team-info">{{team?.partidosPerdidos}}</ion-col>
+            <ion-col col-xs-1 class="team-info">{{team?.goles}}</ion-col>
+            <ion-col col-xs-1 class="team-info">{{team?.golesEncajados}}</ion-col>
+            <ion-col col-xs-2 class="team-info"><strong>{{team?.puntos}}</strong></ion-col>
         </ion-row>
     </ion-scroll>
   </ion-grid>

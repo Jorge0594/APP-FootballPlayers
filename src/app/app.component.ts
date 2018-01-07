@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabHome } from '../pages/home-tabs/Tabs/home/home';
+import { TabStandings } from '../pages/home-tabs/Tabs/standings/standings';
 import { LoginPage } from '../pages/login/login';
 import { PlayerService } from './services/player.service';
 
@@ -12,7 +12,7 @@ import { PlayerService } from './services/player.service';
 })
 export class MyApp {
   rootPage:any = LoginPage;
-  homePage:any = TabHome;
+  homePage:any = TabStandings;
   servicePlayer:any = PlayerService;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

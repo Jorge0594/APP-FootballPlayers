@@ -1,8 +1,26 @@
-page-home-tabs {
-    .scroll-content {
-	    background-color: #ffffff;
-	    display: flex;
-	    flex-direction: column;
-	    overflow: hidden;
+
+	page-home-tabs {
+		.scroll-content {
+			background-color: #ffffff;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+		}
+
+		ion-title{
+			text-align: center;
+		}
+
+		.header-md::after{
+			background-image: none;
+		}
+
+		ion-toolbar.toolbar::after{
+			height: 0px!important;
+		}
+
+		super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button{
+			background: #2673f8;
+			color:white;
+		}
 	}
-}

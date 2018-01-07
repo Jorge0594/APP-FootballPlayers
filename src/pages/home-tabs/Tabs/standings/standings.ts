@@ -7,9 +7,9 @@ import { MatchService } from '../../../../app/services/match.service';
 import { UserService } from  '../../../../app/services/user.service';
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl:'standings.html'
 })
-export class TabHome {
+export class TabStandings {
 
   userMatches: any;
   constructor(public navCtrl: NavController, private http:HttpClient, private userService: UserService) {

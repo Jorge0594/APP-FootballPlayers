@@ -1,16 +1,14 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Inicio</ion-title>
-  </ion-navbar>
+    <ion-navbar height="20px" color="primary">
+      <button ion-button menuToggle id="button-toggle">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Inicio</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content overflow-scroll="false">
-  <ion-tabs>
-    <ion-tab [root]="tabHomeRoot" tabTitle="Home" tabIcon="home"></ion-tab>
-    <ion-tab [root]="tabTeamRoot" tabTitle="Equipo" tabIcon="football"></ion-tab>
-    <ion-tab [root]="tabLeagueRoot" tabTitle="Liga" tabIcon="trophy" ></ion-tab>
-  </ion-tabs>
+  <super-tabs height="100%" swipeEnable ="true" color="primary">
+    <super-tab *ngFor ="let tab of tabs" [root]="tab.root" [title]="tab.title"></super-tab>
+  </super-tabs>
 </ion-content>

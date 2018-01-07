@@ -26010,6 +26010,23 @@ page-home-tabs .scroll-content {
   overflow: hidden;
 }
 
+page-home-tabs ion-title {
+  text-align: center;
+}
+
+page-home-tabs .header-md::after {
+  background-image: none;
+}
+
+page-home-tabs ion-toolbar.toolbar::after {
+  height: 0px !important;
+}
+
+page-home-tabs super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button {
+  background: #2673f8;
+  color: white;
+}
+
 page-home ion-col {
   text-align: center;
   font-size: 95%;

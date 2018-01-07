@@ -17,7 +17,7 @@ import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
 import { HomeTabsPage } from '../pages/home-tabs/home-tabs';
-import { TabHome } from '../pages/home-tabs/Tabs/home/home';
+import { TabStandings } from '../pages/home-tabs/Tabs/standings/standings';
 import { TabTeam } from '../pages/home-tabs/Tabs/team/tab-team';
 import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
 
@@ -26,7 +26,7 @@ import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
     MyApp,
     LoginPage,
     HomeTabsPage,
-    TabHome,
+    TabStandings,
     TabTeam,
     TabLeague
   ],
@@ -41,7 +41,7 @@ import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
     MyApp,
     LoginPage,
     HomeTabsPage,
-    TabHome,
+    TabStandings,
     TabTeam,
     TabLeague
   ],
