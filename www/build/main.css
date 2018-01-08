@@ -25996,6 +25996,13 @@ ion-nav {
   display: block;
 }
 
+page-home-tabs {
+  /*super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button{
+			background: #2673f8;
+			color:white;
+		}*/
+}
+
 page-home-tabs .scroll-content {
   background-color: #ffffff;
   display: -webkit-box;
@@ -26020,11 +26027,6 @@ page-home-tabs .header-md::after {
 
 page-home-tabs ion-toolbar.toolbar::after {
   height: 0px !important;
-}
-
-page-home-tabs super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button {
-  background: #2673f8;
-  color: white;
 }
 
 page-home ion-col {
@@ -26074,6 +26076,14 @@ page-home #partido {
   background: yellow;
   float: left;
   display: block;
+}
+
+page-tab-team .swiper-slide {
+  font-size: 16px !important;
+}
+
+page-tab-team ion-toolvar {
+  padding: 0px;
 }
 
 .ios page-login, .md page-login {

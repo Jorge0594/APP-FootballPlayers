@@ -19,8 +19,12 @@
 			height: 0px!important;
 		}
 
-		super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button{
+		/*super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button{
 			background: #2673f8;
 			color:white;
+		}*/
+
+		.tab-button[aria-selected=true] {
+			//text-decoration: underline !important;
 		}
 	}

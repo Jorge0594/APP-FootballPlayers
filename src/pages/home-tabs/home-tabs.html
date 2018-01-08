@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content overflow-scroll="false">
-  <super-tabs height="100%" swipeEnable ="true" color="primary">
-    <super-tab *ngFor ="let tab of tabs" [root]="tab.root" [title]="tab.title"></super-tab>
-  </super-tabs>
+  <ion-tabs height="100%" swipeEnable ="false" color="primary">
+    <ion-tab *ngFor ="let tab of tabs" [root]="tab.root" [tabTitle]="tab.title" [tabIcon] = "tab.icon"></ion-tab>
+  </ion-tabs>
 </ion-content>

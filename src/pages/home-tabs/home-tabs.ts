@@ -20,9 +20,9 @@ export class HomeTabsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController, private userService:UserService) {
     this.tabs = [
-      {title: "CLASIFICACIÓN", root: TabStandings, icon: "trophy"},
-      {title: "ENCUENTROS", root: TabTeam, icon: "football"},
-      {title: "LIGA", root: TabLeague, icon: "trophy"}
+      {title: "Clasificación", root: TabStandings, icon: "trophy"},
+      {title: "Calendario", root: TabTeam, icon: "calendar"},
+      {title: "Goleadores", root: TabLeague, icon: "podium"}
     ]
   }
 
