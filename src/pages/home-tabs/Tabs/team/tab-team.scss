@@ -1,10 +1,23 @@
-page-tab-team {  
-    .swiper-slide {
-        font-size: 16px!important;
+tab-team { 
+
+    ion-slides{
+        background-color:#649cfd;
     }
 
-    ion-toolvar{
-        padding:0px;
+    ion-slide {
+        background-color:#649cfd;
+    }
+
+    #slide-title{
+        color:rgba(255, 255, 255, 0.7);
+    }
+    
+    .selected{
+        background: #3f79dd;
+        p{
+            color:white!important;
+            font-size: 19px!important;
+        }
     }
 } 
 

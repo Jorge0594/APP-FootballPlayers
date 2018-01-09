@@ -26078,12 +26078,25 @@ page-home #partido {
   display: block;
 }
 
-page-tab-team .swiper-slide {
-  font-size: 16px !important;
+tab-team ion-slides {
+  background-color: #649cfd;
 }
 
-page-tab-team ion-toolvar {
-  padding: 0px;
+tab-team ion-slide {
+  background-color: #649cfd;
+}
+
+tab-team #slide-title {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+tab-team .selected {
+  background: #3f79dd;
+}
+
+tab-team .selected p {
+  color: white !important;
+  font-size: 19px !important;
 }
 
 .ios page-login, .md page-login {

@@ -1,7 +1,7 @@
-<ion-header>
+<ion-header style="padding:0px">
     <ion-toolbar style="padding:0px">
         <ion-slides  slidesPerView="3">
-            <ion-slide  *ngFor="let num of userService.getRounds()" style="background:#75a4f5" >
+            <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >
                     <p id="slide-title">Jornada {{num}}</p>
             </ion-slide>
         </ion-slides>
@@ -9,5 +9,4 @@
 </ion-header>
 
 <ion-content padding>
-  
 </ion-content>
