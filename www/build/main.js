@@ -162,6 +162,7 @@ var PlayerService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__ = __webpack_require__(313);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -174,28 +175,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TabTeam = (function () {
-    function TabTeam(navCtrl, navParams, userService) {
+    function TabTeam(navCtrl, navParams, userService, matchService) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.userService = userService;
+        this.matchService = matchService;
         this.roundSelected = 1;
+        this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(function (matches) {
+            _this.roundMatches = matches;
+            console.log(_this.roundMatches);
+        }, function (error) { return console.error(error); });
     }
-    /*ionViewDidLoad() {
-      this.roundSelected = 1;
-    }*/
     TabTeam.prototype.roundInfo = function (day) {
+        var _this = this;
         this.roundSelected = day;
+        this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(function (matches) {
+            _this.roundMatches = matches;
+            console.log(_this.roundMatches);
+        }, function (error) { return console.error(error); });
         console.log(this.roundSelected);
         console.log("Informacion de la jornada " + day);
     };
     TabTeam = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'tab-team',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\team\tab-team.html"*/'<ion-header style="padding:0px">\n    <ion-toolbar style="padding:0px">\n        <ion-slides  slidesPerView="3">\n            <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >\n                    <p id="slide-title">Jornada {{num}}</p>\n            </ion-slide>\n        </ion-slides>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\team\tab-team.html"*/,
+            selector: 'tab-team',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\team\tab-team.html"*/'<ion-header style="padding:0px">\n    <ion-toolbar style="padding:0px">\n        <ion-slides  slidesPerView="3">\n            <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >\n                    <p id="slide-title">Jornada {{num}}</p>\n            </ion-slide>\n        </ion-slides>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <h1>Partidos</h1>\n\n    <ion-list>\n        <button ion-item *ngFor = "let match of roundMatches">{{match.jornada}}</button>\n    </ion-list>\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\team\tab-team.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__["a" /* MatchService */]) === "function" && _d || Object])
     ], TabTeam);
     return TabTeam;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=tab-team.js.map
@@ -267,7 +278,7 @@ var map = {
 		3
 	],
 	"../pages/home-tabs/Tabs/team/tab-team.module": [
-		694,
+		695,
 		2
 	],
 	"../pages/home-tabs/home-tabs.module": [
@@ -275,7 +286,7 @@ var map = {
 		1
 	],
 	"../pages/login/login.module": [
-		695,
+		694,
 		0
 	]
 };
@@ -407,11 +418,18 @@ var MatchService = (function () {
     MatchService.prototype.getMatchTeamById = function (idMatch) {
         return this.http.get(BASE_URL + 'partidosEquipo/' + idMatch).map(function (response) { return response; }, function (error) { return console.error(error); });
     };
+    MatchService.prototype.getMatchByLeague = function (league) {
+        return this.http.get(BASE_URL + 'liga/' + league).map(function (response) { return response; }, function (error) { return console.error(error); });
+    };
+    MatchService.prototype.getMatchByRoundAndLeague = function (round, league) {
+        return this.http.get(BASE_URL + 'jornada/' + round + '/' + league).map(function (response) { return response; }, function (error) { return console.error(error); });
+    };
     MatchService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]) === "function" && _a || Object])
     ], MatchService);
     return MatchService;
+    var _a;
 }());
 
 //# sourceMappingURL=match.service.js.map
@@ -561,8 +579,8 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/home-tabs/home-tabs.module#HomeTabsPageModule', name: 'HomeTabsPage', segment: 'home-tabs', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home-tabs/Tabs/league/league-tab.module#LeagueTabPageModule', name: 'TabLeague', segment: 'league-tab', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home-tabs/Tabs/team/tab-team.module#TabTeamPageModule', name: 'TabTeam', segment: 'tab-team', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home-tabs/Tabs/team/tab-team.module#TabTeamPageModule', name: 'TabTeam', segment: 'tab-team', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -710,12 +728,12 @@ var UserService = (function () {
                     _this.userTeam = team;
                     _this.leagueService.getStandings(team.liga).subscribe(function (league) {
                         _this.userLeague = league;
-                        //((league.length - 1) * 2)
-                        for (var i = 1; i <= 20; i++) {
+                        for (var i = 1; i <= ((league.length - 1) * 2); i++) {
                             _this.rounds.push(i);
                         }
                         ;
                     });
+                    _this.matchService.getMatchByLeague(team.liga).subscribe(function (leagueMatches) { return _this.leagueMaches = leagueMatches; });
                     _this.matchService.getMatchTeamById(response.equipo).subscribe(function (matches) { return _this.userMatches = matches; });
                 }
                 ;
@@ -745,10 +763,10 @@ var UserService = (function () {
     };
     UserService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */],
-            __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */]) === "function" && _d || Object])
     ], UserService);
     return UserService;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=user.service.js.map

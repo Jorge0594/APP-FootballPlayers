@@ -13,6 +13,7 @@ export class UserService{
     private userTeam: any;
     private userLeague: any;
     private userMatches: any;
+    private leagueMaches: any;
     private rounds: number [] = [];
 
     constructor(private http: HttpClient, private teamService:TeamService,
@@ -30,11 +31,13 @@ export class UserService{
                             this.leagueService.getStandings(team.liga).subscribe(
                                 league =>{
                                     this.userLeague = league;
-                                    //((league.length - 1) * 2)
-                                    for(let i = 1; i<= 20; i++){
+                                    for(let i = 1; i<= ((league.length - 1) * 2); i++){
                                         this.rounds.push(i);
                                     };
                                 }
+                            );
+                            this.matchService.getMatchByLeague(team.liga).subscribe(
+                                leagueMatches => this.leagueMaches = leagueMatches
                             );
                             this.matchService.getMatchTeamById(response.equipo).subscribe(
                                 matches => this.userMatches = matches

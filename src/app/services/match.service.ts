@@ -16,4 +16,18 @@ export class MatchService{
             error => console.error(error)
         )
     }
+
+    getMatchByLeague(league:string){
+        return this.http.get(BASE_URL + 'liga/' + league).map(
+            response => response,
+            error => console.error(error)
+        )
+    }
+
+    getMatchByRoundAndLeague(round:number, league:string){
+        return this.http.get(BASE_URL + 'jornada/' + round + '/' + league).map(
+            response => response,
+            error => console.error(error)
+        );
+    }
 }
