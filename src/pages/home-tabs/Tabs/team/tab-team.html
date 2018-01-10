@@ -16,16 +16,16 @@
                     {{match.fechaPartido}}
                 </ion-col>
             </ion-row>
-            <ion-row>
-                <ion-col>
-                    {{match.horaPartido}}
-                </ion-col>
-            </ion-row>
-            <ion-row>
+            <ion-row *ngIf = "match.estado == 'Finalizado'">
                 <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
                 <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>
                 <ion-col col-2><h1>-</h1></ion-col>
                 <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>
+                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>
+            </ion-row>
+            <ion-row *ngIf = "match.estado != 'Finalizado'">
+                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
+                <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>
                 <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>
             </ion-row>
         </ion-item>
