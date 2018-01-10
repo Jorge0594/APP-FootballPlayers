@@ -26029,6 +26029,23 @@ page-home-tabs ion-toolbar.toolbar::after {
   height: 0px !important;
 }
 
+page-league-tab #player-position {
+  text-align: center;
+}
+
+page-league-tab #player-image {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+page-league-tab #player-name {
+  text-align: left;
+}
+
+page-league-tab #player-goals {
+  text-align: center;
+}
+
 page-home ion-col {
   text-align: center;
   font-size: 95%;

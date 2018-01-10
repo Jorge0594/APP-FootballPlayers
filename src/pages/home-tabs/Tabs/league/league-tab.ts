@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { UserService } from '../../../../app/services/user.service';
 
 
 @IonicPage()
@@ -10,7 +11,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TabLeague {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
   }
 
   ionViewDidLoad() {

@@ -12,6 +12,7 @@ export class UserService{
     private user: any;
     private userTeam: any;
     private userLeague: any;
+    private userLeaguePlayers: any;
     private userMatches: any;
     private leagueMaches: any;
     private rounds: number [] = [];
@@ -35,6 +36,10 @@ export class UserService{
                                         this.rounds.push(i);
                                     };
                                 }
+                            );
+
+                            this.leagueService.getTopGoals(team.liga).subscribe(
+                                top => this.userLeaguePlayers = top
                             );
                             this.matchService.getMatchByLeague(team.liga).subscribe(
                                 leagueMatches => this.leagueMaches = leagueMatches
@@ -75,5 +80,9 @@ export class UserService{
 
     getRounds(){
         return this.rounds;
+    }
+
+    getTopGoals(){
+        return this.userLeaguePlayers;
     }
 }

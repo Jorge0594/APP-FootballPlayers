@@ -10,13 +10,13 @@
 
 <ion-content padding>
     <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">
-        <ion-item *ngFor = "let match of roundMatches" id="match-info">
+        <ion-item *ngFor = "let match of roundMatches" (click)="matchInfo(match.id)" id="match-info">
             <ion-row id ="date">
                 <ion-col>
                     {{match.fechaPartido}}
                 </ion-col>
             </ion-row>
-            <ion-row *ngIf = "match.estado == 'Finalizado'">
+            <ion-row *ngIf = "match.estado == 'Finalizado' || match.estado == 'finalizado' ">
                 <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
                 <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>
                 <ion-col col-2><h1>-</h1></ion-col>

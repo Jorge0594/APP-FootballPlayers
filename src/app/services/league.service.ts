@@ -17,9 +17,16 @@ export class LeagueService{
     }
 
     getStandings(name:string){
-        return this.http.get(BASE_URL + name + "/clasificacion").map(
+        return this.http.get(BASE_URL + name + '/clasificacion').map(
             response => response,
             error => console.error(error)
         )
+    }
+
+    getTopGoals(name:string){
+        return this.http.get(BASE_URL + name + '/goleadores' ).map(
+            response => response,
+            error => console.error(error)
+        );
     }
 }

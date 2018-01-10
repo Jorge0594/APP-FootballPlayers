@@ -39,4 +39,9 @@ export class TabTeam {
     console.log("Informacion de la jornada " + day);
   }
 
+  matchInfo(id:any){
+    //en desarrollo
+    console.log("Informacion del partido " + id);
+  }
+
 }
