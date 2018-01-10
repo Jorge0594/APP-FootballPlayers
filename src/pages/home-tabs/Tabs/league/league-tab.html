@@ -1,11 +1,14 @@
 
 <ion-content>
-  <ion-row *ngFor = "let player of userService.getTopGoals()">
-    <ion-col col-xs-1 id="player-position">1</ion-col>
-    <ion-col col-xs-4 id="col-player-image">
-      <img id = "player-image" src="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
-    </ion-col>
-    <ion-col col-5 id="player-name">{{player.nombre}}</ion-col>
-    <ion-col col-xs-2 id ="player-goals">{{player.goles}}</ion-col>
-  </ion-row>
+  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">
+    <ion-item *ngFor = "let player of userService.getTopGoals()">
+      <ion-row>
+        <ion-col col-xs-3 id="col-player-image">
+            <img id = "player-image" src="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
+        </ion-col>
+        <ion-col col-7 id="player-name">{{player.nombre}}</ion-col>
+        <ion-col col-xs-2 id ="player-goals"><h1>{{player.goles}}</h1></ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-scroll>
 </ion-content>
