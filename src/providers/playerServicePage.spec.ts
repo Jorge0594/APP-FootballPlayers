@@ -12,6 +12,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { PlayerService } from '../app/services/player.service';
+import { LoginService } from '../app/services/login.service';
+import { MatchService } from '../app/services/match.service';
+import { LeagueService } from '../app/services/league.service';
+import { UserService } from '../app/services/user.service';
+import { TeamService } from '../app/services/team.service';
+import { HttpClient } from '../app/services/httpClient.service'
 
 let component : MyApp
 let fixture : ComponentFixture<MyApp>
@@ -24,8 +30,14 @@ describe('PlayerService',()=>{
             declarations:[MyApp],
             providers:[
                 HttpModule,
+                TeamService,
                 PlayerService,
+                LoginService,
+                UserService,
+                LeagueService,
+                MatchService,
                 MockBackend,
+                HttpClient,
                 BaseRequestOptions,
                 {
                     provide: Http,

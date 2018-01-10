@@ -9,9 +9,25 @@
 </ion-header>
 
 <ion-content padding>
-    <h1>Partidos</h1>
-
     <ion-list>
-        <button ion-item *ngFor = "let match of roundMatches">{{match.jornada}}</button>
+        <button ion-item *ngFor = "let match of roundMatches" id="match-info">
+            <ion-row id ="date">
+                <ion-col>
+                    {{match.fechaPartido}}
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    {{match.horaPartido}}
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
+                <ion-col col-1 class= "score"><h1>{{match.golesLocal}}</h1></ion-col>
+                <ion-col col-2><h1>-</h1></ion-col>
+                <ion-col col-1 class = "score"><h1>{{match.golesVisitante}}</h1></ion-col>
+                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>
+            </ion-row>
+        </button>
     </ion-list>
 </ion-content>

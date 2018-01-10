@@ -15,18 +15,18 @@ import { UserService } from './services/user.service';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = LoginPage; Cambiar cuando pase a produccion
-  rootPage:any = HomeTabsPage;
+  rootPage:any = LoginPage;
+  //rootPage:any = HomeTabsPage;
   homePage:any = TabStandings;
   servicePlayer:any = PlayerService;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private loginService:LoginService, private userService: UserService) {
-    this.loginService.login("alex","pass").subscribe(
+    /*this.loginService.login("alex","pass").subscribe(
       reponse => {
         this.userService.generateUserData();
       },
       error => console.error(error)
-    );
+    );*/
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

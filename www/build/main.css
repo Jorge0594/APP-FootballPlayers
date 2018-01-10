@@ -26099,6 +26099,52 @@ tab-team .selected p {
   font-size: 19px !important;
 }
 
+tab-team ion-row {
+  padding: 0px !important;
+}
+
+tab-team .score {
+  font-size: 100% !important;
+  text-align: right !important;
+}
+
+tab-team scroll-content {
+  padding: 0px !important;
+}
+
+tab-team .team-local {
+  text-align: left;
+  margin-top: 2px;
+}
+
+tab-team .team-visitor {
+  text-align: right;
+  margin-top: 2px;
+}
+
+tab-team .item-md.item-block .item-inner {
+  padding: 0px !important;
+}
+
+tab-team .label {
+  padding: 0px !important;
+}
+
+tab-team #date {
+  padding-left: 15px !important;
+  background: #3f79dd !important;
+}
+
+tab-team #match-info {
+  color: white;
+  margin: 0px !important;
+  padding: 0px !important;
+  font-size: 93%;
+  max-width: 100%;
+  text-align: center;
+  background: #114dc7;
+}
+
 .ios page-login, .md page-login {
   /*.scroll-content {
 	    background-color: #ffffff;
