@@ -1,5 +1,5 @@
 <ion-header style="padding:0px">
-    <ion-toolbar style="padding:0px">
+    <ion-toolbar style="padding:0px; max-height:50px">
         <ion-slides  slidesPerView="3">
             <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >
                     <p id="slide-title">Jornada {{num}}</p>
@@ -9,8 +9,8 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
-        <button ion-item *ngFor = "let match of roundMatches" id="match-info">
+    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">
+        <ion-item *ngFor = "let match of roundMatches" id="match-info">
             <ion-row id ="date">
                 <ion-col>
                     {{match.fechaPartido}}
@@ -23,11 +23,11 @@
             </ion-row>
             <ion-row>
                 <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
-                <ion-col col-1 class= "score"><h1>{{match.golesLocal}}</h1></ion-col>
+                <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>
                 <ion-col col-2><h1>-</h1></ion-col>
-                <ion-col col-1 class = "score"><h1>{{match.golesVisitante}}</h1></ion-col>
+                <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>
                 <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>
             </ion-row>
-        </button>
-    </ion-list>
+        </ion-item>
+    </ion-scroll>
 </ion-content>
