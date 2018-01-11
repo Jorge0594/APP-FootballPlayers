@@ -11,11 +11,17 @@ import { UserService } from '../../../../app/services/user.service';
 })
 export class TabLeague {
 
+  private rankSelected: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
+    this.rankSelected = "goals";
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LeagueTabPage');
   }
 
+  selectRank(type:string){
+    this.rankSelected = type;
+  }
 }

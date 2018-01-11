@@ -1,4 +1,25 @@
 league-tab {
+
+    ion-slides{
+        background-color:#649cfd;
+    }
+
+    ion-slide {
+        background-color:#649cfd;
+    }
+
+    #slide-title{
+        color:rgba(255, 255, 255, 0.7);
+    }
+    
+    .selected{
+        background: #3f79dd;
+        p{
+            color:white!important;
+            font-size: 19px!important;
+        }
+    }
+    
     #player-position{
         text-align: center;
         padding-top:25px!important;
@@ -13,31 +34,50 @@ league-tab {
         padding:0px!important;
     }
     
+    #player-position{
+        padding-top:32px!important;
+        color:rgb(247, 220, 66);
+        background: rgb(4, 56, 161);
+    }
+
     #player-image{
         max-width: 50px;
         max-height: 50px;
         width: 50px;
         height: 50px;
+        margin-top:10px;
         position:relative;
         display: block;
         border-radius: 100%;
     }
 
     #player-name{
-        padding-top:25px!important;
+        padding-top:32px!important;
         padding-bottom: 25px!important;
         text-align: left;
         color:white;
     }
 
     #player-goals{
-        text-align: center;
         padding-top:25px!important;
         padding-bottom: 25px!important;
+        text-align: center;
         color:white;
     }
 
-    ion-col{
+    h1{
         margin:0px!important;
+    }
+    ion-col{;
+        margin:0px!important;
+    }
+
+    ion-row{
+        max-height: 80px!important;
+        margin-top:10px;
+        background: rgb(17, 77, 199)!important
+    }
+    .item-md.item-block .item-inner{
+        padding-right: 0px!important;
     }
 }

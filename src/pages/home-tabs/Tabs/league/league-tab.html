@@ -1,14 +1,29 @@
 
+<ion-header style="padding:0px">
+    <ion-toolbar style="padding:0px; max-height:50px">
+        <ion-slides  slidesPerView="3">
+            <ion-slide [class.selected] = "rankSelected == 'goals'" (click)="selectRank('goals')">
+                    <p id="slide-title">Goleadores</p>
+            </ion-slide>
+            <ion-slide [class.selected] = "rankSelected == 'foul'" (click)="selectRank('foul')">
+                <p id="slide-title">Faltas</p>
+            </ion-slide>
+            <ion-slide [class.selected] = "rankSelected == 'cards'" (click)="selectRank('cards')">
+              <p id="slide-title">Tarjetas</p>
+            </ion-slide>
+        </ion-slides>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">
-    <ion-item *ngFor = "let player of userService.getTopGoals()">
-      <ion-row>
+      <ion-row *ngFor = "let player of userService.getTopGoals(); let position = index;">
+        <ion-col col-xs-1 id="player-position">{{position+1}}</ion-col>
         <ion-col col-xs-3 id="col-player-image">
             <img id = "player-image" src="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
         </ion-col>
-        <ion-col col-7 id="player-name">{{player.nombre}}</ion-col>
+        <ion-col col-6 id="player-name">{{player.nombre}}</ion-col>
         <ion-col col-xs-2 id ="player-goals"><h1>{{player.goles}}</h1></ion-col>
       </ion-row>
-    </ion-item>
   </ion-scroll>
 </ion-content>

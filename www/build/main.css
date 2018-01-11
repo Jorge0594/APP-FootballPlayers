@@ -26029,6 +26029,27 @@ page-home-tabs ion-toolbar.toolbar::after {
   height: 0px !important;
 }
 
+league-tab ion-slides {
+  background-color: #649cfd;
+}
+
+league-tab ion-slide {
+  background-color: #649cfd;
+}
+
+league-tab #slide-title {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+league-tab .selected {
+  background: #3f79dd;
+}
+
+league-tab .selected p {
+  color: white !important;
+  font-size: 19px !important;
+}
+
 league-tab #player-position {
   text-align: center;
   padding-top: 25px !important;
@@ -26043,32 +26064,53 @@ league-tab ion-item {
   padding: 0px !important;
 }
 
+league-tab #player-position {
+  padding-top: 32px !important;
+  color: #f7dc42;
+  background: #0438a1;
+}
+
 league-tab #player-image {
   max-width: 50px;
   max-height: 50px;
   width: 50px;
   height: 50px;
+  margin-top: 10px;
   position: relative;
   display: block;
   border-radius: 100%;
 }
 
 league-tab #player-name {
-  padding-top: 25px !important;
+  padding-top: 32px !important;
   padding-bottom: 25px !important;
   text-align: left;
   color: white;
 }
 
 league-tab #player-goals {
-  text-align: center;
   padding-top: 25px !important;
   padding-bottom: 25px !important;
+  text-align: center;
   color: white;
+}
+
+league-tab h1 {
+  margin: 0px !important;
 }
 
 league-tab ion-col {
   margin: 0px !important;
+}
+
+league-tab ion-row {
+  max-height: 80px !important;
+  margin-top: 10px;
+  background: #114dc7 !important;
+}
+
+league-tab .item-md.item-block .item-inner {
+  padding-right: 0px !important;
 }
 
 page-home ion-col {
