@@ -73,14 +73,14 @@ describe('PlayerService',()=>{
         expect(component ['servicePlayer']).toBe(PlayerService);
     });
 
-    it('should have none empty array called of players', async(inject([PlayerService],(service: PlayerService)=>{
+    /*it('should have none empty array called of players', async(inject([PlayerService],(service: PlayerService)=>{
         const mockResponse =  '{"players":[{"id": "5a0b55e4f130632608753d9a","nombre": "Jorge", "apellidos": "Sanchez Marquez","edad": 0,"aceptado": false,"dni": "54551835K","nombreUsuario": "jorge","email": "jorge@gmail.com","fotoJugador": "profilejorge.jpg","equipo": "","posicion": "Centrocampista","fechaSancion": "","estado": "Titular","nacionalidad": "Española","dorsal": 0,"goles": 0,"tarjetasAmarillas": 0,"tarjetasRojas": 0,"capitan": true}]}';
 
         /*mock.connections.subscribe((connection) =>{
             connection.mockResponse(new Response(new ResponseOptions({
                 body: mockResponse
             })));
-        });*/
+        });
 
         mockBackend.connections.subscribe((connection: MockConnection) => {
             connection.mockRespond(new Response(new ResponseOptions({
@@ -103,7 +103,7 @@ describe('PlayerService',()=>{
         expect(Array.isArray(service.getPlayer())).toBeTruthy();
         expect(service.getPlayer().length).toBeGreaterThan(0);
 
-    })));
+    })));*/
 
     
 });

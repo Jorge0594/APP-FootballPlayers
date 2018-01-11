@@ -20,6 +20,7 @@ import { HomeTabsPage } from '../pages/home-tabs/home-tabs';
 import { TabStandings } from '../pages/home-tabs/Tabs/standings/standings';
 import { TabTeam } from '../pages/home-tabs/Tabs/team/tab-team';
 import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
+import { PlayerPage } from '../pages/player/player';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
     HomeTabsPage,
     TabStandings,
     TabTeam,
-    TabLeague
+    TabLeague,
+    PlayerPage
   ],
   imports: [
     HttpModule,
@@ -43,7 +45,8 @@ import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
     HomeTabsPage,
     TabStandings,
     TabTeam,
-    TabLeague
+    TabLeague,
+    PlayerPage
   ],
   providers: [
     HttpModule,

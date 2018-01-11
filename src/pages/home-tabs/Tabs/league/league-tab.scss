@@ -8,6 +8,10 @@ league-tab {
         background-color:#649cfd;
     }
 
+    .scroll-content{
+        background: rgb(1, 27, 78);
+    }
+
     #slide-title{
         color:rgba(255, 255, 255, 0.7);
     }
@@ -19,19 +23,16 @@ league-tab {
             font-size: 19px!important;
         }
     }
+
+    .player-info:hover{
+        background: rgba(10, 82, 226, 0.664)!important
+    }
     
     #player-position{
         text-align: center;
         padding-top:25px!important;
         padding-bottom: 25px!important;
         color:white;        
-    }
-
-    ion-item{
-        background: rgb(17, 77, 199)!important;
-        max-width: 95%!important;
-        margin:12px auto!important;
-        padding:0px!important;
     }
     
     #player-position{
@@ -68,14 +69,14 @@ league-tab {
     h1{
         margin:0px!important;
     }
-    ion-col{;
+    ion-col{
         margin:0px!important;
     }
 
     ion-row{
         max-height: 80px!important;
         margin-top:10px;
-        background: rgb(17, 77, 199)!important
+        background: rgb(3, 37, 105)!important
     }
     .item-md.item-block .item-inner{
         padding-right: 0px!important;

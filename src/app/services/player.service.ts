@@ -1,38 +1,21 @@
-import { Injectable, Inject, forwardRef } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-//import { Player } from '../Class/player.model';
+import { HttpClient } from './httpClient.service';
+
 import 'rxjs/Rx';
+
+const BASE_URL = "jugadores/";
 @Injectable()
 export class PlayerService{
 
-    private players: any;
+    constructor(public http:HttpClient){};
 
-    constructor(public http:Http){};
-
-    getHttpPlayers(){
-        return this.http.get('assets/data/players.json')
-        .map(response => {return response.json()})
-    }
-
-    getPlayer(){
-        return this.players;
-    }
-
-    loadPlayers(){
-       /* this.getHttpPlayers().subscribe(
-            reponse => {
-                this.players = reponse.players;
-            }
-        )*/
-        console.log("Llama a load palyers");
-        return this.http.get('assets/data/players.json')
-        .map(response => {return response.json()}).subscribe(
-            data =>  {
-                this.players = data;
-            }
+    getPlayerById(id:string){
+        return this.http.get(BASE_URL + "id/" + id).map(
+            response => response,
+            error => console.error(error)
         );
-        
     }
+   
 };

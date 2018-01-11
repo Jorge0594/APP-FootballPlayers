@@ -26037,6 +26037,10 @@ league-tab ion-slide {
   background-color: #649cfd;
 }
 
+league-tab .scroll-content {
+  background: #011b4e;
+}
+
 league-tab #slide-title {
   color: rgba(255, 255, 255, 0.7);
 }
@@ -26050,18 +26054,15 @@ league-tab .selected p {
   font-size: 19px !important;
 }
 
+league-tab .player-info:hover {
+  background: rgba(10, 82, 226, 0.664) !important;
+}
+
 league-tab #player-position {
   text-align: center;
   padding-top: 25px !important;
   padding-bottom: 25px !important;
   color: white;
-}
-
-league-tab ion-item {
-  background: #114dc7 !important;
-  max-width: 95% !important;
-  margin: 12px auto !important;
-  padding: 0px !important;
 }
 
 league-tab #player-position {
@@ -26106,7 +26107,7 @@ league-tab ion-col {
 league-tab ion-row {
   max-height: 80px !important;
   margin-top: 10px;
-  background: #114dc7 !important;
+  background: #032569 !important;
 }
 
 league-tab .item-md.item-block .item-inner {
