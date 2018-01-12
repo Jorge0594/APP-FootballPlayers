@@ -1,12 +1,37 @@
 <ion-header>
-    <ion-navbar height="20px" color="primary">
+    <ion-navbar height="20px" color ="mainHeader">
       <button ion-button menuToggle id="button-toggle">
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Inicio</ion-title>
     </ion-navbar>
+    <ion-row id = "main-info">
+      <ion-col col-xs-3>
+          <img id = "player-image" src ="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
+      </ion-col>
+      <ion-col col-xs-1> 
+        <h1 id = "player-number">{{player?.dorsal}}</h1>
+      </ion-col>
+      <ion-col col-xs-6 id ="player-team">
+        <strong>{{playerTeam?.nombre}}</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-xs-12 id = "player-name">
+          <h1 id = "player-name-text">{{player?.nombre}}    {{player?.apellidos}}</h1>
+      </ion-col>
+    </ion-row>
 </ion-header>
 
 <ion-content padding>
-  <h1>{{player?.nombre}}</h1>
+  <ion-list>
+    <ion-item>
+      Posición           {{player?.posicion}}
+    </ion-item>
+    <ion-item>
+      Tarjetas Amarillas           {{player?.tarjetasAmarillas}}            
+    </ion-item>
+    <ion-item>
+      Tarjetas Rojas           {{player?.tarjetasRojas}}
+    </ion-item>
+  </ion-list>
 </ion-content>
