@@ -25,13 +25,64 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      Posición           {{player?.posicion}}
+      <ion-row>
+        <ion-col class = "name-player-atribute">
+            Posición
+        </ion-col>
+        <ion-col class = "player-atribute">
+            <strong>{{player?.posicion}}</strong>
+        </ion-col>
+      </ion-row>
     </ion-item>
     <ion-item>
-      Tarjetas Amarillas           {{player?.tarjetasAmarillas}}            
+        <ion-row>
+          <ion-col class = "name-player-atribute">
+            Nacionalidad
+          </ion-col>
+          <ion-col class = "player-atribute">
+            <strong>{{player?.nacionalidad}}</strong>
+          </ion-col>
+        </ion-row>
     </ion-item>
     <ion-item>
-      Tarjetas Rojas           {{player?.tarjetasRojas}}
+        <ion-row>
+          <ion-col class = "name-player-atribute">
+            Edad
+          </ion-col>
+          <ion-col class = "player-atribute">
+            <strong>{{player?.edad}}</strong>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    <ion-item>
+        <ion-row>
+          <ion-col class = "name-player-atribute">
+            Goles
+          </ion-col>
+          <ion-col class = "player-atribute">
+            <strong>{{player?.goles}}</strong>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col class = "name-player-atribute">
+            Tarjetas Amarillas 
+        </ion-col>
+        <ion-col class = "player-atribute">
+            <strong>{{player?.tarjetasAmarillas}}</strong>
+        </ion-col>
+      </ion-row>          
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col class = "name-player-atribute">
+          Tarjetas Rojas
+        </ion-col>
+        <ion-col class = "player-atribute">
+          <strong>{{player?.tarjetasRojas}}</strong>
+        </ion-col>
+      </ion-row>
     </ion-item>
   </ion-list>
 </ion-content>

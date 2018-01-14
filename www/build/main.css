@@ -28628,6 +28628,14 @@ page-player #player-name-text {
   margin: 0px;
 }
 
+page-player .name-player-atribute {
+  text-align: left;
+}
+
+page-player .player-atribute {
+  text-align: right;
+}
+
 page-player #main-info {
   background: #011b4e;
 }
