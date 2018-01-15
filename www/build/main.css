@@ -28644,3 +28644,8 @@ page-player .scroll-content {
   padding: 0px !important;
   margin-top: 230px !important;
 }
+
+page-player ion-header {
+  min-height: 220px !important;
+  background: #011b4e !important;
+}

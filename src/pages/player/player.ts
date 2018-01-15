@@ -15,14 +15,14 @@ export class PlayerPage {
   private playerTeam: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private playerService: PlayerService, private teamService:TeamService) {
+    this.teamService.getPlayerTeamById(this.navParams.get('teamId')).subscribe(
+      team => this.playerTeam = team
+    );
+
     this.playerService.getPlayerById(this.navParams.get('playerId')).subscribe(
-      player =>{
-        this.player = player;
-        this.teamService.getPlayerTeamById(player.equipo).subscribe(
-          team => this.playerTeam = team
-        );
-      } 
-    )
+      player => this.player = player
+    );
+    
   }
 
   ionViewDidLoad() {

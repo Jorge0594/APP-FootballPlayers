@@ -25,8 +25,9 @@ export class TabLeague {
     console.log('ionViewDidLoad LeagueTabPage');
   }
 
-  clickPlayer(id:string){
-    this.app.getRootNav().push(PlayerPage, {playerId: id});
+  clickPlayer(id:string, teamID:string){
+    console.log("Id del equipo del jugador es " + teamID);
+    this.app.getRootNav().push(PlayerPage, {playerId: id, teamId: teamID });
   }
 
   selectRank(type:string){

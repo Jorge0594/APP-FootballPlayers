@@ -3,6 +3,7 @@ page-player {
         text-align: center;
         margin-right: 50px;
     }
+
     #player-image{
         width: 100px;
         height: 100px;
@@ -55,5 +56,10 @@ page-player {
     .scroll-content{
         padding:0px!important;
         margin-top: 230px!important;
+    }
+
+    ion-header{
+        min-height: 220px!important;
+        background: rgb(1, 27, 78)!important;
     }
 }
