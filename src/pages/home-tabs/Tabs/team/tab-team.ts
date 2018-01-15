@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { App } from 'ionic-angular';
+
 import { UserService } from '../../../../app/services/user.service';
 import { MatchService } from '../../../../app/services/match.service';
 import { errorHandler } from '@angular/platform-browser/src/browser';
+
+import { MatchPage } from '../../../match/match';
 
 @IonicPage()
 @Component({
@@ -15,7 +19,8 @@ export class TabTeam {
   private roundMatches : any;
   private roundSelected: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private matchService: MatchService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService,
+     private matchService: MatchService, private app: App) {
     this.roundSelected = 1;
     this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
       matches =>{
@@ -40,8 +45,7 @@ export class TabTeam {
   }
 
   matchInfo(id:any){
-    //en desarrollo
-    console.log("Informacion del partido " + id);
+    this.app.getRootNav().push(MatchPage, { matchId:id });
   }
 
 }

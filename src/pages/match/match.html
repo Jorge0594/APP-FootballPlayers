@@ -1,0 +1,53 @@
+
+<ion-header>
+  <ion-navbar height="20px" color ="transparent">
+    <button ion-button menuToggle id="button-toggle">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+  <ion-row *ngIf ="match?.estado == 'Finalizado' || match?.estado == 'finalizado'" id = "match-info">
+    <ion-col id = "local-name">
+      <strong>{{match?.equipoLocal.nombre}}</strong>
+    </ion-col>
+    <ion-col id = "goals-local">
+      {{match?.golesLocal}}
+    </ion-col>
+    <ion-col id = "separation">
+      -
+    </ion-col>
+    <ion-col id = "goals-visitor">
+      {{match?.golesVisitante}}
+    </ion-col>
+    <ion-col id = "visitor-name">
+      <strong>{{match?.equipoVisitante.nombre}}</strong>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf= "match?.estado == 'Pendiente' || match?.estado == 'pendiente'" id = "match-info">
+    <ion-col id = "local-name">
+      <strong>{{match?.equipoLocal.nombre}}</strong>
+    </ion-col>
+    <ion-col id = "match-time">
+      {{match?.horaPartido}}
+    </ion-col>
+    <ion-col id = "visitor-name">
+      <strong>{{match?.equipoVisitante.nombre}}</strong>
+    </ion-col>
+  </ion-row>
+  <ion-toolbar style="padding:0px; max-height:50px">
+    <ion-slides  slidesPerView="3">
+        <ion-slide [class.selected] = "statSelected == 'stats'" (click)="selectStat('stats')">
+                <p id="slide-title">Estadísticas</p>
+        </ion-slide>
+        <ion-slide [class.selected] = "statSelected == 'goals'" (click)="selectStat('goals')">
+            <p id="slide-title">Goles</p>
+        </ion-slide>
+        <ion-slide [class.selected] = "statSelected == 'lineUp'" (click)="selectStat('lineUp')">
+          <p id="slide-title">Titulares</p>
+        </ion-slide>
+    </ion-slides>
+</ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>{{match?.id}}</h1>
+</ion-content>

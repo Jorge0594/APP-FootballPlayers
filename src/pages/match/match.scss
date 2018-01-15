@@ -1,0 +1,49 @@
+page-match {
+    ion-header{
+        //min-height: 220px!important;
+        background: rgb(1, 27, 78)!important;
+    }
+
+
+    .toolbar-background{
+        background: transparent!important;
+    }
+
+    #slide-title{
+        color:rgba(255, 255, 255, 0.7);
+    }
+    
+    .selected{
+        background: rgba(2, 47, 143, 0.801)!important;
+        p{
+            color:white!important;
+            font-size: 19px!important;
+        }
+    }
+
+    #local-name{
+        margin-top:15px;
+        font-size: 100%;
+        color:rgb(214, 186, 26);
+        text-align: left;
+    }
+
+    #visitor-name{
+        margin-top:15px;
+        font-size: 100%;
+        color:rgb(214, 186, 26);
+        text-align: right;
+    }
+
+    #goals-local , #goals-visitor, #match-time{
+        color:rgb(214, 186, 26);
+        text-align: center;
+        font-size: 300%;
+    }
+
+    #separation{
+        color:rgb(214, 186, 26);
+        text-align: center;
+        font-size: 200%;
+    }
+}

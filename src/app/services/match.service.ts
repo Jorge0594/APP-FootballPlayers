@@ -30,4 +30,11 @@ export class MatchService{
             error => console.error(error)
         );
     }
+
+    getMatchById(id:string){
+        return this.http.get(BASE_URL + id).map(
+            response => response,
+            error => console.error(error)
+        );
+    }
 }

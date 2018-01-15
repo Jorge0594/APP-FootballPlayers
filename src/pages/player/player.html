@@ -1,21 +1,21 @@
 <ion-header>
-    <ion-navbar height="20px" color ="mainHeader">
+    <ion-navbar height="20px" color ="transparent">
       <button ion-button menuToggle id="button-toggle">
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-navbar>
-    <ion-row id = "main-info">
-      <ion-col col-xs-3>
+    <ion-row id = "main-info" *ngIf="player != undefined">
+      <ion-col col-xs-8 class ="col-player-image">
           <img id = "player-image" src ="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
       </ion-col>
       <ion-col col-xs-1> 
         <h1 id = "player-number">{{player?.dorsal}}</h1>
       </ion-col>
-      <ion-col col-xs-6 id ="player-team">
+      <ion-col col-xs-3 id ="player-team">
         <strong>{{playerTeam?.nombre}}</strong>
       </ion-col>
     </ion-row>
-    <ion-row >
+    <ion-row *ngIf="player != undefined">
       <ion-col col-xs-12 id = "player-name">
           <h1 id = "player-name-text">{{player?.nombre}}    {{player?.apellidos}}</h1>
       </ion-col>

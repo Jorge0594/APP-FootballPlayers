@@ -25,12 +25,12 @@ page-player {
         padding-top:50px;
         padding-bottom:50px;
         text-align: left;
-        font-size: 150%;
+        font-size: 140%;
         color:rgb(214, 186, 26);
     }
 
     #player-name{
-        background: rgb(1, 27, 78);
+        background: transparent;
         margin: 0px;
         padding: 0px!important;
         text-align: center;
@@ -49,8 +49,11 @@ page-player {
         text-align: right;
     }
 
+
     #main-info{
-        background: rgb(1, 27, 78);
+        height: 130px!important;
+        //background: rgb(1, 27, 78);
+        background: transparent;
     }
 
     .scroll-content{
