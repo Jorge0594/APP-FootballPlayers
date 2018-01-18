@@ -27,14 +27,14 @@ page-match {
         margin-top:15px;
         font-size: 100%;
         color:rgb(214, 186, 26);
-        text-align: left;
+        text-align: center;
     }
 
     #visitor-name{
         margin-top:15px;
         font-size: 100%;
         color:rgb(214, 186, 26);
-        text-align: right;
+        text-align: center;
     }
 
     #goals-local , #goals-visitor, #match-time{
@@ -47,5 +47,33 @@ page-match {
         color:rgb(214, 186, 26);
         text-align: center;
         font-size: 200%;
+    }
+
+    .stats-title{
+        text-align: center;
+    }
+
+    .stats-info-local{
+        text-align: left;
+    }
+
+    .stats-info-visitor{
+        text-align: right;
+    }
+
+    #not-data-icon{
+        width: 150px;
+        height: 150px;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    
+    p{
+        text-align: center!important;
+    }
+
+    ion-item{
+        margin:0px!important;
+        text-align: center;
     }
 }

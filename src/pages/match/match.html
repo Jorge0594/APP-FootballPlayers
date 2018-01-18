@@ -49,5 +49,17 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>{{match?.id}}</h1>
+  <ion-list *ngIf = "statSelected == 'stats' && match?.estado == 'Finalizado' || match?.estado == 'finalizado'">
+    <ion-item>
+      <ion-row>
+        <ion-col col-xs-4 class = "stats-info-local"><strong>5</strong></ion-col>
+        <ion-col col-xs-4 class = "stats-title">InfoTitle</ion-col>
+        <ion-col col-xs-4 class = "stats-info-visitor"><strong>4</strong></ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+  <ion-item no-lines *ngIf = "match?.estado == 'Pendiente' || match?.estado == 'pendiente'">
+    <img id = "not-data-icon" src = "/assets/imgs/not-data-icon.png">
+    <p><strong>Pendiente de jugar</strong></p>
+  </ion-item>
 </ion-content>
