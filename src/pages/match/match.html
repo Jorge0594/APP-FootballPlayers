@@ -33,7 +33,7 @@
       <strong>{{match?.equipoVisitante.nombre}}</strong>
     </ion-col>
   </ion-row>
-  <ion-toolbar style="padding:0px; max-height:50px">
+  <ion-toolbar *ngIf = "match != undefined" style="padding:0px; max-height:50px">
     <ion-slides  slidesPerView="3">
         <ion-slide [class.selected] = "statSelected == 'stats'" (click)="selectStat('stats')">
                 <p id="slide-title">Estadísticas</p>

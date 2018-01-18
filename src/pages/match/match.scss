@@ -1,10 +1,12 @@
 page-match {
     ion-header{
-        //min-height: 220px!important;
+        min-height: 175px!important;
         background: rgb(1, 27, 78)!important;
     }
 
-
+    ion-slide{
+        max-width: 33%!important;
+    }
     .toolbar-background{
         background: transparent!important;
     }

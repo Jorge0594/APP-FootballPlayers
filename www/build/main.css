@@ -31141,7 +31141,12 @@ tab-team .scroll-content {
 }
 
 page-match ion-header {
+  min-height: 175px !important;
   background: #011b4e !important;
+}
+
+page-match ion-slide {
+  max-width: 33% !important;
 }
 
 page-match .toolbar-background {
