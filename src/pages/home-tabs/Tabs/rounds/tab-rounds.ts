@@ -11,10 +11,10 @@ import { MatchPage } from '../../../match/match';
 
 @IonicPage()
 @Component({
-  selector: 'tab-team',
-  templateUrl: 'tab-team.html',
+  selector: 'tab-rounds',
+  templateUrl: 'tab-rounds.html',
 })
-export class TabTeam {
+export class TabRounds {
 
   private roundMatches : any;
   private roundSelected: number;

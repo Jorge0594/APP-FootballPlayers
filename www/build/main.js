@@ -144,8 +144,8 @@ var LoginService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Tabs_standings_standings__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Tabs_team_tab_team__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Tabs_league_league_tab__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Tabs_rounds_tab_rounds__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Tabs_ranks_ranks_tab__ = __webpack_require__(161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -168,13 +168,13 @@ var HomeTabsPage = (function () {
         this.menuController = menuController;
         this.userService = userService;
         this.tabStandingsRoot = __WEBPACK_IMPORTED_MODULE_3__Tabs_standings_standings__["a" /* TabStandings */];
-        this.tabTeamRoot = __WEBPACK_IMPORTED_MODULE_4__Tabs_team_tab_team__["a" /* TabTeam */];
-        this.tabLeagueRoot = __WEBPACK_IMPORTED_MODULE_5__Tabs_league_league_tab__["a" /* TabLeague */];
+        this.tabRoundsRoot = __WEBPACK_IMPORTED_MODULE_4__Tabs_rounds_tab_rounds__["a" /* TabRounds */];
+        this.tabRanksRoot = __WEBPACK_IMPORTED_MODULE_5__Tabs_ranks_ranks_tab__["a" /* TabRanks */];
         this.tabs = [];
         this.tabs = [
             { title: "Clasificación", root: __WEBPACK_IMPORTED_MODULE_3__Tabs_standings_standings__["a" /* TabStandings */], icon: "trophy" },
-            { title: "Calendario", root: __WEBPACK_IMPORTED_MODULE_4__Tabs_team_tab_team__["a" /* TabTeam */], icon: "calendar" },
-            { title: "Goleadores", root: __WEBPACK_IMPORTED_MODULE_5__Tabs_league_league_tab__["a" /* TabLeague */], icon: "podium" }
+            { title: "Calendario", root: __WEBPACK_IMPORTED_MODULE_4__Tabs_rounds_tab_rounds__["a" /* TabRounds */], icon: "calendar" },
+            { title: "Rankings", root: __WEBPACK_IMPORTED_MODULE_5__Tabs_ranks_ranks_tab__["a" /* TabRanks */], icon: "podium" }
         ];
     }
     HomeTabsPage = __decorate([
@@ -194,7 +194,7 @@ var HomeTabsPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabTeam; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabRounds; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(44);
@@ -215,8 +215,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TabTeam = (function () {
-    function TabTeam(navCtrl, navParams, userService, matchService, app) {
+var TabRounds = (function () {
+    function TabRounds(navCtrl, navParams, userService, matchService, app) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -229,7 +229,7 @@ var TabTeam = (function () {
             console.log(_this.roundMatches);
         }, function (error) { return console.error(error); });
     }
-    TabTeam.prototype.roundInfo = function (day) {
+    TabRounds.prototype.roundInfo = function (day) {
         var _this = this;
         this.roundSelected = day;
         this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(function (matches) {
@@ -239,20 +239,20 @@ var TabTeam = (function () {
         console.log(this.roundSelected);
         console.log("Informacion de la jornada " + day);
     };
-    TabTeam.prototype.matchInfo = function (id) {
+    TabRounds.prototype.matchInfo = function (id) {
         this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_4__match_match__["a" /* MatchPage */], { matchId: id });
     };
-    TabTeam = __decorate([
+    TabRounds = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'tab-team',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\team\tab-team.html"*/'<ion-header style="padding:0px">\n    <ion-toolbar style="padding:0px; max-height:50px">\n        <ion-slides  slidesPerView="3">\n            <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >\n                    <p id="slide-title">Jornada {{num}}</p>\n            </ion-slide>\n        </ion-slides>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">\n        <ion-item *ngFor = "let match of roundMatches" (click)="matchInfo(match.id)" id="match-info">\n            <ion-row id ="date">\n                <ion-col>\n                    {{match.fechaPartido}}\n                </ion-col>\n            </ion-row>\n            <ion-row *ngIf = "match.estado == \'Finalizado\' || match.estado == \'finalizado\' ">\n                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n                <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>\n                <ion-col col-2><h1>-</h1></ion-col>\n                <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>\n                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n            </ion-row>\n            <ion-row *ngIf = "match.estado != \'Finalizado\'">\n                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n                <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>\n                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n            </ion-row>\n        </ion-item>\n    </ion-scroll>\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\team\tab-team.html"*/,
+            selector: 'tab-rounds',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\rounds\tab-rounds.html"*/'<ion-header style="padding:0px">\n    <ion-toolbar style="padding:0px; max-height:50px">\n        <ion-slides  slidesPerView="3">\n            <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >\n                    <p id="slide-title">Jornada {{num}}</p>\n            </ion-slide>\n        </ion-slides>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">\n        <ion-item *ngFor = "let match of roundMatches" (click)="matchInfo(match.id)" id="match-info">\n            <ion-row id ="date">\n                <ion-col>\n                    {{match.fechaPartido}}\n                </ion-col>\n            </ion-row>\n            <ion-row *ngIf = "match.estado == \'Finalizado\' || match.estado == \'finalizado\' ">\n                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n                <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>\n                <ion-col col-2><h1>-</h1></ion-col>\n                <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>\n                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n            </ion-row>\n            <ion-row *ngIf = "match.estado != \'Finalizado\'">\n                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n                <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>\n                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n            </ion-row>\n        </ion-item>\n    </ion-scroll>\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\rounds\tab-rounds.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]])
-    ], TabTeam);
-    return TabTeam;
+    ], TabRounds);
+    return TabRounds;
 }());
 
-//# sourceMappingURL=tab-team.js.map
+//# sourceMappingURL=tab-rounds.js.map
 
 /***/ }),
 
@@ -308,7 +308,7 @@ var MatchPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabLeague; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabRanks; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(44);
@@ -327,34 +327,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TabLeague = (function () {
-    function TabLeague(navCtrl, navParams, userService, app) {
+var TabRanks = (function () {
+    function TabRanks(navCtrl, navParams, userService, app) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.userService = userService;
         this.app = app;
         this.rankSelected = "goals";
     }
-    TabLeague.prototype.ionViewDidLoad = function () {
+    TabRanks.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad LeagueTabPage');
     };
-    TabLeague.prototype.clickPlayer = function (id, teamID) {
+    TabRanks.prototype.clickPlayer = function (id, teamID) {
         console.log("Id del equipo del jugador es " + teamID);
         this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_3__player_player__["a" /* PlayerPage */], { playerId: id, teamId: teamID });
     };
-    TabLeague.prototype.selectRank = function (type) {
+    TabRanks.prototype.selectRank = function (type) {
         this.rankSelected = type;
     };
-    TabLeague = __decorate([
+    TabRanks = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'league-tab',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\league\league-tab.html"*/'\n<ion-header style="padding:0px">\n    <ion-toolbar style="padding:0px; max-height:50px">\n        <ion-slides  slidesPerView="3">\n            <ion-slide [class.selected] = "rankSelected == \'goals\'" (click)="selectRank(\'goals\')">\n                    <p id="slide-title">Goleadores</p>\n            </ion-slide>\n            <ion-slide [class.selected] = "rankSelected == \'foul\'" (click)="selectRank(\'foul\')">\n                <p id="slide-title">Faltas</p>\n            </ion-slide>\n            <ion-slide [class.selected] = "rankSelected == \'cards\'" (click)="selectRank(\'cards\')">\n              <p id="slide-title">Tarjetas</p>\n            </ion-slide>\n        </ion-slides>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">\n      <ion-row (click)="clickPlayer(player.id, player.equipo)" *ngFor = "let player of userService.getTopGoals(); let position = index;" class = "player-info">\n        <ion-col col-xs-1 id="player-position">{{position+1}}</ion-col>\n        <ion-col col-xs-3 id="col-player-image">\n            <img id = "player-image" src="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">\n        </ion-col>\n        <ion-col col-6 id="player-name">{{player.nombre}}</ion-col>\n        <ion-col col-xs-2 id ="player-goals"><h1>{{player.goles}}</h1></ion-col>\n      </ion-row>\n  </ion-scroll>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\league\league-tab.html"*/,
+            selector: 'ranks-tab',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\ranks\ranks-tab.html"*/'\n<ion-header style="padding:0px">\n    <ion-toolbar style="padding:0px; max-height:50px">\n        <ion-slides  slidesPerView="3">\n            <ion-slide [class.selected] = "rankSelected == \'goals\'" (click)="selectRank(\'goals\')">\n                    <p id="slide-title">Goleadores</p>\n            </ion-slide>\n            <ion-slide [class.selected] = "rankSelected == \'foul\'" (click)="selectRank(\'foul\')">\n                <p id="slide-title">Faltas</p>\n            </ion-slide>\n            <ion-slide [class.selected] = "rankSelected == \'cards\'" (click)="selectRank(\'cards\')">\n              <p id="slide-title">Tarjetas</p>\n            </ion-slide>\n        </ion-slides>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">\n      <ion-row (click)="clickPlayer(player.id, player.equipo)" *ngFor = "let player of userService.getTopGoals(); let position = index;" class = "player-info">\n        <ion-col col-xs-1 id="player-position">{{position+1}}</ion-col>\n        <ion-col col-xs-3 id="col-player-image">\n            <img id = "player-image" src="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">\n        </ion-col>\n        <ion-col col-6 id="player-name">{{player.nombre}}</ion-col>\n        <ion-col col-xs-2 id ="player-goals"><h1>{{player.goles}}</h1></ion-col>\n      </ion-row>\n  </ion-scroll>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\ranks\ranks-tab.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]])
-    ], TabLeague);
-    return TabLeague;
+    ], TabRanks);
+    return TabRanks;
 }());
 
-//# sourceMappingURL=league-tab.js.map
+//# sourceMappingURL=ranks-tab.js.map
 
 /***/ }),
 
@@ -484,12 +484,12 @@ webpackEmptyAsyncContext.id = 176;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"../pages/home-tabs/Tabs/league/league-tab.module": [
-		695,
+	"../pages/home-tabs/Tabs/ranks/ranks-tab.module": [
+		696,
 		5
 	],
-	"../pages/home-tabs/Tabs/team/tab-team.module": [
-		696,
+	"../pages/home-tabs/Tabs/rounds/tab-rounds.module": [
+		695,
 		4
 	],
 	"../pages/home-tabs/home-tabs.module": [
@@ -608,8 +608,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login_login__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_home_tabs_home_tabs__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_home_tabs_Tabs_standings_standings__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_home_tabs_Tabs_team_tab_team__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_home_tabs_Tabs_league_league_tab__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_home_tabs_Tabs_rounds_tab_rounds__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_home_tabs_Tabs_ranks_ranks_tab__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_player_player__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_match_match__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -650,8 +650,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_home_tabs_home_tabs__["a" /* HomeTabsPage */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_home_tabs_Tabs_standings_standings__["a" /* TabStandings */],
-                __WEBPACK_IMPORTED_MODULE_18__pages_home_tabs_Tabs_team_tab_team__["a" /* TabTeam */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_home_tabs_Tabs_league_league_tab__["a" /* TabLeague */],
+                __WEBPACK_IMPORTED_MODULE_18__pages_home_tabs_Tabs_rounds_tab_rounds__["a" /* TabRounds */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_home_tabs_Tabs_ranks_ranks_tab__["a" /* TabRanks */],
                 __WEBPACK_IMPORTED_MODULE_20__pages_player_player__["a" /* PlayerPage */],
                 __WEBPACK_IMPORTED_MODULE_21__pages_match_match__["a" /* MatchPage */]
             ],
@@ -662,8 +662,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_14__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/home-tabs/home-tabs.module#HomeTabsPageModule', name: 'HomeTabsPage', segment: 'home-tabs', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home-tabs/Tabs/league/league-tab.module#LeagueTabPageModule', name: 'TabLeague', segment: 'league-tab', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home-tabs/Tabs/team/tab-team.module#TabTeamPageModule', name: 'TabTeam', segment: 'tab-team', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home-tabs/Tabs/rounds/tab-rounds.module#TabTeamPageModule', name: 'TabRounds', segment: 'tab-rounds', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home-tabs/Tabs/ranks/ranks-tab.module#LeagueTabPageModule', name: 'TabRanks', segment: 'ranks-tab', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/match/match.module#MatchPageModule', name: 'MatchPage', segment: 'match', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/player/player.module#PlayerPageModule', name: 'PlayerPage', segment: 'player', priority: 'low', defaultHistory: [] }
@@ -676,8 +676,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_home_tabs_home_tabs__["a" /* HomeTabsPage */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_home_tabs_Tabs_standings_standings__["a" /* TabStandings */],
-                __WEBPACK_IMPORTED_MODULE_18__pages_home_tabs_Tabs_team_tab_team__["a" /* TabTeam */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_home_tabs_Tabs_league_league_tab__["a" /* TabLeague */],
+                __WEBPACK_IMPORTED_MODULE_18__pages_home_tabs_Tabs_rounds_tab_rounds__["a" /* TabRounds */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_home_tabs_Tabs_ranks_ranks_tab__["a" /* TabRanks */],
                 __WEBPACK_IMPORTED_MODULE_20__pages_player_player__["a" /* PlayerPage */],
                 __WEBPACK_IMPORTED_MODULE_21__pages_match_match__["a" /* MatchPage */]
             ],

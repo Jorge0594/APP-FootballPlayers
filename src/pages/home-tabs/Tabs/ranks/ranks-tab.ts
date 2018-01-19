@@ -10,10 +10,10 @@ import { PlayerPage } from '../../../player/player';
 
 @IonicPage()
 @Component({
-  selector: 'league-tab',
-  templateUrl: 'league-tab.html',
+  selector: 'ranks-tab',
+  templateUrl: 'ranks-tab.html',
 })
-export class TabLeague {
+export class TabRanks {
 
   private rankSelected: string;
 

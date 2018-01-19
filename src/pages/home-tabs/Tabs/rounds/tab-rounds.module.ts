@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { TabTeam } from './tab-team';
+import { TabRounds } from './tab-rounds';
 
 @NgModule({
   declarations: [
-    TabTeam,
+    TabRounds,
   ],
   imports: [
-    IonicPageModule.forChild(TabTeam),
-  ],
+    IonicPageModule.forChild(TabRounds),
+],
 })
 export class TabTeamPageModule {}

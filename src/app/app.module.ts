@@ -18,10 +18,10 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { HomeTabsPage } from '../pages/home-tabs/home-tabs';
 import { TabStandings } from '../pages/home-tabs/Tabs/standings/standings';
-import { TabTeam } from '../pages/home-tabs/Tabs/team/tab-team';
-import { TabLeague } from '../pages/home-tabs/Tabs//league/league-tab';
+import { TabRounds} from '../pages/home-tabs/Tabs/rounds/tab-rounds';
+import { TabRanks } from '../pages/home-tabs/Tabs/ranks/ranks-tab';
 import { PlayerPage } from '../pages/player/player';
-import {MatchPage } from '../pages/match/match';
+import { MatchPage } from '../pages/match/match';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,8 @@ import {MatchPage } from '../pages/match/match';
     LoginPage,
     HomeTabsPage,
     TabStandings,
-    TabTeam,
-    TabLeague,
+    TabRounds,
+    TabRanks,
     PlayerPage,
     MatchPage
   ],
@@ -46,8 +46,8 @@ import {MatchPage } from '../pages/match/match';
     LoginPage,
     HomeTabsPage,
     TabStandings,
-    TabTeam,
-    TabLeague,
+    TabRounds,
+    TabRanks,
     PlayerPage,
     MatchPage
   ],

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { TabLeague } from './league-tab';
+import { TabRanks } from './ranks-tab';
 
 @NgModule({
   declarations: [
-    TabLeague,
+    TabRanks,
   ],
   imports: [
-    IonicPageModule.forChild(TabLeague),
+    IonicPageModule.forChild(TabRanks),
   ],
 })
 export class LeagueTabPageModule {}

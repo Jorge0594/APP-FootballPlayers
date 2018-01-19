@@ -4,8 +4,8 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { UserService } from '../../app/services/user.service';
 
 import { TabStandings } from './Tabs/standings/standings';
-import { TabTeam } from './Tabs/team/tab-team';
-import { TabLeague } from './Tabs/league/league-tab';
+import { TabRounds } from './Tabs/rounds/tab-rounds';
+import { TabRanks } from './Tabs/ranks/ranks-tab';
 @IonicPage()
 @Component({
   selector: 'page-home-tabs',
@@ -13,16 +13,16 @@ import { TabLeague } from './Tabs/league/league-tab';
 })
 export class HomeTabsPage {
   tabStandingsRoot = TabStandings;
-  tabTeamRoot = TabTeam;
-  tabLeagueRoot = TabLeague;
+  tabRoundsRoot = TabRounds;
+  tabRanksRoot = TabRanks;
 
   private tabs : any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController, private userService:UserService) {
     this.tabs = [
       {title: "Clasificación", root: TabStandings, icon: "trophy"},
-      {title: "Calendario", root: TabTeam, icon: "calendar"},
-      {title: "Goleadores", root: TabLeague, icon: "podium"}
+      {title: "Calendario", root: TabRounds, icon: "calendar"},
+      {title: "Rankings", root: TabRanks, icon: "podium"}
     ]
   }
 
