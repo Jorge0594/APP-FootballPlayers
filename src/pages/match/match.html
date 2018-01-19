@@ -58,6 +58,20 @@
       </ion-row>
     </ion-item>
   </ion-list>
+
+  <ion-list *ngIf = "statSelected == 'lineUp' && match?.estado == 'Finalizado' || match?.estado == 'finalizado'">
+    <ion-item *ngFor = "let localPlayer of match?.convocadosLocal; let i = index">
+      <ion-row>
+        <ion-col class = "info-lineup">
+          <strong>{{localPlayer.dorsal}}</strong> {{localPlayer.nombre}}
+        </ion-col>
+        <ion-col class = "info-lineup" *ngIf = "match?.convocadosVisitante[i] != null && match?.convocadosVisitante[i] != undefined">
+         <strong>{{match?.convocadosVisitante[i].dorsal}}</strong> {{match?.convocadosVisitante[i].nombre}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+
   <ion-item no-lines *ngIf = "match?.estado == 'Pendiente' || match?.estado == 'pendiente'">
     <img id = "not-data-icon" src = "/assets/imgs/not-data-icon.png">
     <p><strong>Pendiente de jugar</strong></p>

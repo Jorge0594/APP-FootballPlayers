@@ -31215,6 +31215,11 @@ page-match p {
   text-align: center !important;
 }
 
+page-match .info-lineup {
+  font-size: 90%;
+  padding: 0px !important;
+}
+
 page-match ion-item {
   margin: 0px !important;
   text-align: center;
