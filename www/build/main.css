@@ -30830,14 +30830,41 @@ super-tabs-toolbar > ion-toolbar.toolbar.scroll-tabs .tab-buttons-container .ind
   margin-top: 10px;
 }
 
-ion-header {
+.app-header {
+  max-height: 149px;
+  height: 149px;
+  width: 100%;
+}
+
+.app-background-header {
+  background-image: url("../assets/imgs/football-background.jpg");
+  background-size: 270px;
+  -webkit-filter: brightness(25%) blur(1px);
+  max-height: 149px;
+  height: 149px;
+  width: 100%;
   position: absolute;
-  display: block;
+}
+
+.div-image {
+  margin-top: 20px;
+  margin-left: 15px;
 }
 
 ion-nav {
   position: relative;
   display: block;
+}
+
+#jamon {
+  color: white;
+}
+
+#menu-profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  -webkit-filter: brightness(100%) blur(0px) !important;
 }
 
 #profile-button {
