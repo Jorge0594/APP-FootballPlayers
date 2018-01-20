@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { HttpClient } from '../../../../app/services/httpClient.service'
 import { LoginService } from '../../../../app/services/login.service';
@@ -12,8 +12,7 @@ import { UserService } from  '../../../../app/services/user.service';
 export class TabStandings {
 
   userMatches: any;
-  constructor(public navCtrl: NavController, private http:HttpClient, private userService: UserService) {
-  
+  constructor(public navCtrl: NavController, private navParams :NavParams, private http:HttpClient, private userService: UserService) {
   }
 
 }

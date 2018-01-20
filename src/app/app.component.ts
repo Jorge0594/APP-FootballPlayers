@@ -18,7 +18,7 @@ export class MyApp {
   homePage:any = TabStandings;
 
   @ViewChild('content')nav: Nav;
-  private menuPages: Array<{title:string, component:any, icon:string}>
+  private menuPages: Array<{title:string, component:any, rootParams:string, icon:string}>
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private userService: UserService) {
     platform.ready().then(() => {
@@ -27,14 +27,16 @@ export class MyApp {
     });
 
     this.menuPages = [
-      {title:'Liga', component: HomeTabsPage, icon:'trophy'}
+      {title:'Liga', component: HomeTabsPage, rootParams:'league', icon:'trophy'},
+      {title:'Mi equipo', component: HomeTabsPage, rootParams:'team', icon:'football'}
     ];
   }
 
 
 
-  navigateTo(page){
-    this.nav.setRoot(page);
+  navigateTo(page, rootParams){
+    this.nav.setRoot(page, { id:rootParams });
+    
   }
 }
 

@@ -20,7 +20,8 @@ export class TabRounds {
   private roundSelected: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService,
-     private matchService: MatchService, private app: App) {
+    private matchService: MatchService, private app: App) {
+    
     this.roundSelected = 1;
     this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
       matches =>{

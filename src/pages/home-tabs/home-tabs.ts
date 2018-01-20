@@ -12,18 +12,27 @@ import { TabRanks } from './Tabs/ranks/ranks-tab';
   templateUrl: 'home-tabs.html',
 })
 export class HomeTabsPage {
-  tabStandingsRoot = TabStandings;
-  tabRoundsRoot = TabRounds;
-  tabRanksRoot = TabRanks;
 
-  private tabs : any = [];
+  private tabs: any = [];
+  private rootParams: string;
+  private titles: Array<string>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController, private userService:UserService) {
+    switch (this.navParams.get('id')){
+      case "league":
+        this.rootParams = "league";
+        this.titles = ["Clasificacion", "Calendario", "Rankings"];
+      break;
+      case "team":
+        this.rootParams = "team";
+        this.titles = ["Perfil", "Calendario","Plantilla"];
+      break;
+    }
     this.tabs = [
-      {title: "Clasificación", root: TabStandings, icon: "trophy"},
-      {title: "Calendario", root: TabRounds, icon: "calendar"},
-      {title: "Rankings", root: TabRanks, icon: "podium"}
-    ]
+      {title: this.titles[0], root: TabStandings, rootParams: this.rootParams, icon: "trophy"},
+      {title: this.titles[1], root: TabRounds, rootParams: this.rootParams, icon: "calendar"},
+      {title: this.titles[2], root: TabRanks, rootParams: this.rootParams, icon: "podium"}
+    ];
   }
 
   

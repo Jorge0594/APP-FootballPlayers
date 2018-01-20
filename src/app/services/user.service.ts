@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+//import { Observable } from 'rxjs/Observable';
 
 import { HttpClient } from './httpClient.service';
 import { TeamService } from './team.service';
@@ -50,9 +50,6 @@ export class UserService{
                         };
                     }
                 )
-                /*this.matchService.getMatchTeamById(response.equipo).subscribe(
-                    matches => this.userMatches = matches
-                )*/
             },
             error => console.error(error)
         )

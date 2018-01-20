@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" *ngIf="userService.getUserLogged()?.fotoJugador!= undefined">
   <ion-header class = "app-header">
     <div class ="app-background-header"></div>
    <div class = "div-image" ><img id = "menu-profile-image" src="http://192.168.1.39:8080/images/{{userService.getUserLogged()?.fotoJugador}}"></div>
@@ -6,7 +6,7 @@
 
   <ion-content>
     <ion-list>
-      <button *ngFor = "let page of menuPages" menuClose ion-item (click)="navigateTo(page.component)">
+      <button *ngFor = "let page of menuPages" menuClose ion-item (click)="navigateTo(page.component, page.rootParams)">
         {{page.title}}
         <ion-icon item-left name= "{{page.icon}}"></ion-icon>
       </button>

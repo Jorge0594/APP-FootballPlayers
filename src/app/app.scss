@@ -21,8 +21,8 @@
 
 .app-background-header{
     background-image: url('../assets/imgs/football-background.jpg');
-    background-size: 270px;
-    -webkit-filter: brightness(25%) blur(1px);
+    background-size: 300px;
+    -webkit-filter: brightness(25%) blur(0.8px) saturate(50%);
     max-height: 149px;
     height: 149px;
     width: 100%;
