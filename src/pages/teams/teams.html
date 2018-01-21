@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar height="20px" color="primary">
+      <button ion-button menuToggle id="button-toggle">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Equipos</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item no-lines *ngFor= "let team of userService.getUserLeague()">
+      <ion-avatar item-start>
+        <img src = "http://192.168.1.39:8080/images/shield.png">
+      </ion-avatar>
+      <p id ="team-name">{{team?.nombre}}</p>
+    </button>
+  </ion-list>
+</ion-content>

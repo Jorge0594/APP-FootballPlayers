@@ -17,19 +17,26 @@ import { MatchPage } from '../../../match/match';
 export class TabRounds {
 
   private roundMatches : any;
+  private teamMatches : any;
   private roundSelected: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService,
     private matchService: MatchService, private app: App) {
-    
-    this.roundSelected = 1;
-    this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
-      matches =>{
-        this.roundMatches = matches;
-        console.log(this.roundMatches);
-      },
-      error => console.error(error)
-    );
+
+    if(this.navParams.data == 'league'){
+      this.roundSelected = 1;
+      this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
+        matches =>{
+          this.roundMatches = matches;
+          console.log(this.roundMatches);
+        },
+        error => console.error(error)
+      );
+    }else{
+      this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(
+        matches => this.teamMatches = matches
+      );
+    }
   }
 
   roundInfo(day:number){

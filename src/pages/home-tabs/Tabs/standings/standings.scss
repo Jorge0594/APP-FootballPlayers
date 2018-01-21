@@ -49,6 +49,55 @@ page-home{
 		float:left;
 		display:block;
 	}
+
+	#team-shield-background{
+		background-image: url('../assets/imgs/football-background.jpg');
+		-webkit-filter: brightness(25%) saturate(50%);
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size:cover;
+		position: absolute;
+		min-height: 115px!important;
+		height: 150px;
+		width: 100%;
+	}
+	#shield-team-image{
+		position: relative;
+		margin-left:auto;
+		margin-right: auto;
+		display: block;
+		width: 130px;
+		height: 130px;
+		margin-top:15px!important;
+		//filter:brightness(180%);
+	}
+
+	.team-info-content{
+		.scroll-content{
+			background: #2c3e50;
+		}
+	}
+
+	#profile-team-name{
+		margin-top: 10px;
+		margin-bottom: 5px; 
+		text-align: center;
+		font-size: 200%;
+		color: #f1c40f;
+	}
+
+	.profile-team-titles{
+		margin-top: 15px;
+		text-align: center;
+		color:#3baffc;
+		font-style: oblique;
+	}
+
+	.profile-team{
+		margin-top:5px;
+		text-align: center;
+		color: white;
+	}
 }
 
 

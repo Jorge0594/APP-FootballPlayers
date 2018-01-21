@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabStandings } from '../pages/home-tabs/Tabs/standings/standings';
 import { HomeTabsPage } from '../pages/home-tabs/home-tabs';
+import { TeamsPage } from '../pages/teams/teams';
 import { LoginPage } from '../pages/login/login';
 
 import { UserService } from '../app/services/user.service';
@@ -28,7 +29,8 @@ export class MyApp {
 
     this.menuPages = [
       {title:'Liga', component: HomeTabsPage, rootParams:'league', icon:'trophy'},
-      {title:'Mi equipo', component: HomeTabsPage, rootParams:'team', icon:'football'}
+      {title:'Mi equipo', component: HomeTabsPage, rootParams:'team', icon:'football'},
+      {title:'Equipos', component: TeamsPage, rootParams: 'teamLeague', icon:'people'}
     ];
   }
 

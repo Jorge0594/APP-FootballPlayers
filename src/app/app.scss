@@ -22,7 +22,7 @@
 .app-background-header{
     background-image: url('../assets/imgs/football-background.jpg');
     background-size: 300px;
-    -webkit-filter: brightness(25%) blur(0.8px) saturate(50%);
+    -webkit-filter: brightness(40%) blur(0px) saturate(45%);
     max-height: 149px;
     height: 149px;
     width: 100%;
@@ -39,9 +39,6 @@ ion-nav{
     display:block;
 }
 
-#jamon{
-    color:white;
-}
 
 #menu-profile-image{
     width: 100px;

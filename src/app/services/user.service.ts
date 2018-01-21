@@ -41,12 +41,12 @@ export class UserService{
                             this.leagueService.getTopGoals(team.liga).subscribe(
                                 top => this.userLeaguePlayers = top
                             );
-                            this.matchService.getMatchByLeague(team.liga).subscribe(
+                            /*this.matchService.getMatchByLeague(team.liga).subscribe( //Unnecesary queries
                                 leagueMatches => this.leagueMaches = leagueMatches
                             );
                             this.matchService.getMatchTeamById(response.equipo).subscribe(
                                 matches => this.userMatches = matches
-                            );
+                            );*/
                         };
                     }
                 )

@@ -1,6 +1,9 @@
-
-<ion-content  width ="100%">
-  <ion-grid>
+<ion-header *ngIf = "navParams.data == 'team'">
+  <div id = "team-shield-background"></div>
+  <div ><img id="shield-team-image" src = "http://192.168.1.39:8080/images/shield.png"></div>
+</ion-header>
+<ion-content  width ="100%" [class.team-info-content] = "navParams.data == 'team'" >
+  <ion-grid *ngIf = "navParams.data == 'league'">
     <ion-row id="colum-titles">
         <ion-col col-xs-1>#</ion-col>
         <ion-col col-4 id="title-team">Equipo</ion-col>
@@ -25,5 +28,22 @@
             <ion-col col-xs-2 class="team-info"><strong>{{team?.puntos}}</strong></ion-col>
         </ion-row>
     </ion-scroll>
+  </ion-grid>
+  <ion-grid *ngIf = "navParams.data =='team'">
+    <ion-row>
+      <ion-col id ="profile-team-name"><strong>{{team.nombre}}</strong></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class = "profile-team-titles">Capitán:</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class = "profile-team"> Nombre del capitán</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class = "profile-team-titles">Estadio:</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class = "profile-team">Nombre del estadio</ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

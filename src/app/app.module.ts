@@ -22,6 +22,7 @@ import { TabRounds} from '../pages/home-tabs/Tabs/rounds/tab-rounds';
 import { TabRanks } from '../pages/home-tabs/Tabs/ranks/ranks-tab';
 import { PlayerPage } from '../pages/player/player';
 import { MatchPage } from '../pages/match/match';
+import { TeamsPage } from '../pages/teams/teams';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatchPage } from '../pages/match/match';
     TabRounds,
     TabRanks,
     PlayerPage,
-    MatchPage
+    MatchPage,
+    TeamsPage
   ],
   imports: [
     HttpModule,
@@ -49,7 +51,8 @@ import { MatchPage } from '../pages/match/match';
     TabRounds,
     TabRanks,
     PlayerPage,
-    MatchPage
+    MatchPage,
+    TeamsPage
   ],
   providers: [
     HttpModule,
