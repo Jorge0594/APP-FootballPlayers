@@ -82,4 +82,14 @@ export class UserService{
     getTopGoals(){
         return this.userLeaguePlayers;
     }
+
+    logout(){
+        this.user = null;
+        this.userTeam = null;
+        this.userLeague = null;
+        this.userLeaguePlayers = null;
+        this.userMatches = null;
+        this.leagueMaches = null;
+        this.rounds = [];
+    }
 }

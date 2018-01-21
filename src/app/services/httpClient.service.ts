@@ -60,5 +60,10 @@ export class HttpClient{
         return this.authTokens;
     }
 
+    logout(){
+        this.authTokens = null;
+        this.logged = false;
+    }
+
 
 };

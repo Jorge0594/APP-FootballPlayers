@@ -9,6 +9,7 @@ import { TeamsPage } from '../pages/teams/teams';
 import { LoginPage } from '../pages/login/login';
 
 import { UserService } from '../app/services/user.service';
+import { LoginService } from './services/login.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +22,7 @@ export class MyApp {
   @ViewChild('content')nav: Nav;
   private menuPages: Array<{title:string, component:any, rootParams:[string], icon:string}>
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private userService: UserService) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private userService: UserService, private loginService: LoginService) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
@@ -30,13 +31,17 @@ export class MyApp {
     this.menuPages = [
       {title:'Liga', component: HomeTabsPage, rootParams:['league'], icon:'trophy'},
       {title:'Mi equipo', component: HomeTabsPage, rootParams:['team'], icon:'football'},
-      {title:'Equipos', component: TeamsPage, rootParams: ['teamsList'], icon:'people'}
+      {title:'Equipos', component: TeamsPage, rootParams: ['teamsList'], icon:'people'},
+      {title:'Log-out', component: LoginPage, rootParams:['logout'], icon:'log-out'}
     ];
   }
 
 
 
   navigateTo(page, rootParams){
+    if(rootParams[0]=='logout'){
+
+    }
     this.nav.setRoot(page, { id:rootParams });
   }
 }
