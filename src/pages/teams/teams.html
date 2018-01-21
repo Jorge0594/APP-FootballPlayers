@@ -10,7 +10,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item no-lines *ngFor= "let team of userService.getUserLeague()">
+    <button ion-item no-lines *ngFor= "let team of userService.getUserLeague()" (click)="teamSelect(team.id)">
       <ion-avatar item-start>
         <img src = "http://192.168.1.39:8080/images/shield.png">
       </ion-avatar>

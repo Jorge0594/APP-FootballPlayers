@@ -20,7 +20,7 @@ export class LoginPage {
       reponse => {
         this.userService.generateUserData();
         this.menuController.enable(true);
-        this.navCtrl.setRoot(HomeTabsPage, {id:'league'});
+        this.navCtrl.setRoot(HomeTabsPage, {id:['league']});
       },
       error => console.error(error)
     );
