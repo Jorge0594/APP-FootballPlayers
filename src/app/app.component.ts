@@ -7,6 +7,7 @@ import { TabStandings } from '../pages/home-tabs/Tabs/standings/standings';
 import { HomeTabsPage } from '../pages/home-tabs/home-tabs';
 import { TeamsPage } from '../pages/teams/teams';
 import { LoginPage } from '../pages/login/login';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { UserService } from '../app/services/user.service';
 import { LoginService } from './services/login.service';
@@ -31,6 +32,7 @@ export class MyApp {
     this.menuPages = [
       {title:'Liga', component: HomeTabsPage, rootParams:['league'], icon:'trophy'},
       {title:'Mi equipo', component: HomeTabsPage, rootParams:['team'], icon:'football'},
+      {title:'Mi perfil', component: ProfilePage, rootParams:['profile'], icon:'contact'},
       {title:'Equipos', component: TeamsPage, rootParams: ['teamsList'], icon:'people'},
       {title:'Log-out', component: LoginPage, rootParams:['logout'], icon:'log-out'}
     ];
@@ -40,7 +42,7 @@ export class MyApp {
 
   navigateTo(page, rootParams){
     if(rootParams[0]=='logout'){
-
+      this.loginService.logout();
     }
     this.nav.setRoot(page, { id:rootParams });
   }

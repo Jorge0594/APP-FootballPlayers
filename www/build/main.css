@@ -31134,7 +31134,8 @@ page-home #shield-team-image {
 }
 
 page-home .team-info-content .scroll-content {
-  background: #2c3e50;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2c3e50), to(#567596));
+  background: linear-gradient(#2c3e50, #567596);
   padding: 0px !important;
 }
 
