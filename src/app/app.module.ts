@@ -15,6 +15,8 @@ import { UserService } from '../../src/app/services/user.service';
 import { LeagueService } from '../../src/app/services/league.service';
 import { MyApp } from './app.component';
 
+import { ElasticHeader } from '../components/elastic-header/elastic-header'
+
 import { LoginPage } from '../pages/login/login';
 import { HomeTabsPage } from '../pages/home-tabs/home-tabs';
 import { TabStandings } from '../pages/home-tabs/Tabs/standings/standings';
@@ -36,7 +38,8 @@ import { ProfilePage } from '../pages/profile/profile';
     PlayerPage,
     MatchPage,
     TeamsPage,
-    ProfilePage
+    ProfilePage,
+    ElasticHeader
   ],
   imports: [
     HttpModule,
@@ -55,7 +58,8 @@ import { ProfilePage } from '../pages/profile/profile';
     PlayerPage,
     MatchPage,
     TeamsPage,
-    ProfilePage
+    ProfilePage,
+    ElasticHeader
   ],
   providers: [
     HttpModule,

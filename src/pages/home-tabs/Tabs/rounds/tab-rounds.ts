@@ -26,13 +26,15 @@ export class TabRounds {
     switch (this.navParams.data[0]){
       case 'league':
         this.roundSelected = 1;
-        this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
-          matches =>{
-            this.roundMatches = matches;
-            console.log(this.roundMatches);
-          },
-          error => console.error(error)
-        );
+        if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
+          this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
+            matches =>{
+              this.roundMatches = matches;
+              console.log(this.roundMatches);
+            },
+            error => console.error(error)
+          );
+        }
       break;
       case 'team':
         this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(

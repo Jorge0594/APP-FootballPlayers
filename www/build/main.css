@@ -30871,6 +30871,10 @@ ion-nav {
   display: block;
 }
 
+elastic-header {
+  display: block;
+}
+
 page-home-tabs {
   /*super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button{
 			background: #2673f8;
@@ -31360,6 +31364,30 @@ page-player .scroll-content {
 page-player ion-header {
   min-height: 220px !important;
   background: #011b4e !important;
+}
+
+page-profile elastic-header {
+  background-color: #363636;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-profile elastic-header img {
+  border-radius: 50%;
+  width: 75px;
+  height: auto;
+  margin-right: 15px;
 }
 
 page-teams .scroll-content {
