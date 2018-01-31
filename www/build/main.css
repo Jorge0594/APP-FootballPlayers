@@ -31386,8 +31386,59 @@ page-profile elastic-header {
 page-profile elastic-header img {
   border-radius: 50%;
   width: 75px;
-  height: auto;
-  margin-right: 15px;
+  height: 75px;
+}
+
+page-profile .button-inner {
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -webkit-flex-flow: column !important;
+  -ms-flex-flow: column !important;
+  flex-flow: column !important;
+}
+
+page-profile #sanctions-card {
+  height: 70px;
+  text-align: center;
+  background: #dfe4ea;
+  margin: 0px;
+  margin-top: 20px !important;
+  width: 100%;
+}
+
+page-profile button.row {
+  width: 100%;
+  background: #ced6e0;
+  border-radius: 3px;
+}
+
+page-profile #card-text {
+  margin-top: 25px;
+}
+
+page-profile #user-team-image {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+page-profile #user-team-name {
+  text-align: center;
+}
+
+page-profile .info-content {
+  text-align: right;
+}
+
+page-profile ion-label {
+  margin: 5px 8px 13px 0px !important;
+}
+
+page-profile ion-row {
+  margin-bottom: 10px;
 }
 
 page-teams .scroll-content {

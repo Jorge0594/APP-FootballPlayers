@@ -15,8 +15,7 @@ export class TeamsPage {
   }
 
   teamSelect(id:string){
-    console.log("EL id del equipo es " + this.navParams.get('id')[0]);
-    //this.navCtrl.push(HomeTabsPage, { idTeam:id, id:'team' });
+    console.log("El id del equipo es " + this.navParams.get('id')[0]);
     this.navCtrl.push(HomeTabsPage, { id:[this.navParams.get('id')[0], id] });
   }
 

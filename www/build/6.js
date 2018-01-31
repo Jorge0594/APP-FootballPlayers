@@ -27,7 +27,7 @@ var TabTeamPageModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__tab_rounds__["a" /* TabRounds */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__tab_rounds__["a" /* TabRounds */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__tab_rounds__["a" /* TabRounds */]),
             ],
         })
     ], TabTeamPageModule);

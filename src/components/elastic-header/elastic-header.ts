@@ -1,5 +1,7 @@
 import { Component, Input, ElementRef, Renderer } from '@angular/core';
 
+import { Events } from 'ionic-angular';
+
 @Component({
   selector: 'elastic-header',
   templateUrl: 'elastic-header.html'
@@ -11,7 +13,7 @@ export class ElasticHeader   {
 
   private newHeaderHeight: any;
 
-  constructor(private element: ElementRef, private renderer: Renderer) {}
+  constructor(private element: ElementRef, private renderer: Renderer, private events: Events) {}
 
   ngAfterViewInit(){
     this.renderer.setElementStyle(this.element.nativeElement, 'height', this.headerHeight + 'px');
@@ -19,6 +21,11 @@ export class ElasticHeader   {
     this.scrollArea.ionScroll.subscribe((ev)=>{
       this.resizeHeader(ev);
     })
+
+    this.events.subscribe('resizeHeader', ()=>{
+      this.newHeaderHeight = this.headerHeight;
+      this.renderer.setElementStyle(this.element.nativeElement, 'height', this.headerHeight + 'px');
+    });
   }
 
   resizeHeader(ev){

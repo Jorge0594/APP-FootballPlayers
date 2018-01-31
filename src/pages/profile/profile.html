@@ -6,68 +6,96 @@
     <ion-title>Mi perfil</ion-title>
   </ion-navbar>
 
-  <elastic-header [scrollArea] = "component" headerHeight = "150">
-    <img id="profile-image" src="http://192.168.1.39:8080/images/defaultProfile.png">
+  <elastic-header [scrollArea] = "component" [headerHeight] = "header">
+      <img id="profile-image" src="http://192.168.1.39:8080/images/defaultProfile.jpg">
   </elastic-header>
 
   <ion-toolbar color="light" mode="md">
-    <ion-segment color="dark" mode="md">
-      <ion-segment-button value="one">
+    <ion-segment color="dark" mode="md" [(ngModel)]= "selection">
+      <ion-segment-button (click) = "resizeHeader()" class = "text-on-botton" value="one">
         <ion-icon name="home"></ion-icon>
+        Perfil
       </ion-segment-button>
-      <ion-segment-button value="two">
-        <ion-icon name="cog"></ion-icon>
+      <ion-segment-button (click) = "resizeHeader()" class = "text-on-botton" value="two">
+          <ion-icon name="chatbubbles"></ion-icon>
+          Sanciones
       </ion-segment-button>
-      <ion-segment-button value="three">
-        <ion-icon name="chatbubbles"></ion-icon>
+      <ion-segment-button (click) = "resizeHeader()" class = "text-on-botton" value="three">
+          <ion-icon name="cog"></ion-icon>
+          Ajustes
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content fullscreen #component>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
+<ion-content fullscreen #component [ngSwitch] = "selection" >
+ <ion-item no-lines *ngSwitchCase = "'one'">
+   <ion-item id = "team-image-container" (click) = "goTeam()">
+      <img id = "user-team-image" src = "http://192.168.1.39:8080/images/shield.png">
+      <h1 id = "user-team-name">{{userService.getUserTeam()?.nombre}}</h1>
+   </ion-item>
+   <ion-row>
+    <ion-col>
+      Dorsal
+    </ion-col>
+    <ion-col class = "info-content">
+      <strong>{{userService.getUserLogged().dorsal}}</strong>
+    </ion-col>
+  </ion-row>
+   <ion-row>
+     <ion-col>
+       Goles
+     </ion-col>
+     <ion-col class = "info-content">
+       <strong>{{userService.getUserLogged().goles}}</strong>
+     </ion-col>
+   </ion-row>
+   <ion-row>
+      <ion-col>
+        Tartejas Amarillas
+      </ion-col>
+      <ion-col class = "info-content">
+        <strong>{{userService.getUserLogged()?.tarjetasAmarillas}}</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          Tarjetas Rojas
+        </ion-col>
+        <ion-col class = "info-content">
+          <strong>{{userService.getUserLogged()?.tarjetasRojas}}</strong>
+        </ion-col>
+      </ion-row>
+   <ion-card id ="sanctions-card">
+     <p id ="card-text"><strong>No tienes sanciones</strong></p>
+   </ion-card>
+ </ion-item>
 
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
-  <h1>AAAAAAAAAAAAA</h1>
+ <ion-list *ngSwitchCase = "'two'">
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+   <h1>AAAA</h1>
+
+ </ion-list>
+
+ <ion-list *ngSwitchCase = "'three'">
+
+ </ion-list>
+
 </ion-content>

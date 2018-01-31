@@ -17,6 +17,7 @@ export class HomeTabsPage {
   private tabs: Array<{ title:string, root: any, rootParams:[string], icon:string}>;
   private rootParams: [string];
   private titles: Array<string>;
+  private icons: Array<string>;
   private headerTitle: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController, private userService:UserService, private teamService: TeamService) {
@@ -26,11 +27,14 @@ export class HomeTabsPage {
         this.headerTitle = "Liga";
         this.rootParams = ["league"];
         this.titles = ["Clasificacion", "Calendario", "Rankings"];
+        this.icons = ["trophy", "calendar", "podium"];
       break;
+      case "profile":
       case "team":
       this.headerTitle = userService.getUserTeam().nombre;
         this.rootParams = ["team"];
         this.titles = ["Perfil", "Calendario","Plantilla"];
+        this.icons = ["home", "calendar", "people"];
       break;
       case "teamsList":
         this.teamService.getPlayerTeamById(this.navParams.get('id')[1]).subscribe(
@@ -38,13 +42,14 @@ export class HomeTabsPage {
         );
         this.rootParams = ["teamsList",this.navParams.get('id')[1]];
         this.titles = ["Perfil", "Calendario","Plantilla"];
+        this.icons = ["home", "calendar", "people"];
       break;
     }
     
     this.tabs = [
-      {title: this.titles[0], root: TabStandings, rootParams: this.rootParams, icon: "trophy"},
-      {title: this.titles[1], root: TabRounds, rootParams: this.rootParams, icon: "calendar"},
-      {title: this.titles[2], root: TabRanks, rootParams: this.rootParams, icon: "podium"}
+      {title: this.titles[0], root: TabStandings, rootParams: this.rootParams, icon: this.icons[0]},
+      {title: this.titles[1], root: TabRounds, rootParams: this.rootParams, icon: this.icons[1]},
+      {title: this.titles[2], root: TabRanks, rootParams: this.rootParams, icon: this.icons[2]}
     ];
   }
 

@@ -27,7 +27,7 @@ var TeamsPageModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__teams__["a" /* TeamsPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__teams__["a" /* TeamsPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__teams__["a" /* TeamsPage */]),
             ],
         })
     ], TeamsPageModule);

@@ -14,7 +14,7 @@ export class LoginService{
 
     login(username:String, password:String){
         if(username == "" || username == null || username == undefined){
-            return Observable.throw("Server error (401):Por favor introduzca el nombre de usuario correcto");
+            return Observable.throw("Server error (401):Please enter the correct password or username");
         }else{
 
             this.http.setLogged(true);

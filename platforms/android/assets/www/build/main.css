@@ -30831,14 +30831,24 @@ super-tabs-toolbar > ion-toolbar.toolbar.scroll-tabs .tab-buttons-container .ind
 }
 
 .app-header {
-  background-image: url("assets/imgs/football-background.jpg");
   max-height: 149px;
   height: 149px;
   width: 100%;
 }
 
-img {
-  -webkit-filter: brightness(25%) blur(1px);
+.app-background-header {
+  background-image: url("../assets/imgs/football-background.jpg");
+  background-size: 300px;
+  -webkit-filter: brightness(40%) blur(0px) saturate(45%);
+  max-height: 149px;
+  height: 149px;
+  width: 100%;
+  position: absolute;
+}
+
+.div-image {
+  margin-top: 20px;
+  margin-left: 15px;
 }
 
 ion-nav {
@@ -30846,11 +30856,22 @@ ion-nav {
   display: block;
 }
 
+#menu-profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  -webkit-filter: brightness(100%) blur(0px) !important;
+}
+
 #profile-button {
   border-color: black;
   border-radius: 35%;
   position: relative;
   float: right;
+  display: block;
+}
+
+elastic-header {
   display: block;
 }
 
@@ -31094,6 +31115,55 @@ page-home #partido {
   display: block;
 }
 
+page-home #team-shield-background {
+  background-image: url("../assets/imgs/football-background.jpg");
+  -webkit-filter: brightness(25%) saturate(50%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  min-height: 115px !important;
+  height: 150px;
+  width: 100%;
+}
+
+page-home #shield-team-image {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 130px;
+  height: 130px;
+  margin-top: 15px !important;
+}
+
+page-home .team-info-content .scroll-content {
+  background: -webkit-gradient(linear, left top, left bottom, from(#2c3e50), to(#567596));
+  background: linear-gradient(#2c3e50, #567596);
+  padding: 0px !important;
+}
+
+page-home #profile-team-name {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 200%;
+  color: #f1c40f;
+}
+
+page-home .profile-team-titles {
+  margin-top: 15px;
+  text-align: center;
+  color: #3baffc;
+  font-style: oblique;
+}
+
+page-home .profile-team {
+  margin-top: 5px;
+  text-align: center;
+  color: white;
+}
+
 .ios page-login, .md page-login {
   /*.scroll-content {
 	    background-color: #ffffff;
@@ -31213,8 +31283,8 @@ page-match .stats-info-visitor {
 page-match #not-data-icon {
   width: 150px;
   height: 150px;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin: auto;
+  display: block;
 }
 
 page-match p {
@@ -31294,4 +31364,91 @@ page-player .scroll-content {
 page-player ion-header {
   min-height: 220px !important;
   background: #011b4e !important;
+}
+
+page-profile elastic-header {
+  background-color: #363636;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-profile elastic-header img {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+}
+
+page-profile .button-inner {
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -webkit-flex-flow: column !important;
+  -ms-flex-flow: column !important;
+  flex-flow: column !important;
+}
+
+page-profile #sanctions-card {
+  height: 70px;
+  text-align: center;
+  background: #dfe4ea;
+  margin: 0px;
+  margin-top: 20px !important;
+  width: 100%;
+}
+
+page-profile button.row {
+  width: 100%;
+  background: #ced6e0;
+  border-radius: 3px;
+}
+
+page-profile #card-text {
+  margin-top: 25px;
+}
+
+page-profile #user-team-image {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+page-profile #user-team-name {
+  text-align: center;
+}
+
+page-profile .info-content {
+  text-align: right;
+}
+
+page-profile ion-label {
+  margin: 5px 8px 13px 0px !important;
+}
+
+page-profile ion-row {
+  margin-bottom: 10px;
+}
+
+page-teams .scroll-content {
+  background: #2c3e50;
+}
+
+page-teams .list-md .item[no-lines], page-teams .list-md .item[no-lines] .item-inner {
+  background: #2c3e50;
+}
+
+page-teams #team-name {
+  color: white !important;
 }
