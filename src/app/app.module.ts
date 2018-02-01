@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { PlayerService } from '../../src/app/services/player.service'
 import { LoginService } from '../../src/app/services/login.service';
@@ -43,6 +44,7 @@ import { ProfilePage } from '../pages/profile/profile';
   ],
   imports: [
     HttpModule,
+    IonicImageViewerModule,
     BrowserModule,
     SuperTabsModule.forRoot(),
     IonicModule.forRoot(MyApp)

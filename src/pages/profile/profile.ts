@@ -15,6 +15,7 @@ export class ProfilePage {
   @ViewChild(Content)content: Content;
   private selection:string;
   private header: number;
+  private clickImage: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private events: Events) {
     this.selection = "one";
@@ -33,5 +34,5 @@ export class ProfilePage {
     this.content.scrollTo(0, 0, 0);//relocate the content after click in a button
     this.events.publish('resizeHeader');
   }
-
+  
 }

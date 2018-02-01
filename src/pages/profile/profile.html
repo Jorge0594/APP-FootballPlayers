@@ -7,7 +7,7 @@
   </ion-navbar>
 
   <elastic-header [scrollArea] = "component" [headerHeight] = "header">
-      <img id="profile-image" src="http://192.168.1.39:8080/images/defaultProfile.jpg">
+      <img id="profile-image" src="http://192.168.1.39:8080/images/defaultProfile.jpg" imageViewer/>
   </elastic-header>
 
   <ion-toolbar color="light" mode="md">
@@ -43,7 +43,7 @@
       <strong>{{userService.getUserLogged().dorsal}}</strong>
     </ion-col>
   </ion-row>
-   <ion-row>
+   <ion-row lines>
      <ion-col>
        Goles
      </ion-col>
