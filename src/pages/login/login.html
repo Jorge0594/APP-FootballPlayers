@@ -1,14 +1,9 @@
 
-<ion-content padding>
-      <div padding  id="cloud-layer">
-    
-        <ion-row>
-          <ion-col>
-            <img  src="assets/imgs/login.png" />
-          </ion-col>
-        </ion-row>
-    
-        <ion-row>
+<ion-content padding class = "background">
+      <div padding  id="background-login">
+      </div>
+      <!--div>
+        <ion-row id = "input-login-content">
           <ion-col>
             <ion-list inset>
     
@@ -21,16 +16,29 @@
                 <ion-label>Password</ion-label>
                 <ion-input id = "password" (keyup.enter)="goHomePage(username?.value, password?.value)" type="password" #password></ion-input>
               </ion-item>
-    
+              
+              <button ion-button (click)="goHomePage(username?.value, password?.value)" class="login-button" >Login</button>
+              
             </ion-list>
           </ion-col>
         </ion-row>
-    
-        <ion-row>
-          <ion-col>
-            <button ion-button (click)="goHomePage(username?.value, password?.value)" class="login-button" >Login</button>
-          </ion-col>
-        </ion-row>
-    
-      </div>
+      </div-->
+      <ion-card>
+        <ion-card-header>
+          Inicio de sesión
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list no-lines>
+            <ion-item>
+              <ion-input #username type ="text" placeholder = "Usuario" (keyup.enter) = "username.focusNext()"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input #password type ="password" placeholder = "Contraseña" (keyup.enter) = "goHomePage(username?.value, password?.value)" ></ion-input>
+            </ion-item>
+          </ion-list>
+          <p>¿Has olvidado tu usuario o contraseña?</p>
+          <button ion-button block outline color = "Light">Iniciar sesion</button>
+        </ion-card-content>
+      </ion-card>
+      <button ion-button clear full color = "Light">¿No tienes cuenta? Click aquí</button>
 </ion-content>

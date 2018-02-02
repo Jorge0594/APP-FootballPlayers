@@ -11,6 +11,7 @@ import { ProfilePage } from '../pages/profile/profile';
 
 import { UserService } from '../app/services/user.service';
 import { LoginService } from './services/login.service';
+import { PlayerService } from './services/player.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,6 +20,7 @@ export class MyApp {
 
   rootPage:any = LoginPage;
   homePage:any = TabStandings;
+  servicePlayer:any = PlayerService;
 
   @ViewChild('content')nav: Nav;
   private menuPages: Array<{title:string, component:any, rootParams:[string], icon:string}>

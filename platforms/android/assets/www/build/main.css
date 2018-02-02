@@ -30530,6 +30530,76 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+image-viewer.ion-page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  opacity: 1;
+}
+
+image-viewer.ion-page ion-navbar.toolbar .toolbar-background {
+  background-color: transparent;
+}
+
+image-viewer.ion-page ion-navbar.toolbar.toolbar-ios {
+  padding-top: calc(20px + 4px);
+}
+
+image-viewer.ion-page ion-navbar .bar-button-default {
+  color: white;
+}
+
+image-viewer.ion-page .backdrop {
+  will-change: opacity;
+}
+
+image-viewer.ion-page .image-wrapper {
+  position: relative;
+  z-index: 10;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 56px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+image-viewer.ion-page .image {
+  will-change: transform;
+}
+
+image-viewer.ion-page img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
 super-tabs {
   height: 100%;
   display: -webkit-box;
@@ -31131,7 +31201,6 @@ page-home #shield-team-image {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  display: block;
   width: 130px;
   height: 130px;
   margin-top: 15px !important;
@@ -31164,13 +31233,12 @@ page-home .profile-team {
   color: white;
 }
 
-.ios page-login, .md page-login {
-  /*.scroll-content {
-	    background-color: #ffffff;
-	    display: flex;
-	    flex-direction: column;
-	    overflow: hidden;
-	  }*/
+.ios page-login .scroll-content, .md page-login .scroll-content {
+  padding: 0px !important;
+}
+
+.ios page-login #input-login-content, .md page-login #input-login-content {
+  background: #c8d6e5 !important;
 }
 
 .ios page-login img, .md page-login img {
@@ -31182,9 +31250,15 @@ page-home .profile-team {
 }
 
 .ios page-login #cloud-layer, .md page-login #cloud-layer {
-  background-size: cover;
+  position: absolute;
   width: 100%;
   height: 100%;
+  background-image: url("../assets/imgs/login-background2.jpg");
+  background-size: cover;
+  background-position: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-filter: brightness(50%) saturate(50%);
 }
 
 .ios page-login ion-row, .md page-login ion-row {
