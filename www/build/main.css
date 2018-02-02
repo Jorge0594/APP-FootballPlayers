@@ -31511,11 +31511,6 @@ page-profile ion-row {
   margin-bottom: 10px;
 }
 
-page-profile #test {
-  text-align: right;
-  color: #fff;
-}
-
 page-teams .scroll-content {
   background: #2c3e50;
 }

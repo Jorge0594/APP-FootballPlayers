@@ -14,12 +14,12 @@
     
               <ion-item>
                 <ion-label>Username</ion-label>
-                <ion-input type="text" #username></ion-input>
+                <ion-input (keyup.enter)= "username.focusNext()" type="text" #username></ion-input>
               </ion-item>
     
               <ion-item>
                 <ion-label>Password</ion-label>
-                <ion-input type="password" #password></ion-input>
+                <ion-input id = "password" (keyup.enter)="goHomePage(username?.value, password?.value)" type="password" #password></ion-input>
               </ion-item>
     
             </ion-list>
