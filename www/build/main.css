@@ -30945,13 +30945,6 @@ elastic-header {
   display: block;
 }
 
-page-home-tabs {
-  /*super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button{
-			background: #2673f8;
-			color:white;
-		}*/
-}
-
 page-home-tabs .scroll-content {
   background-color: #ffffff;
   display: -webkit-box;
@@ -30967,6 +30960,7 @@ page-home-tabs .scroll-content {
 }
 
 page-home-tabs ion-title {
+  margin-right: 40px;
   text-align: center;
 }
 
@@ -31233,38 +31227,6 @@ page-home .profile-team {
   color: white;
 }
 
-.ios page-login, .md page-login {
-  /*#input-login-content{
-				background: #c8d6e5!important;
-		}*/
-  /*
-	    ion-row {
-	      align-items: center;
-	      text-align: center;
-	    }
-
-	    ion-item {
-	        border-radius: 5px !important;
-	        padding-left: 10px !important;
-					margin-bottom: 30px;
-	        background-color: #f6f6f6;
-	        opacity: 0.7;
-	        font-size: 0.9em;
-	    }
-
-	    ion-list {
-	        margin: 0;
-	    }
-
-	    .login-button {
-	        width: 100%;
-	        border-radius: 5px;
-	        font-size: 0.9em;
-	        border: 1px solid #fff;
-	        background-color: #367bd6;
-			}*/
-}
-
 .ios page-login .scroll-content, .md page-login .scroll-content {
   padding: 0px !important;
   -webkit-align-content: center;
@@ -31286,7 +31248,42 @@ page-home .profile-team {
   text-align: center;
 }
 
-.ios page-login .background, .md page-login .background {
+.ios page-login ion-card.card, .md page-login ion-card.card {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: rgba(92, 88, 88, 0.5);
+  border-radius: 5px;
+}
+
+.ios page-login p, .ios page-login ion-card-header.card-header, .md page-login p, .md page-login ion-card-header.card-header {
+  color: #e9e5e5;
+}
+
+.ios page-login .item, .md page-login .item {
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border: medium none;
+}
+
+.ios page-login .item .text-input, .md page-login .item .text-input {
+  color: black !important;
+}
+
+.ios page-login .item *::-webkit-input-placeholder, .md page-login .item *::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.ios page-login .list > .item-block:first-child, .md page-login .list > .item-block:first-child {
+  border: medium none;
+}
+
+.ios page-login #div-card, .md page-login #div-card {
+  position: relative;
+  display: block;
+}
+
+.ios page-login #background-login, .md page-login #background-login {
+  position: absolute;
   width: 100%;
   height: 100%;
   background-image: url("../assets/imgs/login-background2.jpg");
@@ -31294,29 +31291,7 @@ page-home .profile-team {
   background-position: fixed;
   background-position: center center;
   background-repeat: no-repeat;
-}
-
-.ios page-login ion-card.card, .md page-login ion-card.card {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  background: rgba(146, 145, 145, 0.5);
-  border-radius: 5px;
-}
-
-.ios page-login ion-card-header.card-header, .md page-login ion-card-header.card-header {
-  color: #e9e5e5;
-}
-
-.ios page-login #background-login, .md page-login #background-login {
-  /*position: absolute;
-	    width: 100%;
-			height: 100%;
-			background-image: url('../assets/imgs/login-background2.jpg');
-			background-size: cover;
-			background-position: fixed;
-			background-position: center center;
-			background-repeat: no-repeat;
-			-webkit-filter: brightness(50%) saturate(50%);*/
+  -webkit-filter: brightness(50%) saturate(50%);
 }
 
 page-match ion-header {

@@ -23,22 +23,24 @@
           </ion-col>
         </ion-row>
       </div-->
-      <ion-card>
-        <ion-card-header>
-          Inicio de sesión
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list no-lines>
-            <ion-item>
-              <ion-input #username type ="text" placeholder = "Usuario" (keyup.enter) = "username.focusNext()"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input #password type ="password" placeholder = "Contraseña" (keyup.enter) = "goHomePage(username?.value, password?.value)" ></ion-input>
-            </ion-item>
-          </ion-list>
-          <p>¿Has olvidado tu usuario o contraseña?</p>
-          <button ion-button block outline color = "Light">Iniciar sesion</button>
-        </ion-card-content>
-      </ion-card>
-      <button ion-button clear full color = "Light">¿No tienes cuenta? Click aquí</button>
+      <div id ="div-card">
+        <ion-card>
+          <ion-card-header>
+            Inicio de sesión
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list no-lines>
+              <ion-item>
+                <ion-input #username type ="text" placeholder = "Usuario" (keyup.enter) = "username.focusNext()"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input #password type ="password" placeholder = "Contraseña" (keyup.enter) = "goHomePage(username?.value, password?.value)" ></ion-input>
+              </ion-item>
+            </ion-list>
+            <p>¿Has olvidado tu usuario o contraseña?</p>
+            <button ion-button block outline color = "light" (click)= "goHomePage(username?.value, password?.value)">Iniciar sesión</button>
+          </ion-card-content>
+        </ion-card>
+        <button ion-button clear full color = "light">¿No tienes cuenta? Click aquí</button>
+      </div>
 </ion-content>
