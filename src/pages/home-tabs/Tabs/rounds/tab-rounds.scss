@@ -1,19 +1,21 @@
 tab-rounds{ 
 
     ion-slides{
-        background-color:#649cfd;
+        background-color:#353b48;
+        max-height: 45px!important;
     }
 
     ion-slide {
-        background-color:#649cfd;
+        background-color:#353b48;
+        max-height: 45px!important;
     }
 
     #slide-title{
-        color:rgba(255, 255, 255, 0.7);
+        color:rgba(255, 255, 255, 0.5);
     }
     
     .selected{
-        background: #3f79dd;
+        background: #222f3e;
         p{
             color:white!important;
             font-size: 19px!important;

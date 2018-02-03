@@ -1,14 +1,19 @@
 <ion-header style="padding:0px">
-    <ion-toolbar style="padding:0px; max-height:50px" *ngIf = "navParams.data[0] == 'league'">
+    <!--ion-toolbar style="padding:0px; max-height:50px" *ngIf = "navParams.data[0] == 'league'">
         <ion-slides  slidesPerView="3">
             <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >
                     <p id="slide-title">Jornada {{num}}</p>
             </ion-slide>
         </ion-slides>
-    </ion-toolbar>
+    </ion-toolbar-->
 </ion-header>
 
 <ion-content padding>
+    <ion-slides  slidesPerView="3" *ngIf = "navParams.data[0] == 'league'">
+        <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >
+                    <p id="slide-title">Jornada {{num}}</p>
+        </ion-slide>
+    </ion-slides>
     <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf="navParams.data[0] == 'league'">
         <ion-item *ngFor = "let match of roundMatches" (click)="matchInfo(match.id)" id="match-info">
             <ion-row id ="date">

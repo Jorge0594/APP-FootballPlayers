@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, Nav, LoadingController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -25,8 +25,9 @@ export class MyApp {
   @ViewChild('content')nav: Nav;
   private menuPages: Array<{title:string, component:any, rootParams:[string], icon:string}>
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private userService: UserService, private loginService: LoginService) {
-    platform.ready().then(() => {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private userService: UserService,
+    private loginService: LoginService, private loadingCtrl: LoadingController) {
+      platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
     });
@@ -40,13 +41,24 @@ export class MyApp {
     ];
   }
 
+  presentLoading(){
+    let spinner = this.loadingCtrl.create({
+      content: 'Cerrando sesión'
+    });
 
+    spinner.present();
+
+    setTimeout(()=>{
+      spinner.dismiss();
+    }, 1000);
+  }
 
   navigateTo(page, rootParams){
     if(rootParams[0]=='logout'){
+      this.presentLoading();
       this.loginService.logout();
     }
-    this.nav.setRoot(page, { id:rootParams });
+      this.nav.setRoot(page, { id:rootParams });
   }
 }
 

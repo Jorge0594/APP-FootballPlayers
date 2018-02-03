@@ -1,19 +1,4 @@
 
-<ion-header style="padding:0px" *ngIf = "navParams.data[0] == 'league'">
-    <ion-toolbar style="padding:0px; max-height:50px">
-        <ion-slides  slidesPerView="3">
-            <ion-slide [class.selected] = "rankSelected == 'goals'" (click)="selectRank('goals')">
-                    <p id="slide-title">Goleadores</p>
-            </ion-slide>
-            <ion-slide [class.selected] = "rankSelected == 'foul'" (click)="selectRank('foul')">
-                <p id="slide-title">Faltas</p>
-            </ion-slide>
-            <ion-slide [class.selected] = "rankSelected == 'cards'" (click)="selectRank('cards')">
-              <p id="slide-title">Tarjetas</p>
-            </ion-slide>
-        </ion-slides>
-    </ion-toolbar>
-</ion-header>
 
 <ion-content>
   <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'league'">
