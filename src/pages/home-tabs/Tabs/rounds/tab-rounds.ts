@@ -19,7 +19,7 @@ export class TabRounds {
   private roundMatches : any;
   private teamMatches : any;
   private roundSelected: number;
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService,
     private matchService: MatchService, private app: App) {
 
