@@ -33790,12 +33790,26 @@ page-home-tabs .header-md::after {
   background-image: none;
 }
 
-page-home-tabs ion-toolbar.toolbar::after {
-  height: 0px !important;
+page-home-tabs .tab-button[aria-selected=true] {
+  color: #9ed7f8 !important;
+  border-bottom: 3.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
 }
 
-page-home-tabs #tabbar {
-  border-top: 5px #f4f4f4 !important;
+page-home-tabs .tab-button[aria-selected=true] .tab-button-icon {
+  color: #9ed7f8 !important;
+}
+
+page-home-tabs .tabbar.show-tabbar::after {
+  background-image: none !important;
+  background: #9ed7f8 !important;
+  height: 1.5px !important;
+  bottom: 0 !important;
+}
+
+page-home-tabs ion-toolbar.toolbar::after {
+  height: 0px !important;
 }
 
 ranks-tab .scroll-content {
@@ -33883,6 +33897,7 @@ tab-rounds ion-slides {
 tab-rounds ion-slide {
   background-color: #353b48;
   max-height: 45px !important;
+  border: 5px #32db64;
 }
 
 tab-rounds #slide-title {

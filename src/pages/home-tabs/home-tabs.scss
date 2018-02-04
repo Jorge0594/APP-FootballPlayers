@@ -16,12 +16,25 @@
 			background-image: none;
 		}
 
-		ion-toolbar.toolbar::after{
-			height: 0px!important;
+		.tab-button[aria-selected=true]{
+			color:#9ed7f8!important;
+			border-bottom: 3.5px!important;
+			border-style: solid!important;
+			border-color: #9ed7f8!important;
+			.tab-button-icon{
+				color:#9ed7f8!important;
+			}
 		}
 
-		#tabbar{
-			border-top: 5px color($colors, light)!important;
+		.tabbar.show-tabbar::after{
+			background-image:none!important;
+			background: #9ed7f8!important;
+			height: 1.5px!important;
+			bottom:0!important;
+		}
+
+		ion-toolbar.toolbar::after{
+			height: 0px!important;
 		}
 
 		.tab-button[aria-selected=true] {
