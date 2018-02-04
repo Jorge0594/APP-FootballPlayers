@@ -188,44 +188,55 @@ var TabRounds = (function () {
         this.userService = userService;
         this.matchService = matchService;
         this.app = app;
+        this.isEmpty = false;
         switch (this.navParams.data[0]) {
             case 'league':
                 this.roundSelected = 1;
                 if (this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null) {
                     this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(function (matches) {
                         _this.roundMatches = matches;
+                        if (_this.roundMatches == null)
+                            _this.isEmpty = true;
                     }, function (error) { return console.error(error); });
                 }
                 break;
             case 'team':
-                this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(function (matches) { return _this.teamMatches = matches; });
+                this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(function (matches) {
+                    _this.teamMatches = matches;
+                    if (_this.teamMatches == null)
+                        _this.isEmpty = true;
+                });
                 break;
             case 'teamsList':
-                this.matchService.getMatchTeamById(this.navParams.data[1]).subscribe(function (matches) { return _this.teamMatches = matches; });
+                this.matchService.getMatchTeamById(this.navParams.data[1]).subscribe(function (matches) {
+                    _this.teamMatches = matches;
+                    if (_this.teamMatches == null)
+                        _this.isEmpty = true;
+                });
                 break;
         }
     }
     TabRounds.prototype.roundInfo = function (day) {
         var _this = this;
+        this.isEmpty = false;
         this.roundSelected = day;
         this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(function (matches) {
             _this.roundMatches = matches;
-            console.log(_this.roundMatches);
+            if (_this.roundMatches == null)
+                _this.isEmpty = true;
         }, function (error) { return console.error(error); });
-        console.log(this.roundSelected);
-        console.log("Informacion de la jornada " + day);
     };
     TabRounds.prototype.matchInfo = function (id) {
         this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_4__match_match__["a" /* MatchPage */], { matchId: id });
     };
     TabRounds = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'tab-rounds',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\rounds\tab-rounds.html"*/'\n\n<ion-content>\n    <ion-slides  slidesPerView="3" *ngIf = "navParams.data[0] == \'league\'">\n        <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >\n                    <p id="slide-title">Jornada {{num}}</p>\n        </ion-slide>\n    </ion-slides>\n    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == \'league\'">\n        <ion-grid *ngFor = "let match of roundMatches; let i = index" (click) = "matchInfo(match.id)">\n            <ion-row id = "date" *ngIf = "match.fechaPartido != roundMatches[i].fechaPartido || i == 0">\n                <ion-col>{{match.fechaPartido}}</ion-col>\n            </ion-row>\n            <ion-row class = "lines"></ion-row>\n            <ion-row *ngIf = "match.estado != \'Finalizado\' || match.estado != \'finalizado\'">\n                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n                <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>\n                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n            </ion-row>\n            <ion-row *ngIf = "match.estado == \'Finalizado\' || match.estado == \'finalizado\'">\n                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n                <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>\n                <ion-col col-2><h1>-</h1></ion-col>\n                <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>\n                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n            </ion-row>\n            <ion-row class = "lines" *ngIf = "(i+1) == roundMatches.length"></ion-row>\n        </ion-grid>\n  </ion-scroll>\n  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf="navParams.data[0] == \'team\' || navParams.data[0] == \'teamsList\'">\n    <ion-grid *ngFor = "let match of teamMatches; let i = index" (click) = "matchInfo(match.id)">\n        <ion-row id = "date" *ngIf = "match.fechaPartido != teamMatches[i].fechaPartido || i == 0">\n            <ion-col>{{match.fechaPartido}}</ion-col>\n        </ion-row>\n        <ion-row class = "lines"></ion-row>\n        <ion-row *ngIf = "match.estado != \'Finalizado\' || match.estado != \'finalizado\'">\n            <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n            <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>\n            <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n        </ion-row>\n        <ion-row *ngIf = "match.estado == \'Finalizado\' || match.estado == \'finalizado\'">\n            <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n            <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>\n            <ion-col col-2><h1>-</h1></ion-col>\n            <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>\n            <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n        </ion-row>\n        <ion-row class = "lines" *ngIf = "(i+1) == teamMatches.length"></ion-row>\n    </ion-grid>\n</ion-scroll>\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\rounds\tab-rounds.html"*/,
+            selector: 'tab-rounds',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\rounds\tab-rounds.html"*/'\n\n<ion-content>\n    <ion-slides  slidesPerView="3" *ngIf = "navParams.data[0] == \'league\'">\n        <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >\n                    <p id="slide-title">Jornada {{num}}</p>\n        </ion-slide>\n    </ion-slides>\n    <ion-spinner class = "spinner" *ngIf = "roundMatches == null && teamMatches == null && !isEmpty"></ion-spinner>\n    <ion-row id = "no-matches" *ngIf = "isEmpty">No hay partidos disponibles</ion-row>\n    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == \'league\'">\n        <ion-grid *ngFor = "let match of roundMatches; let i = index" (click) = "matchInfo(match.id)">\n            <ion-row id = "date" *ngIf = "match.fechaPartido != roundMatches[i].fechaPartido || i == 0">\n                <ion-col>{{match.fechaPartido}}</ion-col>\n            </ion-row>\n            <ion-row class = "lines"></ion-row>\n            <ion-row *ngIf = "match.estado != \'Finalizado\' || match.estado != \'finalizado\'">\n                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n                <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>\n                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n            </ion-row>\n            <ion-row *ngIf = "match.estado == \'Finalizado\' || match.estado == \'finalizado\'">\n                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n                <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>\n                <ion-col col-2><h1>-</h1></ion-col>\n                <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>\n                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n            </ion-row>\n            <ion-row class = "lines" *ngIf = "(i+1) == roundMatches.length"></ion-row>\n        </ion-grid>\n  </ion-scroll>\n  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf="navParams.data[0] == \'team\' || navParams.data[0] == \'teamsList\'">\n    <ion-grid *ngFor = "let match of teamMatches; let i = index" (click) = "matchInfo(match.id)">\n        <ion-row id = "date" *ngIf = "match.fechaPartido != teamMatches[i].fechaPartido || i == 0">\n            <ion-col>{{match.fechaPartido}}</ion-col>\n        </ion-row>\n        <ion-row class = "lines"></ion-row>\n        <ion-row *ngIf = "match.estado != \'Finalizado\' || match.estado != \'finalizado\'">\n            <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n            <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>\n            <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n        </ion-row>\n        <ion-row *ngIf = "match.estado == \'Finalizado\' || match.estado == \'finalizado\'">\n            <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>\n            <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>\n            <ion-col col-2><h1>-</h1></ion-col>\n            <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>\n            <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>\n        </ion-row>\n        <ion-row class = "lines" *ngIf = "(i+1) == teamMatches.length"></ion-row>\n    </ion-grid>\n</ion-scroll>\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\rounds\tab-rounds.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__["a" /* MatchService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]])
     ], TabRounds);
     return TabRounds;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=tab-rounds.js.map

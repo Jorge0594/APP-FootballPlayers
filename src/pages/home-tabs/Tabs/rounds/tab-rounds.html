@@ -6,6 +6,8 @@
                     <p id="slide-title">Jornada {{num}}</p>
         </ion-slide>
     </ion-slides>
+    <ion-spinner class = "spinner" *ngIf = "roundMatches == null && teamMatches == null && !isEmpty"></ion-spinner>
+    <ion-row id = "no-matches" *ngIf = "isEmpty">No hay partidos disponibles</ion-row>
     <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'league'">
         <ion-grid *ngFor = "let match of roundMatches; let i = index" (click) = "matchInfo(match.id)">
             <ion-row id = "date" *ngIf = "match.fechaPartido != roundMatches[i].fechaPartido || i == 0">

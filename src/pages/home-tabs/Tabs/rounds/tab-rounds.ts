@@ -7,6 +7,7 @@ import { UserService } from '../../../../app/services/user.service';
 import { MatchService } from '../../../../app/services/match.service';
 
 import { MatchPage } from '../../../match/match';
+import { isEmpty } from 'rxjs/operators/isEmpty';
 
 @IonicPage()
 @Component({
@@ -18,10 +19,13 @@ export class TabRounds {
   private roundMatches : any;
   private teamMatches : any;
   private roundSelected: number;
+  private isEmpty: boolean;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService,
     private matchService: MatchService, private app: App) {
-      
+
+    this.isEmpty = false;
+
     switch (this.navParams.data[0]){
       case 'league':
         this.roundSelected = 1;
@@ -29,6 +33,7 @@ export class TabRounds {
           this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
             matches =>{
               this.roundMatches = matches;
+              if(this.roundMatches == null) this.isEmpty = true;
             },
             error => console.error(error)
           );
@@ -36,28 +41,35 @@ export class TabRounds {
       break;
       case 'team':
         this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(
-          matches => this.teamMatches = matches
+          matches =>{
+            this.teamMatches = matches;
+            if(this.teamMatches == null) this.isEmpty = true;
+          } 
         );
       break;
       case 'teamsList':
         this.matchService.getMatchTeamById(this.navParams.data[1]).subscribe(
-          matches => this.teamMatches = matches
+          matches =>{
+            this.teamMatches = matches;
+            if(this.teamMatches == null) this.isEmpty = true;
+          } 
         );
       break;
     }
   }
 
   roundInfo(day:number){
+
+    this.isEmpty = false;
     this.roundSelected = day;
+
     this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
       matches =>{
         this.roundMatches = matches;
-        console.log(this.roundMatches);
+        if(this.roundMatches == null) this.isEmpty = true;
       },
       error => console.error(error)
     );
-    console.log(this.roundSelected);
-    console.log("Informacion de la jornada " + day);
   }
 
   matchInfo(id:any){

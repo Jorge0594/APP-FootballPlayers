@@ -30,13 +30,8 @@ tab-rounds{
         color:#ffd028;
     }
 
-    ion-row{
-        padding:0px!important;
-    }
-
     ion-grid{
         padding:0px!important;
-        width: 100%!important;
 	}
 
     .score-local{
@@ -74,99 +69,36 @@ tab-rounds{
         background: rgba(101, 186, 207, 0.274)!important;
     }
 
-    #match-info{
-        color:white;
-        //margin:12px auto!important;
-        width: 100%!important;
-        padding:0px!important;
-        font-size: 93%;
-        max-width: 95%;
-        text-align: center;
-        background: rgb(17, 77, 199);
-    }
-
     .scroll-content{
         padding:0px!important;
         background: #273342;
     }
 
-    .item-md.item-block .item-inner{
-        padding-right: 0px!important;
-    }
-    
-
-    /*.scroll-content{
-        background: rgb(1, 27, 78);
-    }
-
-    #slide-title{
-        color:rgba(255, 255, 255, 0.7);
-    }
-    
-    .selected{
-        background: #3f79dd;
-        p{
-            color:white!important;
-            font-size: 19px!important;
-        }
+    .spinner{
+        color: white!important;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;;
+        width: 80px;
+        height: 80px;
     }
 
-    .player-info:hover{
-        background: rgba(10, 82, 226, 0.664)!important
-    }
-    
-    #player-position{
-        text-align: center;
-        padding-top:25px!important;
-        padding-bottom: 25px!important;
-        color:white;        
-    }
-    
-    #player-position{
-        padding-top:32px!important;
-        color:rgb(247, 220, 66);
-        background: rgb(4, 56, 161);
-    }
-
-    #player-image{
-        max-width: 50px;
-        max-height: 50px;
-        width: 50px;
+    #no-matches{
         height: 50px;
-        margin-top:10px;
-        position:relative;
-        display: block;
-        border-radius: 100%;
-    }
-
-    #player-name{
-        padding-top:32px!important;
-        padding-bottom: 25px!important;
-        text-align: left;
-        color:white;
-    }
-
-    #player-goals{
-        padding-top:25px!important;
-        padding-bottom: 25px!important;
+        margin-top: 80px;
+        margin-left:auto;
+        margin-right: auto;
+        color: white;
         text-align: center;
-        color:white;
+        //font-size: 150%;
     }
 
-    h1{
-        margin:0px!important;
-    }
-    ion-col{
-        margin:0px!important;
+    #no-matches-content{
+        text-align: center;
     }
 
-    ion-row{
-        max-height: 80px!important;
-        margin-top:10px;
-        background: rgb(3, 37, 105)!important
+    .spinner-md-crescent circle{
+        stroke: white!important;
     }
-    .item-md.item-block .item-inner{
-        padding-right: 0px!important;
-    }*/
 } 
 
