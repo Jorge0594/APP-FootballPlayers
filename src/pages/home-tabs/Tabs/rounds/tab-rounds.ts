@@ -5,7 +5,6 @@ import { App } from 'ionic-angular';
 
 import { UserService } from '../../../../app/services/user.service';
 import { MatchService } from '../../../../app/services/match.service';
-import { errorHandler } from '@angular/platform-browser/src/browser';
 
 import { MatchPage } from '../../../match/match';
 
@@ -22,7 +21,7 @@ export class TabRounds {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService,
     private matchService: MatchService, private app: App) {
-
+      
     switch (this.navParams.data[0]){
       case 'league':
         this.roundSelected = 1;
@@ -30,7 +29,6 @@ export class TabRounds {
           this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
             matches =>{
               this.roundMatches = matches;
-              console.log(this.roundMatches);
             },
             error => console.error(error)
           );
@@ -65,5 +63,4 @@ export class TabRounds {
   matchInfo(id:any){
     this.app.getRootNav().push(MatchPage, { matchId:id });
   }
-
 }
