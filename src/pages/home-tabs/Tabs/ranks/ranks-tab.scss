@@ -1,23 +1,11 @@
 ranks-tab {
 
     .scroll-content{
-        background: rgb(1, 27, 78);
-    }
-
-    #slide-title{
-        color:rgba(255, 255, 255, 0.7);
-    }
-    
-    .selected{
-        background: #3f79dd;
-        p{
-            color:white!important;
-            font-size: 19px!important;
-        }
+        background: #273342;
     }
 
     .player-info:hover{
-        background: rgba(10, 82, 226, 0.664)!important
+        background: #354457!important
     }
     
     #player-position{
@@ -30,7 +18,11 @@ ranks-tab {
     #player-position{
         padding-top:32px!important;
         color:rgb(247, 220, 66);
-        background: rgb(4, 56, 161);
+        background: #212b36;
+    }
+
+    .first-position{
+        background: #27ae60!important;
     }
 
     #player-image{
@@ -67,9 +59,17 @@ ranks-tab {
 
     ion-row{
         max-height: 80px!important;
-        margin-top:10px;
-        background: rgb(3, 37, 105)!important
     }
+
+    ion-grid{
+        padding:0px!important;
+    }
+
+    .lines{
+        height: 1px;
+        background: rgba(101, 186, 207, 0.274)!important;
+    }
+
     .item-md.item-block .item-inner{
         padding-right: 0px!important;
     }

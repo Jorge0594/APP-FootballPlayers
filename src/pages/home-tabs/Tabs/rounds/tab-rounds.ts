@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 import { App } from 'ionic-angular';
 
@@ -7,7 +7,6 @@ import { UserService } from '../../../../app/services/user.service';
 import { MatchService } from '../../../../app/services/match.service';
 
 import { MatchPage } from '../../../match/match';
-import { isEmpty } from 'rxjs/operators/isEmpty';
 
 @IonicPage()
 @Component({
@@ -16,6 +15,7 @@ import { isEmpty } from 'rxjs/operators/isEmpty';
 })
 export class TabRounds {
 
+  @ViewChild(Slides) slides:Slides;
   private roundMatches : any;
   private teamMatches : any;
   private roundSelected: number;
@@ -24,6 +24,7 @@ export class TabRounds {
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService,
     private matchService: MatchService, private app: App) {
 
+    this.roundSelected = 4;
     this.isEmpty = false;
 
     switch (this.navParams.data[0]){
@@ -58,15 +59,29 @@ export class TabRounds {
     }
   }
 
+  /*ngAfterViewInit(){
+    console.log(this.slides[0]);
+    //this.slides.slideTo(this.roundSelected, 500);
+  }*/
+
   roundInfo(day:number){
 
     this.isEmpty = false;
-    this.roundSelected = day;
+
+    if(this.roundSelected != day){
+      this.roundMatches = null;
+      this.roundSelected = day;
+    }
 
     this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
       matches =>{
-        this.roundMatches = matches;
-        if(this.roundMatches == null) this.isEmpty = true;
+        if(matches != null){
+          if (this.roundSelected == matches[0].jornada){
+            this.roundMatches = matches;
+          }
+        }else{
+          this.isEmpty = true;
+        }
       },
       error => console.error(error)
     );

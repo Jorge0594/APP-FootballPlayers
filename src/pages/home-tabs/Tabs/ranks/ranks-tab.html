@@ -2,16 +2,20 @@
 
 <ion-content>
   <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'league'">
-      <ion-row (click)="clickPlayer(player.id, player.equipo)" *ngFor = "let player of players; let position = index;" class = "player-info">
-        <ion-col col-xs-1 id="player-position">{{position+1}}</ion-col>
+    <ion-grid *ngFor = "let player of players; let position = index;">
+      <ion-row class = "lines"></ion-row>
+      <ion-row (click)="clickPlayer(player.id, player.equipo)" class = "player-info">
+        <ion-col col-xs-1 id="player-position" [class.first-position]= "position == 0">{{position+1}}</ion-col>
         <ion-col col-xs-3 id="col-player-image">
             <img id = "player-image" src="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
         </ion-col>
         <ion-col col-6 id="player-name">{{player.nombre}}</ion-col>
         <ion-col col-xs-2 id ="player-goals"><h1>{{player.goles}}</h1></ion-col>
       </ion-row>
+    </ion-grid>
   </ion-scroll>
   <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'">
+    <ion-row class = "lines"></ion-row>
     <ion-row (click)="clickPlayer(player.id, player.equipo)" *ngFor = "let player of players" class = "player-info">
       <ion-col col-xs-1 id="player-position">{{player?.dorsal}}</ion-col>
       <ion-col col-xs-3 id="col-player-image">
