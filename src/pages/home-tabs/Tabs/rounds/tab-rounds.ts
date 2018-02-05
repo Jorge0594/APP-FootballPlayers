@@ -29,7 +29,7 @@ export class TabRounds {
 
     switch (this.navParams.data[0]){
       case 'league':
-        this.roundSelected = 1;
+        this.roundSelected = 15;
         if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
           this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
             matches =>{
@@ -39,6 +39,9 @@ export class TabRounds {
             error => console.error(error)
           );
         }
+        setTimeout(() => {
+          this.slides.slideTo(this.roundSelected -1);
+        }, 50);
       break;
       case 'team':
         this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(
@@ -58,11 +61,6 @@ export class TabRounds {
       break;
     }
   }
-
-  /*ngAfterViewInit(){
-    console.log(this.slides[0]);
-    //this.slides.slideTo(this.roundSelected, 500);
-  }*/
 
   roundInfo(day:number){
 

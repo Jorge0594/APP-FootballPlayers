@@ -33790,33 +33790,34 @@ page-home-tabs .header-md::after {
   background-image: none;
 }
 
+page-home-tabs .tab-button[aria-selected=true] {
+  color: #9ed7f8 !important;
+  border-bottom: 3.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
+}
+
+page-home-tabs .tab-button[aria-selected=true] .tab-button-icon {
+  color: #9ed7f8 !important;
+}
+
+page-home-tabs .tabbar.show-tabbar::after {
+  background-image: none !important;
+  background: #9ed7f8 !important;
+  height: 1.5px !important;
+  bottom: 0 !important;
+}
+
 page-home-tabs ion-toolbar.toolbar::after {
   height: 0px !important;
 }
 
-page-home-tabs #tabbar {
-  border-top: 5px #f4f4f4 !important;
-}
-
 ranks-tab .scroll-content {
-  background: #011b4e;
-}
-
-ranks-tab #slide-title {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-ranks-tab .selected {
-  background: #3f79dd;
-}
-
-ranks-tab .selected p {
-  color: white !important;
-  font-size: 19px !important;
+  background: #273342;
 }
 
 ranks-tab .player-info:hover {
-  background: rgba(10, 82, 226, 0.664) !important;
+  background: #354457 !important;
 }
 
 ranks-tab #player-position {
@@ -33829,7 +33830,11 @@ ranks-tab #player-position {
 ranks-tab #player-position {
   padding-top: 32px !important;
   color: #f7dc42;
-  background: #0438a1;
+  background: #212b36;
+}
+
+ranks-tab .first-position {
+  background: #27ae60 !important;
 }
 
 ranks-tab #player-image {
@@ -33867,12 +33872,24 @@ ranks-tab ion-col {
 
 ranks-tab ion-row {
   max-height: 80px !important;
-  margin-top: 10px;
-  background: #032569 !important;
+}
+
+ranks-tab ion-grid {
+  padding: 0px !important;
+}
+
+ranks-tab .lines {
+  height: 1px;
+  background: rgba(101, 186, 207, 0.274) !important;
 }
 
 ranks-tab .item-md.item-block .item-inner {
   padding-right: 0px !important;
+}
+
+tab-rounds .scroll-content {
+  padding: 0px !important;
+  background: #273342;
 }
 
 tab-rounds ion-slides {
@@ -33898,7 +33915,15 @@ tab-rounds .selected p {
   font-size: 19px !important;
 }
 
-tab-rounds ion-row {
+tab-rounds ion-col {
+  text-align: center;
+}
+
+tab-rounds h1 {
+  color: #ffd028;
+}
+
+tab-rounds ion-grid {
   padding: 0px !important;
 }
 
@@ -33912,46 +33937,56 @@ tab-rounds .score-visitor {
   text-align: left !important;
 }
 
-tab-rounds scroll-content {
-  padding: 0px !important;
-}
-
 tab-rounds .team-local {
+  color: white;
   text-align: left;
-  margin-top: 2px;
+  margin-top: 25px;
 }
 
 tab-rounds .team-visitor {
+  color: white;
   text-align: right;
-  margin-top: 2px;
-}
-
-tab-rounds .item-md.item-block .item-inner {
-  padding: 0px !important;
-}
-
-tab-rounds .label {
-  padding: 0px !important;
+  margin-top: 25px;
 }
 
 tab-rounds #date {
   margin-top: 0px !important;
-  margin-left: 10px !important;
-  background: #3f79dd !important;
+  text-align: center !important;
+  height: 24px !important;
+  background: #9ed7f8 !important;
 }
 
-tab-rounds #match-info {
+tab-rounds .lines {
+  height: 1px;
+  background: rgba(101, 186, 207, 0.274) !important;
+}
+
+tab-rounds .spinner {
+  color: white !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
+}
+
+tab-rounds #no-matches {
+  height: 50px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
   color: white;
-  margin: 12px auto !important;
-  padding: 0px !important;
-  font-size: 93%;
-  max-width: 95%;
   text-align: center;
-  background: #114dc7;
 }
 
-tab-rounds .scroll-content {
-  padding: 0px !important;
+tab-rounds #no-matches-content {
+  text-align: center;
+}
+
+tab-rounds .spinner-md-crescent circle {
+  stroke: white !important;
 }
 
 page-home ion-col {
@@ -33985,6 +34020,14 @@ page-home .team-info {
   color: #a8e9ec;
   padding-top: 10px !important;
   padding-bottom: 10px !important;
+}
+
+page-home .first-position {
+  background: #27ae60 !important;
+}
+
+page-home .last-position {
+  background: #e74c3c !important;
 }
 
 page-home #team-position {
