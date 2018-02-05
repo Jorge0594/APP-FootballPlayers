@@ -29,7 +29,7 @@ export class TabRounds {
 
     switch (this.navParams.data[0]){
       case 'league':
-        this.roundSelected = 15;
+        this.roundSelected = 1;
         if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
           this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
             matches =>{

@@ -32,7 +32,7 @@ export class UserService{
                             this.leagueService.getStandings(team.liga).subscribe(
                                 league =>{
                                     this.userLeague = league;
-                                    for(let i = 1; i<= 20; i++){
+                                    for(let i = 1; i<= ((league.length - 1) * 2); i++){
                                         this.rounds.push(i);
                                     };
                                 }

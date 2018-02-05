@@ -192,7 +192,7 @@ var TabRounds = (function () {
         this.isEmpty = false;
         switch (this.navParams.data[0]) {
             case 'league':
-                this.roundSelected = 15;
+                this.roundSelected = 1;
                 if (this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null) {
                     this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(function (matches) {
                         _this.roundMatches = matches;
@@ -714,7 +714,7 @@ var UserService = (function () {
                     _this.userTeam = team;
                     _this.leagueService.getStandings(team.liga).subscribe(function (league) {
                         _this.userLeague = league;
-                        for (var i = 1; i <= 20; i++) {
+                        for (var i = 1; i <= ((league.length - 1) * 2); i++) {
                             _this.rounds.push(i);
                         }
                         ;
