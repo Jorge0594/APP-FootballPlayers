@@ -33904,6 +33904,8 @@ tab-rounds ion-slide {
 
 tab-rounds #slide-title {
   color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0px !important;
+  margin-top: 10px !important;
 }
 
 tab-rounds .selected {
@@ -33913,6 +33915,10 @@ tab-rounds .selected {
 tab-rounds .selected p {
   color: white !important;
   font-size: 19px !important;
+}
+
+tab-rounds .selected .triangle {
+  border-bottom: 5px solid #9ed7f8;
 }
 
 tab-rounds ion-col {
@@ -33979,6 +33985,16 @@ tab-rounds #no-matches {
   margin-right: auto;
   color: white;
   text-align: center;
+}
+
+tab-rounds .triangle {
+  padding-top: 6px;
+  margin-left: 48%;
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #353b48;
 }
 
 tab-rounds #no-matches-content {

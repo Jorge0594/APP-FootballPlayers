@@ -4,6 +4,7 @@
     <ion-slides #slides slidesPerView="3" *ngIf = "navParams.data[0] == 'league'">
         <ion-slide *ngFor="let num of userService.getRounds()" [class.selected] = "roundSelected === num" (click)="roundInfo(num)"  >
                     <p id="slide-title">Jornada {{num}}</p>
+                    <div class = "triangle"></div>
         </ion-slide>
     </ion-slides>
     <ion-spinner class = "spinner" *ngIf = "roundMatches == null && teamMatches == null && !isEmpty"></ion-spinner>
