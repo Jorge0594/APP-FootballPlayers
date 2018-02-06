@@ -27,9 +27,6 @@ tab-rounds{
             color:white!important;
             font-size: 19px!important;
         }
-        .triangle{
-            border-bottom: 5px solid #9ed7f8;
-        }
     }
 
     ion-col{
@@ -102,12 +99,16 @@ tab-rounds{
 
     .triangle{
         padding-top:6px;
-        margin-left: 48%;
+        margin-left: 47.5%;
         width: 0px;
         height: 0px;
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
-        border-bottom: 5px solid #353b48;
+        border-bottom: 5px solid transparent;
+    }
+    
+    .colored-traingle{
+        border-bottom: 5px solid #9ed7f8;
     }
 
     #no-matches-content{

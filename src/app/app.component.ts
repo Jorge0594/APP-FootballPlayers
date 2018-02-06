@@ -23,7 +23,9 @@ export class MyApp {
   servicePlayer:any = PlayerService;
 
   @ViewChild('content')nav: Nav;
-  private menuPages: Array<{title:string, component:any, rootParams:[string], icon:string}>
+  private menuPages: Array<{ title:string, component:any, rootParams:[string], icon:string }>
+  private myTeam:{ component:any, rootParams:[string], icon:string }
+  private menuOptionSelected: string;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private userService: UserService,
     private loginService: LoginService, private loadingCtrl: LoadingController) {
@@ -32,12 +34,13 @@ export class MyApp {
       splashScreen.hide();
     });
 
+    this.menuOptionSelected = "league";
+    this.myTeam = {component: HomeTabsPage, rootParams:['team'], icon:'football'};
     this.menuPages = [
-      {title:'Liga', component: HomeTabsPage, rootParams:['league'], icon:'trophy'},
-      {title:'Mi equipo', component: HomeTabsPage, rootParams:['team'], icon:'football'},
-      {title:'Mi perfil', component: ProfilePage, rootParams:['profile'], icon:'contact'},
-      {title:'Equipos', component: TeamsPage, rootParams: ['teamsList'], icon:'people'},
-      {title:'Log-out', component: LoginPage, rootParams:['logout'], icon:'log-out'}
+      {title:'LIGA', component: HomeTabsPage, rootParams:['league'], icon:'trophy'},
+      {title:'MI PERFIL', component: ProfilePage, rootParams:['profile'], icon:'contact'},
+      {title:'EQUIPOS', component: TeamsPage, rootParams: ['teamsList'], icon:'people'},
+      {title:'CERRAR SESIÓN', component: LoginPage, rootParams:['logout'], icon:'log-out'}
     ];
   }
 
@@ -57,6 +60,10 @@ export class MyApp {
     if(rootParams[0]=='logout'){
       this.presentLoading();
       this.loginService.logout();
+      this.menuOptionSelected = "";
+    }
+    else{
+      this.menuOptionSelected = rootParams[0];
     }
       this.nav.setRoot(page, { id:rootParams });
   }

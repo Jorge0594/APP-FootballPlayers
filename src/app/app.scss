@@ -39,7 +39,6 @@ ion-nav{
     display:block;
 }
 
-
 #menu-profile-image{
     width: 100px;
     height: 100px;
@@ -53,4 +52,34 @@ ion-nav{
     position: relative;
     float: right;
     display:block;
+}
+
+.scroll-content{
+    box-shadow: 20px; 
+    background:linear-gradient(to right,#152230, #131f2c);
+}
+
+.item-md{
+    background-color: transparent;
+}
+
+.menu-titles{
+    background: #192a3b;
+    color:rgb(191, 240, 247);
+    padding:10px;
+}
+
+.item-md p{
+    color:rgb(209, 203, 203);
+}
+
+.menu-icons::before{
+    color:#e4dc9f;
+}
+
+.menu-option-selected{
+    border-left: 3.5px!important;
+	border-style: solid!important;
+	border-color: #9ed7f8!important;
+    background: #283b50;
 }
