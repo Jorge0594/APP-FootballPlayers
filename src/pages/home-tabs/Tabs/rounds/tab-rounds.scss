@@ -76,17 +76,6 @@ tab-rounds{
         background: rgba(101, 186, 207, 0.274)!important;
     }
 
-    .spinner{
-        color: white!important;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 50px;;
-        width: 60px;
-        height: 60px;
-        min-height: 60px;
-        min-width: 60px;
-    }
-
     #no-matches{
         height: 50px;
         margin-top: 80px;
@@ -118,5 +107,16 @@ tab-rounds{
     .spinner-md-crescent circle{
         stroke: white!important;
     }
+    
+    .spinner{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;;
+        width: 60px;
+        height: 60px;
+        min-height: 60px;
+        min-width: 60px;
+    }
+   
 } 
 

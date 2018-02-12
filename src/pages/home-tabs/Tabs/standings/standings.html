@@ -34,7 +34,7 @@
     <div id = "team-shield-background"></div>
     <div><img id="shield-team-image" src = "http://192.168.1.39:8080/images/shield.png"></div>
   </div>
-
+  <ion-spinner *ngIf = "userService.getUserLeague() == null || (team == null && navParams.data[0] == 'teamsList')" class = "spinner"></ion-spinner>
   <ion-grid *ngIf = "navParams.data[0] =='team' || navParams.data[0] == 'teamsList' && team != undefined">
     <ion-row>
       <ion-col id ="profile-team-name"><strong>{{team?.nombre}}</strong></ion-col>

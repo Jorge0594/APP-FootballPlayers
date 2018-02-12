@@ -1,6 +1,7 @@
 
 
 <ion-content>
+  <ion-spinner class = "spinner" *ngIf = "players == null" color ="ligth"></ion-spinner>
   <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'league'">
     <ion-grid *ngFor = "let player of players; let position = index;">
       <ion-row class = "lines"></ion-row>
@@ -12,27 +13,31 @@
         <ion-col col-6 id="player-name">{{player.nombre}}</ion-col>
         <ion-col col-xs-2 id ="player-goals"><h1>{{player.goles}}</h1></ion-col>
       </ion-row>
+      <ion-row *ngIf = "(position+1) == players.length" class = "lines"></ion-row>
     </ion-grid>
   </ion-scroll>
   <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'">
-    <ion-row class = "lines"></ion-row>
-    <ion-row (click)="clickPlayer(player.id, player.equipo)" *ngFor = "let player of players" class = "player-info">
-      <ion-col col-xs-1 id="col-player-image">
-          {{player?.dorsal}}
-          <img id = "player-image" src="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
-      </ion-col>
-      <ion-col col-6 id="player-info-titles">
-        <p>Nombre</p>
-        <p>Edad</p>
-        <p>Posición</p>
-        <p>Nacionalidad</p>
-      </ion-col>
-      <ion-col col-xs-5 id ="player-info">
-        <p>{{player?.nombre}} {{player?.apellidos}}</p>
-        <p>{{player?.edad}}</p>
-        <p>{{player?.posicion}}</p>
-        <p>{{player?.nacionalidad}}</p>
-      </ion-col>
-    </ion-row>
+    <ion-grid (click)="clickPlayer(player.id, player.equipo)" *ngFor = "let player of players; let i = index" class = "player-info-team">
+      <ion-row class = "lines"></ion-row>
+      <ion-row>
+        <ion-col col-xs-1 id="col-player-image">
+            {{player?.dorsal}}
+            <img id = "player-image" src="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
+        </ion-col>
+        <ion-col col-6 id="player-info-titles">
+          <p>Nombre</p>
+          <p>Edad</p>
+          <p>Posición</p>
+          <p>Nacionalidad</p>
+        </ion-col>
+        <ion-col col-xs-5 id ="player-data">
+          <p>{{player?.nombre}} {{player?.apellidos}}</p>
+          <p>{{player?.edad}}</p>
+          <p>{{player?.posicion}}</p>
+          <p>{{player?.nacionalidad}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf = "(i+1) == players.length" class = "lines"></ion-row>
+  </ion-grid>
   </ion-scroll>
 </ion-content>

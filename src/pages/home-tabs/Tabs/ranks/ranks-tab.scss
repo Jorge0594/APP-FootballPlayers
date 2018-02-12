@@ -4,6 +4,11 @@ ranks-tab {
         background: #273342;
     }
 
+    ion-grid{
+        padding: 0px;
+        margin: 0px;
+    }
+
     .player-info:hover{
         background: #354457!important
     }
@@ -36,7 +41,7 @@ ranks-tab {
         max-height: 50px;
         width: 50px;
         height: 50px;
-        margin-top:10px;
+        border-radius: 50%;
         margin-left:auto;
         margin-right: auto;
         position:relative;
@@ -55,23 +60,27 @@ ranks-tab {
         font-size: 85%;
         max-width: 90px;
         margin:0px!important;
-        padding: 0px!important;
+        padding: 5px!important;
         text-align: left;
         color:#65bef1;
     }
 
-    #player-info{
+    #player-data{
         font-size: 85%;
-        margin:0px!important;
+        padding: 5px!important;
+        text-align: left;
+        color:white;
+    }
+
+    #player-info-team{
+        font-size: 85%;
         padding: 0px!important;
         text-align: left;
         color:white;
     }
 
-    
-
-    #player-info p, #player-info-titles p{
-        margin:7px!important;
+    #player-data p, #player-info-titles p{
+        margin:2px!important;
     }
 
     #player-goals{
@@ -79,6 +88,16 @@ ranks-tab {
         padding-bottom: 25px!important;
         text-align: center;
         color:white;
+    }
+
+    .spinner{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;;
+        width: 60px;
+        height: 60px;
+        min-height: 60px;
+        min-width: 60px;
     }
 
     h1{
@@ -103,5 +122,9 @@ ranks-tab {
 
     .item-md.item-block .item-inner{
         padding-right: 0px!important;
+    }
+    
+    .spinner-md-crescent circle{
+        stroke: white!important;
     }
 }

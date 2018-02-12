@@ -33849,6 +33849,11 @@ ranks-tab .scroll-content {
   background: #273342;
 }
 
+ranks-tab ion-grid {
+  padding: 0px;
+  margin: 0px;
+}
+
 ranks-tab .player-info:hover {
   background: #354457 !important;
 }
@@ -33881,7 +33886,7 @@ ranks-tab #player-image {
   max-height: 50px;
   width: 50px;
   height: 50px;
-  margin-top: 10px;
+  border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -33900,21 +33905,27 @@ ranks-tab #player-info-titles {
   font-size: 85%;
   max-width: 90px;
   margin: 0px !important;
-  padding: 0px !important;
+  padding: 5px !important;
   text-align: left;
   color: #65bef1;
 }
 
-ranks-tab #player-info {
+ranks-tab #player-data {
   font-size: 85%;
-  margin: 0px !important;
+  padding: 5px !important;
+  text-align: left;
+  color: white;
+}
+
+ranks-tab #player-info-team {
+  font-size: 85%;
   padding: 0px !important;
   text-align: left;
   color: white;
 }
 
-ranks-tab #player-info p, ranks-tab #player-info-titles p {
-  margin: 7px !important;
+ranks-tab #player-data p, ranks-tab #player-info-titles p {
+  margin: 2px !important;
 }
 
 ranks-tab #player-goals {
@@ -33922,6 +33933,16 @@ ranks-tab #player-goals {
   padding-bottom: 25px !important;
   text-align: center;
   color: white;
+}
+
+ranks-tab .spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
 }
 
 ranks-tab h1 {
@@ -33947,6 +33968,10 @@ ranks-tab .lines {
 
 ranks-tab .item-md.item-block .item-inner {
   padding-right: 0px !important;
+}
+
+ranks-tab .spinner-md-crescent circle {
+  stroke: white !important;
 }
 
 tab-rounds .scroll-content {
@@ -34025,17 +34050,6 @@ tab-rounds .lines {
   background: rgba(101, 186, 207, 0.274) !important;
 }
 
-tab-rounds .spinner {
-  color: white !important;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  width: 60px;
-  height: 60px;
-  min-height: 60px;
-  min-width: 60px;
-}
-
 tab-rounds #no-matches {
   height: 50px;
   margin-top: 80px;
@@ -34065,6 +34079,16 @@ tab-rounds #no-matches-content {
 
 tab-rounds .spinner-md-crescent circle {
   stroke: white !important;
+}
+
+tab-rounds .spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
 }
 
 page-home ion-col {
@@ -34173,6 +34197,20 @@ page-home .profile-team {
   margin-top: 5px;
   text-align: center;
   color: white;
+}
+
+page-home .spinner-md-crescent circle {
+  stroke: white !important;
+}
+
+page-home .spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
 }
 
 .ios page-login .scroll-content, .md page-login .scroll-content {
