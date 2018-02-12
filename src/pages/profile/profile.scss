@@ -14,6 +14,10 @@ page-profile {
         }
     }
 
+    .scroll-content{
+        background: white!important;
+    }
+
     .button-inner {
         flex-flow: column!important;
     }
@@ -61,6 +65,12 @@ page-profile {
     ion-row{
         margin-bottom:10px;
     }
-
-
+    
+    .toolbar-md{
+        background-image: none;
+        border:0px;
+        border-bottom: 1.5px!important;
+		border-style: solid!important;
+		border-color: #9ed7f8!important;
+    }
 }

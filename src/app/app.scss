@@ -59,10 +59,6 @@ ion-nav{
     background:linear-gradient(to right,#152230, #131f2c);
 }
 
-.item-md{
-    background-color: transparent;
-}
-
 .menu-titles{
     background: #192a3b;
     color:rgb(191, 240, 247);
@@ -81,5 +77,9 @@ ion-nav{
     border-left: 3.5px!important;
 	border-style: solid!important;
 	border-color: #9ed7f8!important;
-    background: #283b50;
+    background: #283b50!important;
+}
+
+.menu-options{
+    background:linear-gradient(to right,#152230, #131f2c);
 }

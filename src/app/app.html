@@ -6,13 +6,13 @@
 
   <ion-content>
     <ion-row><ion-col class= "menu-titles">MI EQUIPO</ion-col></ion-row>
-    <button [class.menu-option-selected] = "myTeam.rootParams[0] === menuOptionSelected" no-lines ion-item menuClose (click)= "navigateTo(myTeam.component, myTeam.rootParams)">
+    <button class = "menu-options" [class.menu-option-selected] = "myTeam.rootParams[0] === menuOptionSelected" no-lines ion-item menuClose (click)= "navigateTo(myTeam.component, myTeam.rootParams)">
       <p class = "menu-button-titles" >{{userService.getUserTeam()?.nombre}}</p>
       <ion-icon class = "menu-icons" item-left name= "{{myTeam.icon}}"></ion-icon>
     </button>
     <ion-row><ion-col class= "menu-titles">INFORMACIÓN</ion-col></ion-row>
     <ion-list no-lines>
-      <button [class.menu-option-selected] = "page.rootParams[0] === menuOptionSelected" *ngFor = "let page of menuPages" menuClose ion-item (click)="navigateTo(page.component, page.rootParams)">
+      <button class = "menu-options" [class.menu-option-selected] = "page.rootParams[0] === menuOptionSelected" *ngFor = "let page of menuPages" menuClose ion-item (click)="navigateTo(page.component, page.rootParams)">
         <p class = "menu-button-titles">{{page.title}}</p>
         <ion-icon class = "menu-icons" item-left name= "{{page.icon}}"></ion-icon>
       </button>

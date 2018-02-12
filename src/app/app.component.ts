@@ -60,7 +60,7 @@ export class MyApp {
     if(rootParams[0]=='logout'){
       this.presentLoading();
       this.loginService.logout();
-      this.menuOptionSelected = "";
+      this.menuOptionSelected = "league";
     }
     else{
       this.menuOptionSelected = rootParams[0];

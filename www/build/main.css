@@ -33770,10 +33770,6 @@ ion-nav {
   background: linear-gradient(to right, #152230, #131f2c);
 }
 
-.item-md {
-  background-color: transparent;
-}
-
 .menu-titles {
   background: #192a3b;
   color: #bff0f7;
@@ -33792,7 +33788,12 @@ ion-nav {
   border-left: 3.5px !important;
   border-style: solid !important;
   border-color: #9ed7f8 !important;
-  background: #283b50;
+  background: #283b50 !important;
+}
+
+.menu-options {
+  background: -webkit-gradient(linear, left top, right top, from(#152230), to(#131f2c));
+  background: linear-gradient(to right, #152230, #131f2c);
 }
 
 elastic-header {
@@ -33859,6 +33860,12 @@ ranks-tab #player-position {
   color: white;
 }
 
+ranks-tab #col-player-image {
+  max-width: 70px;
+  color: #f7dc42;
+  text-align: center;
+}
+
 ranks-tab #player-position {
   padding-top: 32px !important;
   color: #f7dc42;
@@ -33875,6 +33882,8 @@ ranks-tab #player-image {
   width: 50px;
   height: 50px;
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   display: block;
   border-radius: 100%;
@@ -33885,6 +33894,27 @@ ranks-tab #player-name {
   padding-bottom: 25px !important;
   text-align: left;
   color: white;
+}
+
+ranks-tab #player-info-titles {
+  font-size: 85%;
+  max-width: 90px;
+  margin: 0px !important;
+  padding: 0px !important;
+  text-align: left;
+  color: #65bef1;
+}
+
+ranks-tab #player-info {
+  font-size: 85%;
+  margin: 0px !important;
+  padding: 0px !important;
+  text-align: left;
+  color: white;
+}
+
+ranks-tab #player-info p, ranks-tab #player-info-titles p {
+  margin: 7px !important;
 }
 
 ranks-tab #player-goals {
@@ -34385,6 +34415,10 @@ page-profile elastic-header img {
   height: 75px;
 }
 
+page-profile .scroll-content {
+  background: white !important;
+}
+
 page-profile .button-inner {
   -webkit-box-orient: vertical !important;
   -webkit-box-direction: normal !important;
@@ -34437,14 +34471,30 @@ page-profile ion-row {
   margin-bottom: 10px;
 }
 
+page-profile .toolbar-md {
+  background-image: none;
+  border: 0px;
+  border-bottom: 1.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
+}
+
 page-teams .scroll-content {
-  background: #2c3e50;
+  background: #273342;
 }
 
 page-teams .list-md .item[no-lines], page-teams .list-md .item[no-lines] .item-inner {
-  background: #2c3e50;
+  background: #273342;
 }
 
 page-teams #team-name {
   color: white !important;
+}
+
+page-teams .toolbar-md {
+  background-image: none;
+  border: 0px;
+  border-bottom: 1.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
 }

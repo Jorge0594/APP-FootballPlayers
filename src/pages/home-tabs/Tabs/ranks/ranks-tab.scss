@@ -15,6 +15,12 @@ ranks-tab {
         color:white;        
     }
     
+    #col-player-image{
+        max-width: 70px;
+        color:rgb(247, 220, 66);
+        text-align: center;
+    }
+
     #player-position{
         padding-top:32px!important;
         color:rgb(247, 220, 66);
@@ -31,6 +37,8 @@ ranks-tab {
         width: 50px;
         height: 50px;
         margin-top:10px;
+        margin-left:auto;
+        margin-right: auto;
         position:relative;
         display: block;
         border-radius: 100%;
@@ -41,6 +49,29 @@ ranks-tab {
         padding-bottom: 25px!important;
         text-align: left;
         color:white;
+    }
+
+    #player-info-titles{
+        font-size: 85%;
+        max-width: 90px;
+        margin:0px!important;
+        padding: 0px!important;
+        text-align: left;
+        color:#65bef1;
+    }
+
+    #player-info{
+        font-size: 85%;
+        margin:0px!important;
+        padding: 0px!important;
+        text-align: left;
+        color:white;
+    }
+
+    
+
+    #player-info p, #player-info-titles p{
+        margin:7px!important;
     }
 
     #player-goals{
