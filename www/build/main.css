@@ -33894,6 +33894,10 @@ ranks-tab #player-image {
   border-radius: 100%;
 }
 
+ranks-tab .player-image-rank-position {
+  margin-top: 10px !important;
+}
+
 ranks-tab #player-name {
   padding-top: 32px !important;
   padding-bottom: 25px !important;

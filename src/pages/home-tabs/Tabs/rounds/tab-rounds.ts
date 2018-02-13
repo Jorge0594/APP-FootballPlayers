@@ -47,6 +47,7 @@ export class TabRounds {
         this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(
           matches =>{
             this.teamMatches = matches;
+            console.log(this.teamMatches);
             if(this.teamMatches == null) this.isEmpty = true;
           } 
         );
@@ -55,6 +56,7 @@ export class TabRounds {
         this.matchService.getMatchTeamById(this.navParams.data[1]).subscribe(
           matches =>{
             this.teamMatches = matches;
+            console.log(this.teamMatches);
             if(this.teamMatches == null) this.isEmpty = true;
           } 
         );

@@ -30,7 +30,6 @@ export class HttpClient{
     get(url:any){
         return this.http.get((BASE_URL + url),{headers:this.authTokens}).map(
             response => {
-                //console.log(response.json())
                 return response.json()},
             error => console.error(error.json())
         );
