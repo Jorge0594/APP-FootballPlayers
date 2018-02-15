@@ -33708,6 +33708,15 @@ super-tabs-toolbar > ion-toolbar.toolbar.scroll-tabs .tab-buttons-container .ind
   margin-top: -2px;
 }
 
+.ios .tabs-ios[tabsPlacement=top] .tabbar {
+  border-bottom: 1px solid #9ed7f8 !important;
+}
+
+.ios ion-header .toolbar .toolbar-background {
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+}
+
 #nav-icon {
   float: left;
   width: 50px;
@@ -33847,6 +33856,7 @@ page-home-tabs ion-toolbar.toolbar::after {
 
 ranks-tab .scroll-content {
   background: #273342;
+  padding: 0px !important;
 }
 
 ranks-tab ion-grid {
@@ -34108,6 +34118,7 @@ page-home ion-grid {
 
 page-home .scroll-content {
   background: #273342;
+  padding: 0px !important;
 }
 
 page-home #colum-titles {
@@ -34457,6 +34468,10 @@ page-profile elastic-header img {
   height: 75px;
 }
 
+page-profile .ios .scroll-content {
+  padding-top: 0px !important;
+}
+
 page-profile .scroll-content {
   background: white !important;
 }
@@ -34519,6 +34534,18 @@ page-profile .toolbar-md {
   border-bottom: 1.5px !important;
   border-style: solid !important;
   border-color: #9ed7f8 !important;
+}
+
+page-teams .toolbar-ios {
+  border: 0px !important;
+  border-bottom: 1.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
+}
+
+page-teams .list-ios .item[no-lines], page-teams .list-ios .item[no-lines] .item-inner {
+  border-width: 0;
+  background: transparent !important;
 }
 
 page-teams .scroll-content {

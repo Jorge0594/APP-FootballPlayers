@@ -33763,6 +33763,39 @@ ion-nav {
   display: block;
 }
 
+.scroll-content {
+  -webkit-box-shadow: 20px;
+  box-shadow: 20px;
+  background: -webkit-gradient(linear, left top, right top, from(#152230), to(#131f2c));
+  background: linear-gradient(to right, #152230, #131f2c);
+}
+
+.menu-titles {
+  background: #192a3b;
+  color: #bff0f7;
+  padding: 10px;
+}
+
+.item-md p {
+  color: #d1cbcb;
+}
+
+.menu-icons::before {
+  color: #e4dc9f;
+}
+
+.menu-option-selected {
+  border-left: 3.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
+  background: #283b50 !important;
+}
+
+.menu-options {
+  background: -webkit-gradient(linear, left top, right top, from(#152230), to(#131f2c));
+  background: linear-gradient(to right, #152230, #131f2c);
+}
+
 elastic-header {
   display: block;
 }
@@ -33816,6 +33849,11 @@ ranks-tab .scroll-content {
   background: #273342;
 }
 
+ranks-tab ion-grid {
+  padding: 0px;
+  margin: 0px;
+}
+
 ranks-tab .player-info:hover {
   background: #354457 !important;
 }
@@ -33825,6 +33863,12 @@ ranks-tab #player-position {
   padding-top: 25px !important;
   padding-bottom: 25px !important;
   color: white;
+}
+
+ranks-tab #col-player-image {
+  max-width: 70px;
+  color: #f7dc42;
+  text-align: center;
 }
 
 ranks-tab #player-position {
@@ -33842,10 +33886,16 @@ ranks-tab #player-image {
   max-height: 50px;
   width: 50px;
   height: 50px;
-  margin-top: 10px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   display: block;
   border-radius: 100%;
+}
+
+ranks-tab .player-image-rank-position {
+  margin-top: 10px !important;
 }
 
 ranks-tab #player-name {
@@ -33855,11 +33905,48 @@ ranks-tab #player-name {
   color: white;
 }
 
+ranks-tab #player-info-titles {
+  font-size: 85%;
+  max-width: 90px;
+  margin: 0px !important;
+  padding: 5px !important;
+  text-align: left;
+  color: #65bef1;
+}
+
+ranks-tab #player-data {
+  font-size: 85%;
+  padding: 5px !important;
+  text-align: left;
+  color: white;
+}
+
+ranks-tab #player-info-team {
+  font-size: 85%;
+  padding: 0px !important;
+  text-align: left;
+  color: white;
+}
+
+ranks-tab #player-data p, ranks-tab #player-info-titles p {
+  margin: 2px !important;
+}
+
 ranks-tab #player-goals {
   padding-top: 25px !important;
   padding-bottom: 25px !important;
   text-align: center;
   color: white;
+}
+
+ranks-tab .spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
 }
 
 ranks-tab h1 {
@@ -33887,6 +33974,10 @@ ranks-tab .item-md.item-block .item-inner {
   padding-right: 0px !important;
 }
 
+ranks-tab .spinner-md-crescent circle {
+  stroke: white !important;
+}
+
 tab-rounds .scroll-content {
   padding: 0px !important;
   background: #273342;
@@ -33904,6 +33995,8 @@ tab-rounds ion-slide {
 
 tab-rounds #slide-title {
   color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0px !important;
+  margin-top: 10px !important;
 }
 
 tab-rounds .selected {
@@ -33961,17 +34054,6 @@ tab-rounds .lines {
   background: rgba(101, 186, 207, 0.274) !important;
 }
 
-tab-rounds .spinner {
-  color: white !important;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  width: 60px;
-  height: 60px;
-  min-height: 60px;
-  min-width: 60px;
-}
-
 tab-rounds #no-matches {
   height: 50px;
   margin-top: 80px;
@@ -33981,12 +34063,36 @@ tab-rounds #no-matches {
   text-align: center;
 }
 
+tab-rounds .triangle {
+  padding-top: 6px;
+  margin-left: 47.5%;
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+tab-rounds .colored-traingle {
+  border-bottom: 5px solid #9ed7f8;
+}
+
 tab-rounds #no-matches-content {
   text-align: center;
 }
 
 tab-rounds .spinner-md-crescent circle {
   stroke: white !important;
+}
+
+tab-rounds .spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
 }
 
 page-home ion-col {
@@ -34095,6 +34201,20 @@ page-home .profile-team {
   margin-top: 5px;
   text-align: center;
   color: white;
+}
+
+page-home .spinner-md-crescent circle {
+  stroke: white !important;
+}
+
+page-home .spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
 }
 
 .ios page-login .scroll-content, .md page-login .scroll-content {
@@ -34337,6 +34457,10 @@ page-profile elastic-header img {
   height: 75px;
 }
 
+page-profile .scroll-content {
+  background: white !important;
+}
+
 page-profile .button-inner {
   -webkit-box-orient: vertical !important;
   -webkit-box-direction: normal !important;
@@ -34389,14 +34513,30 @@ page-profile ion-row {
   margin-bottom: 10px;
 }
 
+page-profile .toolbar-md {
+  background-image: none;
+  border: 0px;
+  border-bottom: 1.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
+}
+
 page-teams .scroll-content {
-  background: #2c3e50;
+  background: #273342;
 }
 
 page-teams .list-md .item[no-lines], page-teams .list-md .item[no-lines] .item-inner {
-  background: #2c3e50;
+  background: #273342;
 }
 
 page-teams #team-name {
   color: white !important;
+}
+
+page-teams .toolbar-md {
+  background-image: none;
+  border: 0px;
+  border-bottom: 1.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
 }

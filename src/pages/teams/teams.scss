@@ -1,4 +1,16 @@
 page-teams {
+
+    .toolbar-ios{
+        border:0px!important;
+        border-bottom: 1.5px!important;
+        border-style: solid!important;
+        border-color: #9ed7f8!important;
+    }
+    .list-ios .item[no-lines], .list-ios .item[no-lines] .item-inner {
+        border-width: 0;
+        background: transparent!important;
+    }
+
     .scroll-content{
         background: #273342;
     }

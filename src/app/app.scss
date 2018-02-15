@@ -1,4 +1,17 @@
 
+.ios{
+    .tabs-ios[tabsPlacement=top] .tabbar{
+        border-bottom: 1px solid #9ed7f8!important;
+    }
+
+    ion-header .toolbar .toolbar-background{
+		border-top-width: 0!important;
+		border-bottom-width: 0!important;
+    }
+}
+
+
+
 #nav-icon{
     float:left;
     width: 50px;
