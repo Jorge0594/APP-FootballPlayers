@@ -5,7 +5,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
-  <ion-row *ngIf ="match?.estado == 'Finalizado' || match?.estado == 'finalizado'" id = "match-info">
+  <ion-row *ngIf ="match?.estado == 'Disputado' || match?.estado == 'disputado'" id = "match-info">
     <ion-col id = "local-name">
       <strong>{{match?.equipoLocal.nombre}}</strong>
     </ion-col>
@@ -33,8 +33,10 @@
       <strong>{{match?.equipoVisitante.nombre}}</strong>
     </ion-col>
   </ion-row>
-  <ion-toolbar *ngIf = "match != undefined" style="padding:0px; max-height:50px">
-    <ion-slides  slidesPerView="3">
+</ion-header>
+
+<ion-content >
+    <ion-slides #slides slidesPerView="3">
         <ion-slide [class.selected] = "statSelected == 'stats'" (click)="selectStat('stats')">
                 <p id="slide-title">Estadísticas</p>
         </ion-slide>
@@ -45,21 +47,15 @@
           <p id="slide-title">Titulares</p>
         </ion-slide>
     </ion-slides>
-</ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  <ion-list *ngIf = "statSelected == 'stats' && match?.estado == 'Finalizado' || match?.estado == 'finalizado'">
-    <ion-item>
+  <ion-list *ngIf = "statSelected == 'stats' && match?.estado == 'Disputado' || match?.estado == 'disputado'">
       <ion-row>
         <ion-col col-xs-4 class = "stats-info-local"><strong>5</strong></ion-col>
         <ion-col col-xs-4 class = "stats-title">InfoTitle</ion-col>
         <ion-col col-xs-4 class = "stats-info-visitor"><strong>4</strong></ion-col>
       </ion-row>
-    </ion-item>
   </ion-list>
 
-  <ion-list *ngIf = "statSelected == 'lineUp' && match?.estado == 'Finalizado' || match?.estado == 'finalizado'">
+  <ion-list *ngIf = "statSelected == 'lineUp' && match?.estado == 'Disputado' || match?.estado == 'disputado'">
     <ion-item *ngFor = "let localPlayer of match?.convocadosLocal; let i = index">
       <ion-row>
         <ion-col class = "info-lineup">
@@ -71,9 +67,5 @@
       </ion-row>
     </ion-item>
   </ion-list>
-
-  <ion-item no-lines *ngIf = "match?.estado == 'Pendiente' || match?.estado == 'pendiente'">
-    <img id = "not-data-icon" src = "/assets/imgs/not-data-icon.png">
-    <p><strong>Pendiente de jugar</strong></p>
-  </ion-item>
+  <ion-row id = "no-info" *ngIf = "match?.estado == 'Pendiente' || match?.estado == 'pendiente'">El partido no se ha disputado.</ion-row>
 </ion-content>

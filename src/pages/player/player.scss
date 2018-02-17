@@ -4,6 +4,19 @@ page-player {
         margin-right: 50px;
     }
 
+    .scroll-content{
+        padding:0px!important;
+        background: rgb(245, 245, 245)!important;
+    }
+
+    .item-md{
+        background: transparent!important;
+    }
+
+    .item-ios{
+        background: transparent!important;
+    }
+
     #player-image{
         width: 100px;
         height: 100px;
@@ -17,7 +30,7 @@ page-player {
         margin:0px;
         margin-top:5px!important;
         text-align: left;
-        color:rgb(214, 186, 26);
+        color:#f7dc42;
     }
 
     #player-team{
@@ -26,7 +39,7 @@ page-player {
         padding-bottom:50px;
         text-align: left;
         font-size: 140%;
-        color:rgb(214, 186, 26);
+        color:#f7dc42;
     }
 
     #player-name{
@@ -56,13 +69,8 @@ page-player {
         background: transparent;
     }
 
-    .scroll-content{
-        padding:0px!important;
-        margin-top: 230px!important;
-    }
-
     ion-header{
         min-height: 220px!important;
-        background: rgb(1, 27, 78)!important;
+        background: #222f3e!important;
     }
 }

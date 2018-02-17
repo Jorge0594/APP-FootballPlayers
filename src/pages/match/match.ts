@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild} from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 import { MatchService } from '../../app/services/match.service';
 
@@ -10,6 +10,7 @@ import { MatchService } from '../../app/services/match.service';
 })
 export class MatchPage {
 
+   @ViewChild(Slides)slide: Slides;
   private match: any;
   private statSelected: string;
 
@@ -21,7 +22,7 @@ export class MatchPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MatchPage');
+    this.slide.lockSwipes(true);
   }
 
   selectStat(stat:string){

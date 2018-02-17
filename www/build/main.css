@@ -33888,7 +33888,7 @@ ranks-tab #player-position {
 }
 
 ranks-tab .first-position {
-  background: #27ae60 !important;
+  background: #298a52 !important;
 }
 
 ranks-tab #player-image {
@@ -34295,13 +34295,17 @@ page-home .spinner {
   -webkit-filter: brightness(50%) saturate(50%);
 }
 
-page-match ion-header {
-  min-height: 175px !important;
-  background: #011b4e !important;
+page-match .scroll-content {
+  background: whitesmoke !important;
 }
 
-page-match ion-slide {
-  max-width: 33% !important;
+page-match .header-md::after {
+  background-image: none !important;
+}
+
+page-match ion-header {
+  min-height: 130px !important;
+  background: #222f3e !important;
 }
 
 page-match .toolbar-background {
@@ -34312,39 +34316,49 @@ page-match #slide-title {
   color: rgba(255, 255, 255, 0.7);
 }
 
+page-match ion-slides {
+  background-color: #222f3e;
+  max-height: 45px !important;
+  -webkit-box-shadow: inset 0 1px 0px #dcffa6, 0 1px 2px #000;
+  box-shadow: inset 0 1px 0px #dcffa6, 0 1px 2px #000;
+}
+
+page-match ion-slide {
+  font-size: 15px !important;
+  background-color: #222f3e;
+  max-height: 45px !important;
+}
+
 page-match .selected {
-  background: rgba(2, 47, 143, 0.801) !important;
+  background: #222f3e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 2.5px solid #9ed7f8 !important;
 }
 
 page-match .selected p {
   color: white !important;
-  font-size: 19px !important;
+  font-size: 16px !important;
 }
 
-page-match #local-name {
-  margin-top: 15px;
+page-match #local-name, page-match #visitor-name {
+  margin-top: 18px;
   font-size: 100%;
-  color: #d6ba1a;
+  color: #cab01c;
   text-align: center;
 }
 
-page-match #visitor-name {
-  margin-top: 15px;
-  font-size: 100%;
-  color: #d6ba1a;
-  text-align: center;
-}
-
-page-match #goals-local, page-match #goals-visitor, page-match #match-time {
-  color: #d6ba1a;
+page-match #goals-local, page-match #goals-visitor, page-match #match-time, page-match #separation {
+  color: #f7dc42;
   text-align: center;
   font-size: 300%;
 }
 
 page-match #separation {
-  color: #d6ba1a;
-  text-align: center;
   font-size: 200%;
+  text-align: center;
+  margin-top: 9px;
 }
 
 page-match .stats-title {
@@ -34375,6 +34389,19 @@ page-match .info-lineup {
   padding: 0px !important;
 }
 
+page-match #no-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: black;
+  margin-top: 80px;
+}
+
 page-match ion-item {
   margin: 0px !important;
   text-align: center;
@@ -34383,6 +34410,19 @@ page-match ion-item {
 page-player ion-title {
   text-align: center;
   margin-right: 50px;
+}
+
+page-player .scroll-content {
+  padding: 0px !important;
+  background: whitesmoke !important;
+}
+
+page-player .item-md {
+  background: transparent !important;
+}
+
+page-player .item-ios {
+  background: transparent !important;
 }
 
 page-player #player-image {
@@ -34398,7 +34438,7 @@ page-player #player-number {
   margin: 0px;
   margin-top: 5px !important;
   text-align: left;
-  color: #d6ba1a;
+  color: #f7dc42;
 }
 
 page-player #player-team {
@@ -34407,7 +34447,7 @@ page-player #player-team {
   padding-bottom: 50px;
   text-align: left;
   font-size: 140%;
-  color: #d6ba1a;
+  color: #f7dc42;
 }
 
 page-player #player-name {
@@ -34435,14 +34475,9 @@ page-player #main-info {
   background: transparent;
 }
 
-page-player .scroll-content {
-  padding: 0px !important;
-  margin-top: 230px !important;
-}
-
 page-player ion-header {
   min-height: 220px !important;
-  background: #011b4e !important;
+  background: #222f3e !important;
 }
 
 page-profile elastic-header {

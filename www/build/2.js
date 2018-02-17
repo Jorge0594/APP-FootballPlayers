@@ -27,7 +27,7 @@ var PlayerPageModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__player__["a" /* PlayerPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__player__["a" /* PlayerPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__player__["a" /* PlayerPage */]),
             ],
         })
     ], PlayerPageModule);

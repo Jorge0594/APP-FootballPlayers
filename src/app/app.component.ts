@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, LoadingController} from 'ionic-angular';
+import { Platform, Nav, LoadingController, AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -28,7 +28,7 @@ export class MyApp {
   private menuOptionSelected: string;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private userService: UserService,
-    private loginService: LoginService, private loadingCtrl: LoadingController) {
+    private loginService: LoginService, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
       platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
@@ -56,16 +56,41 @@ export class MyApp {
     }, 1000);
   }
 
+  presentAlert(page){
+    let alert = this.alertCtrl.create({
+      message: "¿Desea cerrar sesión?",
+      buttons: [
+        {
+          text:"NO",
+          role:'cancel',
+          handler: ()=>{
+            console.log("Cancel log-out");
+          }
+        },
+        {
+          text:"SÍ",
+          handler: ()=>{
+            this.presentLoading();
+            this.loginService.logout();
+            this.menuOptionSelected = "league";
+            this.nav.setRoot(page);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   navigateTo(page, rootParams){
     if(rootParams[0]=='logout'){
-      this.presentLoading();
-      this.loginService.logout();
-      this.menuOptionSelected = "league";
-    }
-    else{
+
+      this.presentAlert(page);
+
+    } else {
+
       this.menuOptionSelected = rootParams[0];
-    }
       this.nav.setRoot(page, { id:rootParams });
+    }
   }
 }
 

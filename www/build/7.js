@@ -27,7 +27,7 @@ var LeagueTabPageModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__ranks_tab__["a" /* TabRanks */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__ranks_tab__["a" /* TabRanks */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__ranks_tab__["a" /* TabRanks */]),
             ],
         })
     ], LeagueTabPageModule);

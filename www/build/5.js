@@ -27,7 +27,7 @@ var HomeTabsPageModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__home_tabs__["a" /* HomeTabsPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home_tabs__["a" /* HomeTabsPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home_tabs__["a" /* HomeTabsPage */]),
             ],
         })
     ], HomeTabsPageModule);
