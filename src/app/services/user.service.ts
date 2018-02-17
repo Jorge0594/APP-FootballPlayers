@@ -29,6 +29,7 @@ export class UserService{
                     team =>{
                         if(team != null || team != undefined){
                             this.userTeam = team;
+                            //REFACTOR!!!!
                             this.leagueService.getStandings(team.liga).subscribe(
                                 league =>{
                                     this.userLeague = league;
