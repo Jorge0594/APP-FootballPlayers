@@ -30,7 +30,7 @@ export class TabRounds {
     switch (this.navParams.data[0]){
       case 'league':
         this.roundSelected = 1;
-        if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
+        /*if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
           this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
             matches =>{
               this.roundMatches = matches;
@@ -38,7 +38,7 @@ export class TabRounds {
             },
             error => console.error(error)
           );
-        }
+        }*/
         setTimeout(() => {
           this.slides.slideTo(this.roundSelected -1);
         }, 50);
@@ -73,7 +73,7 @@ export class TabRounds {
       this.roundSelected = day;
     }
 
-    this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
+    /*this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
       matches =>{
         if(matches != null){
           if (this.roundSelected == matches[0].jornada){
@@ -84,7 +84,7 @@ export class TabRounds {
         }
       },
       error => console.error(error)
-    );
+    );*/
   }
 
   matchInfo(id:any){

@@ -29,8 +29,17 @@ export class UserService{
                     team =>{
                         if(team != null || team != undefined){
                             this.userTeam = team;
+                            this.leagueService.getLeagueByName(team.liga).subscribe(
+                                league =>{
+                                    this.userLeague = league;
+                                    for(let i = 1; i<= ((league.clasificacion.length - 1) * 2); i++){
+                                        this.rounds.push(i);
+                                    };
+                                    console.log(this.userLeague);
+                                }
+                            )
                             //REFACTOR!!!!
-                            this.leagueService.getStandings(team.liga).subscribe(
+                            /*this.leagueService.getStandings(team.liga).subscribe(
                                 league =>{
                                     this.userLeague = league;
                                     for(let i = 1; i<= ((league.length - 1) * 2); i++){
@@ -41,7 +50,7 @@ export class UserService{
 
                             this.leagueService.getTopGoals(team.liga).subscribe(
                                 top => this.userLeaguePlayers = top
-                            );
+                            );*/
                             /*this.matchService.getMatchByLeague(team.liga).subscribe( //Unnecesary queries
                                 leagueMatches => this.leagueMaches = leagueMatches
                             );

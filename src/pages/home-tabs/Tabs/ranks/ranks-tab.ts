@@ -24,7 +24,7 @@ export class TabRanks {
 
     switch(this.navParams.data[0]){
       case 'league':
-        this.players = userService.getTopGoals();
+        this.players = userService.getUserLeague().goleadores;
       break;
       case 'team':
         this.players = this.userService.getUserTeam().plantillaEquipo

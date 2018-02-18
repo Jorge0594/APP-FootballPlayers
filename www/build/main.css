@@ -34602,3 +34602,16 @@ page-teams .toolbar-md {
   border-style: solid !important;
   border-color: #9ed7f8 !important;
 }
+
+page-teams #no-teams {
+  margin-top: 80px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: white;
+}
