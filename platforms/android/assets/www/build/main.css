@@ -33708,6 +33708,15 @@ super-tabs-toolbar > ion-toolbar.toolbar.scroll-tabs .tab-buttons-container .ind
   margin-top: -2px;
 }
 
+.ios .tabs-ios[tabsPlacement=top] .tabbar {
+  border-bottom: 1px solid #9ed7f8 !important;
+}
+
+.ios ion-header .toolbar .toolbar-background {
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+}
+
 #nav-icon {
   float: left;
   width: 50px;
@@ -33847,6 +33856,7 @@ page-home-tabs ion-toolbar.toolbar::after {
 
 ranks-tab .scroll-content {
   background: #273342;
+  padding: 0px !important;
 }
 
 ranks-tab ion-grid {
@@ -33878,7 +33888,7 @@ ranks-tab #player-position {
 }
 
 ranks-tab .first-position {
-  background: #27ae60 !important;
+  background: #298a52 !important;
 }
 
 ranks-tab #player-image {
@@ -34108,6 +34118,7 @@ page-home ion-grid {
 
 page-home .scroll-content {
   background: #273342;
+  padding: 0px !important;
 }
 
 page-home #colum-titles {
@@ -34124,8 +34135,8 @@ page-home #title-team {
 
 page-home .team-info {
   color: #a8e9ec;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding-top: 4.75% !important;
+  padding-bottom: 4.75% !important;
 }
 
 page-home .first-position {
@@ -34139,8 +34150,8 @@ page-home .last-position {
 page-home #team-position {
   color: #fdf398;
   background: #212b36;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding-top: 4.75% !important;
+  padding-bottom: 4.75% !important;
 }
 
 page-home #team-name {
@@ -34148,8 +34159,8 @@ page-home #team-name {
   text-align: left !important;
   min-width: 80px;
   padding-left: 5px !important;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding-top: 4.75% !important;
+  padding-bottom: 4.75% !important;
 }
 
 page-home #team-shield-background {
@@ -34284,13 +34295,17 @@ page-home .spinner {
   -webkit-filter: brightness(50%) saturate(50%);
 }
 
-page-match ion-header {
-  min-height: 175px !important;
-  background: #011b4e !important;
+page-match .scroll-content {
+  background: whitesmoke !important;
 }
 
-page-match ion-slide {
-  max-width: 33% !important;
+page-match .header-md::after {
+  background-image: none !important;
+}
+
+page-match ion-header {
+  min-height: 130px !important;
+  background: #222f3e !important;
 }
 
 page-match .toolbar-background {
@@ -34301,39 +34316,49 @@ page-match #slide-title {
   color: rgba(255, 255, 255, 0.7);
 }
 
+page-match ion-slides {
+  background-color: #222f3e;
+  max-height: 45px !important;
+  -webkit-box-shadow: inset 0 1px 0px #dcffa6, 0 1px 2px #000;
+  box-shadow: inset 0 1px 0px #dcffa6, 0 1px 2px #000;
+}
+
+page-match ion-slide {
+  font-size: 15px !important;
+  background-color: #222f3e;
+  max-height: 45px !important;
+}
+
 page-match .selected {
-  background: rgba(2, 47, 143, 0.801) !important;
+  background: #222f3e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 2.5px solid #9ed7f8 !important;
 }
 
 page-match .selected p {
   color: white !important;
-  font-size: 19px !important;
+  font-size: 16px !important;
 }
 
-page-match #local-name {
-  margin-top: 15px;
+page-match #local-name, page-match #visitor-name {
+  margin-top: 18px;
   font-size: 100%;
-  color: #d6ba1a;
+  color: #cab01c;
   text-align: center;
 }
 
-page-match #visitor-name {
-  margin-top: 15px;
-  font-size: 100%;
-  color: #d6ba1a;
-  text-align: center;
-}
-
-page-match #goals-local, page-match #goals-visitor, page-match #match-time {
-  color: #d6ba1a;
+page-match #goals-local, page-match #goals-visitor, page-match #match-time, page-match #separation {
+  color: #f7dc42;
   text-align: center;
   font-size: 300%;
 }
 
 page-match #separation {
-  color: #d6ba1a;
-  text-align: center;
   font-size: 200%;
+  text-align: center;
+  margin-top: 9px;
 }
 
 page-match .stats-title {
@@ -34364,6 +34389,19 @@ page-match .info-lineup {
   padding: 0px !important;
 }
 
+page-match #no-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: black;
+  margin-top: 80px;
+}
+
 page-match ion-item {
   margin: 0px !important;
   text-align: center;
@@ -34372,6 +34410,19 @@ page-match ion-item {
 page-player ion-title {
   text-align: center;
   margin-right: 50px;
+}
+
+page-player .scroll-content {
+  padding: 0px !important;
+  background: whitesmoke !important;
+}
+
+page-player .item-md {
+  background: transparent !important;
+}
+
+page-player .item-ios {
+  background: transparent !important;
 }
 
 page-player #player-image {
@@ -34387,7 +34438,7 @@ page-player #player-number {
   margin: 0px;
   margin-top: 5px !important;
   text-align: left;
-  color: #d6ba1a;
+  color: #f7dc42;
 }
 
 page-player #player-team {
@@ -34396,7 +34447,7 @@ page-player #player-team {
   padding-bottom: 50px;
   text-align: left;
   font-size: 140%;
-  color: #d6ba1a;
+  color: #f7dc42;
 }
 
 page-player #player-name {
@@ -34424,14 +34475,9 @@ page-player #main-info {
   background: transparent;
 }
 
-page-player .scroll-content {
-  padding: 0px !important;
-  margin-top: 230px !important;
-}
-
 page-player ion-header {
   min-height: 220px !important;
-  background: #011b4e !important;
+  background: #222f3e !important;
 }
 
 page-profile elastic-header {
@@ -34455,6 +34501,10 @@ page-profile elastic-header img {
   border-radius: 50%;
   width: 75px;
   height: 75px;
+}
+
+page-profile .ios .scroll-content {
+  padding-top: 0px !important;
 }
 
 page-profile .scroll-content {
@@ -34521,6 +34571,18 @@ page-profile .toolbar-md {
   border-color: #9ed7f8 !important;
 }
 
+page-teams .toolbar-ios {
+  border: 0px !important;
+  border-bottom: 1.5px !important;
+  border-style: solid !important;
+  border-color: #9ed7f8 !important;
+}
+
+page-teams .list-ios .item[no-lines], page-teams .list-ios .item[no-lines] .item-inner {
+  border-width: 0;
+  background: transparent !important;
+}
+
 page-teams .scroll-content {
   background: #273342;
 }
@@ -34539,4 +34601,17 @@ page-teams .toolbar-md {
   border-bottom: 1.5px !important;
   border-style: solid !important;
   border-color: #9ed7f8 !important;
+}
+
+page-teams #no-teams {
+  margin-top: 80px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: white;
 }

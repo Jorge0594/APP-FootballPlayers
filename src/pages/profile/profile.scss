@@ -16,10 +16,21 @@ page-profile {
 
     .ios .scroll-content{
         padding-top: 0px!important;
+        color:white;
     }
 
     .scroll-content{
-        background: white!important;
+        color: white;
+    }
+
+    .item-md[no-lines], .item-ios[no-lines] {
+       background:#273342;
+       color:white;
+    }
+
+    .item-md, .item-ios{
+        background: transparent;
+        color:white;
     }
 
     .button-inner {
@@ -69,12 +80,16 @@ page-profile {
     ion-row{
         margin-bottom:10px;
     }
+
+    .text-on-botton{
+        color:white!important;
+    }
     
-    .toolbar-md{
+    #toolbar-options{
         background-image: none;
         border:0px;
         border-bottom: 1.5px!important;
 		border-style: solid!important;
-		border-color: #9ed7f8!important;
+        border-color: #9ed7f8!important;
     }
 }

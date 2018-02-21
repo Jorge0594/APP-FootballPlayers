@@ -41,7 +41,7 @@ export class TabRounds {
         }*/
         setTimeout(() => {
           this.slides.slideTo(this.roundSelected -1);
-        }, 50);
+        }, 500);
       break;
       case 'team':
         this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(

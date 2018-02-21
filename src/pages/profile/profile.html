@@ -10,8 +10,8 @@
       <img id="profile-image" src="http://192.168.1.39:8080/images/defaultProfile.jpg" imageViewer/>
   </elastic-header>
 
-  <ion-toolbar color="light" mode="md">
-    <ion-segment color="dark" mode="md" [(ngModel)]= "selection">
+  <ion-toolbar color="header" mode="md" id = "toolbar-options">
+    <ion-segment color="underline" mode="md" [(ngModel)]= "selection">
       <ion-segment-button (click) = "resizeHeader()" class = "text-on-botton" value="one">
         <ion-icon name="home"></ion-icon>
         Perfil

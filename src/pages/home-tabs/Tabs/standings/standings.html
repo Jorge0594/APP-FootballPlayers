@@ -3,7 +3,7 @@
   <div><img id="shield-team-image" src = "http://192.168.1.39:8080/images/shield.png"></div>
 </ion-header-->
 <ion-content width ="100%" [class.team-info-content] = "navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'" >
-  <ion-grid *ngIf = "navParams.data[0] == 'league'">
+  <ion-grid *ngIf = "navParams.data[0] == 'league' && userService.getUserLeague() != undefined">
     <ion-row id="colum-titles">
         <ion-col col-xs-1>#</ion-col>
         <ion-col col-4 id="title-team">Equipo</ion-col>
