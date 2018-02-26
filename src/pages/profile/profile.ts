@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, Events, Content} from 'ionic-angul
 import { HomeTabsPage } from '../home-tabs/home-tabs';
 
 import { UserService } from '../../app/services/user.service';
+import { SanctionService } from '../../app/services/sanction.service';
 
 @IonicPage()
 @Component({
@@ -15,14 +16,27 @@ export class ProfilePage {
   @ViewChild(Content)content: Content;
   private selection:string;
   private header: number;
+  private playerSanctions: any;
   private clickImage: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private events: Events) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private events: Events,
+  private sanctionService: SanctionService) {
     this.selection = "one";
     this.header = 150;
   }
 
-  ionViewDidLoad() {
+  findAllPlayerSanctions(id:string){
+    console.log("Entro aqui")
+    this.sanctionService.getPlayerSanctions(id).subscribe(
+      sanctions => {this.playerSanctions = sanctions; console.log(this.playerSanctions)}
+    );
+  }
+
+  clickButton(value:string){
+    if(value == "two"){
+      this.findAllPlayerSanctions(this.userService.getUserLogged().id);
+    }
+    this.resizeHeader();
   }
 
   goTeam(){

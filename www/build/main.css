@@ -37593,6 +37593,12 @@ page-profile elastic-header img {
   height: 75px;
 }
 
+page-profile h2 {
+  margin-top: 10px !important;
+  color: #e74c3c;
+  text-align: center;
+}
+
 page-profile .ios .scroll-content {
   padding-top: 0px !important;
   color: white;
@@ -37623,9 +37629,9 @@ page-profile .button-inner {
 page-profile #sanctions-card {
   height: 70px;
   text-align: center;
-  background: #dfe4ea;
+  background: #c0392b;
   margin: 0px;
-  margin-top: 20px !important;
+  margin-top: 10px !important;
   width: 100%;
 }
 
@@ -37635,8 +37641,24 @@ page-profile button.row {
   border-radius: 3px;
 }
 
-page-profile #card-text {
-  margin-top: 25px;
+page-profile ion-card-content ion-row ion-col {
+  padding: 0px !important;
+}
+
+page-profile #no-active-sanctions {
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+}
+
+page-profile .card-titles {
+  color: white;
+  text-align: left;
+}
+
+page-profile .card-info {
+  text-align: right;
+  color: white;
 }
 
 page-profile #user-team-image {
@@ -37674,6 +37696,21 @@ page-profile #toolbar-options {
   border-bottom: 1.5px !important;
   border-style: solid !important;
   border-color: #9ed7f8 !important;
+}
+
+page-profile .spinner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
+}
+
+page-profile .spinner-md-crescent circle {
+  stroke: white !important;
 }
 
 page-teams .toolbar-ios {

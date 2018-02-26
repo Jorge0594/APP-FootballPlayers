@@ -14,6 +14,12 @@ page-profile {
         }
     }
 
+    h2{
+        margin-top:10px!important;
+        color:#e74c3c;
+        text-align: center;
+    }
+
     .ios .scroll-content{
         padding-top: 0px!important;
         color:white;
@@ -40,9 +46,9 @@ page-profile {
     #sanctions-card{
         height: 70px;
         text-align: center;
-        background: #dfe4ea;
+        background: #c0392b;
         margin:0px;
-        margin-top:20px!important;
+        margin-top:10px!important;
         width: 100%;
     }
 
@@ -52,8 +58,24 @@ page-profile {
         border-radius: 3px;
     }
 
-    #card-text{
-        margin-top:25px;
+    ion-card-content ion-row ion-col{
+        padding: 0px!important;
+    }
+
+    #no-active-sanctions{
+        text-align: center;
+        margin-top:10px;
+        color:white;
+    }
+
+    .card-titles{
+        color:white;
+        text-align: left;
+    }
+
+    .card-info{
+        text-align: right;
+        color: white;
     }
 
     #user-team-image{
@@ -91,5 +113,20 @@ page-profile {
         border-bottom: 1.5px!important;
 		border-style: solid!important;
         border-color: #9ed7f8!important;
+    }
+
+    .spinner{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;;
+        width: 60px;
+        height: 60px;
+        min-height: 60px;
+        min-width: 60px;
+    }
+
+    .spinner-md-crescent circle{
+        stroke: white!important;
     }
 }

@@ -14,6 +14,7 @@ import { TeamService } from '../../src/app/services/team.service';
 import { MatchService } from '../../src/app/services/match.service';
 import { UserService } from '../../src/app/services/user.service';
 import { LeagueService } from '../../src/app/services/league.service';
+import { SanctionService } from '../../src/app/services/sanction.service';
 import { MyApp } from './app.component';
 
 import { ElasticHeader } from '../components/elastic-header/elastic-header'
@@ -67,6 +68,7 @@ import { ProfilePage } from '../pages/profile/profile';
     HttpModule,
     PlayerService,
     LoginService,
+    SanctionService,
     TeamService,
     MatchService,
     HttpClient,

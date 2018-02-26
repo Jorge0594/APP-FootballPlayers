@@ -5,6 +5,7 @@ import { HttpClient } from './httpClient.service';
 import { TeamService } from './team.service';
 import { LeagueService } from './league.service';
 import { MatchService } from './match.service';
+import { SanctionService } from './sanction.service';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -15,10 +16,11 @@ export class UserService{
     private userLeaguePlayers: any;
     private userMatches: any;
     private leagueMaches: any;
+    private activeSanctions:any;
     private rounds: number [] = [];
 
     constructor(private http: HttpClient, private teamService:TeamService,
-        private matchService: MatchService, private leagueService: LeagueService){}
+        private matchService: MatchService, private leagueService: LeagueService, private sanctionService: SanctionService ){}
 
 
     generateUserData(){
@@ -60,6 +62,9 @@ export class UserService{
                         };
                     }
                 )
+                this.sanctionService.getActivePlayerSanctions(response.id).subscribe(
+                    sanctions =>{this.activeSanctions = sanctions; console.log(this.activeSanctions)} 
+                );
             },
             error => console.error(error)
         )
@@ -91,6 +96,10 @@ export class UserService{
 
     getTopGoals(){
         return this.userLeaguePlayers;
+    }
+
+    getActiveSanctions(){
+        return this.activeSanctions;
     }
 
     logout(){

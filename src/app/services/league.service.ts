@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 const BASE_URL: string = "ligas/";
 @Injectable()
 export class LeagueService{
+    
     constructor(private http: HttpClient){}
 
     getLeagueByName(name:string){
