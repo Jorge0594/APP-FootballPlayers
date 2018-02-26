@@ -26,14 +26,13 @@ export class ProfilePage {
   }
 
   findAllPlayerSanctions(id:string){
-    console.log("Entro aqui")
     this.sanctionService.getPlayerSanctions(id).subscribe(
-      sanctions => {this.playerSanctions = sanctions; console.log(this.playerSanctions)}
+      sanctions => this.playerSanctions = sanctions
     );
   }
 
   clickButton(value:string){
-    if(value == "two"){
+    if(value == "two" && this.playerSanctions == undefined){
       this.findAllPlayerSanctions(this.userService.getUserLogged().id);
     }
     this.resizeHeader();

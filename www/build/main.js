@@ -540,11 +540,10 @@ var ProfilePage = (function () {
     }
     ProfilePage.prototype.findAllPlayerSanctions = function (id) {
         var _this = this;
-        console.log("Entro aqui");
-        this.sanctionService.getPlayerSanctions(id).subscribe(function (sanctions) { _this.playerSanctions = sanctions; console.log(_this.playerSanctions); });
+        this.sanctionService.getPlayerSanctions(id).subscribe(function (sanctions) { return _this.playerSanctions = sanctions; });
     };
     ProfilePage.prototype.clickButton = function (value) {
-        if (value == "two") {
+        if (value == "two" && this.playerSanctions == undefined) {
             this.findAllPlayerSanctions(this.userService.getUserLogged().id);
         }
         this.resizeHeader();
@@ -713,7 +712,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-//import { Observable } from 'rxjs/Observable';
 
 
 
@@ -766,7 +764,7 @@ var UserService = (function () {
                 }
                 ;
             });
-            _this.sanctionService.getActivePlayerSanctions(response.id).subscribe(function (sanctions) { _this.activeSanctions = sanctions; console.log(_this.activeSanctions); });
+            _this.sanctionService.getActivePlayerSanctions(response.id).subscribe(function (sanctions) { return _this.activeSanctions = sanctions; });
         }, function (error) { return console.error(error); });
     };
     UserService.prototype.isLogged = function () {
