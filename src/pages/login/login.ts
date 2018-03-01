@@ -12,6 +12,8 @@ import { UserService } from '../../app/services/user.service'
 })
 export class LoginPage {
 
+  private loginError = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController,
      private loginService:LoginService, private userService: UserService, private loadingCtrl: LoadingController) {}
 
@@ -20,12 +22,13 @@ export class LoginPage {
   goHomePage(username:string, password:string){
     this.loginService.login(username,password).subscribe(
       reponse => {
+        this.loginError = false;
         this.userService.generateUserData();
         this.menuController.enable(true);
         //this.navCtrl.setRoot(HomeTabsPage, {id:['league']});
         this.presentLoading();
       },
-      error => console.error(error)
+      error => this.loginError = true
     );
   }
 

@@ -4,7 +4,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-navbar>
-    <ion-row id = "main-info" *ngIf="player != undefined">
+    <ion-row id = "main-info" *ngIf="player != undefined && playerTeam != undefined">
       <ion-col col-xs-8 class ="col-player-image">
           <img id = "player-image" src ="http://192.168.1.39:8080/images/{{player?.fotoJugador}}">
       </ion-col>
@@ -15,14 +15,14 @@
         <strong>{{playerTeam?.nombre}}</strong>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="player != undefined">
+    <ion-row *ngIf="player != undefined && playerTeam != undefined">
       <ion-col col-xs-12 id = "player-name">
           <h1 id = "player-name-text">{{player?.nombre}}    {{player?.apellidos}}</h1>
       </ion-col>
     </ion-row>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding >
   <ion-list>
     <ion-item>
       <ion-row>

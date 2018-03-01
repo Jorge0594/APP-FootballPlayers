@@ -36,7 +36,6 @@ export class UserService{
                                     for(let i = 1; i<= ((league.clasificacion.length - 1) * 2); i++){
                                         this.rounds.push(i);
                                     };
-                                    console.log(this.userLeague);
                                 }
                             )
                             //REFACTOR!!!!

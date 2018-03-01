@@ -37339,6 +37339,10 @@ page-home .spinner {
   text-align: center;
 }
 
+.ios page-login #login-error-message, .md page-login #login-error-message {
+  color: red;
+}
+
 .ios page-login ion-card.card, .md page-login ion-card.card {
   -webkit-box-shadow: none;
   box-shadow: none;

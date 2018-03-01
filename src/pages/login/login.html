@@ -37,6 +37,7 @@
                 <ion-input #password type ="password" placeholder = "Contraseña" (keyup.enter) = "goHomePage(username?.value, password?.value)" ></ion-input>
               </ion-item>
             </ion-list>
+            <p id = "login-error-message" *ngIf = "loginError">Usuario o contraseña incorrectos</p>
             <p>¿Has olvidado tu usuario o contraseña?</p>
             <button ion-button block outline color = "light" (click)= "goHomePage(username?.value, password?.value)">Iniciar sesión</button>
           </ion-card-content>
