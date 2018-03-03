@@ -21,6 +21,10 @@
 			border-radius: 5px;
 		}
 
+		#forgot-password{
+			text-decoration: underline;
+		}
+
 		p, ion-card-header.card-header{
 			color:rgb(233, 229, 229);
 		}
@@ -59,5 +63,16 @@
 			background-repeat: no-repeat;
 			-webkit-filter: brightness(50%) saturate(50%);
 	  }
+
+	  .alert-md .alert-message{
+		  overflow-y: auto!important;
+	  }
+
+	  .alert-ios .alert-message{
+		  overflow-y: auto!important;
+	  }
+
+
+
 	}
 }

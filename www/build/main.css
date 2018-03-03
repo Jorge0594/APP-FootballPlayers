@@ -37350,6 +37350,10 @@ page-home .spinner {
   border-radius: 5px;
 }
 
+.ios page-login #forgot-password, .md page-login #forgot-password {
+  text-decoration: underline;
+}
+
 .ios page-login p, .ios page-login ion-card-header.card-header, .md page-login p, .md page-login ion-card-header.card-header {
   color: #e9e5e5;
 }
@@ -37387,6 +37391,14 @@ page-home .spinner {
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-filter: brightness(50%) saturate(50%);
+}
+
+.ios page-login .alert-md .alert-message, .md page-login .alert-md .alert-message {
+  overflow-y: auto !important;
+}
+
+.ios page-login .alert-ios .alert-message, .md page-login .alert-ios .alert-message {
+  overflow-y: auto !important;
 }
 
 page-match .scroll-content {

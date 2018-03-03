@@ -17,5 +17,12 @@ export class PlayerService{
             error => console.error(error)
         );
     }
+
+    forgottenPassword(email:string){
+        return this.http.get(BASE_URL + "clave/" + email).map(
+            response => response,
+            error => console.error(error)
+        )
+    }
    
 };

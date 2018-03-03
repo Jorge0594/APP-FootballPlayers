@@ -2,27 +2,6 @@
 <ion-content padding class = "background">
       <div padding  id="background-login">
       </div>
-      <!--div>
-        <ion-row id = "input-login-content">
-          <ion-col>
-            <ion-list inset>
-    
-              <ion-item>
-                <ion-label>Username</ion-label>
-                <ion-input (keyup.enter)= "username.focusNext()" type="text" #username></ion-input>
-              </ion-item>
-    
-              <ion-item>
-                <ion-label>Password</ion-label>
-                <ion-input id = "password" (keyup.enter)="goHomePage(username?.value, password?.value)" type="password" #password></ion-input>
-              </ion-item>
-              
-              <button ion-button (click)="goHomePage(username?.value, password?.value)" class="login-button" >Login</button>
-              
-            </ion-list>
-          </ion-col>
-        </ion-row>
-      </div-->
       <div id ="div-card">
         <ion-card>
           <ion-card-header>
@@ -38,7 +17,7 @@
               </ion-item>
             </ion-list>
             <p id = "login-error-message" *ngIf = "loginError">Usuario o contraseña incorrectos</p>
-            <p>¿Has olvidado tu usuario o contraseña?</p>
+            <p id = "forgot-password" (click) = "presentRecoveryAlert()">¿Has olvidado tu usuario o contraseña?</p>
             <button ion-button block outline color = "light" (click)= "goHomePage(username?.value, password?.value)">Iniciar sesión</button>
           </ion-card-content>
         </ion-card>
