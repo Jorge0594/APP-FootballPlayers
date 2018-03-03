@@ -17,6 +17,7 @@ import { LoginService } from '../app/services/login.service';
 import { MatchService } from '../app/services/match.service';
 import { LeagueService } from '../app/services/league.service';
 import { UserService } from '../app/services/user.service';
+import { SanctionService } from '../app/services/sanction.service';
 import { TeamService } from '../app/services/team.service';
 import { HttpClient } from '../app/services/httpClient.service'
 
@@ -33,6 +34,7 @@ describe('Creations of pages',()=>{
                     PlayerService,
                     LoginService,
                     UserService,
+                    SanctionService,
                     LeagueService,
                     MatchService,
                     MockBackend,

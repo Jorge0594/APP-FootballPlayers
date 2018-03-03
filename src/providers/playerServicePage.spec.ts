@@ -17,7 +17,8 @@ import { MatchService } from '../app/services/match.service';
 import { LeagueService } from '../app/services/league.service';
 import { UserService } from '../app/services/user.service';
 import { TeamService } from '../app/services/team.service';
-import { HttpClient } from '../app/services/httpClient.service'
+import { SanctionService } from '../app/services/sanction.service';
+import { HttpClient } from '../app/services/httpClient.service';
 
 let component : MyApp
 let fixture : ComponentFixture<MyApp>
@@ -31,6 +32,7 @@ describe('PlayerService',()=>{
             providers:[
                 HttpModule,
                 TeamService,
+                SanctionService,
                 PlayerService,
                 LoginService,
                 UserService,

@@ -19,7 +19,7 @@ export class PlayerService{
     }
 
     forgottenPassword(email:string){
-        return this.http.get(BASE_URL + "clave/" + email).map(
+        return this.http.getRecoveredPasword(BASE_URL + "clave/" + email).map(
             response => response,
             error => console.error(error)
         )

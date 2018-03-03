@@ -1,7 +1,7 @@
 <ion-menu [content]="content" *ngIf="userService.getUserLogged()?.fotoJugador!= undefined">
   <ion-header no-shadow no-border class = "app-header">
     <div class ="app-background-header"></div>
-   <div class = "div-image" ><img id = "menu-profile-image" src="http://192.168.1.39:8080/images/{{userService.getUserLogged()?.fotoJugador}}"></div>
+   <div class = "div-image" ><img id = "menu-profile-image" src="{{userService.getBaseURLforImages()}}{{userService.getUserLogged()?.fotoJugador}}"></div>
   </ion-header>
 
   <ion-content>

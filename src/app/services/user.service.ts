@@ -68,6 +68,14 @@ export class UserService{
         )
     }
 
+    getBaseURL(){
+        return this.http.getBaseURL();
+    }
+
+    getBaseURLforImages(){
+        return (this.http.getBaseURL() + "images/");
+    }
+
     isLogged(){
         return this.http.isLogged();
     }

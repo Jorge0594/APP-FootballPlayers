@@ -7,7 +7,7 @@
   </ion-navbar>
 
   <elastic-header [scrollArea] = "component" [headerHeight] = "header">
-      <img id="profile-image" src="http://192.168.1.39:8080/images/defaultProfile.jpg" imageViewer/>
+      <img id="profile-image" src="{{userService.getBaseURLforImages()}}{{userService.getUserLogged()?.fotoJugador}}" imageViewer/>
   </elastic-header>
 
   <ion-toolbar color="header" mode="md" id = "toolbar-options">
@@ -31,7 +31,7 @@
 <ion-content  fullscreen #component [ngSwitch] = "selection" >
  <ion-item no-lines *ngSwitchCase = "'one'">
    <ion-item id = "team-image-container" (click) = "goTeam()">
-      <img id = "user-team-image" src = "http://192.168.1.39:8080/images/shield.png">
+      <img id = "user-team-image" src = "{{userService.getBaseURLforImages()}}shield.png">
       <h1 id = "user-team-name">{{userService.getUserTeam()?.nombre}}</h1>
    </ion-item>
    <ion-row>

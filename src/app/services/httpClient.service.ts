@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
 
-const BASE_URL = "http://192.168.1.39:8080/";
+const BASE_URL = "https://192.168.1.39:8443/";
 
 @Injectable()
 export class HttpClient{
@@ -34,7 +34,18 @@ export class HttpClient{
             error => console.error(error.json())
         );
     }
+
+    getRecoveredPasword(url:any){
+        return this.http.get((BASE_URL + url)).map(
+            response => {
+                return response.json()},
+            error => console.error(error.json())
+        );
+    }
     
+    getBaseURL(){
+        return BASE_URL;
+    }
 
     put(url:any){
 
