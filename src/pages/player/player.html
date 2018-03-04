@@ -6,7 +6,7 @@
     </ion-navbar>
     <ion-row id = "main-info" *ngIf="player != undefined && playerTeam != undefined">
       <ion-col col-xs-8 class ="col-player-image">
-          <img id = "player-image" src ="{{userService.getBaseURLforImages()}}{{player?.fotoJugador}}">
+        <img id = "player-image" src="{{userService.getBaseURLforImages()}}{{player?.fotoJugador}}">
       </ion-col>
       <ion-col col-xs-1> 
         <h1 id = "player-number">{{player?.dorsal}}</h1>

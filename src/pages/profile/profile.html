@@ -98,8 +98,29 @@
       </ion-card>
  </ion-item>
 
- <ion-item no-lines *ngSwitchCase = "'three'">
+ <ion-list no-lines *ngSwitchCase = "'three'">
+   <p class = "settings-titles">Notificaciones: </p>
+   <ion-item class = "notifications">
+      <ion-label>Nuevas sanciones</ion-label>
+      <ion-toggle></ion-toggle>
+   </ion-item>
+   <ion-item class = "notifications">
+      <ion-label>Fin de sanciones</ion-label>
+      <ion-toggle></ion-toggle>
+   </ion-item>
+   <ion-item class = "notifications">
+      <ion-label>Resultados de partidos</ion-label>
+      <ion-toggle></ion-toggle>
+   </ion-item>
 
- </ion-item>
+   <p class = "settings-titles">Cambio de contraseña</p>
+
+   <ion-input #oldpassword (keyup.enter) = "oldpassword.focusNext()" id = "old-password" type = "password" placeholder = "Contraseña antigua"></ion-input>
+
+   <ion-input #newpassword (keyup.enter) = "newpassword.focusNext()" class = "new-password" type = "password" placeholder = "Contraseña nueva"></ion-input>
+   <ion-input #newpasswordrepeat (keyup.enter) = "changePassword(oldpassword.value, newpassword.value, newpasswordrepeat.value)"  class = "new-password" type = "password" placeholder = "Reintroduzca la nueva contraseña"></ion-input>
+   <p id = "password-error"*ngIf = "newPasswordMatches">Las nuevas contraseñas no coinciden</p>
+   <button id = "send-passwords-button" ion-button block outline color = "light" (click)= "changePassword(oldpassword.value, newpassword.value, newpasswordrepeat.value)">Cambiar contraseña</button>
+ </ion-list>
 
 </ion-content>

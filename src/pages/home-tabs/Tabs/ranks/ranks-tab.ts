@@ -37,12 +37,7 @@ export class TabRanks {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LeagueTabPage');
-  }
-
   clickPlayer(id:string, teamID:string){
-    console.log("Id del equipo del jugador es " + teamID);
     this.app.getRootNav().push(PlayerPage, {playerId: id, teamId: teamID });
   }
 

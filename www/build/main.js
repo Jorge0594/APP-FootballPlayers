@@ -363,11 +363,7 @@ var TabRanks = (function () {
                 break;
         }
     }
-    TabRanks.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad LeagueTabPage');
-    };
     TabRanks.prototype.clickPlayer = function (id, teamID) {
-        console.log("Id del equipo del jugador es " + teamID);
         this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_4__player_player__["a" /* PlayerPage */], { playerId: id, teamId: teamID });
     };
     TabRanks.prototype.selectRank = function (type) {
@@ -377,9 +373,10 @@ var TabRanks = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'ranks-tab',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\ranks\ranks-tab.html"*/'\n\n<ion-content>\n  <ion-spinner class = "spinner" *ngIf = "players == null" color ="ligth"></ion-spinner>\n  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == \'league\'">\n    <ion-grid *ngFor = "let player of players; let position = index;">\n      <ion-row class = "lines"></ion-row>\n      <ion-row (click)="clickPlayer(player.id, player.equipo)" class = "player-info">\n        <ion-col col-xs-1 id="player-position" [class.first-position]= "position == 0">{{position+1}}</ion-col>\n        <ion-col col-xs-3 id="col-player-image">\n            <img id = "player-image" class = "player-image-rank-position" src="{{userService.getBaseURLforImages()}}{{player?.fotoJugador}}">\n        </ion-col>\n        <ion-col col-6 id="player-name">{{player.nombre}}</ion-col>\n        <ion-col col-xs-2 id ="player-goals"><h1>{{player.goles}}</h1></ion-col>\n      </ion-row>\n      <ion-row *ngIf = "(position+1) == players.length" class = "lines"></ion-row>\n    </ion-grid>\n  </ion-scroll>\n  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == \'team\' || navParams.data[0] == \'teamsList\'">\n    <ion-grid (click)="clickPlayer(player.id, player.equipo)" *ngFor = "let player of players; let i = index" class = "player-info-team">\n      <ion-row class = "lines"></ion-row>\n      <ion-row>\n        <ion-col col-xs-1 id="col-player-image">\n            {{player?.dorsal}}\n            <img id = "player-image" src="{{userService.getBaseURLforImages()}}{{player?.fotoJugador}}">\n        </ion-col>\n        <ion-col col-6 id="player-info-titles">\n          <p>Nombre</p>\n          <p>Edad</p>\n          <p>Posición</p>\n          <p>Nacionalidad</p>\n        </ion-col>\n        <ion-col col-xs-5 id ="player-data">\n          <p>{{player?.nombre}} {{player?.apellidos}}</p>\n          <p>{{player?.edad}}</p>\n          <p>{{player?.posicion}}</p>\n          <p>{{player?.nacionalidad}}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row *ngIf = "(i+1) == players.length" class = "lines"></ion-row>\n  </ion-grid>\n  </ion-scroll>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\home-tabs\Tabs\ranks\ranks-tab.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */], __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */]) === "function" && _e || Object])
     ], TabRanks);
     return TabRanks;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=ranks-tab.js.map
@@ -395,6 +392,7 @@ var TabRanks = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_player_service__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -408,13 +406,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PlayerPage = (function () {
-    function PlayerPage(navCtrl, navParams, playerService, teamService) {
+    function PlayerPage(navCtrl, navParams, playerService, teamService, userService) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.playerService = playerService;
         this.teamService = teamService;
+        this.userService = userService;
         this.teamService.getPlayerTeamById(this.navParams.get('teamId')).subscribe(function (team) { return _this.playerTeam = team; });
         this.playerService.getPlayerById(this.navParams.get('playerId')).subscribe(function (player) { return _this.player = player; });
     }
@@ -423,11 +423,12 @@ var PlayerPage = (function () {
     };
     PlayerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-player',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\player\player.html"*/'<ion-header>\n    <ion-navbar height="20px" color ="transparent">\n      <button ion-button menuToggle id="button-toggle">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-navbar>\n    <ion-row id = "main-info" *ngIf="player != undefined && playerTeam != undefined">\n      <ion-col col-xs-8 class ="col-player-image">\n          <img id = "player-image" src ="{{userService.getBaseURLforImages()}}{{player?.fotoJugador}}">\n      </ion-col>\n      <ion-col col-xs-1> \n        <h1 id = "player-number">{{player?.dorsal}}</h1>\n      </ion-col>\n      <ion-col col-xs-3 id ="player-team">\n        <strong>{{playerTeam?.nombre}}</strong>\n      </ion-col>\n    </ion-row>\n    <ion-row *ngIf="player != undefined && playerTeam != undefined">\n      <ion-col col-xs-12 id = "player-name">\n          <h1 id = "player-name-text">{{player?.nombre}}    {{player?.apellidos}}</h1>\n      </ion-col>\n    </ion-row>\n</ion-header>\n\n<ion-content padding >\n  <ion-list>\n    <ion-item>\n      <ion-row>\n        <ion-col class = "name-player-atribute">\n            Posición\n        </ion-col>\n        <ion-col class = "player-atribute">\n            <strong>{{player?.posicion}}</strong>\n        </ion-col>\n      </ion-row>\n    </ion-item>\n    <ion-item>\n        <ion-row>\n          <ion-col class = "name-player-atribute">\n            Nacionalidad\n          </ion-col>\n          <ion-col class = "player-atribute">\n            <strong>{{player?.nacionalidad}}</strong>\n          </ion-col>\n        </ion-row>\n    </ion-item>\n    <ion-item>\n        <ion-row>\n          <ion-col class = "name-player-atribute">\n            Edad\n          </ion-col>\n          <ion-col class = "player-atribute">\n            <strong>{{player?.edad}}</strong>\n          </ion-col>\n        </ion-row>\n      </ion-item>\n    <ion-item>\n        <ion-row>\n          <ion-col class = "name-player-atribute">\n            Goles\n          </ion-col>\n          <ion-col class = "player-atribute">\n            <strong>{{player?.goles}}</strong>\n          </ion-col>\n        </ion-row>\n      </ion-item>\n    <ion-item>\n      <ion-row>\n        <ion-col class = "name-player-atribute">\n            Tarjetas Amarillas \n        </ion-col>\n        <ion-col class = "player-atribute">\n            <strong>{{player?.tarjetasAmarillas}}</strong>\n        </ion-col>\n      </ion-row>          \n    </ion-item>\n    <ion-item>\n      <ion-row>\n        <ion-col class = "name-player-atribute">\n          Tarjetas Rojas\n        </ion-col>\n        <ion-col class = "player-atribute">\n          <strong>{{player?.tarjetasRojas}}</strong>\n        </ion-col>\n      </ion-row>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\player\player.html"*/,
+            selector: 'page-player',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\player\player.html"*/'<ion-header>\n    <ion-navbar height="20px" color ="transparent">\n      <button ion-button menuToggle id="button-toggle">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-navbar>\n    <ion-row id = "main-info" *ngIf="player != undefined && playerTeam != undefined">\n      <ion-col col-xs-8 class ="col-player-image">\n        <img id = "player-image" src="{{userService.getBaseURLforImages()}}{{player?.fotoJugador}}">\n      </ion-col>\n      <ion-col col-xs-1> \n        <h1 id = "player-number">{{player?.dorsal}}</h1>\n      </ion-col>\n      <ion-col col-xs-3 id ="player-team">\n        <strong>{{playerTeam?.nombre}}</strong>\n      </ion-col>\n    </ion-row>\n    <ion-row *ngIf="player != undefined && playerTeam != undefined">\n      <ion-col col-xs-12 id = "player-name">\n          <h1 id = "player-name-text">{{player?.nombre}}    {{player?.apellidos}}</h1>\n      </ion-col>\n    </ion-row>\n</ion-header>\n\n<ion-content padding >\n  <ion-list>\n    <ion-item>\n      <ion-row>\n        <ion-col class = "name-player-atribute">\n            Posición\n        </ion-col>\n        <ion-col class = "player-atribute">\n            <strong>{{player?.posicion}}</strong>\n        </ion-col>\n      </ion-row>\n    </ion-item>\n    <ion-item>\n        <ion-row>\n          <ion-col class = "name-player-atribute">\n            Nacionalidad\n          </ion-col>\n          <ion-col class = "player-atribute">\n            <strong>{{player?.nacionalidad}}</strong>\n          </ion-col>\n        </ion-row>\n    </ion-item>\n    <ion-item>\n        <ion-row>\n          <ion-col class = "name-player-atribute">\n            Edad\n          </ion-col>\n          <ion-col class = "player-atribute">\n            <strong>{{player?.edad}}</strong>\n          </ion-col>\n        </ion-row>\n      </ion-item>\n    <ion-item>\n        <ion-row>\n          <ion-col class = "name-player-atribute">\n            Goles\n          </ion-col>\n          <ion-col class = "player-atribute">\n            <strong>{{player?.goles}}</strong>\n          </ion-col>\n        </ion-row>\n      </ion-item>\n    <ion-item>\n      <ion-row>\n        <ion-col class = "name-player-atribute">\n            Tarjetas Amarillas \n        </ion-col>\n        <ion-col class = "player-atribute">\n            <strong>{{player?.tarjetasAmarillas}}</strong>\n        </ion-col>\n      </ion-row>          \n    </ion-item>\n    <ion-item>\n      <ion-row>\n        <ion-col class = "name-player-atribute">\n          Tarjetas Rojas\n        </ion-col>\n        <ion-col class = "player-atribute">\n          <strong>{{player?.tarjetasRojas}}</strong>\n        </ion-col>\n      </ion-row>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\player\player.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__app_services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__app_services_player_service__["a" /* PlayerService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__["a" /* UserService */]) === "function" && _e || Object])
     ], PlayerPage);
     return PlayerPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=player.js.map
@@ -590,13 +591,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProfilePage = (function () {
-    function ProfilePage(navCtrl, navParams, userService, events, sanctionService) {
+    function ProfilePage(navCtrl, navParams, userService, events, sanctionService, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.userService = userService;
         this.events = events;
         this.sanctionService = sanctionService;
+        this.alertCtrl = alertCtrl;
         this.clickImage = false;
+        this.newPasswordMatches = false;
         this.selection = "one";
         this.header = 150;
     }
@@ -613,22 +616,49 @@ var ProfilePage = (function () {
     ProfilePage.prototype.goTeam = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_tabs_home_tabs__["a" /* HomeTabsPage */], { id: [this.navParams.get('id')[0]] });
     };
+    ProfilePage.prototype.changePassword = function (oldPassword, newPassword, newPasswordRepeat) {
+        if (newPassword != newPasswordRepeat) {
+            this.newPasswordMatches = true;
+        }
+        else {
+            this.presentAlert();
+        }
+    };
+    ProfilePage.prototype.presentAlert = function () {
+        var alert = this.alertCtrl.create({
+            title: "Confirmación de cambio",
+            message: "¿Esta seguro de querer cambniar la contraseña?",
+            buttons: [
+                {
+                    text: "NO",
+                    role: "cancel"
+                },
+                {
+                    text: "SÍ",
+                    handler: function () {
+                        //metodo de cambio de contraseña
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
     ProfilePage.prototype.resizeHeader = function () {
         this.content.scrollTo(0, 0, 0); //relocate the content after click in a button
         this.events.publish('resizeHeader');
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Content */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Content */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Content */]) === "function" && _a || Object)
     ], ProfilePage.prototype, "content", void 0);
     ProfilePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-profile',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\profile\profile.html"*/'<ion-header>\n  <ion-navbar height="20px" color="header">\n    <button ion-button menuToggle id="button-toggle">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Mi perfil</ion-title>\n  </ion-navbar>\n\n  <elastic-header [scrollArea] = "component" [headerHeight] = "header">\n      <img id="profile-image" src="{{userService.getBaseURLforImages()}}{{userService.getUserLogged()?.fotoJugador}}" imageViewer/>\n  </elastic-header>\n\n  <ion-toolbar color="header" mode="md" id = "toolbar-options">\n    <ion-segment color="underline" mode="md" [(ngModel)]= "selection">\n      <ion-segment-button (click) = "clickButton(\'one\')" class = "text-on-botton" value="one">\n        <ion-icon name="home"></ion-icon>\n        Perfil\n      </ion-segment-button>\n      <ion-segment-button (click) = "clickButton(\'two\')" class = "text-on-botton" value="two">\n          <ion-icon name="chatbubbles"></ion-icon>\n          Sanciones\n      </ion-segment-button>\n      <ion-segment-button (click) = "clickButton(\'three\')" class = "text-on-botton" value="three">\n          <ion-icon name="cog"></ion-icon>\n          Ajustes\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content  fullscreen #component [ngSwitch] = "selection" >\n <ion-item no-lines *ngSwitchCase = "\'one\'">\n   <ion-item id = "team-image-container" (click) = "goTeam()">\n      <img id = "user-team-image" src = "{{userService.getBaseURLforImages()}}shield.png">\n      <h1 id = "user-team-name">{{userService.getUserTeam()?.nombre}}</h1>\n   </ion-item>\n   <ion-row>\n    <ion-col>\n      Dorsal\n    </ion-col>\n    <ion-col class = "info-content">\n      <strong>{{userService.getUserLogged().dorsal}}</strong>\n    </ion-col>\n  </ion-row>\n   <ion-row lines>\n     <ion-col>\n       Goles\n     </ion-col>\n     <ion-col class = "info-content">\n       <strong>{{userService.getUserLogged().goles}}</strong>\n     </ion-col>\n   </ion-row>\n   <ion-row>\n      <ion-col>\n        Tartejas Amarillas\n      </ion-col>\n      <ion-col class = "info-content">\n        <strong>{{userService.getUserLogged()?.tarjetasAmarillas}}</strong>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n        <ion-col>\n          Tarjetas Rojas\n        </ion-col>\n        <ion-col class = "info-content">\n          <strong>{{userService.getUserLogged()?.tarjetasRojas}}</strong>\n        </ion-col>\n   </ion-row>\n   <h2>Sanciones activas:</h2>\n   <p *ngIf = "userService.getActiveSanctions() == undefined || userService.getActiveSanctions() == null"  id = "no-active-sanctions">No tienes sanciones activas</p>\n   <ion-card *ngFor = "let sanction of userService.getActiveSanctions()" id ="sanctions-card">\n     <ion-card-content>\n       <ion-row>\n         <ion-col class = "card-titles">Fecha de sanción</ion-col>\n         <ion-col class ="card-info" >{{sanction?.inicioSancion}}</ion-col>\n       </ion-row>\n       <ion-row>\n         <ion-col class = "card-titles">Partidos restantes: </ion-col>\n         <ion-col class ="card-info">{{sanction.partidosRestantes}}</ion-col>\n       </ion-row>\n     </ion-card-content>\n   </ion-card>\n </ion-item>\n\n <ion-item no-lines *ngSwitchCase = "\'two\'">\n    <ion-spinner class = "spinner" *ngIf = "playerSanctions == null" color ="ligth"></ion-spinner>\n    <ion-card *ngFor = "let sanction of playerSanctions" id ="sanctions-card">\n        <ion-card-content>\n          <ion-row>\n            <ion-col class = "card-titles">Fecha de sanción</ion-col>\n            <ion-col class ="card-info" >{{sanction?.inicioSancion}}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col class = "card-titles">Partidos restantes: </ion-col>\n            <ion-col class ="card-info">{{sanction.partidosRestantes}}</ion-col>\n          </ion-row>\n        </ion-card-content>\n      </ion-card>\n </ion-item>\n\n <ion-item no-lines *ngSwitchCase = "\'three\'">\n\n </ion-item>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\profile\profile.html"*/,
+            selector: 'page-profile',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\profile\profile.html"*/'<ion-header>\n  <ion-navbar height="20px" color="header">\n    <button ion-button menuToggle id="button-toggle">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Mi perfil</ion-title>\n  </ion-navbar>\n\n  <elastic-header [scrollArea] = "component" [headerHeight] = "header">\n      <img id="profile-image" src="{{userService.getBaseURLforImages()}}{{userService.getUserLogged()?.fotoJugador}}" imageViewer/>\n  </elastic-header>\n\n  <ion-toolbar color="header" mode="md" id = "toolbar-options">\n    <ion-segment color="underline" mode="md" [(ngModel)]= "selection">\n      <ion-segment-button (click) = "clickButton(\'one\')" class = "text-on-botton" value="one">\n        <ion-icon name="home"></ion-icon>\n        Perfil\n      </ion-segment-button>\n      <ion-segment-button (click) = "clickButton(\'two\')" class = "text-on-botton" value="two">\n          <ion-icon name="chatbubbles"></ion-icon>\n          Sanciones\n      </ion-segment-button>\n      <ion-segment-button (click) = "clickButton(\'three\')" class = "text-on-botton" value="three">\n          <ion-icon name="cog"></ion-icon>\n          Ajustes\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content  fullscreen #component [ngSwitch] = "selection" >\n <ion-item no-lines *ngSwitchCase = "\'one\'">\n   <ion-item id = "team-image-container" (click) = "goTeam()">\n      <img id = "user-team-image" src = "{{userService.getBaseURLforImages()}}shield.png">\n      <h1 id = "user-team-name">{{userService.getUserTeam()?.nombre}}</h1>\n   </ion-item>\n   <ion-row>\n    <ion-col>\n      Dorsal\n    </ion-col>\n    <ion-col class = "info-content">\n      <strong>{{userService.getUserLogged().dorsal}}</strong>\n    </ion-col>\n  </ion-row>\n   <ion-row lines>\n     <ion-col>\n       Goles\n     </ion-col>\n     <ion-col class = "info-content">\n       <strong>{{userService.getUserLogged().goles}}</strong>\n     </ion-col>\n   </ion-row>\n   <ion-row>\n      <ion-col>\n        Tartejas Amarillas\n      </ion-col>\n      <ion-col class = "info-content">\n        <strong>{{userService.getUserLogged()?.tarjetasAmarillas}}</strong>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n        <ion-col>\n          Tarjetas Rojas\n        </ion-col>\n        <ion-col class = "info-content">\n          <strong>{{userService.getUserLogged()?.tarjetasRojas}}</strong>\n        </ion-col>\n   </ion-row>\n   <h2>Sanciones activas:</h2>\n   <p *ngIf = "userService.getActiveSanctions() == undefined || userService.getActiveSanctions() == null"  id = "no-active-sanctions">No tienes sanciones activas</p>\n   <ion-card *ngFor = "let sanction of userService.getActiveSanctions()" id ="sanctions-card">\n     <ion-card-content>\n       <ion-row>\n         <ion-col class = "card-titles">Fecha de sanción</ion-col>\n         <ion-col class ="card-info" >{{sanction?.inicioSancion}}</ion-col>\n       </ion-row>\n       <ion-row>\n         <ion-col class = "card-titles">Partidos restantes: </ion-col>\n         <ion-col class ="card-info">{{sanction.partidosRestantes}}</ion-col>\n       </ion-row>\n     </ion-card-content>\n   </ion-card>\n </ion-item>\n\n <ion-item no-lines *ngSwitchCase = "\'two\'">\n    <ion-spinner class = "spinner" *ngIf = "playerSanctions == null" color ="ligth"></ion-spinner>\n    <ion-card *ngFor = "let sanction of playerSanctions" id ="sanctions-card">\n        <ion-card-content>\n          <ion-row>\n            <ion-col class = "card-titles">Fecha de sanción</ion-col>\n            <ion-col class ="card-info" >{{sanction?.inicioSancion}}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col class = "card-titles">Partidos restantes: </ion-col>\n            <ion-col class ="card-info">{{sanction.partidosRestantes}}</ion-col>\n          </ion-row>\n        </ion-card-content>\n      </ion-card>\n </ion-item>\n\n <ion-list no-lines *ngSwitchCase = "\'three\'">\n   <p class = "settings-titles">Notificaciones: </p>\n   <ion-item class = "notifications">\n      <ion-label>Nuevas sanciones</ion-label>\n      <ion-toggle></ion-toggle>\n   </ion-item>\n   <ion-item class = "notifications">\n      <ion-label>Fin de sanciones</ion-label>\n      <ion-toggle></ion-toggle>\n   </ion-item>\n   <ion-item class = "notifications">\n      <ion-label>Resultados de partidos</ion-label>\n      <ion-toggle></ion-toggle>\n   </ion-item>\n\n   <p class = "settings-titles">Cambio de contraseña</p>\n\n   <ion-input #oldpassword (keyup.enter) = "oldpassword.focusNext()" id = "old-password" type = "password" placeholder = "Contraseña antigua"></ion-input>\n\n   <ion-input #newpassword (keyup.enter) = "newpassword.focusNext()" class = "new-password" type = "password" placeholder = "Contraseña nueva"></ion-input>\n   <ion-input #newpasswordrepeat (keyup.enter) = "changePassword(oldpassword.value, newpassword.value, newpasswordrepeat.value)"  class = "new-password" type = "password" placeholder = "Reintroduzca la nueva contraseña"></ion-input>\n   <p id = "password-error"*ngIf = "newPasswordMatches">Las nuevas contraseñas no coinciden</p>\n   <button id = "send-passwords-button" ion-button block outline color = "light" (click)= "changePassword(oldpassword.value, newpassword.value, newpasswordrepeat.value)">Cambiar contraseña</button>\n </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\src\pages\profile\profile.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_4__app_services_sanction_service__["a" /* SanctionService */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Events */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__app_services_sanction_service__["a" /* SanctionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_services_sanction_service__["a" /* SanctionService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object])
     ], ProfilePage);
     return ProfilePage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=profile.js.map
@@ -869,10 +899,10 @@ var UserService = (function () {
     };
     UserService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__sanction_service__["a" /* SanctionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__sanction_service__["a" /* SanctionService */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__team_service__["a" /* TeamService */],
+            __WEBPACK_IMPORTED_MODULE_4__match_service__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_3__league_service__["a" /* LeagueService */], __WEBPACK_IMPORTED_MODULE_5__sanction_service__["a" /* SanctionService */]])
     ], UserService);
     return UserService;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=user.service.js.map
@@ -995,10 +1025,9 @@ var HttpClient = (function () {
     };
     HttpClient = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], HttpClient);
     return HttpClient;
-    var _a;
 }());
 
 ;

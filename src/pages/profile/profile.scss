@@ -129,4 +129,47 @@ page-profile {
     .spinner-md-crescent circle{
         stroke: white!important;
     }
+
+    #change-password{
+        margin-top:15px;
+    }
+
+    .notifications{
+        font-size: 95%;
+        color:rgb(236, 232, 232);
+    }
+
+    .settings-titles{
+        margin-left: 15px;
+        font-size: 110%;
+    }
+
+    #old-password{
+        width: 92%;
+        margin:12px auto;
+        color:white;
+        margin-bottom: 20px;
+        background: #38485c;
+    }
+
+    .new-password{
+        width: 92%;
+        margin:12px auto;
+        color:white;
+        background: #38485c;
+    }
+
+    *::-webkit-input-placeholder{
+        color:rgba(252, 252, 252, 0.438)!important;
+    }
+
+    #password-error{
+        margin-left: 15px;
+        color: red;
+    }
+
+    #send-passwords-button{
+        margin: 12px auto;
+        width: 92%;
+    }
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, Content} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, Content, AlertController} from 'ionic-angular';
 
 import { HomeTabsPage } from '../home-tabs/home-tabs';
 
@@ -18,9 +18,10 @@ export class ProfilePage {
   private header: number;
   private playerSanctions: any;
   private clickImage: boolean = false;
+  private newPasswordMatches: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private events: Events,
-  private sanctionService: SanctionService) {
+  private sanctionService: SanctionService, private alertCtrl: AlertController) {
     this.selection = "one";
     this.header = 150;
   }
@@ -40,6 +41,36 @@ export class ProfilePage {
 
   goTeam(){
     this.navCtrl.push(HomeTabsPage, {id:[this.navParams.get('id')[0]]});
+  }
+
+  changePassword(oldPassword:string, newPassword:string, newPasswordRepeat:string){
+    if(newPassword != newPasswordRepeat){
+      this.newPasswordMatches = true;
+    } else{
+      this.presentAlert();
+    }
+  }
+
+  presentAlert(){
+    let alert = this.alertCtrl.create({
+      title:"Confirmación de cambio",
+      message: "¿Esta seguro de querer cambniar la contraseña?",
+      buttons:[
+        {
+          text:"NO",
+          role: "cancel"
+        },
+        {
+          text:"SÍ",
+          handler:()=>{
+            //metodo de cambio de contraseña
+          }
+        }
+      ]
+    });
+
+    alert.present();
+    
   }
 
   resizeHeader(){

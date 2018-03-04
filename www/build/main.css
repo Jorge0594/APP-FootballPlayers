@@ -37729,6 +37729,49 @@ page-profile .spinner-md-crescent circle {
   stroke: white !important;
 }
 
+page-profile #change-password {
+  margin-top: 15px;
+}
+
+page-profile .notifications {
+  font-size: 95%;
+  color: #ece8e8;
+}
+
+page-profile .settings-titles {
+  margin-left: 15px;
+  font-size: 110%;
+}
+
+page-profile #old-password {
+  width: 92%;
+  margin: 12px auto;
+  color: white;
+  margin-bottom: 20px;
+  background: #38485c;
+}
+
+page-profile .new-password {
+  width: 92%;
+  margin: 12px auto;
+  color: white;
+  background: #38485c;
+}
+
+page-profile *::-webkit-input-placeholder {
+  color: rgba(252, 252, 252, 0.438) !important;
+}
+
+page-profile #password-error {
+  margin-left: 15px;
+  color: red;
+}
+
+page-profile #send-passwords-button {
+  margin: 12px auto;
+  width: 92%;
+}
+
 page-teams .toolbar-ios {
   border: 0px !important;
   border-bottom: 1.5px !important;

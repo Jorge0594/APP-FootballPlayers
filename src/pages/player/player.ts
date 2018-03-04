@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { PlayerService } from '../../app/services/player.service';
 import { TeamService } from '../../app/services/team.service';
+import { UserService } from '../../app/services/user.service';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,8 @@ export class PlayerPage {
   private player: any;
   private playerTeam: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private playerService: PlayerService, private teamService:TeamService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private playerService: PlayerService,
+     private teamService:TeamService, private userService: UserService) {
     this.teamService.getPlayerTeamById(this.navParams.get('teamId')).subscribe(
       team => this.playerTeam = team
     );
