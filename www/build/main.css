@@ -37586,10 +37586,6 @@ page-player ion-header {
   background: #222f3e !important;
 }
 
-page-player .resize #player-name-text {
-  font-size: 90% !important;
-}
-
 page-profile elastic-header {
   background-color: #363636;
   color: #fff;
@@ -37653,6 +37649,10 @@ page-profile #sanctions-card {
   margin: 0px;
   margin-top: 10px !important;
   width: 100%;
+}
+
+page-profile .spired {
+  background: #55759c !important;
 }
 
 page-profile button.row {

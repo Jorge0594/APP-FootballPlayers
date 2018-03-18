@@ -17,7 +17,7 @@
     </ion-row>
     <ion-row *ngIf="player != undefined && playerTeam != undefined">
       <ion-col col-xs-12 id = "player-name">
-          <h1 [class.resize] = "isResize" id = "player-name-text">{{player?.nombre}}    {{player?.apellidos}}</h1>
+          <h2 id = "player-name-text">{{player?.nombre}}    {{player?.apellidos}}</h2>
       </ion-col>
     </ion-row>
 </ion-header>

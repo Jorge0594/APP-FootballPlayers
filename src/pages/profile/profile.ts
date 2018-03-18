@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, Content, AlertController} from 'ionic-angular';
 
 import { HomeTabsPage } from '../home-tabs/home-tabs';
+import { SanctionPage } from '../sanction/sanction';
 
 import { UserService } from '../../app/services/user.service';
 import { SanctionService } from '../../app/services/sanction.service';
@@ -77,5 +78,10 @@ export class ProfilePage {
     this.content.scrollTo(0, 0, 0);//relocate the content after click in a button
     this.events.publish('resizeHeader');
   }
+
+  viewSanction(id:String){
+    this.navCtrl.push(SanctionPage, {id:id});
+  }
+
   
 }

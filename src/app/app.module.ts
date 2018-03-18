@@ -27,6 +27,7 @@ import { TabRanks } from '../pages/home-tabs/Tabs/ranks/ranks-tab';
 import { PlayerPage } from '../pages/player/player';
 import { MatchPage } from '../pages/match/match';
 import { TeamsPage } from '../pages/teams/teams';
+import { SanctionPage } from '../pages/sanction/sanction';
 import { ProfilePage } from '../pages/profile/profile';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ProfilePage } from '../pages/profile/profile';
     TabRounds,
     TabRanks,
     PlayerPage,
+    SanctionPage,
     MatchPage,
     TeamsPage,
     ProfilePage,
@@ -62,7 +64,8 @@ import { ProfilePage } from '../pages/profile/profile';
     MatchPage,
     TeamsPage,
     ProfilePage,
-    ElasticHeader
+    ElasticHeader,
+    SanctionPage
   ],
   providers: [
     HttpModule,
