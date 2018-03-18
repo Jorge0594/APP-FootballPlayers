@@ -1,17 +1,56 @@
 
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>sanction</ion-title>
+  <ion-navbar color="header">
+    <ion-title>Sanción</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+ <ion-grid *ngIf = "sanction != undefined">
+  <ion-row>
+      <ion-col class = "sanction-titles">Jugador sancionado:</ion-col>
+      <ion-col class = "sanction-content"><strong>{{userService?.getUserLogged().nombre}}</strong></ion-col>
+  </ion-row>
 
-  <ion-row class = "sanction-titles">Jugador Sancionado</ion-row>
-  <ion-row id = "player-name">{{userService?.getUserLogged().nombre}}</ion-row>
+  <ion-row>
+      <ion-col class = "sanction-titles">Sancionado por:</ion-col>
+      <ion-col class = "sanction-content"><strong>Nombre del arbitro</strong></ion-col>
+  </ion-row>
 
-  <ion-row></ion-row>
+  <ion-row>
+    <ion-col class = "sanction-titles">Fecha inicio:</ion-col>
+    <ion-col class = "sanction-content"><strong>{{sanction?.inicioSancion}}</strong></ion-col>
+  </ion-row>
+  
+  <ion-row>
+      <ion-col class = "sanction-titles">Fecha fin:</ion-col>
+      <ion-col class = "sanction-content"><strong>{{sanction?.finSancion}}</strong></ion-col>
+  </ion-row>
+
+  <ion-row>
+      <ion-col class = "sanction-titles">Estado:</ion-col>
+      <ion-col id = "operative" class = "sanction-content" *ngIf = "sanction?.enVigor" [class.operative] = "sanction?.enVigor" ><strong>En vigor</strong></ion-col>
+      <ion-col class = "sanction-content" *ngIf = "!sanction?.enVigor"><strong>Terminada</strong></ion-col>
+  </ion-row>
+
+  <ion-row>
+      <ion-col class = "sanction-titles">Partidos sancionados:</ion-col>
+      <ion-col class = "sanction-content">{{sanction?.partidosSancionados}}</ion-col>
+  </ion-row>
+
+  <ion-row *ngIf = "sanction?.enVigor">
+      <ion-col class = "sanction-titles">Partidos restantes:</ion-col>
+      <ion-col class = "sanction-content">{{sanction?.partidosRestantes}}</ion-col>
+  </ion-row>
+
+  <ion-row id = "description-title">Descripción:</ion-row>
+  <ion-card id = "description">
+      <ion-card-content>
+          {{sanction?.descripcion}}
+      </ion-card-content>
+  </ion-card>
+ </ion-grid>
 </ion-content>

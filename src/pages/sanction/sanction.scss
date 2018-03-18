@@ -1,3 +1,52 @@
 page-sanction {
+    .ion-scroll{
+        padding: 0px!important;
+        margin: 0px!important;
+    }
+
+    ion-grid{
+        padding:0px!important;
+        margin: 0px!important;
+    }
+
+    ion-title{
+        margin-right: 40px;
+        text-align: center;
+    }
+
+    ion-col, ion-row{
+        color:white;
+    }
+
+    ion-row{
+        padding:10px;
+    }
+
+    .sanction-titles{
+        color:#65bef1;
+        text-align: left;
+    }
+
+    .sanction-content{
+        margin-left: 15px;
+        text-align: left;
+    }
+    #description-title{
+        color:#65bef1;
+        text-align: left;
+        margin-left: 15px;
+        padding: 0px;
+        margin-top:5;
+    }
+
+    #description{
+        color:white;
+        background: #35485f;
+    }
+
+    .operative{
+        color:#c0392b!important;
+    }
+
 
 }

@@ -14,7 +14,7 @@ export class SanctionPage {
   private sanction: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sanctionService: SanctionService, private userService: UserService) {
-    this.sanctionService.getSanctionById(this.navParams.get('id')).subscribe(
+    this.sanctionService.getSanctionById(this.navParams.get('idSanction')).subscribe(
       sanction => this.sanction = sanction
     );
   }

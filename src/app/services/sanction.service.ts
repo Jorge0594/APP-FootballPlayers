@@ -26,7 +26,7 @@ export class SanctionService{
     }
 
     getSanctionById(id:String){
-        return this.http.get(BASE_URL + "id/" + id).map(
+        return this.http.get(BASE_URL + id).map(
             response => response,
             error => console.error(error)
         );

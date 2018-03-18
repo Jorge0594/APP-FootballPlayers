@@ -37776,6 +37776,56 @@ page-profile #send-passwords-button {
   width: 92%;
 }
 
+page-sanction .ion-scroll {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+page-sanction ion-grid {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+page-sanction ion-title {
+  margin-right: 40px;
+  text-align: center;
+}
+
+page-sanction ion-col, page-sanction ion-row {
+  color: white;
+}
+
+page-sanction ion-row {
+  padding: 10px;
+}
+
+page-sanction .sanction-titles {
+  color: #65bef1;
+  text-align: left;
+}
+
+page-sanction .sanction-content {
+  margin-left: 15px;
+  text-align: left;
+}
+
+page-sanction #description-title {
+  color: #65bef1;
+  text-align: left;
+  margin-left: 15px;
+  padding: 0px;
+  margin-top: 5;
+}
+
+page-sanction #description {
+  color: white;
+  background: #35485f;
+}
+
+page-sanction .operative {
+  color: #c0392b !important;
+}
+
 page-teams .toolbar-ios {
   border: 0px !important;
   border-bottom: 1.5px !important;

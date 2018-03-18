@@ -79,8 +79,8 @@ export class ProfilePage {
     this.events.publish('resizeHeader');
   }
 
-  viewSanction(id:String){
-    this.navCtrl.push(SanctionPage, {id:id});
+  viewSanction(id: string){
+    this.navCtrl.push(SanctionPage, {idSanction:id});
   }
 
   
