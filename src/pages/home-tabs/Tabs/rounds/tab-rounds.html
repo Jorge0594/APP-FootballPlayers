@@ -9,26 +9,27 @@
     </ion-slides>
    
     <ion-row id = "no-matches" *ngIf = "isEmpty">No hay partidos disponibles</ion-row>
-    <ion-scroll  style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'league' && userService.getUserLeague().partidos != undefined">
-        <ion-grid *ngFor = "let match of userService.getUserLeague().partidos; let i = index" (click) = "matchInfo(match.id)">
+    <ion-spinner class = "spinner" *ngIf = "roundMatches == null && teamMatches == null && !isEmpty"></ion-spinner>
+    <ion-scroll  style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'league' && roundMatches != undefined">
+        <ion-grid *ngFor = "let match of roundMatches; let i = index" (click) = "matchInfo(match.id)">
             <div *ngIf ="match.jornada == roundSelected">
-            <ion-row id = "date" *ngIf = "i == 0 || match.fechaPartido != userService.getUserLeague().partidos[i-1]?.fechaPartido">
-                <ion-col>{{match.fechaPartido}}</ion-col>
-            </ion-row>
-            <ion-row class = "lines"></ion-row>
-            <ion-row *ngIf = "match.estado != 'Disputado' && match.estado != 'disputado'">
-                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
-                <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>
-                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>
-            </ion-row>
-            <ion-row *ngIf = "match.estado == 'Disputado' || match.estado == 'disputado'">
-                <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
-                <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>
-                <ion-col col-2><h1>-</h1></ion-col>
-                <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>
-                <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>
-            </ion-row>
-            <ion-row class = "lines" *ngIf = "(i+1) == userService.getUserLeague().partidos.length"></ion-row>
+                <ion-row id = "date" *ngIf = "i == 0 || match.fechaPartido != roundMatches[i-1]?.fechaPartido">
+                    <ion-col>{{match.fechaPartido}}</ion-col>
+                </ion-row>
+                <ion-row class = "lines"></ion-row>
+                <ion-row *ngIf = "match.estado != 'Disputado' && match.estado != 'disputado'">
+                    <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
+                    <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>
+                    <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>
+                </ion-row>
+                <ion-row *ngIf = "match.estado == 'Disputado' || match.estado == 'disputado'">
+                    <ion-col col-4 class= "team-local">{{match.equipoLocal.nombre}}</ion-col>
+                    <ion-col col-1 class= "score-local"><h1>{{match.golesLocal}}</h1></ion-col>
+                    <ion-col col-2><h1>-</h1></ion-col>
+                    <ion-col col-1 class = "score-visitor"><h1>{{match.golesVisitante}}</h1></ion-col>
+                    <ion-col col-4 class = "team-visitor">{{match.equipoVisitante.nombre}}</ion-col>
+                </ion-row>
+                <ion-row class = "lines" *ngIf = "(i+1) == roundMatches.length"></ion-row>
             </div>
         </ion-grid>
   </ion-scroll>

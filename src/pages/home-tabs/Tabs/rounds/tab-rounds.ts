@@ -30,7 +30,7 @@ export class TabRounds {
     switch (this.navParams.data[0]){
       case 'league':
         this.roundSelected = 1;
-        /*if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
+        if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
           this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
             matches =>{
               this.roundMatches = matches;
@@ -38,16 +38,13 @@ export class TabRounds {
             },
             error => console.error(error)
           );
-        }*/
-        setTimeout(() => {
-          this.slides.slideTo(this.roundSelected -1);
-        }, 500);
+        }
+        this.slideToRecursive(this.roundSelected - 1);
       break;
       case 'team':
         this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(
           matches =>{
             this.teamMatches = matches;
-            console.log(this.teamMatches);
             if(this.teamMatches == null) this.isEmpty = true;
           } 
         );
@@ -56,7 +53,6 @@ export class TabRounds {
         this.matchService.getMatchTeamById(this.navParams.data[1]).subscribe(
           matches =>{
             this.teamMatches = matches;
-            console.log(this.teamMatches);
             if(this.teamMatches == null) this.isEmpty = true;
           } 
         );
@@ -73,7 +69,7 @@ export class TabRounds {
       this.roundSelected = day;
     }
 
-    /*this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
+    this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
       matches =>{
         if(matches != null){
           if (this.roundSelected == matches[0].jornada){
@@ -84,10 +80,33 @@ export class TabRounds {
         }
       },
       error => console.error(error)
-    );*/
+    );
   }
 
   matchInfo(id:any){
     this.app.getRootNav().push(MatchPage, { matchId:id });
+  }
+
+  private slideToRecursive(index: number): Promise<void> {
+    return new Promise((resolve: Function, reject: Function): void => {
+        let tryCount: number = 0;
+        this.slideTo(index, tryCount, resolve, reject);
+    });
+  }
+
+  private slideTo(index: number, tryCount:number, resolve: Function, reject: Function){
+    try{
+      this.slides.slideTo(index);
+      resolve();
+    } catch (error){
+      if(tryCount < 100){
+        tryCount++;
+        setTimeout(()=>{
+          this.slideTo(index, tryCount, resolve, reject);
+        }, 50);
+      } else {
+        reject(error);
+      }
+    }
   }
 }
