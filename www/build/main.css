@@ -37781,13 +37781,18 @@ page-sanction .ion-scroll {
   margin: 0px !important;
 }
 
+page-sanction #close-modal-button {
+  color: #86bbda;
+  font-size: 95%;
+}
+
 page-sanction ion-grid {
   padding: 0px !important;
   margin: 0px !important;
 }
 
 page-sanction ion-title {
-  margin-right: 40px;
+  margin-left: 40px;
   text-align: center;
 }
 

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, Content, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, Content, AlertController, ModalController} from 'ionic-angular';
 
 import { HomeTabsPage } from '../home-tabs/home-tabs';
 import { SanctionPage } from '../sanction/sanction';
@@ -22,7 +22,7 @@ export class ProfilePage {
   private newPasswordMatches: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private events: Events,
-  private sanctionService: SanctionService, private alertCtrl: AlertController) {
+  private sanctionService: SanctionService, private alertCtrl: AlertController,private modalController: ModalController) {
     this.selection = "one";
     this.header = 150;
   }
@@ -80,7 +80,9 @@ export class ProfilePage {
   }
 
   viewSanction(id: string){
-    this.navCtrl.push(SanctionPage, {idSanction:id});
+    let modal = this.modalController.create(SanctionPage, {idSanction:id});
+    modal.present();
+    //this.navCtrl.push(SanctionPage, {idSanction:id});
   }
 
   
