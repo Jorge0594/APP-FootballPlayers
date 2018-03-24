@@ -35,8 +35,7 @@
 
   <ion-row>
       <ion-col class = "sanction-titles">Estado:</ion-col>
-      <ion-col id = "operative" class = "sanction-content" *ngIf = "sanction?.enVigor" [class.operative] = "sanction?.enVigor" ><strong>En vigor</strong></ion-col>
-      <ion-col class = "sanction-content" *ngIf = "!sanction?.enVigor"><strong>Terminada</strong></ion-col>
+        <ion-col id = "operative" class = "sanction-content"  [class.operative] = "sanction?.enVigor" ><strong>{{sanction?.enVigor ? 'En vigor' : 'Cumplida'}}</strong></ion-col>
   </ion-row>
 
   <ion-row>

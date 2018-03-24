@@ -37150,6 +37150,11 @@ tab-rounds .lines {
   background: rgba(101, 186, 207, 0.274) !important;
 }
 
+tab-rounds .team-view-rounds #date {
+  background: #435569 !important;
+  color: #ffd028;
+}
+
 tab-rounds #no-matches {
   height: 50px;
   margin-top: 80px;
@@ -37651,6 +37656,10 @@ page-profile #sanctions-card {
   width: 100%;
 }
 
+page-profile .spired {
+  background: #55759c !important;
+}
+
 page-profile button.row {
   width: 100%;
   background: #ced6e0;
@@ -37727,6 +37736,104 @@ page-profile .spinner {
 
 page-profile .spinner-md-crescent circle {
   stroke: white !important;
+}
+
+page-profile #change-password {
+  margin-top: 15px;
+}
+
+page-profile .notifications {
+  font-size: 95%;
+  color: #ece8e8;
+}
+
+page-profile .settings-titles {
+  margin-left: 15px;
+  font-size: 110%;
+}
+
+page-profile #old-password {
+  width: 92%;
+  margin: 12px auto;
+  color: white;
+  margin-bottom: 20px;
+  background: #38485c;
+}
+
+page-profile .new-password {
+  width: 92%;
+  margin: 12px auto;
+  color: white;
+  background: #38485c;
+}
+
+page-profile *::-webkit-input-placeholder {
+  color: rgba(252, 252, 252, 0.438) !important;
+}
+
+page-profile #password-error {
+  margin-left: 15px;
+  color: red;
+}
+
+page-profile #send-passwords-button {
+  margin: 12px auto;
+  width: 92%;
+}
+
+page-sanction .ion-scroll {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+page-sanction #close-modal-button {
+  color: #86bbda;
+  font-size: 95%;
+}
+
+page-sanction ion-grid {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+page-sanction ion-title {
+  margin-left: 40px;
+  text-align: center;
+}
+
+page-sanction ion-col, page-sanction ion-row {
+  color: white;
+}
+
+page-sanction ion-row {
+  padding: 10px;
+}
+
+page-sanction .sanction-titles {
+  color: #65bef1;
+  text-align: left;
+}
+
+page-sanction .sanction-content {
+  margin-left: 15px;
+  text-align: left;
+}
+
+page-sanction #description-title {
+  color: #65bef1;
+  text-align: left;
+  margin-left: 15px;
+  padding: 0px;
+  margin-top: 5;
+}
+
+page-sanction #description {
+  color: white;
+  background: #35485f;
+}
+
+page-sanction .operative {
+  color: #c0392b !important;
 }
 
 page-teams .toolbar-ios {

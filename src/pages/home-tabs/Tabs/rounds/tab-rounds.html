@@ -34,7 +34,7 @@
         </ion-grid>
   </ion-scroll>
   <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf="navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'">
-    <ion-grid *ngFor = "let match of teamMatches; let i = index" (click) = "matchInfo(match.id)">
+    <ion-grid *ngFor = "let match of teamMatches; let i = index" (click) = "matchInfo(match.id)" [class.team-view-rounds] = "navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'">
         <ion-row id = "date" *ngIf = "i == 0 || match.fechaPartido != teamMatches[i-1].fechaPartido">
             <ion-col>{{match.fechaPartido}}</ion-col>
         </ion-row>

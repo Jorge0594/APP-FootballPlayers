@@ -37150,6 +37150,11 @@ tab-rounds .lines {
   background: rgba(101, 186, 207, 0.274) !important;
 }
 
+tab-rounds .team-view-rounds #date {
+  background: #435569 !important;
+  color: #ffd028;
+}
+
 tab-rounds #no-matches {
   height: 50px;
   margin-top: 80px;
