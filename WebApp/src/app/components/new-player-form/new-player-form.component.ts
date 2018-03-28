@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-new-player-form',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewPlayerFormComponent implements OnInit {
 
+  @Input() id: string;
   constructor() { }
 
   ngOnInit() {
