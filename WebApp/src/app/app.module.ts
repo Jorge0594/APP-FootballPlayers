@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material';
 import { HttpClient } from './services/httpClient.service';
 import { UserService } from './services/user.service';
 import { LoginService } from './services/login.service';
+import { ComponentService } from './services/component.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,13 @@ import { LoginService } from './services/login.service';
     BrowserAnimationsModule
   ],
   providers: [
+    ComponentService,
     HttpClient,
     UserService,
     LoginService
+  ],
+  entryComponents:[
+    NewPlayerFormComponent
   ],
   bootstrap: [AppComponent]
 })
