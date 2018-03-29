@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef, Input } from '@angular/core';
 
 import { NewPlayerFormComponent } from './components/new-player-form/new-player-form.component';
 
@@ -25,13 +25,12 @@ export class AppComponent {
     const factory: ComponentFactory<NewPlayerFormComponent> = this.resolver.resolveComponentFactory(NewPlayerFormComponent);
     this.componentRef = this.component.createComponent(factory);
 
-    this.componentService.addNewComponent(this.componentRef.instance);
+    this.componentService.addNewComponent(this.componentRef);
   }
 
   showComponents(){
-    console.log(this.componentService.getComponents().length)
-    for( let Component of this.componentService.getComponents()){
-      console.log(Component);
+    for( let component of this.componentService.getComponents()){
+      console.log(component.instance.name);
     }
   }
 
