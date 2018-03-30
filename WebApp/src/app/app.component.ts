@@ -15,10 +15,8 @@ export class AppComponent {
 
   @ViewChild('panel', {read: ViewContainerRef}) private component;
   private componentRef: ComponentRef<any>;
-  private element:ElementRef;
 
-  constructor(private componentService: ComponentService, private resolver: ComponentFactoryResolver){
-  }
+  constructor(private componentService: ComponentService, private resolver: ComponentFactoryResolver){}
 
 
   createPanel(){
@@ -29,8 +27,8 @@ export class AppComponent {
   }
 
   showComponents(){
-    for( let component of this.componentService.getComponents()){
-      console.log(component.instance.name);
+   for( let comp of this.componentService.getComponents()){
+      console.log(comp.component.instance.name);
     }
   }
 

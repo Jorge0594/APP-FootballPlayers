@@ -13,7 +13,7 @@ export class NewPlayerFormComponent implements OnInit {
   ngOnInit() {
     this.name = "";
   }
-
+  //Update all input's values
   getValue(name:string){
     this.name = name;
   }
