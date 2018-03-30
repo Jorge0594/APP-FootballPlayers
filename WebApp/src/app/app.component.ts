@@ -11,13 +11,14 @@ import { ComponentService } from './services/component.service';
 })
 export class AppComponent {
   title = 'app';
-  private count: number;
+
+
 
   @ViewChild('panel', {read: ViewContainerRef}) private component;
   private componentRef: ComponentRef<any>;
+  private currectComponentName:string;
 
   constructor(private componentService: ComponentService, private resolver: ComponentFactoryResolver){}
-
 
   createPanel(){
     const factory: ComponentFactory<NewPlayerFormComponent> = this.resolver.resolveComponentFactory(NewPlayerFormComponent);
@@ -31,6 +32,5 @@ export class AppComponent {
       console.log(comp.component.instance.name);
     }
   }
-
 
 }
