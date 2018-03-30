@@ -12,8 +12,10 @@ branches:
 matrix:
   - os: linux
 
+before_script: 
+  - cd MobileApp
+
 script:
-  - cd /MobileApp
   - npm run lint
   - npm test
 
