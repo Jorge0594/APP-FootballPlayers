@@ -1,3 +1,44 @@
-<p>
-  request-account works!
-</p>
+<mat-toolbar  class = "page-title"><span>Solictud de usuario para alta del equipo</span></mat-toolbar>
+
+<mat-card id = "contact-card">
+    <mat-toolbar class = "mat-elevation-z5" id = "form-title">Formulario de solicitud</mat-toolbar>
+
+    <mat-form-field class = "name-imputs">
+        <input #name [formControl]="inputName" matInput placeholder="Nombre" required>
+        <mat-error *ngIf="inputName.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class = "name-imputs">
+        <input #lastname [formControl]="inputLastname" matInput placeholder="Apellidos" required>
+        <mat-error *ngIf="inputLastname.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class = "info-inputs">
+        <input #email [formControl]="inputEmail" matInput placeholder="Email" required>
+        <mat-error *ngIf="inputEmail.invalid">{{getEmailError()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class = "info-inputs">
+        <input #teamname [formControl]="inputTeamName" matInput placeholder="Nombre del equipo" required>
+        <mat-error *ngIf="inputTeamName.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class = "info-inputs">
+        <input #nplayers [formControl]="inputPlayers" matInput type = "number" placeholder="Número de jugadores" required>
+        <mat-error *ngIf="inputPlayers.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class = "info-inputs">
+        <mat-select [formControl]="inputCampus" #selected placeholder="Campus URJC" required>
+            <mat-option  value = "{{option}}"*ngFor = "let option of options">{{option}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="inputCampus.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class = "more-info">
+        <input #moreinfo matInput placeholder="Más información" >
+    </mat-form-field>
+
+    <p *ngIf = "error" id = "error-message">Rellene todos los campos correctamente</p>
+</mat-card>
+
+<button mat-button (click) = "sendData(name.value, lastname.value, email.value, teamname.value, nplayers.value, selected.value, moreinfo.value)" class = "mat-elevation-z5" id = "send-button">Enviar formulario</button>

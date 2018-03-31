@@ -18,7 +18,7 @@ export class LoginGuestComponent implements OnInit {
   }
 
   getUserErrorMessage(){
-      return this.userInput.hasError('required') ? "Por favor introduzca su usario" : "Por favor introduzca un usuario valido";
+      return this.userInput.hasError('required') ? "Por favor introduzca su usuario" : "Por favor introduzca un usuario valido";
   }
 
   getPasswordErrorMessage(){

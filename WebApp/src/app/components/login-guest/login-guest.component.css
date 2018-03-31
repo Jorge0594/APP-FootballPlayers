@@ -1,13 +1,14 @@
-#page-title{
+.page-title{
     max-width: 50%;
+    min-width: 480px;
     margin-top: 35px;
     text-align: center!important;
-    font-size: 200%; 
+    font-size: 150%; 
     margin-left: auto;
     margin-right: auto;
 }
 
-#page-title span{
+.page-title span{
     margin: 0 auto;
 }
 

@@ -11,7 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NewPlayerFormComponent } from './components/new-player-form/new-player-form.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule, MatToolbarModule, MatCardModule, MatButton, MatIconModule, MatFormFieldModule } from '@angular/material';
+import { MatInputModule, MatToolbarModule, MatCardModule, MatButton, MatIconModule, MatFormFieldModule, MatSelectModule, MatOptionModule } from '@angular/material';
 
 import { HttpClient } from './services/httpClient.service';
 import { UserService } from './services/user.service';
@@ -39,6 +39,8 @@ const appRoutes: Routes = [
     NavBarComponent
   ],
   imports: [
+    MatOptionModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
