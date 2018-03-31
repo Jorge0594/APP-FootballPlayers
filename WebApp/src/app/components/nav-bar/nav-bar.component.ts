@@ -11,7 +11,6 @@ import { ActivatedRoute } from '@angular/router/src/router_state';
 export class NavBarComponent implements OnInit {
 
   private options: {rigth:[{name:string, path:string}], left:[{name:string, path:string}]};
-  private route: ActivatedRoute;
   
   constructor(private userService: UserService) {
     if(this.userService.isUserLogged()){
@@ -27,14 +26,13 @@ export class NavBarComponent implements OnInit {
     } else {
       this.options = {
         rigth: [
-          {name: "Inicio", path: "/inicio"}, 
           {name: "Iniciar Sesión", path: "/iniciarSesion"},
           {name: "Solicitar usuario", path: "/solicitarUsuario"}
         ],
         left: [
           {name: "", path: ""} 
         ]
-      };
+      }
     }
    }
 

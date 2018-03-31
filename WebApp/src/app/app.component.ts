@@ -13,7 +13,6 @@ export class AppComponent {
   title = 'app';
 
 
-
   @ViewChild('panel', {read: ViewContainerRef}) private component;
   private componentRef: ComponentRef<any>;
   private currectComponentName:string;

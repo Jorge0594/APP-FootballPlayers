@@ -12,4 +12,9 @@ export class LoginGuestComponent implements OnInit {
   ngOnInit() {
   }
 
+  login(user:string, password:string){
+    //call Login
+  }
+
+
 }

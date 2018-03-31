@@ -1,3 +1,18 @@
-<p>
-  login-guest works!
-</p>
+
+<mat-toolbar  id = "page-title"><span>Acceso a la aplicación de alta de equipos</span></mat-toolbar>
+<mat-card id = "login-card">
+  <mat-toolbar class = "mat-elevation-z5" id = "toolbar-title">Inicio de sesion</mat-toolbar>
+  <mat-card-content>
+    <mat-form-field class = "login-inputs">
+      <input #user  matInput placeholder="Usuario" required="true">
+    </mat-form-field>
+    <mat-form-field class = "login-inputs">
+      <input #password  matInput type="password" placeholder="Contraseña" required="true">
+    </mat-form-field>
+
+    <button mat-button class = "mat-elevation-z5" id = "login-button" (click) = "login(user.value, password.value)">Iniciar sesión</button>
+
+    <p>¿No tiene usuario? <a href="#" routerLink = "/solicitarUsuario">Solicitar usuario</a></p>
+  </mat-card-content>
+</mat-card>
+
