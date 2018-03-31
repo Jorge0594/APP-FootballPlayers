@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -9,7 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NewPlayerFormComponent } from './components/new-player-form/new-player-form.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule, MatToolbarModule, MatCardModule, MatButton } from '@angular/material';
+import { MatInputModule, MatToolbarModule, MatCardModule, MatButton, MatIconModule, MatFormFieldModule } from '@angular/material';
 
 import { HttpClient } from './services/httpClient.service';
 import { UserService } from './services/user.service';
@@ -37,6 +39,10 @@ const appRoutes: Routes = [
     NavBarComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatIconModule,
     MatCardModule,
     MatToolbarModule,
     MatInputModule,

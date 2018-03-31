@@ -4,10 +4,13 @@
   <mat-toolbar class = "mat-elevation-z5" id = "toolbar-title">Inicio de sesion</mat-toolbar>
   <mat-card-content>
     <mat-form-field class = "login-inputs">
-      <input #user  matInput placeholder="Usuario" required="true">
+      <input [formControl]="userInput"  matInput placeholder="Usuario" required>
+      <mat-error *ngIf="userInput.invalid">{{getUserErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field class = "login-inputs">
-      <input #password  matInput type="password" placeholder="Contraseña" required="true">
+      <input #password [formControl]="passwordInput"  matInput [type]="hide ? 'password' : 'text'" placeholder="Contraseña" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="passwordInput.invalid">{{getPasswordErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <button mat-button class = "mat-elevation-z5" id = "login-button" (click) = "login(user.value, password.value)">Iniciar sesión</button>
