@@ -83,8 +83,8 @@ export class TabRounds {
     );
   }
 
-  matchInfo(id:any){
-    this.app.getRootNav().push(MatchPage, { matchId:id });
+  matchInfo(id:string, status:string){
+    this.app.getRootNav().push(MatchPage, { matchId:id, matchStatus:status });
   }
 
   private slideToRecursive(index: number): Promise<void> {

@@ -2,6 +2,11 @@ import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+
+
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import 'rxjs/Rx';
 
 const BASE_URL = "https://192.168.1.39:8443/";
@@ -32,6 +37,12 @@ export class HttpClient{
                 return response.json()},
             error => console.error(error.json())
         );
+    }
+
+    getIP(): Observable<any[]> {
+        return this.http.get('http://ipinfo.io') 
+        .map(response => response.json()) 
+        .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }
 
     getRecoveredPasword(url:any){

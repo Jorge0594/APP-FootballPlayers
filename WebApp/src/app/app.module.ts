@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NewPlayerFormComponent } from './components/new-player-form/new-player-form.component';
@@ -17,6 +18,8 @@ import { HttpClient } from './services/httpClient.service';
 import { UserService } from './services/user.service';
 import { LoginService } from './services/login.service';
 import { ComponentService } from './services/component.service';
+import { IpClientService } from './services/clientIp.service';
+
 import { LoginGuestComponent } from './components/login-guest/login-guest.component';
 import { TeamCreatorComponent } from './components/team-creator/team-creator.component';
 import { RequestAccountComponent } from './components/request-account/request-account.component';
@@ -39,6 +42,7 @@ const appRoutes: Routes = [
     NavBarComponent
   ],
   imports: [
+    HttpModule,
     MatOptionModule,
     MatSelectModule,
     FormsModule,
@@ -58,6 +62,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     ComponentService,
+    IpClientService,
     HttpClient,
     UserService,
     LoginService

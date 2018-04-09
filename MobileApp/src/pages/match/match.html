@@ -5,9 +5,9 @@
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
-  <ion-row *ngIf ="match?.estado == 'Disputado' || match?.estado == 'disputado'" id = "match-info">
+  <ion-row *ngIf ="status == 'Disputado' || status == 'disputado'" id = "match-info">
     <ion-col id = "local-name">
-      <strong>{{match?.equipoLocal.nombre}}</strong>
+      <strong>{{match?.equipoLocalNombre}}</strong>
     </ion-col>
     <ion-col id = "goals-local">
       {{match?.golesLocal}}
@@ -19,18 +19,18 @@
       {{match?.golesVisitante}}
     </ion-col>
     <ion-col id = "visitor-name">
-      <strong>{{match?.equipoVisitante.nombre}}</strong>
+      <strong>{{match?.equipoVisitanteNombre}}</strong>
     </ion-col>
   </ion-row>
-  <ion-row *ngIf= "match?.estado == 'Pendiente' || match?.estado == 'pendiente'" id = "match-info">
+  <ion-row *ngIf= "status == 'Pendiente' || status == 'pendiente'" id = "match-info">
     <ion-col id = "local-name">
-      <strong>{{match?.equipoLocal.nombre}}</strong>
+      <strong>{{match?.equipoLocalNombre}}</strong>
     </ion-col>
     <ion-col id = "match-time">
       {{match?.horaPartido}}
     </ion-col>
     <ion-col id = "visitor-name">
-      <strong>{{match?.equipoVisitante.nombre}}</strong>
+      <strong>{{match?.equipoVisitanteNombre}}</strong>
     </ion-col>
   </ion-row>
 </ion-header>
@@ -47,7 +47,7 @@
           <p id="slide-title">Titulares</p>
         </ion-slide>
     </ion-slides>
-  <ion-list *ngIf = "statSelected == 'stats' && match?.estado == 'Disputado' || match?.estado == 'disputado'">
+  <ion-list *ngIf = "statSelected == 'stats' && status == 'Disputado' || status == 'disputado'">
       <ion-row>
         <ion-col col-xs-4 class = "stats-info-local"><strong>5</strong></ion-col>
         <ion-col col-xs-4 class = "stats-title">InfoTitle</ion-col>
@@ -55,7 +55,7 @@
       </ion-row>
   </ion-list>
 
-  <ion-list *ngIf = "statSelected == 'lineUp' && match?.estado == 'Disputado' || match?.estado == 'disputado'">
+  <ion-list *ngIf = "statSelected == 'lineUp' && status == 'Disputado' || status == 'disputado'">
     <ion-item *ngFor = "let localPlayer of match?.convocadosLocal; let i = index">
       <ion-row>
         <ion-col class = "info-lineup">
@@ -67,5 +67,5 @@
       </ion-row>
     </ion-item>
   </ion-list>
-  <ion-row id = "no-info" *ngIf = "match?.estado == 'Pendiente' || match?.estado == 'pendiente'">El partido no se ha disputado.</ion-row>
+  <ion-row id = "no-info" *ngIf = "status == 'Pendiente' || status == 'pendiente'">El partido no se ha disputado.</ion-row>
 </ion-content>
