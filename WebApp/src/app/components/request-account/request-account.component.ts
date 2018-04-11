@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { IpClientService } from '../../services/clientIp.service';
 import { MatSnackBar } from '@angular/material';
 import { LeagueService } from '../../services/league.service';
+import { RequestFormService } from '../../services/request-form.service';
 
 import { RequestAccess } from '../../models/requestAccess.model';
 
@@ -29,7 +30,7 @@ export class RequestAccountComponent implements OnInit {
 
   private error: boolean = false;
 
-  constructor(private ipService: IpClientService, private leagueService: LeagueService) { 
+  constructor(private ipService: IpClientService, private leagueService: LeagueService, private requestFormService: RequestFormService) { 
     this.leagueService.getLeaguesNames().subscribe(
       namesList => this.listLeagueNames = namesList
     )
@@ -42,7 +43,12 @@ export class RequestAccountComponent implements OnInit {
     } else {
       console.log(this.ipService.getIp().ip);
       
-      let formAccess = new RequestAccess(name, lastname, email, teamName, campus, moreInfo ,this.ipService.getIp().ip);
+      let formAccess = new RequestAccess(name, lastname, email, teamName, league, campus, moreInfo ,this.ipService.getIp().ip);
+
+      this.requestFormService.sendRequest(formAccess).subscribe(
+        response => console.log(response)
+      )
+
       this.error = false;
       console.log(formAccess);
       console.log("send email");

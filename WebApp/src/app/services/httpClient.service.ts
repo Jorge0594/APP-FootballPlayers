@@ -1,6 +1,9 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
+
+import { RequestAccess } from '../models/requestAccess.model';
+
 import { Observable } from 'rxjs/Observable';
 
 
@@ -33,7 +36,8 @@ export class HttpClient{
 
     //All server request they need to be logged.
     get(url:any){
-        return this.http.get((BASE_URL + url),{headers:this.authTokens}).map(
+        return this.http.get((BASE_URL + url),{headers:this.authTokens})
+        .map(
             response => {
                 return response.json()},
             error => console.error(error.json())
@@ -47,7 +51,8 @@ export class HttpClient{
     }
 
     getRecoveredPasword(url:any){
-        return this.http.get((BASE_URL + url)).map(
+        return this.http.get((BASE_URL + url)).
+        map(
             response => {
                 return response.json()},
             error => console.error(error.json())
@@ -62,7 +67,15 @@ export class HttpClient{
 
     }
 
-    post(url:any){
+    post(url:any, body:any){
+        return this.http.post((BASE_URL + url), body)
+        .map(
+            response => response,
+            error => console.error(error)
+        )
+    }
+
+    postWithoutAuth(url:any){
 
     }
 

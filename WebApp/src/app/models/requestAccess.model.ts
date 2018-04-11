@@ -1,18 +1,20 @@
 export class RequestAccess{
-    private name:string;
-    private lastName:string;
+    private nombreSolicitante:string;
+    private apellidosSolicitante:string;
     private email:string;
-    private teamname:string;
+    private nombreEquipo:string;
+    private liga: string;
     private campus:string;
-    private moreinfo:string;
+    private masInfo:string;
     private ip:string;
-    constructor(name, lastName, email, teamname, campus, moreinfo, ip){
-        this.name = name;
-        this.lastName = lastName;
+    constructor(nombreSolicitante, apellidosSolicitante, email, nombreEquipo, liga, campus, masInfo, ip){
+        this.nombreSolicitante = nombreSolicitante;
+        this.apellidosSolicitante = apellidosSolicitante;
         this.email = email;
-        this.teamname = teamname;
+        this.nombreEquipo = nombreEquipo;
+        this.liga = liga;
         this.campus = campus;
-        this.moreinfo = moreinfo;
+        this.masInfo = masInfo;
         this.ip = ip;
     }
 }
