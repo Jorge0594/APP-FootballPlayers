@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 import { IpClientService } from '../../services/clientIp.service';
+import { MatSnackBar } from '@angular/material';
+import { LeagueService } from '../../services/league.service';
+
+import { RequestAccess } from '../../models/requestAccess.model';
 
 @Component({
   selector: 'app-request-account',
@@ -19,19 +23,28 @@ export class RequestAccountComponent implements OnInit {
   private inputEmail = new FormControl('',[Validators.required, Validators.email]);
   private inputCampus = new FormControl('', Validators.required);
   private inputTeamName = new FormControl('', Validators.required);
-  private inputPlayers = new FormControl('', Validators.required);
+  private inputLeague = new FormControl('', Validators.required);
+
+  private listLeagueNames:any;
 
   private error: boolean = false;
 
-  constructor(private ipService: IpClientService) { }
+  constructor(private ipService: IpClientService, private leagueService: LeagueService) { 
+    this.leagueService.getLeaguesNames().subscribe(
+      namesList => this.listLeagueNames = namesList
+    )
+  }
 
-  sendData(name:string, lastname:string, email:string, teamName:string, nPlayers: number, campus: any, moreInfo: string){
+  sendData(name:string, lastname:string, email:string, teamName:string, league:string, campus: any, moreInfo: string){
     if(this.handleError()){
       this.error = true;
       console.error("Debe rellenar todos los campos")
     } else {
       console.log(this.ipService.getIp().ip);
+      
+      let formAccess = new RequestAccess(name, lastname, email, teamName, campus, moreInfo ,this.ipService.getIp().ip);
       this.error = false;
+      console.log(formAccess);
       console.log("send email");
       //send the email to the comite
     }
@@ -47,7 +60,7 @@ export class RequestAccountComponent implements OnInit {
 
   handleError(){
     return this.inputName.hasError('required') || this.inputLastname.hasError('required') || this.inputEmail.hasError('required') || this.inputEmail.hasError('email')
-            || this.inputCampus.hasError('required') || this.inputTeamName.hasError('required') || this.inputPlayers.hasError('required');   
+            || this.inputCampus.hasError('required') || this.inputTeamName.hasError('required') || this.inputLeague.hasError('required');   
   }
 
   ngOnInit() {

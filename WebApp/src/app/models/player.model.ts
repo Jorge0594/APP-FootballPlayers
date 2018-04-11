@@ -1,5 +1,4 @@
 export class Player{
-    private id:string;
     private name:string;
     private lastname:string;
     private birthdate:string;
@@ -12,8 +11,7 @@ export class Player{
     private dorsal:string;
     private leader:boolean;
 
-    constructor(id, name, lastname, birthdate, dni, email, teamId, league, position, country, dorsal, leader){
-        this.id = id;
+    constructor(name, lastname, birthdate, dni, email, teamId, league, position, country, dorsal, leader){
         this.name = name;
         this.lastname = lastname;
         this.birthdate = birthdate;

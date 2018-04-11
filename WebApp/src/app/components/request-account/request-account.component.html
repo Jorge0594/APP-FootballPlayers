@@ -23,8 +23,11 @@
     </mat-form-field>
 
     <mat-form-field class = "info-inputs">
-        <input #nplayers [formControl]="inputPlayers" matInput type = "number" placeholder="Número de jugadores" required>
-        <mat-error *ngIf="inputPlayers.invalid">{{getErrorMessage()}}</mat-error>
+        <!-- the aplication must to do a query for list of leagues-->
+        <mat-select [formControl]="inputLeague" #selectedLeague placeholder="Seleccione una liga" required>
+            <mat-option  value = "{{option?.nombre}}"*ngFor = "let option of listLeagueNames">{{option?.nombre}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="inputLeague.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field class = "info-inputs">
@@ -37,8 +40,7 @@
     <mat-form-field class = "more-info">
         <input #moreinfo matInput placeholder="Más información" >
     </mat-form-field>
-
     <p *ngIf = "error" id = "error-message">Rellene todos los campos correctamente</p>
 </mat-card>
 
-<button mat-button (click) = "sendData(name.value, lastname.value, email.value, teamname.value, nplayers.value, selected.value, moreinfo.value)" class = "mat-elevation-z5" id = "send-button">Enviar formulario</button>
+<button mat-button (click) = "sendData(name.value, lastname.value, email.value, teamname.value, selectedLeague.value, selected.value, moreinfo.value)" class = "mat-elevation-z5" id = "send-button">Enviar formulario</button>

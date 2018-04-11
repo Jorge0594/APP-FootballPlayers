@@ -1,5 +1,6 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -9,7 +10,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/Rx';
 
-const BASE_URL = "https://192.168.1.39:8443/";
+const BASE_URL = environment.api;
 
 @Injectable()
 export class HttpClient{
