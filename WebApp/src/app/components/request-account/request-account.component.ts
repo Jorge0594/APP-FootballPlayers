@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { IpClientService } from '../../services/clientIp.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { LeagueService } from '../../services/league.service';
 import { RequestFormService } from '../../services/request-form.service';
+
+import { DialogComponent } from '../dialog/dialog.component';
 
 import { RequestAccess } from '../../models/requestAccess.model';
 
@@ -29,8 +32,10 @@ export class RequestAccountComponent implements OnInit {
   private listLeagueNames:any;
 
   private error: boolean = false;
+  private showDialog:boolean = false;
 
-  constructor(private ipService: IpClientService, private leagueService: LeagueService, private requestFormService: RequestFormService) { 
+  constructor(private ipService: IpClientService, private leagueService: LeagueService, private requestFormService: RequestFormService,
+  private matDialog: MatDialog, private router: Router) { 
     this.leagueService.getLeaguesNames().subscribe(
       namesList => this.listLeagueNames = namesList
     )
@@ -38,15 +43,19 @@ export class RequestAccountComponent implements OnInit {
 
   sendData(name:string, lastname:string, email:string, teamName:string, league:string, campus: any, moreInfo: string){
     if(this.handleError()){
+
       this.error = true;
-      console.error("Debe rellenar todos los campos")
+
     } else {
-      console.log(this.ipService.getIp().ip);
       
       let formAccess = new RequestAccess(name, lastname, email, teamName, league, campus, moreInfo ,this.ipService.getIp().ip);
 
       this.requestFormService.sendRequest(formAccess).subscribe(
-        response => console.log(response)
+        response =>{
+          this.openDialog("La petición ha sido enviada correctamente. Permanezca atento a su email.", "Envio correcto", false, false);
+          this.router.navigateByUrl('/iniciarSesion');
+        } 
+        
       )
 
       this.error = false;
@@ -54,6 +63,19 @@ export class RequestAccountComponent implements OnInit {
       console.log("send email");
       //send the email to the comite
     }
+  }
+
+  openDialog(message:string, title:string, error:boolean, multiOption:boolean){
+    let dialog = this.matDialog.open(DialogComponent, {
+      width: '400px',
+      height:'400px',
+      data:{
+        text: message,
+        title: title,
+        error: error,
+        multioption:multiOption
+      }
+    });
   }
 
   getErrorMessage(){

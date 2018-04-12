@@ -22,6 +22,7 @@ import { MatInputModule,
          MatSelectModule,
          MatOptionModule,
          MatSnackBarModule,
+         MatDialogModule
         } from '@angular/material';
 
 import { HttpClient } from './services/httpClient.service';
@@ -36,6 +37,7 @@ import { LoginGuestComponent } from './components/login-guest/login-guest.compon
 import { TeamCreatorComponent } from './components/team-creator/team-creator.component';
 import { RequestAccountComponent } from './components/request-account/request-account.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 
 const appRoutes: Routes = [
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     LoginGuestComponent,
     TeamCreatorComponent,
     RequestAccountComponent,
-    NavBarComponent
+    NavBarComponent,
+    DialogComponent
   ],
   imports: [
     HttpModule,
@@ -60,6 +63,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatDialogModule,
     MatIconModule,
     MatCardModule,
     MatToolbarModule,
@@ -83,7 +87,8 @@ const appRoutes: Routes = [
     LeagueService
   ],
   entryComponents:[
-    NewPlayerFormComponent
+    NewPlayerFormComponent,
+    DialogComponent
   ],
   bootstrap: [AppComponent]
 })
