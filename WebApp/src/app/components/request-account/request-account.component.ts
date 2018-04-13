@@ -16,12 +16,12 @@ import { RequestAccess } from '../../models/requestAccess.model';
   templateUrl: './request-account.component.html',
   styleUrls: ['./request-account.component.css']
 })
-export class RequestAccountComponent implements OnInit {
+export class RequestAccountComponent{
 
   private options: Array<string> = [
     "Alcorcón", "Aranjuez", "Fuenlabrada", "Madrid", "Móstoles", "Online"
   ];
-
+  
   private inputName = new FormControl('', Validators.required);
   private inputLastname = new FormControl('', Validators.required);
   private inputEmail = new FormControl('',[Validators.required, Validators.email]);
@@ -52,15 +52,20 @@ export class RequestAccountComponent implements OnInit {
 
       this.requestFormService.sendRequest(formAccess).subscribe(
         response =>{
-          this.openDialog("La petición ha sido enviada correctamente. Permanezca atento a su email.", "Envio correcto", false, false);
+          this.openDialog("La petición ha sido enviada correctamente. Se le notificará por correo electronico si ha sido aceptada.", "Envio correcto", false, false);
           this.router.navigateByUrl('/iniciarSesion');
-        } 
+        },
+        error => {
+          if(error.status == 406){
+            this.openDialog("No tiene permitido relizar más peticiones desde su ip.", "Error", true, false);
+          } else {
+            this.openDialog("El email introducido ya está en uso.", "Error", true, false);
+          }
+        }
         
       )
 
       this.error = false;
-      console.log(formAccess);
-      console.log("send email");
       //send the email to the comite
     }
   }
@@ -83,15 +88,11 @@ export class RequestAccountComponent implements OnInit {
   }
 
   getEmailError(){
-    return this.inputEmail.hasError('required') ? 'Este campo es obligatorio' : this.inputEmail.hasError('email') ? 'Email no valido' : '';
+    return this.inputEmail.hasError('required') ? 'Este campo es obligatorio' : this.inputEmail.hasError('email') ? 'Email no valido' : "";
   }
 
   handleError(){
     return this.inputName.hasError('required') || this.inputLastname.hasError('required') || this.inputEmail.hasError('required') || this.inputEmail.hasError('email')
             || this.inputCampus.hasError('required') || this.inputTeamName.hasError('required') || this.inputLeague.hasError('required');   
   }
-
-  ngOnInit() {
-  }
-
 }

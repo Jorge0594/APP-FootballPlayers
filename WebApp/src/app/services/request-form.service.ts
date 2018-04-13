@@ -15,4 +15,12 @@ export class RequestFormService {
       error => console.error(error)
     )
   }
+
+  existEmail(email:string){
+    return this.http.get(BASE_URL + "/email")
+    .map(
+      response => response,
+      error => console.error(error)
+    )
+  }
 }
