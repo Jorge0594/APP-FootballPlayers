@@ -24,7 +24,7 @@ export class HttpClient{
     constructor (private http: Http){}
     
 
-    generateAuthTokens(username:String, password: String){
+    generateAuthTokens(username:string, password: string){
         let headers = new Headers();
         let credentials = btoa(username + ":" + password);
         if(this.logged == true){
@@ -36,6 +36,7 @@ export class HttpClient{
 
     //All server request they need to be logged.
     get(url:any){
+        console.log(this.authTokens);
         return this.http.get((BASE_URL + url),{headers:this.authTokens})
         .map(
             response => {
@@ -68,15 +69,15 @@ export class HttpClient{
     }
 
     post(url:any, body:any){
+        
+    }
+
+    postWithoutAuth(url:any, body:any){
         return this.http.post((BASE_URL + url), body)
         .map(
             response => response,
             error => console.error(error)
         )
-    }
-
-    postWithoutAuth(url:any){
-
     }
 
     delete(url:any){

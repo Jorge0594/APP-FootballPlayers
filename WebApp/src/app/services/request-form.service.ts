@@ -9,7 +9,7 @@ export class RequestFormService {
   constructor(private http: HttpClient) { }
 
   sendRequest(requestForm: RequestAccess){
-    return this.http.post(BASE_URL, requestForm)
+    return this.http.postWithoutAuth(BASE_URL, requestForm)
     .map(
       response => response,
       error => console.error(error)

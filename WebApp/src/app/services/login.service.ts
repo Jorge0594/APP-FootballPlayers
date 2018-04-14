@@ -6,25 +6,22 @@ import { UserService } from './user.service';
 
 import 'rxjs/Rx';
 
-const role : String = "ROLE_JUGADOR";
+const role : string = "ROLE_TEMPORAL";
 @Injectable()
 export class LoginService{
 
     constructor (private http: HttpClient, private userService: UserService){}
 
-    login(username:String, password:String){
-        if(username == "" || username == null || username == undefined){
-            return Observable.throw("Server error (401):Please enter the correct password or username");
-        }else{
+    login(username:string, password:string){
+        this.http.setLogged(true);
+        this.http.generateAuthTokens(username, password);
 
-            this.http.setLogged(true);
-            this.http.generateAuthTokens(username,password);
-
-            return this.http.get("iniciarSesion/" + role).map(
-                response => response,
-                error => console.error(error)
-            );
-        }
+        return this.http.get("iniciarSesion/" + role).map(
+            response =>{
+                //this.userService.setUserLogged(response.nombreUsuario);
+            },
+            error => console.error(error)
+        );
     }
 
     logout(){

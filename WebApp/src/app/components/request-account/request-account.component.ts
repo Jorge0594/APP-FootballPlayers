@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { IpClientService } from '../../services/clientIp.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { DialogService } from '../../services/dialog.service';
 import { LeagueService } from '../../services/league.service';
 import { RequestFormService } from '../../services/request-form.service';
 
@@ -11,11 +11,15 @@ import { DialogComponent } from '../dialog/dialog.component';
 
 import { RequestAccess } from '../../models/requestAccess.model';
 
+const DIALOG_WIDTH = "400px";
+const DIALOG_HEIGHT = "400px";
+
 @Component({
   selector: 'app-request-account',
   templateUrl: './request-account.component.html',
   styleUrls: ['./request-account.component.css']
 })
+
 export class RequestAccountComponent{
 
   private options: Array<string> = [
@@ -35,7 +39,7 @@ export class RequestAccountComponent{
   private showDialog:boolean = false;
 
   constructor(private ipService: IpClientService, private leagueService: LeagueService, private requestFormService: RequestFormService,
-  private matDialog: MatDialog, private router: Router) { 
+  private dialogService: DialogService, private router: Router) { 
     this.leagueService.getLeaguesNames().subscribe(
       namesList => this.listLeagueNames = namesList
     )
@@ -52,14 +56,15 @@ export class RequestAccountComponent{
 
       this.requestFormService.sendRequest(formAccess).subscribe(
         response =>{
-          this.openDialog("La petición ha sido enviada correctamente. Se le notificará por correo electronico si ha sido aceptada.", "Envio correcto", false, false);
+          this.dialogService.openDialog("Envio correcto",
+          "La petición ha sido enviada correctamente. Se le notificará por correo electronico si ha sido aceptada.", false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
           this.router.navigateByUrl('/iniciarSesion');
         },
         error => {
           if(error.status == 406){
-            this.openDialog("No tiene permitido relizar más peticiones desde su ip.", "Error", true, false);
+            this.dialogService.openDialog("Error", "No tiene permitido relizar más peticiones desde su ip.", true, false, DIALOG_WIDTH, DIALOG_HEIGHT);
           } else {
-            this.openDialog("El email introducido ya está en uso.", "Error", true, false);
+            this.dialogService.openDialog("Error", "El email introducido ya está en uso.", true, false, DIALOG_WIDTH, DIALOG_HEIGHT);
           }
         }
         
@@ -68,19 +73,6 @@ export class RequestAccountComponent{
       this.error = false;
       //send the email to the comite
     }
-  }
-
-  openDialog(message:string, title:string, error:boolean, multiOption:boolean){
-    let dialog = this.matDialog.open(DialogComponent, {
-      width: '400px',
-      height:'400px',
-      data:{
-        text: message,
-        title: title,
-        error: error,
-        multioption:multiOption
-      }
-    });
   }
 
   getErrorMessage(){

@@ -29,8 +29,10 @@ import { HttpClient } from './services/httpClient.service';
 import { UserService } from './services/user.service';
 import { LoginService } from './services/login.service';
 import { LeagueService } from './services/league.service';
+import { DialogService } from './services/dialog.service';
 import { RequestFormService } from './services/request-form.service';
 import { ComponentService } from './services/component.service';
+import { TeamService } from './services/team.service';
 import { IpClientService } from './services/clientIp.service';
 
 import { LoginGuestComponent } from './components/login-guest/login-guest.component';
@@ -79,7 +81,9 @@ const appRoutes: Routes = [
   providers: [
     RequestFormService,
     ComponentService,
+    TeamService,
     IpClientService,
+    DialogService,
     RequestAccountComponent,
     HttpClient,
     UserService,

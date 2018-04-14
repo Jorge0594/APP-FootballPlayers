@@ -22,7 +22,6 @@ export class IpClientService {
     }
 
     getIp(){
-        console.log(this.ipData);
         return this.ipData;
     }
 }

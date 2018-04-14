@@ -4,7 +4,7 @@
   <mat-toolbar class = "mat-elevation-z5" id = "toolbar-title">Inicio de sesion</mat-toolbar>
   <mat-card-content>
     <mat-form-field class = "login-inputs">
-      <input [formControl]="userInput"  matInput placeholder="Usuario" required>
+      <input #user [formControl]="userInput"  matInput placeholder="Usuario" required>
       <mat-error *ngIf="userInput.invalid">{{getUserErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field class = "login-inputs">
