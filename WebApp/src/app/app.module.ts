@@ -22,7 +22,8 @@ import { MatInputModule,
          MatSelectModule,
          MatOptionModule,
          MatSnackBarModule,
-         MatDialogModule
+         MatDialogModule,
+         MatStepperModule
         } from '@angular/material';
 
 import { HttpClient } from './services/httpClient.service';
@@ -59,6 +60,7 @@ import { RouterSecurityService } from './services/router-security.service';
   ],
   imports: [
     HttpModule,
+    MatStepperModule,
     MatOptionModule,
     MatSelectModule,
     FormsModule,

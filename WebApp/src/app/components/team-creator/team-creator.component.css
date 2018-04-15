@@ -1,0 +1,26 @@
+.page-title{
+    max-width: 50%;
+    min-width: 480px;
+    margin-top: 35px;
+    font-size: 150%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-title span{
+    margin: 0 auto;
+}
+
+#exist-team{
+    width: 70%;
+    color:white;
+    text-align:center;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    background:#3c40c6;
+}
+
+#no-team span{
+    margin: 0 auto;
+}

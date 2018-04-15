@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-team-creator',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamCreatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }

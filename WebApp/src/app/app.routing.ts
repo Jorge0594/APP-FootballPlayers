@@ -15,5 +15,7 @@ export const appRoutes:  Routes = [
     { path:'', redirectTo:'iniciarSesion', pathMatch: 'full'},
     { path:'iniciarSesion', component: LoginGuestComponent },
     { path: 'solicitarUsuario', component: RequestAccountComponent },
-    { path: 'miEquipo', component: MyTeamComponent, canActivate:[RouterSecurityService] }
+    { path: 'equipo', component: MyTeamComponent, canActivate:[RouterSecurityService] },
+    { path: 'crearEquipo', component: TeamCreatorComponent, canActivate:[RouterSecurityService] }
+
 ]

@@ -1,3 +1,3 @@
-<p>
-  my-team works!
-</p>
+<mat-toolbar  class = "page-title"><span>Mi equipo</span></mat-toolbar>
+
+<mat-toolbar class = "mat-elevation-z5" id ="no-team-toolbar"  *ngIf ="!userService.getUserTeam()"><span>No tienes equipo</span></mat-toolbar>

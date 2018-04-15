@@ -46,7 +46,7 @@ export class LoginGuestComponent implements OnInit {
           console.log("logged!!!");
           this.userService.generateUserData();
           this.eventService.changeNavbar.emit('login');
-          this.router.navigateByUrl('/miEquipo');
+          this.router.navigateByUrl('/equipo');
         },
         error => {
           this.dialogService.openDialog("Error", "Usuario o contraseña incorrectos", true, false, DIALOG_WIDTH, DIALOG_HEIGHT);

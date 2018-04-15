@@ -1,3 +1,35 @@
-<p>
-  team-creator works!
-</p>
+<mat-toolbar  class = "page-title"><span>Creación de equipo</span></mat-toolbar>
+
+<mat-toolbar class = "mat-elevation-z5" id ="exist-team"  *ngIf ="userService.getUserTeam()"><span>Ya has creado un equipo</span></mat-toolbar>
+
+<mat-horizontal-stepper *ngIf = "!userService.getUserTeam()" #stepper="matHorizontalStepper">
+        <mat-step [stepControl]="firstFormGroup">
+          <form >
+            <ng-template matStepLabel>Datos del equipo</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Last name, First name"  required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form >
+            <ng-template matStepLabel>Jugadores</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Address" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Atrás</button>
+              <button mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Confirmar</ng-template>
+          <div>
+            <button mat-button matStepperPrevious>Atrás</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
