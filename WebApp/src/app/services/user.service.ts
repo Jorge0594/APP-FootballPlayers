@@ -8,20 +8,18 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService{
 
-    private isLogged: boolean = false;
     private userTeam:any;
     private user:any;
 
     constructor(private http: HttpClient, private teamService: TeamService){}
 
     logout(){
-        this.isLogged = false;
         this.userTeam = false;
         this.user = false;
     }
 
     isUserLogged(){
-        return this.isLogged;
+        return this.http.isLogged();
     }
 
     getUserLogged(){

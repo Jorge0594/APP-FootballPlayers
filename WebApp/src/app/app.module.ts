@@ -34,19 +34,17 @@ import { RequestFormService } from './services/request-form.service';
 import { ComponentService } from './services/component.service';
 import { TeamService } from './services/team.service';
 import { IpClientService } from './services/clientIp.service';
+import { EventService } from './services/events.service';
+
+import { appRoutes } from './app.routing';
 
 import { LoginGuestComponent } from './components/login-guest/login-guest.component';
 import { TeamCreatorComponent } from './components/team-creator/team-creator.component';
 import { RequestAccountComponent } from './components/request-account/request-account.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
-
-
-const appRoutes: Routes = [
-    { path:'', redirectTo:'iniciarSesion', pathMatch: 'full'},
-    { path:'iniciarSesion', component: LoginGuestComponent },
-    { path: 'solicitarUsuario', component: RequestAccountComponent }
-];
+import { MyTeamComponent } from './components/my-team/my-team.component';
+import { RouterSecurityService } from './services/router-security.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +54,8 @@ const appRoutes: Routes = [
     TeamCreatorComponent,
     RequestAccountComponent,
     NavBarComponent,
-    DialogComponent
+    DialogComponent,
+    MyTeamComponent
   ],
   imports: [
     HttpModule,
@@ -80,7 +79,9 @@ const appRoutes: Routes = [
   ],
   providers: [
     RequestFormService,
+    RouterSecurityService,
     ComponentService,
+    EventService,
     TeamService,
     IpClientService,
     DialogService,

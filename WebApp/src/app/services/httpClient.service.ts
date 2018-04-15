@@ -18,7 +18,7 @@ const BASE_URL = environment.api;
 @Injectable()
 export class HttpClient{
 
-    private logged : Boolean = false;
+    private logged : boolean = false;
     private authTokens: Headers;
 
     constructor (private http: Http){}
@@ -36,7 +36,6 @@ export class HttpClient{
 
     //All server request they need to be logged.
     get(url:any){
-        console.log(this.authTokens);
         return this.http.get((BASE_URL + url),{headers:this.authTokens})
         .map(
             response => {
@@ -88,7 +87,7 @@ export class HttpClient{
         return this.logged;
     }
 
-    setLogged(value: Boolean){
+    setLogged(value: boolean){
         this.logged = value;
     }
     

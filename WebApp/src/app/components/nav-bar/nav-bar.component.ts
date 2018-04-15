@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router/src/router_state';
+import { EventService } from '../../services/events.service';
 
 @Component({
   selector: 'nav-bar',
@@ -10,26 +11,34 @@ import { ActivatedRoute } from '@angular/router/src/router_state';
 })
 export class NavBarComponent implements OnInit {
 
-  private options: {rigth:[{name:string, path:string}], left:[{name:string, path:string}]};
-  
-  constructor(private userService: UserService) {
+  private options: {left:Array<{name:string, path:string}>, right:Array<{name:string, path:string}>};
+
+  constructor(private userService: UserService, private eventService: EventService) {
+    this.createNavbar();
+
+    this.eventService.changeNavbar.subscribe(()=>{
+      this.createNavbar();
+    })
+   }
+
+   createNavbar(){
     if(this.userService.isUserLogged()){
       this.options = {
-        rigth: [
-          {name: "Crear equipo", path: "/crearEquipo"},
-          {name: "Mi equipo", path: "/equipo"}
-        ],
         left: [
+          {name: "Mi equipo", path: "/equipo"},
+          {name: "Crear equipo", path: "/crearEquipo"}
+        ],
+        right: [
           {name: "Cerrar sesión", path: "/cerrarSesion"} 
         ]
       };
     } else {
       this.options = {
-        rigth: [
+        left: [
           {name: "Iniciar Sesión", path: "/iniciarSesion"},
           {name: "Solicitar usuario", path: "/solicitarUsuario"}
         ],
-        left: [
+        right: [
           {name: "", path: ""} 
         ]
       }
