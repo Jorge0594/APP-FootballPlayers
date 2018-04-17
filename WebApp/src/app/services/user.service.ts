@@ -31,11 +31,11 @@ export class UserService{
     }
 
     generateUserData(){
-        return this.http.get("usuariosTemporales/usuario").subscribe(
+        return this.http.get("temporales/usuario").subscribe(
             response => {
                 this.user = response;
                 if(this.user.equipoId != "" || this.user.equipoId){
-                    this.teamService.gettemaById(this.user.equipoId).subscribe(
+                    this.teamService.getTeamById(this.user.equipoId).subscribe(
                         team => this.userTeam = team
                     )
                 }

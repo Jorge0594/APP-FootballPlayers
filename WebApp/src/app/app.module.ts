@@ -46,6 +46,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MyTeamComponent } from './components/my-team/my-team.component';
 import { RouterSecurityService } from './services/router-security.service';
+import { TeamNameValidatorDirective } from './directives/team-name-validator.directive';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { RouterSecurityService } from './services/router-security.service';
     RequestAccountComponent,
     NavBarComponent,
     DialogComponent,
-    MyTeamComponent
+    MyTeamComponent,
+    TeamNameValidatorDirective
   ],
   imports: [
     HttpModule,

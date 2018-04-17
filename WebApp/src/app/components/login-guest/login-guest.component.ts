@@ -40,10 +40,8 @@ export class LoginGuestComponent implements OnInit {
   }
 
   login(user:string, password:string){
-    console.log(user);
       this.loginService.login(user, password).subscribe(
         response => {
-          console.log("logged!!!");
           this.userService.generateUserData();
           this.eventService.changeNavbar.emit('login');
           this.router.navigateByUrl('/equipo');
