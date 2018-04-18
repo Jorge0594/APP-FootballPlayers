@@ -50,3 +50,7 @@
     max-width: 150px;
     max-height: 150px;
 }
+
+#add-player-button{
+    background: #3c40c6;
+}

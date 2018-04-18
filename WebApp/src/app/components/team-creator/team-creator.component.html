@@ -27,12 +27,11 @@
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
+        <mat-step>
           <form >
             <ng-template matStepLabel>Jugadores</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Address" required>
-            </mat-form-field>
+              <template #panel></template>
+              <button mat-button id = "add-player-button" (click) = "addPlayer()">Añadir jugador</button>
             <div>
               <button mat-button matStepperPrevious>Atrás</button>
               <button mat-button matStepperNext>Siguiente</button>

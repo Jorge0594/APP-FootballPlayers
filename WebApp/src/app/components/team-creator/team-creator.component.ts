@@ -1,9 +1,14 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, ViewContainerRef, ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef, Input } from '@angular/core';
 import { FormControl, Validators, FormGroup, ValidatorFn, FormBuilder } from '@angular/forms';
+import { Resolve } from '@angular/router';
+
+import { Player } from '../../models/player.model';
+
+import { NewPlayerFormComponent } from '../new-player-form/new-player-form.component';
 
 import { UserService } from '../../services/user.service';
 import { TeamService } from '../../services/team.service';
-import { Resolve } from '@angular/router';
+import { ComponentService } from '../../services/component.service';
 
 
 @Component({
@@ -17,10 +22,14 @@ export class TeamCreatorComponent implements OnInit {
   private teamName: string;
   private controls: FormGroup;
   private showPreview: boolean = false;
+  private listOfPlayers: Array<Player> = [];
   private file: File;
   private fileShow: File;
+  @ViewChild('panel', {read: ViewContainerRef}) private component;
+  private componentRef: ComponentRef<any>;
 
-  constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder ) {
+  constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
+    private componentService: ComponentService, private resolver: ComponentFactoryResolver ) {
     this.controls = this.formBuilder.group({
       inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
       inputCity:['', Validators.required]
@@ -67,6 +76,13 @@ export class TeamCreatorComponent implements OnInit {
       this.fileShow = event.target.result;
     }
     reader.readAsDataURL(fileInput.target.files[0]);
+  }
+
+  addPlayer(){
+    const factory: ComponentFactory<NewPlayerFormComponent> = this.resolver.resolveComponentFactory(NewPlayerFormComponent);
+    this.componentRef = this.component.createComponent(factory);
+
+    this.componentService.addNewComponent(this.componentRef);
   }
 
   ngOnInit() {
