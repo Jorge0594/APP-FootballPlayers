@@ -24,3 +24,29 @@
 #no-team span{
     margin: 0 auto;
 }
+
+.data-inputs{
+    width: 48%;
+    margin-left: 20px;
+}
+
+#input-form{
+    display:block;
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+#change-photo-button{
+    display:block;
+    max-width: 70%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+
+.image{
+    vertical-align: middle;
+    margin-left:40px; 
+    max-width: 150px;
+    max-height: 150px;
+}

@@ -1,6 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { FormControl, Validators, FormGroup, ValidatorFn } from '@angular/forms';
-import { validateConfig } from '@angular/router/src/config';
+import { FormControl, Validators, FormGroup, ValidatorFn, FormBuilder } from '@angular/forms';
 
 import { UserService } from '../../services/user.service';
 import { TeamService } from '../../services/team.service';
@@ -16,10 +15,16 @@ export class TeamCreatorComponent implements OnInit {
 
   private teamError: boolean = false;
   private teamName: string;
-  private inputTeamName;
+  private controls: FormGroup;
+  private showPreview: boolean = false;
+  private file: File;
+  private fileShow: File;
 
-  constructor(private userService: UserService, private teamService: TeamService) {
-    this.inputTeamName = new FormControl('',  [Validators.required], this.teamNameValidator.bind(this));
+  constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder ) {
+    this.controls = this.formBuilder.group({
+      inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
+      inputCity:['', Validators.required]
+    })
   }
 
   changeEvent(data){
@@ -27,7 +32,11 @@ export class TeamCreatorComponent implements OnInit {
   }
 
   teamErrorMessage(){
-    return this.inputTeamName.hasError('required') ? "Este campo es obligatorio" : this.inputTeamName.hasError('teamNameError') ? "Nombre de equipo ya en uso" : "";
+    return this.controls.get('inputTeamName').hasError('required') ? "Campo obligatorio" : this.controls.get('inputTeamName').hasError('teamNameError') ? "Nombre de equipo en uso" : "";
+  }
+
+  errorInput(){
+    return this.controls.get('inputCity').hasError('required') ? "Campo obligatorio" : "";
   }
 
   teamNameValidator(control:FormControl):Promise<any>{
@@ -48,7 +57,17 @@ export class TeamCreatorComponent implements OnInit {
     }
   }
 
+  imageChanged(fileInput:any){
+    this.file = fileInput.target.files[0];
+    this.showPreview = true;
 
+    var reader = new FileReader();
+
+    reader.onload = (event: any) => {
+      this.fileShow = event.target.result;
+    }
+    reader.readAsDataURL(fileInput.target.files[0]);
+  }
 
   ngOnInit() {
   }

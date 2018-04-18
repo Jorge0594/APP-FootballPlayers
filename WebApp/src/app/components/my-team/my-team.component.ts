@@ -9,7 +9,6 @@ import { UserService } from '../../services/user.service';
 export class MyTeamComponent implements OnInit {
 
   constructor(private userService: UserService) { 
-    console.log(this.userService.getUserTeam());
   }
 
   ngOnInit() {

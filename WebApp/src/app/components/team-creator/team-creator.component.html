@@ -2,20 +2,32 @@
 
 <mat-toolbar class = "mat-elevation-z5" id ="exist-team"  *ngIf ="userService.getUserTeam()"><span>Ya has creado un equipo</span></mat-toolbar>
 
-<mat-horizontal-stepper [linear]="true" *ngIf = "!userService.getUserTeam()" #stepper="matHorizontalStepper">
-        <mat-step [stepControl]="firstFormGroup" (click)= "checkTeamName(teamname.value)">
-          <form>
+<mat-horizontal-stepper [linear]="false" *ngIf = "!userService.getUserTeam()" #stepper="matHorizontalStepper">
+        <mat-step [stepControl]="controls" >
+          <form [formGroup] = "controls">
             <ng-template matStepLabel>Datos del equipo</ng-template>
-            <mat-form-field>
-              <input #teamname type = "text" [(ngModel)] = "teamName" maxlength = "30" (ngModelChange)="changeEvent($event)" matInput [formControl] = "inputTeamName" placeholder="Nombre del equipo" required>
-              <mat-error *ngIf="inputTeamName.invalid">{{teamErrorMessage()}}</mat-error>
-            </mat-form-field>
+            <div id = "input-form">
+              <mat-form-field class = "data-inputs">
+                <input #teamname type = "text" [(ngModel)] = "teamName" maxlength = "30" (ngModelChange)="changeEvent($event)" matInput formControlName = "inputTeamName" placeholder="Nombre del equipo" required>
+                <mat-error *ngIf="controls.invalid">{{teamErrorMessage()}}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class = "data-inputs">
+                <input #city type = "text"  maxlength = "30" matInput formControlName = "inputCity" placeholder="Ciudad" required>
+                <mat-error *ngIf="controls.invalid">{{errorInput()}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div id="change-photo-button">
+                <label id = "change-button" for="archive">Foto de equipo(Opcional)</label> <input (change)="imageChanged($event)" type="file" id="file-input" name='file' required>
+                <img class = "image" *ngIf="!showPreview" src = "assets/images/default-image.png" alt = "Team shield">
+                <img class = "image" *ngIf="showPreview && fileShow" [src]='fileShow' alt = "Team shield" />
+            </div>
             <div>
-              <button mat-button (click)= "checkTeamName(teamname.value)" matStepperNext>Siguiente</button>
+              <button mat-button matStepperNext>Siguiente</button>
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" (click)= "checkTeamName(teamname.value)">
+        <mat-step [stepControl]="secondFormGroup">
           <form >
             <ng-template matStepLabel>Jugadores</ng-template>
             <mat-form-field>
