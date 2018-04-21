@@ -85,6 +85,10 @@ export class TeamCreatorComponent implements OnInit {
     this.componentService.addNewComponent(this.componentRef);
   }
 
+  deletePlayers(){
+
+  }
+  
   ngOnInit() {
   }
 

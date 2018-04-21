@@ -1,17 +1,58 @@
-<mat-accordion>
+<br>
+<mat-accordion class = "player-expansion-panel">
   <mat-expansion-panel>
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header >
       <mat-panel-title>
-        This is the expansion title
+          <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "check" class = "checkbox" >Jugador</mat-checkbox>
       </mat-panel-title>
       <mat-panel-description>
-        Jugador {{id}}
+        Datos del jugador
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-form-field>
-      <input #name (keyup) = "getValue(name.value)"  matInput placeholder="First name">
+    <mat-divider></mat-divider>
+
+    <mat-form-field class = "inputs">
+      <input #name (keyup) = "getValue(name.value, 'name')" type = "text" matInput placeholder="Nombre">
     </mat-form-field>
+
+    <mat-form-field class = "inputs">
+      <input #lastname (keyup) = "getValue(lastname.value, 'lastname')" type = "text" matInput  placeholder="Apellidos">
+    </mat-form-field>
+
+    <mat-form-field class = "inputs">
+      <input #birthdate [matDatepicker] = "picker" (dateChange) = "getValue(birthdate.value, 'birthdate')" type = "text" matInput  placeholder="Apellidos">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class = "inputs">
+      <input #email (keyup) = "getValue(email.value, 'email')" type = "text" matInput placeholder="Email">
+    </mat-form-field>
+
+    <mat-form-field class = "inputs">
+      <input #dni (keyup) = "getValue(dni.value, 'dni')" type = "text" matInput placeholder="DNI">
+    </mat-form-field>
+
+    <mat-form-field class = "inputs">
+      <mat-select #position (change) = "getValue(position.value, 'position')" placeholder="Posición del jugador">
+        <mat-option value = "{{option}}" *ngFor = "let option of playerPositions">{{option}}</mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class = "inputs">
+    <input #birthplace (keyup) = "getValue(birthplace.value, 'birthplace')" type = "text" matInput placeholder="Lugar de nacimiento">
+  </mat-form-field>
+
+  <mat-form-field class = "inputs">
+    <input #nacionality (keyup) = "getValue(nacionality.value, 'nacionality')" type = "text" matInput placeholder="Nacionalidad">
+  </mat-form-field>
+
+  <mat-form-field class = "inputs">
+      <input #dorsal (keyup) = "getValue(dorsal.value, 'dorsal')" type = "number" matInput placeholder="Dorsal">
+  </mat-form-field>
+
+  <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "captain" class = "checkbox" >Capitán</mat-checkbox>
 
   </mat-expansion-panel>
 </mat-accordion>

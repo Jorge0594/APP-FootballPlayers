@@ -23,7 +23,11 @@ import { MatInputModule,
          MatOptionModule,
          MatSnackBarModule,
          MatDialogModule,
-         MatStepperModule
+         MatStepperModule,
+         MatCheckboxModule,
+         MatDatepickerModule,
+         MatNativeDateModule,
+         MatDividerModule
         } from '@angular/material';
 
 import { HttpClient } from './services/httpClient.service';
@@ -67,7 +71,11 @@ import { TeamNameValidatorDirective } from './directives/team-name-validator.dir
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatFormFieldModule,
+    MatDividerModule,
     MatDialogModule,
     MatIconModule,
     MatCardModule,

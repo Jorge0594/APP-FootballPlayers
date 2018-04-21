@@ -1,27 +1,31 @@
 export class Player{
-    private name:string;
-    private lastname:string;
-    private birthdate:string;
+    private nombre:string;
+    private apellidos:string;
+    private fechaNacimiento:string;
     private dni:string;
     private email:string;
+    private fotoJugador:string;
     private teamId:string;
-    private league:string;
-    private position:string;
-    private country:string;
+    private liga:string;
+    private posicion:string;
+    private lugarNacimiento:string;
+    private nacionalidad:string;
     private dorsal:string;
-    private leader:boolean;
+    private capitan:boolean;
 
-    constructor(name, lastname, birthdate, dni, email, teamId, league, position, country, dorsal, leader){
-        this.name = name;
-        this.lastname = lastname;
-        this.birthdate = birthdate;
+    constructor(nombre, apellidos, fechaNacimiento, dni, email, fotoJugador, teamId, liga, posicion, lugarNacimiento, nacionalidad, dorsal, capitan){
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
         this.dni = dni;
         this.email = email;
+        this.fotoJugador = fotoJugador;
         this.teamId = teamId;
-        this.league = league;
-        this.position = position;
-        this.country = country;
+        this.liga = liga;
+        this.posicion = posicion;
+        this.lugarNacimiento = lugarNacimiento;
+        this.nacionalidad = nacionalidad;
         this.dorsal = dorsal;
-        this.leader = leader;
+        this.capitan = capitan;
     }
 }

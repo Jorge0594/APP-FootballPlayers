@@ -1,0 +1,13 @@
+.checkbox{
+    display: block!important;
+}
+
+.player-expansion-panel{
+    color: white!important;
+    background: #3c40c6!important;
+}
+
+.inputs{
+    min-width: 24%;
+    margin-right: 15px;
+}
