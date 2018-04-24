@@ -13,46 +13,48 @@
     <mat-divider></mat-divider>
 
     <mat-form-field class = "inputs">
-      <input #name (keyup) = "getValue(name.value, 'name')" type = "text" matInput placeholder="Nombre">
+      <input #name (keyup) = "getValue(name.value, 'name')" type = "text" matInput placeholder="Nombre" required>
     </mat-form-field>
 
     <mat-form-field class = "inputs">
-      <input #lastname (keyup) = "getValue(lastname.value, 'lastname')" type = "text" matInput  placeholder="Apellidos">
+      <input #lastname (keyup) = "getValue(lastname.value, 'lastname')" type = "text" matInput  placeholder="Apellidos" required>
     </mat-form-field>
 
     <mat-form-field class = "inputs">
-      <input #birthdate [matDatepicker] = "picker" (dateChange) = "getValue(birthdate.value, 'birthdate')" type = "text" matInput  placeholder="Apellidos">
+      <input #birthdate [matDatepicker] = "picker" (dateChange) = "getValue(birthdate.value, 'birthdate')" type = "text" matInput  placeholder="Apellidos" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class = "inputs">
-      <input #email (keyup) = "getValue(email.value, 'email')" type = "text" matInput placeholder="Email">
+      <input #email (keyup) = "getValue(email.value, 'email')" type = "text" matInput placeholder="Email" required>
     </mat-form-field>
 
     <mat-form-field class = "inputs">
-      <input #dni (keyup) = "getValue(dni.value, 'dni')" type = "text" matInput placeholder="DNI">
+      <input #dni (keyup) = "getValue(dni.value, 'dni')" type = "text" matInput placeholder="DNI" required>
     </mat-form-field>
 
     <mat-form-field class = "inputs">
-      <mat-select #position (change) = "getValue(position.value, 'position')" placeholder="Posición del jugador">
+      <mat-select #position (change) = "getValue(position.value, 'position')" placeholder="Posición del jugador" required>
         <mat-option value = "{{option}}" *ngFor = "let option of playerPositions">{{option}}</mat-option>
       </mat-select>
-  </mat-form-field>
+    </mat-form-field>
 
-  <mat-form-field class = "inputs">
-    <input #birthplace (keyup) = "getValue(birthplace.value, 'birthplace')" type = "text" matInput placeholder="Lugar de nacimiento">
-  </mat-form-field>
+    <mat-form-field class = "inputs">
+      <input #birthplace (keyup) = "getValue(birthplace.value, 'birthplace')" type = "text" matInput placeholder="Lugar de nacimiento" required>
+    </mat-form-field>
 
-  <mat-form-field class = "inputs">
-    <input #nacionality (keyup) = "getValue(nacionality.value, 'nacionality')" type = "text" matInput placeholder="Nacionalidad">
-  </mat-form-field>
+    <mat-form-field class = "inputs">
+      <input #nacionality (keyup) = "getValue(nacionality.value, 'nacionality')" type = "text" matInput placeholder="Nacionalidad" required>
+    </mat-form-field>
 
-  <mat-form-field class = "inputs">
-      <input #dorsal (keyup) = "getValue(dorsal.value, 'dorsal')" type = "number" matInput placeholder="Dorsal">
-  </mat-form-field>
+    <mat-form-field class = "inputs">
+        <input #dorsal (keyup) = "getValue(dorsal.value, 'dorsal')" type = "number" min = "0" max = "99" matInput placeholder="Dorsal" required>
+    </mat-form-field>
+    
+    <label>Foto jugador: </label><input (change) = "imageChanged($event)" type = "file" required>
 
-  <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "captain" class = "checkbox" >Capitán</mat-checkbox>
+    <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "captain" (change) = "getCheckValue($event)" class = "checkbox" >Capitán</mat-checkbox>
 
   </mat-expansion-panel>
 </mat-accordion>

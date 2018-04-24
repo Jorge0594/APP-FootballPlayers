@@ -18,7 +18,7 @@
               </mat-form-field>
             </div>
             <div id="change-photo-button">
-                <label id = "change-button" for="archive">Foto de equipo(Opcional)</label> <input (change)="imageChanged($event)" type="file" id="file-input" name='file' required>
+                <label id = "change-button" for="archive">Foto de equipo(Opcional)</label> <input (change)="imageChanged($event)" type="file" id="file-input" name='file'>
                 <img class = "image" *ngIf="!showPreview" src = "assets/images/default-image.png" alt = "Team shield">
                 <img class = "image" *ngIf="showPreview && fileShow" [src]='fileShow' alt = "Team shield" />
             </div>

@@ -1,31 +1,40 @@
 export class Player{
-    private nombre:string;
-    private apellidos:string;
-    private fechaNacimiento:string;
-    private dni:string;
-    private email:string;
-    private fotoJugador:string;
-    private teamId:string;
-    private liga:string;
-    private posicion:string;
-    private lugarNacimiento:string;
-    private nacionalidad:string;
-    private dorsal:string;
-    private capitan:boolean;
+    nombre:string;
+    apellidos:string;
+    fechaNacimiento:string;
+    dni:string;
+    email:string;
+    fotoJugador:string;
+    equipo:string;
+    liga:string;
+    posicion:string;
+    lugarNacimiento:string;
+    nacionalidad:string;
+    dorsal:number;
+    capitan:boolean;
 
-    constructor(nombre, apellidos, fechaNacimiento, dni, email, fotoJugador, teamId, liga, posicion, lugarNacimiento, nacionalidad, dorsal, capitan){
+    constructor();
+    constructor(nombre?, apellidos?, fechaNacimiento?, dni?, email?, fotoJugador?, equipo?, liga?, posicion?, lugarNacimiento?, nacionalidad?, dorsal?, capitan?){
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
         this.dni = dni;
         this.email = email;
         this.fotoJugador = fotoJugador;
-        this.teamId = teamId;
+        this.equipo = equipo;
         this.liga = liga;
         this.posicion = posicion;
         this.lugarNacimiento = lugarNacimiento;
         this.nacionalidad = nacionalidad;
         this.dorsal = dorsal;
         this.capitan = capitan;
+    }
+
+    toString(): string{
+        return "Player: [nombre: " + this.nombre + ", apellidos: " + this.apellidos 
+        + ", fechaNacimiento: " + this.fechaNacimiento + ", dni: " + this.dni + ", email: " + this.email + 
+        ", fotoJugador: " + this.fotoJugador + ", equipo: " + this.equipo + ", liga: " + this.liga + 
+        ", posicion: " + this.posicion + ", lugarNacimiento: " + this.lugarNacimiento + ", nacionalidad: " + this.nacionalidad + 
+        ", dorsal: " + this.dorsal + ", capitan: " + this.capitan; 
     }
 }

@@ -22,9 +22,9 @@ export class TeamCreatorComponent implements OnInit {
   private teamName: string;
   private controls: FormGroup;
   private showPreview: boolean = false;
-  private listOfPlayers: Array<Player> = [];
   private file: File;
   private fileShow: File;
+
   @ViewChild('panel', {read: ViewContainerRef}) private component;
   private componentRef: ComponentRef<any>;
 
@@ -86,7 +86,9 @@ export class TeamCreatorComponent implements OnInit {
   }
 
   deletePlayers(){
-
+    let listComponents = this.componentService.getComponents()
+                                                    .filter(comp => comp.instance.check == true)
+                                                    .forEach(comp => comp.destroy());
   }
   
   ngOnInit() {
