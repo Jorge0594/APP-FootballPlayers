@@ -4,3 +4,9 @@
 body div.cdk-overlay-container {
     z-index: 1000000;
 }
+
+.mat-expansion-panel{
+    background: #f1f2f6;
+}
+
+

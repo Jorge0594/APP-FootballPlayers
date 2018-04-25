@@ -57,3 +57,13 @@
     color: white;
     background: #3c40c6;
 }
+
+.stepper-button{
+    margin-top: 10px;
+    color: white;
+    background: #5459ff;
+}
+
+.divider{
+    margin-top:15px;
+}

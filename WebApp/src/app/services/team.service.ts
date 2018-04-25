@@ -20,7 +20,7 @@ export class TeamService {
     return this.http.get(BASE_URL + "validar/" + name + "/" + league)
     .map(
       response => response,
-      error => console.error(error)
+      error => error
     )
   }
 

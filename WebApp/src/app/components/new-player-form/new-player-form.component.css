@@ -11,3 +11,16 @@
     min-width: 24%;
     margin-right: 15px;
 }
+.mat-checkbox-frame{
+    background: #565be2!important;
+}
+
+.mat-checkbox-frame{
+    background: #565be2!important;
+    border-color: #7079f3;
+}
+
+#dorsal{
+    margin-left: 5px;
+    font-size: 120%;
+}

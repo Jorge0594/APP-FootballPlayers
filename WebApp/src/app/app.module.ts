@@ -40,6 +40,7 @@ import { ComponentService } from './services/component.service';
 import { TeamService } from './services/team.service';
 import { IpClientService } from './services/clientIp.service';
 import { EventService } from './services/events.service';
+import { PlayerService } from './services/player.service';
 
 import { appRoutes } from './app.routing';
 
@@ -50,7 +51,6 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MyTeamComponent } from './components/my-team/my-team.component';
 import { RouterSecurityService } from './services/router-security.service';
-import { TeamNameValidatorDirective } from './directives/team-name-validator.directive';
 
 @NgModule({
   declarations: [
@@ -61,8 +61,7 @@ import { TeamNameValidatorDirective } from './directives/team-name-validator.dir
     RequestAccountComponent,
     NavBarComponent,
     DialogComponent,
-    MyTeamComponent,
-    TeamNameValidatorDirective
+    MyTeamComponent
   ],
   imports: [
     HttpModule,
@@ -95,6 +94,7 @@ import { TeamNameValidatorDirective } from './directives/team-name-validator.dir
     ComponentService,
     EventService,
     TeamService,
+    PlayerService,
     IpClientService,
     DialogService,
     RequestAccountComponent,

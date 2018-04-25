@@ -22,27 +22,30 @@
                 <img class = "image" *ngIf="!showPreview" src = "assets/images/default-image.png" alt = "Team shield">
                 <img class = "image" *ngIf="showPreview && fileShow" [src]='fileShow' alt = "Team shield" />
             </div>
+            <mat-divider class = "divider"></mat-divider>
             <div>
-              <button mat-button matStepperNext>Siguiente</button>
+              <button class = "stepper-button mat-elevation-z5" mat-button matStepperNext>Siguiente</button>
             </div>
           </form>
         </mat-step>
         <mat-step>
-          <form >
+          <form>
             <ng-template matStepLabel>Jugadores</ng-template>
-              <template #panel id= "player-form"></template>
-              <button mat-button class = "control-buttons mat-elevation-z5" (click) = "addPlayer()">Añadir jugador</button>
-              <button mat-button class = "control-buttons mat-elevation-z5" (click) = "deletePlayers()">Eliminar jugadores seleccionados</button>
+            <template #panel id= "player-form"></template>
+            <button mat-button class = "control-buttons mat-elevation-z5" (click) = "addPlayer()">Añadir jugador</button>
+            <button mat-button class = "control-buttons mat-elevation-z5" (click) = "deletePlayers()">Eliminar jugadores seleccionados</button>
+            <mat-divider class = "divider"></mat-divider>
             <div>
-              <button mat-button matStepperPrevious>Atrás</button>
-              <button mat-button matStepperNext>Siguiente</button>
+              <button mat-button class = "stepper-button mat-elevation-z5" matStepperPrevious>Atrás</button>
+              <button mat-button class = "stepper-button mat-elevation-z5" matStepperNext>Siguiente</button>
             </div>
           </form>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Confirmar</ng-template>
+          <mat-divider class = "divider"></mat-divider>
           <div>
-            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button class = "stepper-button mat-elevation-z5" matStepperPrevious>Atrás</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
