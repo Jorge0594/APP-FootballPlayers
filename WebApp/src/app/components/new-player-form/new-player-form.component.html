@@ -31,12 +31,12 @@
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input #email (change) = "getValue(email.value, 'email')" type = "text" matInput placeholder="Email" formControlName = "email" required>
+        <input [(ngModel)] = "emailInputValue" type = "text" matInput placeholder="Email" formControlName = "email" required>
         <mat-error *ngIf="controls.invalid">{{inputErrors('email')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input #dni (keyup) = "getValue(dni.value, 'dni')" type = "text" matInput placeholder="DNI" formControlName = "dni" required>
+        <input [(ngModel)] = "dniInputValue" type = "text" matInput placeholder="DNI" formControlName = "dni" required>
         <mat-error *ngIf="controls.invalid">{{inputErrors('dni')}}</mat-error>
       </mat-form-field>
   

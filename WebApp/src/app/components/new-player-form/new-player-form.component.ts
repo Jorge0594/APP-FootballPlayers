@@ -6,6 +6,7 @@ import { PlayerService } from '../../services/player.service';
 
 import { Player } from '../../models/player.model';
 import { filter } from 'rxjs/operators';
+import { reject } from 'q';
 
 
 @Component({
@@ -21,9 +22,11 @@ export class NewPlayerFormComponent implements OnInit {
   check: boolean;
   captain: boolean;
   player: Player
-  email: string;
   playerImage: File;
   validationError: boolean;
+
+  private emailInputValue:string;
+  private dniInputValue:string;
 
   private controls:FormGroup;
 
@@ -40,7 +43,7 @@ export class NewPlayerFormComponent implements OnInit {
       lastname: ['', Validators.required],
       birthdate:['', Validators.required],
       email: ['', [Validators.required, Validators.email], this.validatorEmail.bind(this)],
-      dni:['', Validators.required],
+      dni:['', [Validators.required], this.validatorDNI.bind(this)],
       posicion:['', Validators.required],
       birthplace: ['', Validators.required],
       nacionality:['', Validators.required],
@@ -59,7 +62,6 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   getValue(data:any, from:string){
-    //console.log(this.player.toString());
     switch(from){
       case "name":
         this.player.nombre = data;
@@ -89,6 +91,7 @@ export class NewPlayerFormComponent implements OnInit {
         this.player.dorsal = data;
         break;
     }
+    console.log(this.player.toString());
   }
 
   getCheckValue(event){
@@ -120,13 +123,16 @@ export class NewPlayerFormComponent implements OnInit {
         errMessage = this.controls.get('dorsal').hasError('required') ? "Campo obligatorio" :
                      this.controls.get('dorsal').hasError('duplicateDorsal') ? "Dorsal ya asignado" : "";
         break;
+      case "dni":
+        errMessage = this.controls.get('dni').hasError('required') ? "Campo obligatorio" :
+                     this.controls.get('dni').hasError('duplicateDNI') ? "DNI en uso" : "";
+        break;
     }
 
     return errMessage;
   }
 
   validatorDorsal(formControl:FormControl): Promise<any>{
-    console.log("validador de dorsal");
     const promise = new Promise<any>(
       (resolve, reject)=>{
           let player = this.componentService.getComponents()
@@ -141,20 +147,35 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   validatorEmail(formControl:FormControl):Promise<any>{
-    console.log("validador de email: " +  this.player.email);
     const promise = new Promise<any>(
       (resolve, reject)=>{
-        this.playerService.existPlayerEmail(this.player.email).subscribe(
+        this.playerService.existPlayerEmail(this.emailInputValue).subscribe(
           response => {
             resolve(null);
           },
           error => {
-            console.log(error);
             resolve({'duplicateEmail': true});
           }
         )
       }
     );
+    return promise;
+  }
+
+  validatorDNI(formControl:FormControl): Promise<any>{
+    const promise = new Promise<any>(
+      (resolve, reject) => {
+        this.playerService.existDNIPlayer(this.dniInputValue).subscribe(
+          response => {
+            resolve(null);
+          },
+          error => {
+            resolve({'duplicateDNI' :true});
+          }
+        )
+      }
+    );
+
     return promise;
   }
 

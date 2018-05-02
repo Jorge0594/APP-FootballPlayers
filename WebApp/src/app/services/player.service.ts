@@ -9,10 +9,18 @@ export class PlayerService {
   constructor(private http: HttpClient) { }
 
   existPlayerEmail(email:string){
-    return this.http.get(BASE_URL + "validar/" + email)
+    return this.http.get(BASE_URL + "validar/email/" + email)
     .map(
       response => response,
-      error => console.error(error)
+      error => error
+    )
+  }
+
+  existDNIPlayer(dni:string){
+    return this.http.get(BASE_URL + "validar/dni/" + dni)
+    .map(
+      response => response,
+      error => error
     )
   }
 }
