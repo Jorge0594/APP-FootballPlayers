@@ -27,6 +27,7 @@ export class NewPlayerFormComponent implements OnInit {
 
   private emailInputValue:string;
   private dniInputValue:string;
+  private dorsalInputValue:number;
 
   private controls:FormGroup;
 
@@ -44,7 +45,7 @@ export class NewPlayerFormComponent implements OnInit {
       birthdate:['', Validators.required],
       email: ['', [Validators.required, Validators.email], this.validatorEmail.bind(this)],
       dni:['', [Validators.required], this.validatorDNI.bind(this)],
-      posicion:['', Validators.required],
+      position:['', Validators.required],
       birthplace: ['', Validators.required],
       nacionality:['', Validators.required],
       dorsal: ['',[Validators.required, Validators.min(0), Validators.max(99)], this.validatorDorsal.bind(this)]
@@ -61,37 +62,36 @@ export class NewPlayerFormComponent implements OnInit {
 
   }
 
-  getValue(data:any, from:string){
+  getValue(from:string){
     switch(from){
       case "name":
-        this.player.nombre = data;
+        this.player.nombre = this.controls.value.name;
         break;
       case "lastname":
-        this.player.apellidos = data; 
+        this.player.apellidos = this.controls.value.lastname; 
         break;
       case "birthdate":
-        this.player.fechaNacimiento = data;
+        this.player.fechaNacimiento = this.controls.value.birthdate;
         break;
       case "email":
-        this.player.email = data;
+        this.player.email = this.controls.value.email;
         break;
       case "dni":
-        this.player.dni = data;
+        this.player.dni = this.dniInputValue;
         break;
       case "position":
-        this.player.posicion = data;
+        this.player.posicion = this.controls.value.posicion;
         break;
       case "birthplace":
-        this.player.lugarNacimiento = data;
+        this.player.lugarNacimiento = this.controls.value.birthplace;
         break;
       case "nacionality":
-        this.player.nacionalidad = data;
+        this.player.nacionalidad = this.controls.value.nacionality;
         break;
       case "dorsal":
-        this.player.dorsal = data;
+        this.player.dorsal = this.dorsalInputValue;
         break;
     }
-    console.log(this.player.toString());
   }
 
   getCheckValue(event){
@@ -127,6 +127,15 @@ export class NewPlayerFormComponent implements OnInit {
         errMessage = this.controls.get('dni').hasError('required') ? "Campo obligatorio" :
                      this.controls.get('dni').hasError('duplicateDNI') ? "DNI en uso" : "";
         break;
+      case "position":
+        errMessage = this.controls.get('position').hasError('required') ? "Campo obligatorio" : "";
+        break;
+      case "birthplace":
+        errMessage = this.controls.get('birthplace').hasError('required') ? "Campo obligatorio" : "";
+        break;
+      case "nacionality":
+        errMessage = this.controls.get('position').hasError('required') ? "Campo obligatorio" : "";
+        break;
     }
 
     return errMessage;
@@ -134,11 +143,11 @@ export class NewPlayerFormComponent implements OnInit {
 
   validatorDorsal(formControl:FormControl): Promise<any>{
     const promise = new Promise<any>(
-      (resolve, reject)=>{
+      (resolve, reject)=>{       
           let player = this.componentService.getComponents()
-                                        .filter(comp => comp.instance.player.dorsal == this.player.dorsal);
-          if(player.length > 1){
-            resolve({'duplicateDorsal': true})
+                                        .filter(comp => comp.instance.player.dorsal == this.dorsalInputValue);
+          if(player.length > 1 && this.dorsalInputValue != undefined){
+            resolve({'duplicateDorsal' : true})
           } else {
             resolve(null);
           }   
@@ -154,7 +163,7 @@ export class NewPlayerFormComponent implements OnInit {
             resolve(null);
           },
           error => {
-            resolve({'duplicateEmail': true});
+            resolve({'duplicateEmail' : true});
           }
         )
       }
@@ -170,12 +179,11 @@ export class NewPlayerFormComponent implements OnInit {
             resolve(null);
           },
           error => {
-            resolve({'duplicateDNI' :true});
+            resolve({'duplicateDNI' : true});
           }
-        )
+        );
       }
     );
-
     return promise;
   }
 

@@ -2,7 +2,7 @@
 
 <mat-toolbar class = "mat-elevation-z5" id ="exist-team"  *ngIf ="userService.getUserTeam()"><span>Ya has creado un equipo</span></mat-toolbar>
 
-<mat-horizontal-stepper [linear]="false" *ngIf = "!userService.getUserTeam()" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper [linear]="true" *ngIf = "!userService.getUserTeam()" #stepper>
         <mat-step [stepControl]="controls" >
           <form [formGroup] = "controls">
             <ng-template matStepLabel>Datos del equipo</ng-template>
@@ -37,7 +37,7 @@
             <mat-divider class = "divider"></mat-divider>
             <div>
               <button mat-button class = "stepper-button mat-elevation-z5" matStepperPrevious>Atrás</button>
-              <button mat-button class = "stepper-button mat-elevation-z5" matStepperNext>Siguiente</button>
+              <button mat-button class = "stepper-button mat-elevation-z5" (click) = "goNext(stepper, 'teamPage')">Siguiente</button>
             </div>
           </form>
         </mat-step>

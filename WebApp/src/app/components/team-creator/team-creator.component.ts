@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, ViewChild, ViewContainerRef, ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef, Input } from '@angular/core';
 import { FormControl, Validators, FormGroup, ValidatorFn, FormBuilder } from '@angular/forms';
 import { Resolve } from '@angular/router';
+import { MatStepper } from '@angular/material';
 
 import { Player } from '../../models/player.model';
 
@@ -86,9 +87,19 @@ export class TeamCreatorComponent implements OnInit {
   }
 
   deletePlayers(){
-    let listComponents = this.componentService.getComponents()
-                                                    .filter(comp => comp.instance.check == true)
-                                                    .forEach(comp => comp.destroy());
+    let listComponents: Array<ComponentRef<NewPlayerFormComponent>> = [];
+    
+    this.componentService.getComponents()
+                                   .filter(comp => comp.instance.check == true)
+                                   .forEach(comp => comp.destroy());
+    this.componentService.setComponents(
+      this.componentService.getComponents()
+                                    .filter(comp => comp.instance.check == false)
+    );
+  }
+
+  goNext(stepper:MatStepper, from:string){
+    //stepper.next();
   }
   
   ngOnInit() {
