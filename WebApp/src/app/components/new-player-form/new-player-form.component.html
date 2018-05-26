@@ -11,7 +11,7 @@
 
     <form [formGroup] = "controls">
       <mat-form-field class = "inputs">
-        <input (keyup) = "getValue('name')" type = "text" matInput placeholder="Nombre" formControlName = "name" required>
+        <input (keyup) = "getValue('name')" type = "text" matInput placeholder="Nombre" [value] = "player?.nombre == undefined ? '' : player?.nombre" formControlName = "name" required>
         <mat-error *ngIf="controls.invalid">{{inputErrors('name')}}</mat-error>
       </mat-form-field>
   
@@ -21,19 +21,19 @@
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input  [matDatepicker] = "picker" (dateChange) = "getValue(birthdate.value, 'birthdate')" type = "text" matInput  placeholder="fecha Nacimiento" formControlName = "birthdate" required>
+        <input #date [matDatepicker] = "picker" (dateChange) = "getDate(date.value)" type = "text" matInput  placeholder="fecha Nacimiento" formControlName = "birthdate" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="controls.invalid">{{inputErrors('birthdate')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input (change) = "getValue('email')" type = "text" matInput placeholder="Email" formControlName = "email" required>
+        <input [(ngModel)] = "emailInputValue" (ngModelChange)="getValue('email')" type = "text" matInput placeholder="Email" formControlName = "email" required>
         <mat-error *ngIf="controls.invalid">{{inputErrors('email')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input [(ngModel)] = "dniInputValue" type = "text" matInput placeholder="DNI" formControlName = "dni" required>
+        <input [(ngModel)] = "dniInputValue" (ngModelChange)="getValue('dni')" type = "text" matInput placeholder="DNI" formControlName = "dni" required>
         <mat-error *ngIf="controls.invalid">{{inputErrors('dni')}}</mat-error>
       </mat-form-field>
   

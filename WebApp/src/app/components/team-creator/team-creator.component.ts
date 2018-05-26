@@ -26,48 +26,47 @@ export class TeamCreatorComponent implements OnInit {
   private file: File;
   private fileShow: File;
 
-  @ViewChild('panel', {read: ViewContainerRef}) private component;
+  @ViewChild('panel', { read: ViewContainerRef }) private component;
   private componentRef: ComponentRef<any>;
 
   constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
-    private componentService: ComponentService, private resolver: ComponentFactoryResolver ) {
+    private componentService: ComponentService, private resolver: ComponentFactoryResolver) {
     this.controls = this.formBuilder.group({
       inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
-      inputCity:['', Validators.required]
-    })
+      inputCity: ['', Validators.required]
+    });
   }
 
-  changeEvent(data){
+  changeEvent(data) {
     this.teamName = data;
   }
 
-  teamErrorMessage(){
+  teamErrorMessage() {
     return this.controls.get('inputTeamName').hasError('required') ? "Campo obligatorio" : this.controls.get('inputTeamName').hasError('teamNameError') ? "Nombre de equipo en uso" : "";
   }
 
-  errorInput(){
+  errorInput() {
     return this.controls.get('inputCity').hasError('required') ? "Campo obligatorio" : "";
   }
 
-  teamNameValidator(control:FormControl):Promise<any>{
-    if(this.teamName != "" && this.teamName != undefined){
+  teamNameValidator(formControl: FormControl): Promise<any> {
+    if (this.teamName != "" && this.teamName != undefined) {
       const promise = new Promise<any>(
         (resolve, reject) => {
-            this.teamService.existTeam(this.teamName, this.userService.getUserLogged().liga).subscribe(
+          this.teamService.existTeam(this.teamName, this.userService.getUserLogged().liga).subscribe(
             (response: Response) => {
               resolve(null);
             },
-            (error:Response) => {
-              resolve({'teamNameError': true});
+            (error: Response) => {
+              resolve({ 'teamNameError': true });
             }
-          )   
+          )
         }
       );
       return promise;
     }
   }
-
-  imageChanged(fileInput:any){
+  imageChanged(fileInput: any) {
     this.file = fileInput.target.files[0];
     this.showPreview = true;
 
@@ -79,29 +78,29 @@ export class TeamCreatorComponent implements OnInit {
     reader.readAsDataURL(fileInput.target.files[0]);
   }
 
-  addPlayer(){
+  addPlayer() {
     const factory: ComponentFactory<NewPlayerFormComponent> = this.resolver.resolveComponentFactory(NewPlayerFormComponent);
     this.componentRef = this.component.createComponent(factory);
 
     this.componentService.addNewComponent(this.componentRef);
   }
 
-  deletePlayers(){
+  deletePlayers() {
     let listComponents: Array<ComponentRef<NewPlayerFormComponent>> = [];
-    
+
     this.componentService.getComponents()
-                                   .filter(comp => comp.instance.check == true)
-                                   .forEach(comp => comp.destroy());
+      .filter(comp => comp.instance.check == true)
+      .forEach(comp => comp.destroy());
     this.componentService.setComponents(
       this.componentService.getComponents()
-                                    .filter(comp => comp.instance.check == false)
+        .filter(comp => comp.instance.check == false)
     );
   }
 
-  goNext(stepper:MatStepper, from:string){
-    //stepper.next();
+  createTeam(){
+    
   }
-  
+
   ngOnInit() {
   }
 

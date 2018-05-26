@@ -19,17 +19,4 @@ export class AppComponent {
 
   constructor(private componentService: ComponentService, private resolver: ComponentFactoryResolver){}
 
-  /*createPanel(){
-    const factory: ComponentFactory<NewPlayerFormComponent> = this.resolver.resolveComponentFactory(NewPlayerFormComponent);
-    this.componentRef = this.component.createComponent(factory);
-
-    this.componentService.addNewComponent(this.componentRef);
-  }
-
-  showComponents(){
-   for( let comp of this.componentService.getComponents()){
-      console.log(comp.component.instance.name);
-    }
-  }*/
-
 }
