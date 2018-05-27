@@ -11,6 +11,25 @@
     margin: 0 auto;
 }
 
+.confirmations-title{
+    max-width: 50%;
+    min-width: 480px;
+    background: #3c40c6;
+    height: 40px;
+    max-height: 80px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    text-align: center!important;
+    font-size: 150%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.confirmations-title span{
+    margin: 0 auto;
+    color:white;
+}
+
 #exist-team{
     width: 70%;
     color:white;
@@ -26,7 +45,8 @@
 }
 
 .data-inputs{
-    width: 48%;
+    width: 40%;
+    margin-left: 20px;
     margin-left: 20px;
 }
 
@@ -66,4 +86,19 @@
 
 .divider{
     margin-top:15px;
+}
+
+.team-confirmation-inputs{
+    width: 20%;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.team-confirmation-label{
+    color:#3c40c6;
+}
+
+.team-confirmation-content{
+    display: block!important;
+    margin: 0 auto!important;
 }

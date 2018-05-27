@@ -41,6 +41,8 @@ import { TeamService } from './services/team.service';
 import { IpClientService } from './services/clientIp.service';
 import { EventService } from './services/events.service';
 import { PlayerService } from './services/player.service';
+import { TeamDataService } from './services/team-data.service';
+import { RouterSecurityService } from './services/router-security.service';
 
 import { appRoutes } from './app.routing';
 
@@ -50,7 +52,7 @@ import { RequestAccountComponent } from './components/request-account/request-ac
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MyTeamComponent } from './components/my-team/my-team.component';
-import { RouterSecurityService } from './services/router-security.service';
+import { PlayerFormPostCreationComponent } from './components/player-form-post-creation/player-form-post-creation.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { RouterSecurityService } from './services/router-security.service';
     RequestAccountComponent,
     NavBarComponent,
     DialogComponent,
-    MyTeamComponent
+    MyTeamComponent,
+    PlayerFormPostCreationComponent
   ],
   imports: [
     HttpModule,
@@ -95,6 +98,7 @@ import { RouterSecurityService } from './services/router-security.service';
     EventService,
     TeamService,
     PlayerService,
+    TeamDataService,
     IpClientService,
     DialogService,
     RequestAccountComponent,

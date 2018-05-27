@@ -4,12 +4,15 @@ import { Resolve } from '@angular/router';
 import { MatStepper } from '@angular/material';
 
 import { Player } from '../../models/player.model';
+import { Team } from '../../models/team.model';
 
 import { NewPlayerFormComponent } from '../new-player-form/new-player-form.component';
 
 import { UserService } from '../../services/user.service';
 import { TeamService } from '../../services/team.service';
 import { ComponentService } from '../../services/component.service';
+import { TeamDataService } from '../../services/team-data.service';
+
 
 
 @Component({
@@ -30,15 +33,20 @@ export class TeamCreatorComponent implements OnInit {
   private componentRef: ComponentRef<any>;
 
   constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
-    private componentService: ComponentService, private resolver: ComponentFactoryResolver) {
+    private componentService: ComponentService, private resolver: ComponentFactoryResolver, private teamData: TeamDataService) {
     this.controls = this.formBuilder.group({
       inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
       inputCity: ['', Validators.required]
     });
   }
 
-  changeEvent(data) {
+  changeName(data) {
     this.teamName = data;
+  }
+
+  createTeam(city: string) {
+    let team = new Team(this.teamName, city);
+    this.teamData.addTeam(team);
   }
 
   teamErrorMessage() {
@@ -95,10 +103,6 @@ export class TeamCreatorComponent implements OnInit {
       this.componentService.getComponents()
         .filter(comp => comp.instance.check == false)
     );
-  }
-
-  createTeam(){
-    
   }
 
   ngOnInit() {

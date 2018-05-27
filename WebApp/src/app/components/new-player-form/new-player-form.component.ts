@@ -21,7 +21,7 @@ export class NewPlayerFormComponent implements OnInit {
   ];
   check: boolean;
   captain: boolean;
-  @Input() player: Player
+  player: Player
   playerImage: File;
   validationError: boolean;
   controls: FormGroup;
@@ -29,6 +29,7 @@ export class NewPlayerFormComponent implements OnInit {
   private emailInputValue: string;
   private dniInputValue: string;
   private dorsalInputValue: number;
+  private positionInputValue:string;
 
 
 
@@ -82,7 +83,7 @@ export class NewPlayerFormComponent implements OnInit {
         this.player.dni = this.dniInputValue;
         break;
       case "position":
-        this.player.posicion = this.controls.value.posicion;
+        this.player.posicion = this.positionInputValue;
         break;
       case "birthplace":
         this.player.lugarNacimiento = this.controls.value.birthplace;
@@ -145,7 +146,6 @@ export class NewPlayerFormComponent implements OnInit {
   validatorDorsal(formControl: FormControl): Promise<any> {
     const promise = new Promise<any>(
       (resolve, reject) => {
-        console.log("Entro en validador de dorsal");
         let player = this.componentService.getComponents()
           .filter(comp => comp.instance.player.dorsal == this.dorsalInputValue);
         if (player.length > 1 && this.dorsalInputValue != undefined) {
@@ -160,7 +160,6 @@ export class NewPlayerFormComponent implements OnInit {
   validatorEmail(formControl: FormControl): Promise<any> {
     const promise = new Promise<any>(
       (resolve, reject) => {
-        console.log("Entro en validador de email")
         this.playerService.existPlayerEmail(this.emailInputValue).subscribe(
           response => {
             resolve(null);

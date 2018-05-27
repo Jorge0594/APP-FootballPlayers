@@ -5,10 +5,8 @@ export class Team {
     ciudad:string;
     plantillaEquipo: Array<Player> = [];
 
-    constructor();
-    constructor(nombre?, ciudad?, plantillaEquipo?){
+    constructor(nombre, ciudad){
         this.nombre = nombre;
         this.ciudad = ciudad;
-        this.plantillaEquipo = plantillaEquipo;
     }
 }

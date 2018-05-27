@@ -1,0 +1,63 @@
+<br>
+<mat-accordion class="player-expansion-panel">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header class="mat-elevation-z0">
+      <mat-panel-title>
+        Jugador: <strong id = "player-name"> {{player?.nombre}} </strong> Dorsal: <strong id="dorsal"> {{player?.dorsal}}</strong>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">Nombre:</mat-label>
+      <input type="text" matInput [value]="player?.nombre == undefined ? '' : player?.nombre" readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">Apellidos:</mat-label>
+      <input [value]="player?.apellidos == undefined ? '' : player?.apellidos" type="text" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">Fecha de nacimiento:</mat-label>
+      <input [value]="player?.fechaNacimiento == undefined ? '' : player?.fechaNacimiento" type="text" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">Email:</mat-label>
+      <input [value]="player?.email == undefined ? '' : player?.email" type="text" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">DNI:</mat-label>
+      <input [value]="player?.dni == undefined ? '' : player?.dni" type="text" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">Posicion:</mat-label>
+      <input [value]="player?.posicion == undefined ? '' : player?.posicion" type="text" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">Lugar de nacimiento:</mat-label>
+      <input [value]="player?.lugarNacimiento == undefined ? '' : player?.lugarNacimiento" type="text" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">Nacionalidad:</mat-label>
+      <input [value]="player?.nacionalidad == undefined ? '' : player?.nacionalidad" type="text" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <mat-label class = "inputs-labels">Dorsal:</mat-label>
+      <input [value]="player?.dorsal == undefined ? '' : player?.dorsal" type="number" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field class="inputs" *ngIf="player?.capitan">
+      <mat-label class = "inputs-labels">Capitan:</mat-label>
+      <input [value]="'Capitan'" type="text" matInput readonly>
+    </mat-form-field>
+
+  </mat-expansion-panel>
+</mat-accordion>

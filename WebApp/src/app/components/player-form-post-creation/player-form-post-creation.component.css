@@ -1,0 +1,18 @@
+.inputs{
+    min-width: 24%;
+    margin-right: 15px;
+}
+.inputs-labels{
+    font-size: 110%;
+    color: #3c40c6;
+}
+
+#dorsal{
+    margin-left: 5px;
+    font-size: 120%;
+}
+
+#player-name{
+    margin-left:2px;
+    margin-right: 2px;
+}

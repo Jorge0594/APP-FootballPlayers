@@ -38,7 +38,7 @@
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <mat-select (change) = "getValue('position')" placeholder="Posición del jugador" formControlName = "position" required>
+        <mat-select [(ngModel)] = "positionInputValue" (ngModelChange) = "getValue('position')" placeholder="Posición del jugador" formControlName = "position" required>
           <mat-option value = "{{option}}" *ngFor = "let option of playerPositions">{{option}}</mat-option>
         </mat-select>
         <mat-error *ngIf="controls.invalid">{{inputErrors('position')}}</mat-error>
@@ -50,7 +50,7 @@
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input (keyup) = "getValue('nacionality')" type = "text" matInput placeholder="Nacionalidad" formControlName = "birthplace" required>
+        <input (keyup) = "getValue('nacionality')" type = "text" matInput placeholder="Nacionalidad" formControlName = "nacionality" required>
         <mat-error *ngIf="controls.invalid">{{inputErrors('nacionality')}}</mat-error>
       </mat-form-field>
   
