@@ -9,20 +9,43 @@ import { TeamDataService } from './team-data.service';
 export class ComponentService {
 
   private components: Array<ComponentRef<NewPlayerFormComponent>> = [];//data must be a "Player" type
+  private id: number;
 
-  constructor(private teamData: TeamDataService){}
+  constructor(private teamData: TeamDataService) { }
 
-  addNewComponent(component: ComponentRef<NewPlayerFormComponent>){//rest to add player's photos
+  addNewComponent(component: ComponentRef<NewPlayerFormComponent>) {//rest to add player's photos
+    component.instance.player.id = String(this.id);
     this.components.push(component);
     this.teamData.addPlayer(component.instance.getPlayer());
-    console.log(this.teamData.getTeam().plantillaEquipo);
+    this.id++;
   }
 
-  getComponents(){
+  removeComponents() {
+    this.components
+      .filter(comp => comp.instance.check == true)
+      .forEach(comp => comp.destroy());
+
+    let removed = this.components.filter(comp => comp.instance.check == true);
+    this.components = this.components.filter(comp => comp.instance.check == false);
+
+    for(let remove of removed){
+      let it = 0;
+      for(let comp of this.teamData.getTeam().plantillaEquipo){
+        if(comp.equals(remove.instance.player)){
+          this.teamData.getTeam().plantillaEquipo.splice(it);
+          break;
+        }
+        it++;
+      }
+    }
+
+  }
+
+  getComponents() {
     return this.components;
   }
 
-  setComponents(componentsList:Array<ComponentRef<NewPlayerFormComponent>>){
+  setComponents(componentsList: Array<ComponentRef<NewPlayerFormComponent>>) {
     this.components = componentsList;
   }
 }

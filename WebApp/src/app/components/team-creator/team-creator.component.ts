@@ -101,14 +101,7 @@ export class TeamCreatorComponent implements OnInit {
 
   deletePlayers() {
     let listComponents: Array<ComponentRef<NewPlayerFormComponent>> = [];
-
-    this.componentService.getComponents()
-      .filter(comp => comp.instance.check == true)
-      .forEach(comp => comp.destroy());
-    this.componentService.setComponents(
-      this.componentService.getComponents()
-        .filter(comp => comp.instance.check == false)
-    );
+    this.componentService.removeComponents();
   }
 
   ngOnInit() {

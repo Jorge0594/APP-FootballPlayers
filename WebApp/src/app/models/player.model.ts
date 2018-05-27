@@ -1,4 +1,5 @@
 export class Player{
+    id:string;
     nombre:string;
     apellidos:string;
     fechaNacimiento:string;
@@ -36,5 +37,9 @@ export class Player{
         ", fotoJugador: " + this.fotoJugador + ", equipo: " + this.equipo + ", liga: " + this.liga + 
         ", posicion: " + this.posicion + ", lugarNacimiento: " + this.lugarNacimiento + ", nacionalidad: " + this.nacionalidad + 
         ", dorsal: " + this.dorsal + ", capitan: " + this.capitan; 
+    }
+
+    equals(otherPlayer: Player): boolean{
+        return this.id === otherPlayer.id;
     }
 }

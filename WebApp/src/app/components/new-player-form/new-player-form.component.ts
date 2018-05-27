@@ -29,7 +29,7 @@ export class NewPlayerFormComponent implements OnInit {
   private emailInputValue: string;
   private dniInputValue: string;
   private dorsalInputValue: number;
-  private positionInputValue:string;
+  private positionInputValue: string;
 
 
 
@@ -162,7 +162,14 @@ export class NewPlayerFormComponent implements OnInit {
       (resolve, reject) => {
         this.playerService.existPlayerEmail(this.emailInputValue).subscribe(
           response => {
-            resolve(null);
+            let player = this.componentService.getComponents()
+              .filter(comp => comp.instance.player.email == this.emailInputValue);
+            if (player.length > 1) {
+              resolve({ 'duplicateEmail': true });
+            } else {
+              resolve(null);
+            }
+
           },
           error => {
             resolve({ 'duplicateEmail': true });
@@ -178,7 +185,15 @@ export class NewPlayerFormComponent implements OnInit {
       (resolve, reject) => {
         this.playerService.existDNIPlayer(this.dniInputValue).subscribe(
           response => {
-            resolve(null);
+            let player = this.componentService.getComponents()
+              .filter(comp => comp.instance.player.dni == this.dniInputValue);
+
+            if (player.length > 1) {
+              resolve({ 'duplicateDNI': true });
+            } else {
+              resolve(null);
+            }
+
           },
           error => {
             resolve({ 'duplicateDNI': true });
