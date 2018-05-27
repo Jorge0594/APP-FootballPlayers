@@ -8,7 +8,9 @@ export class TeamDataService {
 
   private team: Team;
 
-  constructor() { }
+  constructor() {
+    this.team = new Team();
+  }
 
   getTeam():Team{
     return this.team;

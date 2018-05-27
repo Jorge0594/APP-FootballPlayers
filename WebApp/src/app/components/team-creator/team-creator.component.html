@@ -12,13 +12,13 @@
       <ng-template matStepLabel>Datos del equipo</ng-template>
       <div id="input-form">
         <mat-form-field class="data-inputs">
-          <input  type="text" [(ngModel)]="teamName" maxlength="30" (ngModelChange)="changeName($event)" matInput formControlName="inputTeamName"
+          <input  type="text" [(ngModel)]="teamName" (ngModelChange) = "teamChange('name')" maxlength="30" matInput formControlName="inputTeamName"
             placeholder="Nombre del equipo" required>
           <mat-error *ngIf="controls.invalid">{{teamErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="data-inputs">
-          <input #city type="text" maxlength="30" matInput formControlName="inputCity" placeholder="Ciudad" required>
+          <input [(ngModel)] = "teamCity" (ngModelChange) = "teamChange('city')" type="text" maxlength="30" matInput formControlName="inputCity" placeholder="Ciudad" required>
           <mat-error *ngIf="controls.invalid">{{errorInput()}}</mat-error>
         </mat-form-field>
       </div>

@@ -23,11 +23,13 @@ import { TeamDataService } from '../../services/team-data.service';
 export class TeamCreatorComponent implements OnInit {
 
   private teamError: boolean = false;
-  private teamName: string;
   private controls: FormGroup;
   private showPreview: boolean = false;
   private file: File;
   private fileShow: File;
+
+  private teamName: string;
+  private teamCity:string;
 
   @ViewChild('panel', { read: ViewContainerRef }) private component;
   private componentRef: ComponentRef<any>;
@@ -40,14 +42,18 @@ export class TeamCreatorComponent implements OnInit {
     });
   }
 
-  changeName(data) {
-    this.teamName = data;
+
+  teamChange(from:string){
+    switch(from){
+      case "name":
+        this.teamData.getTeam().nombre = this.teamName;
+      break;
+      case "city":
+        this.teamData.getTeam().ciudad = this.teamCity;
+      break;
+    }
   }
 
-  createTeam(city: string) {
-    let team = new Team(this.teamName, city);
-    this.teamData.addTeam(team);
-  }
 
   teamErrorMessage() {
     return this.controls.get('inputTeamName').hasError('required') ? "Campo obligatorio" : this.controls.get('inputTeamName').hasError('teamNameError') ? "Nombre de equipo en uso" : "";
