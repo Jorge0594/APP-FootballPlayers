@@ -12,8 +12,10 @@ import { UserService } from '../../services/user.service';
 import { TeamService } from '../../services/team.service';
 import { ComponentService } from '../../services/component.service';
 import { TeamDataService } from '../../services/team-data.service';
+import { DialogService } from '../../services/dialog.service';
 
-
+const DIALOG_WIDTH = "400px";
+const DIALOG_HEIGHT = "400px";
 
 @Component({
   selector: 'app-team-creator',
@@ -23,7 +25,7 @@ import { TeamDataService } from '../../services/team-data.service';
 export class TeamCreatorComponent implements OnInit {
 
   private teamError: boolean = false;
-  private controls: FormGroup;
+  private inputControls: FormGroup;
   private showPreview: boolean = false;
   private file: File;
   private fileShow: File;
@@ -35,11 +37,13 @@ export class TeamCreatorComponent implements OnInit {
   private componentRef: ComponentRef<any>;
 
   constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
-    private componentService: ComponentService, private resolver: ComponentFactoryResolver, private teamData: TeamDataService) {
-    this.controls = this.formBuilder.group({
+    private componentService: ComponentService, private resolver: ComponentFactoryResolver, private teamData: TeamDataService,
+    private dialogService: DialogService) {
+    this.inputControls = this.formBuilder.group({
       inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
       inputCity: ['', Validators.required]
     });
+    
   }
 
 
@@ -56,14 +60,15 @@ export class TeamCreatorComponent implements OnInit {
 
 
   teamErrorMessage() {
-    return this.controls.get('inputTeamName').hasError('required') ? "Campo obligatorio" : this.controls.get('inputTeamName').hasError('teamNameError') ? "Nombre de equipo en uso" : "";
+    return this.inputControls.get('inputTeamName').hasError('required') ? "Campo obligatorio" : this.inputControls.get('inputTeamName').hasError('teamNameError') ? "Nombre de equipo en uso" : "";
   }
 
   errorInput() {
-    return this.controls.get('inputCity').hasError('required') ? "Campo obligatorio" : "";
+    return this.inputControls.get('inputCity').hasError('required') ? "Campo obligatorio" : "";
   }
 
   teamNameValidator(formControl: FormControl): Promise<any> {
+    console.log("Entro en validar nombre del equipo");
     if (this.teamName != "" && this.teamName != undefined) {
       const promise = new Promise<any>(
         (resolve, reject) => {
@@ -80,6 +85,7 @@ export class TeamCreatorComponent implements OnInit {
       return promise;
     }
   }
+
   imageChanged(fileInput: any) {
     this.file = fileInput.target.files[0];
     this.showPreview = true;
@@ -102,6 +108,19 @@ export class TeamCreatorComponent implements OnInit {
   deletePlayers() {
     let listComponents: Array<ComponentRef<NewPlayerFormComponent>> = [];
     this.componentService.removeComponents();
+  }
+
+  createTeam(){
+    
+    console.log("Entro en createTeam");
+    if(this.componentService.hasErrors()){
+      this.teamService.createTeam(this.teamData.getTeam()).subscribe(
+        response => console.log("Equipo creado correctamente")
+      )
+    } else {
+      this.dialogService.openDialog("Error" , "Hay errores en los campos de los jugadores. Por favor revise que ha rellenado todos los campos correctamente", true, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+    }
+   
   }
 
   ngOnInit() {

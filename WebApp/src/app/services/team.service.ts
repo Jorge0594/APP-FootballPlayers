@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
+import { Team } from '../models/team.model';
+
 import { HttpClient } from './httpClient.service';
+import { ERROR_COLLECTOR_TOKEN } from '@angular/platform-browser-dynamic/src/compiler_factory';
 
 const BASE_URL = "equipos/";
 @Injectable()
@@ -22,6 +25,14 @@ export class TeamService {
       response => response,
       error => error
     )
+  }
+
+  createTeam(team: Team){
+    return this.http.post(BASE_URL + "/temporal" , team)
+    .map(
+      response => response,
+      error => console.error(error)
+    );
   }
 
 }

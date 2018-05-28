@@ -41,11 +41,17 @@ export class ComponentService {
 
   }
 
-  getComponents() {
+  getComponents(): Array<ComponentRef<NewPlayerFormComponent>>{
     return this.components;
   }
 
   setComponents(componentsList: Array<ComponentRef<NewPlayerFormComponent>>) {
     this.components = componentsList;
+  }
+
+  hasErrors(): boolean{
+    const errors = this.components.filter(comp => comp.instance.inputControls.invalid);
+
+    return errors.length == 0;
   }
 }

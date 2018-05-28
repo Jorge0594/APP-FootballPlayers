@@ -24,7 +24,7 @@ export class NewPlayerFormComponent implements OnInit {
   player: Player
   playerImage: File;
   validationError: boolean;
-  controls: FormGroup;
+  inputControls: FormGroup;
 
   private emailInputValue: string;
   private dniInputValue: string;
@@ -40,7 +40,7 @@ export class NewPlayerFormComponent implements OnInit {
     this.validationError = true;
     this.player = new Player();
 
-    this.controls = this.formBuilder.group({
+    this.inputControls = this.formBuilder.group({
       name: ['', Validators.required],
       lastname: ['', Validators.required],
       birthdate: ['', Validators.required],
@@ -71,10 +71,10 @@ export class NewPlayerFormComponent implements OnInit {
   getValue(from: string) {
     switch (from) {
       case "name":
-        this.player.nombre = this.controls.value.name;
+        this.player.nombre = this.inputControls.value.name;
         break;
       case "lastname":
-        this.player.apellidos = this.controls.value.lastname;
+        this.player.apellidos = this.inputControls.value.lastname;
         break;
       case "email":
         this.player.email = this.emailInputValue;
@@ -86,10 +86,10 @@ export class NewPlayerFormComponent implements OnInit {
         this.player.posicion = this.positionInputValue;
         break;
       case "birthplace":
-        this.player.lugarNacimiento = this.controls.value.birthplace;
+        this.player.lugarNacimiento = this.inputControls.value.birthplace;
         break;
       case "nacionality":
-        this.player.nacionalidad = this.controls.value.nacionality;
+        this.player.nacionalidad = this.inputControls.value.nacionality;
         break;
       case "dorsal":
         this.player.dorsal = this.dorsalInputValue;
@@ -109,35 +109,35 @@ export class NewPlayerFormComponent implements OnInit {
     let errMessage: string = ""
     switch (from) {
       case "name":
-        errMessage = this.controls.get('name').hasError('required') ? "Campo obligatorio" : "";
+        errMessage = this.inputControls.get('name').hasError('required') ? "Campo obligatorio" : "";
         break;
       case "lastname":
-        errMessage = this.controls.get('lastname').hasError('required') ? "Campo obligatorio" : "";
+        errMessage = this.inputControls.get('lastname').hasError('required') ? "Campo obligatorio" : "";
         break;
       case "birthdate":
-        errMessage = this.controls.get('birthdate').hasError('required') ? "Campo obligatorio" : "";
+        errMessage = this.inputControls.get('birthdate').hasError('required') ? "Campo obligatorio" : "";
         break;
       case "email":
-        errMessage = this.controls.get('email').hasError('required') ? "Campo obligatorio" :
-          this.controls.get('email').hasError('email') ? "Email no valido" :
-            this.controls.get('email').hasError('duplicateEmail') ? "Email en uso" : "";
+        errMessage = this.inputControls.get('email').hasError('required') ? "Campo obligatorio" :
+          this.inputControls.get('email').hasError('email') ? "Email no valido" :
+            this.inputControls.get('email').hasError('duplicateEmail') ? "Email en uso" : "";
         break;
       case "dorsal":
-        errMessage = this.controls.get('dorsal').hasError('required') ? "Campo obligatorio" :
-          this.controls.get('dorsal').hasError('duplicateDorsal') ? "Dorsal ya asignado" : "";
+        errMessage = this.inputControls.get('dorsal').hasError('required') ? "Campo obligatorio" :
+          this.inputControls.get('dorsal').hasError('duplicateDorsal') ? "Dorsal ya asignado" : "";
         break;
       case "dni":
-        errMessage = this.controls.get('dni').hasError('required') ? "Campo obligatorio" :
-          this.controls.get('dni').hasError('duplicateDNI') ? "DNI en uso" : "";
+        errMessage = this.inputControls.get('dni').hasError('required') ? "Campo obligatorio" :
+          this.inputControls.get('dni').hasError('duplicateDNI') ? "DNI en uso" : "";
         break;
       case "position":
-        errMessage = this.controls.get('position').hasError('required') ? "Campo obligatorio" : "";
+        errMessage = this.inputControls.get('position').hasError('required') ? "Campo obligatorio" : "";
         break;
       case "birthplace":
-        errMessage = this.controls.get('birthplace').hasError('required') ? "Campo obligatorio" : "";
+        errMessage = this.inputControls.get('birthplace').hasError('required') ? "Campo obligatorio" : "";
         break;
       case "nacionality":
-        errMessage = this.controls.get('position').hasError('required') ? "Campo obligatorio" : "";
+        errMessage = this.inputControls.get('position').hasError('required') ? "Campo obligatorio" : "";
         break;
     }
     return errMessage;

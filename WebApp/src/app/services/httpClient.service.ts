@@ -68,7 +68,11 @@ export class HttpClient{
     }
 
     post(url:any, body:any){
-        
+        return this.http.post((BASE_URL + url), body, {headers: this.authTokens})
+        .map(
+            response => response,
+            error => error
+        );
     }
 
     postWithoutAuth(url:any, body:any){

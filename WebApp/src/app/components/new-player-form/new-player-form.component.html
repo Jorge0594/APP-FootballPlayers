@@ -9,54 +9,54 @@
 
     <mat-divider></mat-divider>
 
-    <form [formGroup] = "controls">
+    <form [formGroup] = "inputControls">
       <mat-form-field class = "inputs">
         <input (keyup) = "getValue('name')" type = "text" matInput placeholder="Nombre" [value] = "player?.nombre == undefined ? '' : player?.nombre" formControlName = "name" required>
-        <mat-error *ngIf="controls.invalid">{{inputErrors('name')}}</mat-error>
+        <mat-error *ngIf="inputControls.invalid">{{inputErrors('name')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
         <input (keyup) = "getValue('lastname')" type = "text" matInput  placeholder="Apellidos" formControlName = "lastname" required>
-        <mat-error *ngIf="controls.invalid">{{inputErrors('lastname')}}</mat-error>
+        <mat-error *ngIf="inputControls.invalid">{{inputErrors('lastname')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
         <input #date [matDatepicker] = "picker" (dateChange) = "getDate(date.value)" type = "text" matInput  placeholder="fecha Nacimiento" formControlName = "birthdate" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="controls.invalid">{{inputErrors('birthdate')}}</mat-error>
+        <mat-error *ngIf="inputControls.invalid">{{inputErrors('birthdate')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
         <input [(ngModel)] = "emailInputValue" (ngModelChange)="getValue('email')" type = "text" matInput placeholder="Email" formControlName = "email" required>
-        <mat-error *ngIf="controls.invalid">{{inputErrors('email')}}</mat-error>
+        <mat-error *ngIf="inputControls.invalid">{{inputErrors('email')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
         <input [(ngModel)] = "dniInputValue" (ngModelChange)="getValue('dni')" type = "text" matInput placeholder="DNI" formControlName = "dni" required>
-        <mat-error *ngIf="controls.invalid">{{inputErrors('dni')}}</mat-error>
+        <mat-error *ngIf="inputControls.invalid">{{inputErrors('dni')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
         <mat-select [(ngModel)] = "positionInputValue" (ngModelChange) = "getValue('position')" placeholder="Posición del jugador" formControlName = "position" required>
           <mat-option value = "{{option}}" *ngFor = "let option of playerPositions">{{option}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="controls.invalid">{{inputErrors('position')}}</mat-error>
+        <mat-error *ngIf="inputControls.invalid">{{inputErrors('position')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
         <input (keyup) = "getValue('birthplace')" type = "text" matInput placeholder="Lugar de nacimiento" formControlName = "birthplace" required>
-        <mat-error *ngIf="controls.invalid">{{inputErrors('birthplace')}}</mat-error>
+        <mat-error *ngIf="inputControls.invalid">{{inputErrors('birthplace')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
         <input (keyup) = "getValue('nacionality')" type = "text" matInput placeholder="Nacionalidad" formControlName = "nacionality" required>
-        <mat-error *ngIf="controls.invalid">{{inputErrors('nacionality')}}</mat-error>
+        <mat-error *ngIf="inputControls.invalid">{{inputErrors('nacionality')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
           <input  [(ngModel)] = "dorsalInputValue" (ngModelChange)="getValue('dorsal')" type = "number" min = "0" max = "99" matInput placeholder="Dorsal" formControlName = "dorsal" required>
-          <mat-error *ngIf="controls.invalid">{{inputErrors('dorsal')}}</mat-error>
+          <mat-error *ngIf="inputControls.invalid">{{inputErrors('dorsal')}}</mat-error>
       </mat-form-field>
       
       <label>Foto jugador: </label><input (change) = "imageChanged($event)" type = "file" required>

@@ -7,19 +7,20 @@
 </mat-toolbar>
 
 <mat-horizontal-stepper [linear]="true" *ngIf="!userService.getUserTeam()" #stepper>
-  <mat-step [stepControl]="controls">
-    <form [formGroup]="controls">
+  <mat-step [stepControl]="inputControls">
+    <form [formGroup]="inputControls">
       <ng-template matStepLabel>Datos del equipo</ng-template>
       <div id="input-form">
         <mat-form-field class="data-inputs">
-          <input  type="text" [(ngModel)]="teamName" (ngModelChange) = "teamChange('name')" maxlength="30" matInput formControlName="inputTeamName"
+          <input type="text" [(ngModel)]="teamName" (ngModelChange)="teamChange('name')" maxlength="30" matInput formControlName="inputTeamName"
             placeholder="Nombre del equipo" required>
-          <mat-error *ngIf="controls.invalid">{{teamErrorMessage()}}</mat-error>
+          <mat-error *ngIf="inputControls.invalid">{{teamErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="data-inputs">
-          <input [(ngModel)] = "teamCity" (ngModelChange) = "teamChange('city')" type="text" maxlength="30" matInput formControlName="inputCity" placeholder="Ciudad" required>
-          <mat-error *ngIf="controls.invalid">{{errorInput()}}</mat-error>
+          <input [(ngModel)]="teamCity" (ngModelChange)="teamChange('city')" type="text" maxlength="30" matInput formControlName="inputCity"
+            placeholder="Ciudad" required>
+          <mat-error *ngIf="inputControls.invalid">{{errorInput()}}</mat-error>
         </mat-form-field>
       </div>
       <div id="change-photo-button">
@@ -48,31 +49,31 @@
   <mat-step>
     <ng-template matStepLabel>Confirmar</ng-template>
     <mat-toolbar class="confirmations-title mat-elevation-z5">
-        <span>Datos del equipo</span>
+      <span>Datos del equipo</span>
     </mat-toolbar>
-    <div class = "team-confirmation-content"*ngIf = "teamData.getTeam() != undefined">
-        <mat-form-field class = "team-confirmation-inputs">
-          <mat-label class = "team-confirmation-label">Nombre del equipo:</mat-label>
-          <input  [value] = "teamData.getTeam().nombre" type="text" matInput readonly>
-        </mat-form-field>
-        
-        <mat-form-field class = "team-confirmation-inputs">
-          <mat-label class = "team-confirmation-label">Ciudad:</mat-label>
-          <input [value] = "teamData.getTeam().ciudad" type="text" matInput readonly>
-        </mat-form-field>
-        
-       
-        <mat-label class = "team-confirmation-label">Escudo del equipo:</mat-label>
-        <img class="image" *ngIf="!file" src="assets/images/default-image.png" alt="Team shield" alt="Team shield" />
-        <img class="image" *ngIf="file" [src]='fileShow' alt="Team shield" />
-        
-        
+    <div class="team-confirmation-content" *ngIf="teamData.getTeam() != undefined">
+      <mat-form-field class="team-confirmation-inputs">
+        <mat-label class="team-confirmation-label">Nombre del equipo:</mat-label>
+        <input [value]="teamData.getTeam().nombre" type="text" matInput readonly>
+      </mat-form-field>
+
+      <mat-form-field class="team-confirmation-inputs">
+        <mat-label class="team-confirmation-label">Ciudad:</mat-label>
+        <input [value]="teamData.getTeam().ciudad" type="text" matInput readonly>
+      </mat-form-field>
+
+
+      <mat-label class="team-confirmation-label">Escudo del equipo:</mat-label>
+      <img class="image" *ngIf="!file" src="assets/images/default-image.png" alt="Team shield" alt="Team shield" />
+      <img class="image" *ngIf="file" [src]='fileShow' alt="Team shield" />
+
+
     </div>
     <mat-divider class="divider"></mat-divider>
     <mat-toolbar class="confirmations-title mat-elevation-z5">
-        <span>Jugadores</span>
-      </mat-toolbar>
-    <div *ngIf = "teamData.getTeam() != undefined">
+      <span>Jugadores</span>
+    </mat-toolbar>
+    <div *ngIf="teamData.getTeam() != undefined">
       <div *ngFor="let playerForm of teamData.getTeam().plantillaEquipo">
         <app-player-form-post-creation [player]="playerForm"></app-player-form-post-creation>
       </div>
