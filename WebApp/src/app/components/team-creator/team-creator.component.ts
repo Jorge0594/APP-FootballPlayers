@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, ViewChild, ViewContainerRef, ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef, Input } from '@angular/core';
 import { FormControl, Validators, FormGroup, ValidatorFn, FormBuilder } from '@angular/forms';
-import { Resolve } from '@angular/router';
+import { Resolve, Router } from '@angular/router';
 import { MatStepper } from '@angular/material';
 
 import { Player } from '../../models/player.model';
@@ -38,7 +38,7 @@ export class TeamCreatorComponent implements OnInit {
 
   constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
     private componentService: ComponentService, private resolver: ComponentFactoryResolver, private teamData: TeamDataService,
-    private dialogService: DialogService) {
+    private dialogService: DialogService, private router: Router) {
     this.inputControls = this.formBuilder.group({
       inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
       inputCity: ['', Validators.required]
@@ -112,11 +112,12 @@ export class TeamCreatorComponent implements OnInit {
 
   createTeam(){
     
-    console.log("Entro en createTeam");
     if(this.componentService.hasErrors()){
       this.teamService.createTeam(this.teamData.getTeam()).subscribe(
-        response => console.log("Equipo creado correctamente")
+        response => this.userService.setUserTeam(this.teamData.getTeam())
       )
+      this.dialogService.openDialog("Creación correcta", "Creación del equipo correcta.\n\n Puedes visualizar los datos de su equipo pulsando en el botón 'Mi equipo' situado en la barra de navegación. \n\n Durante los proximos 7 días puedes modificar los datos de su equipo. Una vez el equipo se aceptado o rechazado en la liga no podrá modificar ningún campo.", false, false, "700px", "600px");
+      this.router.navigateByUrl("/equipo");
     } else {
       this.dialogService.openDialog("Error" , "Hay errores en los campos de los jugadores. Por favor revise que ha rellenado todos los campos correctamente", true, false, DIALOG_WIDTH, DIALOG_HEIGHT);
     }

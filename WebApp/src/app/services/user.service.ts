@@ -4,30 +4,36 @@ import { HttpClient } from './httpClient.service';
 import { TeamService } from './team.service';
 
 import 'rxjs/Rx';
+import { Team } from '../models/team.model';
+import { Observer } from 'rxjs/Rx';
 
 @Injectable()
 export class UserService{
 
-    private userTeam:any;
+    private userTeam:Team;
     private user:any;
 
     constructor(private http: HttpClient, private teamService: TeamService){}
 
     logout(){
-        this.userTeam = false;
-        this.user = false;
+        this.userTeam = null;
+        this.user = null;
     }
 
-    isUserLogged(){
+    isUserLogged(): boolean{
         return this.http.isLogged();
     }
 
-    getUserLogged(){
+    getUserLogged(): any{
         return this.user;
     }
 
-    getUserTeam(){
+    getUserTeam(): Team{
         return this.userTeam;
+    }
+
+    setUserTeam(team: Team){
+        this.userTeam = team;
     }
 
     generateUserData(){

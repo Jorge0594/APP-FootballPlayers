@@ -102,3 +102,7 @@
     display: block!important;
     margin: 0 auto!important;
 }
+
+#exist-team span{
+    margin: 0 auto;
+}

@@ -3,14 +3,16 @@ import { Observable } from 'rxjs/Observable';
 
 import { HttpClient } from './httpClient.service';
 import { UserService } from './user.service';
+import { EventService } from './events.service';
 
 import 'rxjs/Rx';
+
 
 const role : string = "ROLE_TEMPORAL";
 @Injectable()
 export class LoginService{
 
-    constructor (private http: HttpClient, private userService: UserService){}
+    constructor (private http: HttpClient, private userService: UserService, private eventService: EventService){}
 
     login(username:string, password:string){
         this.http.setLogged(true);
@@ -32,6 +34,7 @@ export class LoginService{
             logout =>{ 
                 this.http.logout();
                 this.userService.logout();
+                this.eventService.changeNavbar.emit('login');
             }
         );
     }

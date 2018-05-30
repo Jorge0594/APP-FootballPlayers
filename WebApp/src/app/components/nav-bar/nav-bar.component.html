@@ -1,5 +1,5 @@
 <mat-toolbar>
     <button *ngFor = "let option of options.left" mat-button class="md-raised md-primary" routerLink = "/{{option.path}}">{{option.name}}</button>
     <span class="divider"></span>
-    <button *ngFor = "let option of options.right" mat-button class="md-raised md-primary" routerLink = "/{{option.path}}">{{option.name}}</button>
+    <button *ngFor = "let option of options.right" (click)= "logout()" mat-button class="md-raised md-primary" routerLink = "/{{option.path}}">{{option.name}}</button>
 </mat-toolbar>

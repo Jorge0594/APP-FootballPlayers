@@ -28,7 +28,7 @@ export class TeamService {
   }
 
   createTeam(team: Team){
-    return this.http.post(BASE_URL + "/temporal" , team)
+    return this.http.post(BASE_URL + "temporal" , team)
     .map(
       response => response,
       error => console.error(error)

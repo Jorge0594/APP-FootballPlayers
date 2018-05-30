@@ -3,6 +3,7 @@ import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router/src/router_state';
 import { EventService } from '../../services/events.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'nav-bar',
@@ -11,41 +12,46 @@ import { EventService } from '../../services/events.service';
 })
 export class NavBarComponent implements OnInit {
 
-  private options: {left:Array<{name:string, path:string}>, right:Array<{name:string, path:string}>};
+  private options: { left: Array<{ name: string, path: string }>, right: Array<{ name: string, path: string }> };
 
-  constructor(private userService: UserService, private eventService: EventService) {
+  constructor(private userService: UserService, private eventService: EventService, private loginService: LoginService) {
+    
+  }
+
+  ngOnInit() {
     this.createNavbar();
 
-    this.eventService.changeNavbar.subscribe(()=>{
+    this.eventService.changeNavbar.subscribe(() => {
       this.createNavbar();
-    })
-   }
+    });
+  }
 
-   createNavbar(){
-    if(this.userService.isUserLogged()){
+  createNavbar() {
+    if (this.userService.isUserLogged()) {
       this.options = {
         left: [
-          {name: "Mi equipo", path: "/equipo"},
-          {name: "Crear equipo", path: "/crearEquipo"}
+          { name: "Mi equipo", path: "/equipo" },
+          { name: "Crear equipo", path: "/crearEquipo" }
         ],
         right: [
-          {name: "Cerrar sesión", path: "/cerrarSesion"} 
+          { name: "Cerrar sesión", path: "" }
         ]
       };
     } else {
       this.options = {
         left: [
-          {name: "Iniciar Sesión", path: "/iniciarSesion"},
-          {name: "Solicitar usuario", path: "/solicitarUsuario"}
+          { name: "Iniciar Sesión", path: "/iniciarSesion" },
+          { name: "Solicitar usuario", path: "/solicitarUsuario" }
         ],
         right: [
-          {name: "", path: ""} 
+          { name: "", path: "" }
         ]
       }
     }
-   }
+  }
 
-  ngOnInit() {
+  logout(){
+    this.loginService.logout();
   }
 
 }
