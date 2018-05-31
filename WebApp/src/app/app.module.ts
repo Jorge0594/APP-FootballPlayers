@@ -27,7 +27,8 @@ import { MatInputModule,
          MatCheckboxModule,
          MatDatepickerModule,
          MatNativeDateModule,
-         MatDividerModule
+         MatDividerModule,
+         MatProgressSpinnerModule
         } from '@angular/material';
 
 import { HttpClient } from './services/httpClient.service';
@@ -82,6 +83,7 @@ import { PlayerFormPostCreationComponent } from './components/player-form-post-c
     MatIconModule,
     MatCardModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
     MatInputModule,
     MatButtonModule,
     BrowserModule,

@@ -10,10 +10,12 @@ export class DialogComponent implements OnInit {
 
   private error: boolean;
   private multioption:boolean;
+  private spinner:boolean;
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.error = data.error;
     this.multioption = data.multioption;
+    this.spinner = data.spinner;
    }
 
   ngOnInit() {

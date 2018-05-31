@@ -3,11 +3,12 @@
     <div id = "dialog-content">
         {{data.text}}
     </div>
+    <mat-progress-spinner style="margin: 0 auto; margin-top: 30px" *ngIf = "spinner" mode = "indeterminate"></mat-progress-spinner>
 </mat-dialog-content>
-<mat-dialog-actions *ngIf = "!multioption" >
+<mat-dialog-actions *ngIf = "!multioption && !spinner" >
     <button mat-button mat-dialog-close class = "mat-elevation-z5">Aceptar</button>
 </mat-dialog-actions>
-<mat-dialog-actions *ngIf = "multioption" >
+<mat-dialog-actions *ngIf = "multioption && !spinner" >
     <button mat-button mat-dialog-close class = "mat-elevation-z5">Cancelar</button>
     <button mat-button [mat-dialog-close] = "true" class = "mat-elevation-z5">Aceptar</button>
 </mat-dialog-actions>

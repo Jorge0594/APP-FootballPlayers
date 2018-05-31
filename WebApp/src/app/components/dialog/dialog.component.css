@@ -19,6 +19,7 @@ mat-dialog-content{
 .mat-dialog-title{
     display:grid;
 }
+
 .errorToolbar{
     background: #e74c3c!important;
 }

@@ -23,10 +23,15 @@ export class LoginGuestComponent implements OnInit {
   private hide: boolean = true;
   private userInput = new FormControl('', Validators.required);
   private passwordInput = new FormControl('', Validators.required);
+  private showSpinner:boolean;
   
 
   constructor(private loginService: LoginService, private dialogService: DialogService,
-     private userService: UserService, private eventService: EventService, private router:Router) { }
+     private userService: UserService, private eventService: EventService, private router:Router) {
+     
+      this.showSpinner = false;
+    
+  }
 
   ngOnInit() {
   }
@@ -43,11 +48,15 @@ export class LoginGuestComponent implements OnInit {
       this.loginService.login(user, password).subscribe(
         response => {
           this.userService.generateUserData();
-          this.eventService.changeNavbar.emit('login');
-          this.router.navigateByUrl('/equipo');
+          this.dialogService.openDialog("Iniciando sesión", "Se está accediendo a la aplicación...", false, false, true, DIALOG_WIDTH, DIALOG_HEIGHT);
+          setTimeout(()=>{
+            this.dialogService.closeDialog();
+            this.eventService.changeNavbar.emit('login');
+            this.router.navigateByUrl('/equipo');
+          }, 2000);
         },
         error => {
-          this.dialogService.openDialog("Error", "Usuario o contraseña incorrectos", true, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+          this.dialogService.openDialog("Error", "Usuario o contraseña incorrectos", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
         }
       )
   }

@@ -57,14 +57,14 @@ export class RequestAccountComponent{
       this.requestFormService.sendRequest(formAccess).subscribe(
         response =>{
           this.dialogService.openDialog("Envio correcto",
-          "La petición ha sido enviada correctamente. Se le notificará por correo electronico si ha sido aceptada.", false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+          "La petición ha sido enviada correctamente. Se le notificará por correo electronico si ha sido aceptada.", false, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
           this.router.navigateByUrl('/iniciarSesion');
         },
         error => {
           if(error.status == 406){
-            this.dialogService.openDialog("Error", "No tiene permitido relizar más peticiones desde su ip.", true, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+            this.dialogService.openDialog("Error", "No tiene permitido relizar más peticiones desde su ip.", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
           } else {
-            this.dialogService.openDialog("Error", "El email introducido ya está en uso.", true, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+            this.dialogService.openDialog("Error", "El email introducido ya está en uso.", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
           }
         }
         
