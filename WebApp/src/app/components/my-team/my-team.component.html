@@ -1,3 +1,37 @@
-<mat-toolbar  class = "page-title"><span>Mi equipo</span></mat-toolbar>
+<mat-toolbar class="page-title">
+    <span>Mi equipo</span>
+</mat-toolbar>
 
-<mat-toolbar class = "mat-elevation-z5" id ="no-team-toolbar"  *ngIf ="!userService.getUserTeam()"><span>No tienes equipo</span></mat-toolbar>
+<mat-toolbar class="mat-elevation-z5" id="no-team-toolbar" *ngIf="!userService.getUserTeam()">
+    <span>No tienes equipo</span>
+</mat-toolbar>
+
+<mat-card id="team-content">
+    <mat-toolbar class="toolbar-title mat-elevation-z5">
+        <span>Equipo</span>
+    </mat-toolbar>
+
+    <mat-form-field class = "team-info">
+        <mat-label>Nombre del equipo:</mat-label>
+        <input [value] = "userService.getUserTeam()?.nombre" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field  class = "team-info">
+        <mat-label>Ciudad:</mat-label>
+        <input [value] = "userService.getUserTeam()?.ciudad" matInput readonly>
+    </mat-form-field>
+
+    <mat-form-field  class = "team-info">
+        <mat-label>Ciudad:</mat-label>
+        <input [value] = "userService.getUserTeam()?.liga" matInput readonly>
+    </mat-form-field>
+
+    <mat-toolbar class="toolbar-title mat-elevation-z5">
+        <span>Jugadores</span>
+    </mat-toolbar>
+
+    <div *ngFor="let playerForm of userService.getUserTeam()?.plantillaEquipo">
+        <app-player-form-post-creation [player]="playerForm"></app-player-form-post-creation>
+    </div>
+
+</mat-card>
