@@ -31,7 +31,7 @@ export class TeamCreatorComponent implements OnInit {
   private fileShow: File;
 
   private teamName: string;
-  private teamCity:string;
+  private teamCity: string;
 
   @ViewChild('panel', { read: ViewContainerRef }) private component;
   private componentRef: ComponentRef<any>;
@@ -43,18 +43,18 @@ export class TeamCreatorComponent implements OnInit {
       inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
       inputCity: ['', Validators.required]
     });
-    
+
   }
 
 
-  teamChange(from:string){
-    switch(from){
+  teamChange(from: string) {
+    switch (from) {
       case "name":
         this.teamData.getTeam().nombre = this.teamName;
-      break;
+        break;
       case "city":
         this.teamData.getTeam().ciudad = this.teamCity;
-      break;
+        break;
     }
   }
 
@@ -110,18 +110,22 @@ export class TeamCreatorComponent implements OnInit {
     this.componentService.removeComponents();
   }
 
-  createTeam(){
-    
-    if(this.componentService.hasErrors()){
+  createTeam() {
+
+    if (this.componentService.hasErrors()) {
       this.teamService.createTeam(this.teamData.getTeam()).subscribe(
-        response => this.userService.setUserTeam(this.teamData.getTeam())
+        response => {
+          console.log(response);
+          this.userService.generateUserData();
+          //this.userService.setUserTeam(this.teamData.getTeam());
+        }
       )
-      this.dialogService.openDialog("Creación correcta", "Creación del equipo correcta.\n\n Puedes visualizar los datos de su equipo pulsando en el botón 'Mi equipo' situado en la barra de navegación. \n\n Durante los proximos 7 días puedes modificar los datos de su equipo. Una vez el equipo se aceptado o rechazado en la liga no podrá modificar ningún campo.", false, false,false, "700px", "600px");
+      this.dialogService.openDialog("Creación correcta", "Creación del equipo correcta.\n\n Puedes visualizar los datos de su equipo pulsando en el botón 'Mi equipo' situado en la barra de navegación. \n\n Durante los proximos 7 días puedes modificar los datos de su equipo. Una vez el equipo se aceptado o rechazado en la liga no podrá modificar ningún campo.", false, false, false, "700px", "600px");
       this.router.navigateByUrl("/equipo");
     } else {
-      this.dialogService.openDialog("Error" , "Hay errores en los campos de los jugadores. Por favor revise que ha rellenado todos los campos correctamente", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+      this.dialogService.openDialog("Error", "Hay errores en los campos de los jugadores. Por favor revise que ha rellenado todos los campos correctamente", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
     }
-   
+
   }
 
   ngOnInit() {

@@ -10,12 +10,14 @@ export class ComponentService {
 
   private components: Array<ComponentRef<NewPlayerFormComponent>> = [];//data must be a "Player" type
   private id: number;
+  private playersImages: Array<{id:string, image:File }>;
 
   constructor(private teamData: TeamDataService) { }
 
   addNewComponent(component: ComponentRef<NewPlayerFormComponent>) {//rest to add player's photos
     component.instance.player.id = String(this.id);
     this.components.push(component);
+    this.playersImages.push({id:String(this.id), image:component.instance.playerImage});
     this.teamData.addPlayer(component.instance.getPlayer());
     this.id++;
   }
@@ -39,6 +41,10 @@ export class ComponentService {
       }
     }
 
+  }
+
+  getPlayersImages():Array<{id:string, image:File}>{
+    return this.playersImages;
   }
 
   getComponents(): Array<ComponentRef<NewPlayerFormComponent>>{

@@ -6,7 +6,7 @@
     <span>No tienes equipo</span>
 </mat-toolbar>
 
-<mat-card id="team-content">
+<mat-card id="team-content" *ngIf="userService.getUserTeam()">
     <mat-toolbar class="toolbar-title mat-elevation-z5">
         <span>Equipo</span>
     </mat-toolbar>
