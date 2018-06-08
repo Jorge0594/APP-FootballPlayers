@@ -23,4 +23,15 @@ export class PlayerService {
       error => error
     )
   }
+
+  updatePlayerImage(id:string, img: File){
+    let formData = new FormData();
+    formData.append("File", img);
+
+    return this.http.put((BASE_URL + id + "/foto"), formData)
+    .map(
+      response => response,
+      error => console.error(error)
+    )
+  }
 }

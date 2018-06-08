@@ -35,4 +35,15 @@ export class TeamService {
     );
   }
 
+  updateTeamImage(id:string, img: File){
+    let formData = new FormData();
+    formData.append('File', img);
+
+    return this.http.put((BASE_URL + "imagen/" + id), formData)
+    .map(
+      response => response,
+      error => console.error(error)
+    );
+  }
+
 }

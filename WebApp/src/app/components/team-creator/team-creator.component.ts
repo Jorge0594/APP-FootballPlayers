@@ -68,7 +68,6 @@ export class TeamCreatorComponent implements OnInit {
   }
 
   teamNameValidator(formControl: FormControl): Promise<any> {
-    console.log("Entro en validar nombre del equipo");
     if (this.teamName != "" && this.teamName != undefined) {
       const promise = new Promise<any>(
         (resolve, reject) => {
@@ -116,6 +115,9 @@ export class TeamCreatorComponent implements OnInit {
       this.teamService.createTeam(this.teamData.getTeam()).subscribe(
         response => {
           console.log(response);
+          if(this.file != null){
+            this.userService.setUserTeamImage(this.file);
+          }
           this.userService.generateUserData();
           //this.userService.setUserTeam(this.teamData.getTeam());
         }
@@ -123,7 +125,7 @@ export class TeamCreatorComponent implements OnInit {
       this.dialogService.openDialog("Creación correcta", "Creación del equipo correcta.\n\n Puedes visualizar los datos de su equipo pulsando en el botón 'Mi equipo' situado en la barra de navegación. \n\n Durante los proximos 7 días puedes modificar los datos de su equipo. Una vez el equipo se aceptado o rechazado en la liga no podrá modificar ningún campo.", false, false, false, "700px", "600px");
       this.router.navigateByUrl("/equipo");
     } else {
-      this.dialogService.openDialog("Error", "Hay errores en los campos de los jugadores. Por favor revise que ha rellenado todos los campos correctamente", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+      this.dialogService.openDialog("Error", "Por favor revise que ha rellenado todos los campos correctamente", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
     }
 
   }

@@ -59,8 +59,8 @@
           <mat-error *ngIf="inputControls.invalid">{{inputErrors('dorsal')}}</mat-error>
       </mat-form-field>
       
-      <label>Foto jugador: </label><input (change) = "imageChanged($event)" type = "file" required>
     </form>
+    <label>Foto jugador: </label><input [(ngModel)] = "playerImage" type="file" name='file' required>
     <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "captain" (change) = "getCheckValue($event)" class = "checkbox" >Capitán</mat-checkbox>
   </mat-expansion-panel>
 </mat-accordion>

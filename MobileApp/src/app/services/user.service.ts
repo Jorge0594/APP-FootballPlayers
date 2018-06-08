@@ -5,6 +5,8 @@ import { TeamService } from './team.service';
 import { LeagueService } from './league.service';
 import { MatchService } from './match.service';
 import { SanctionService } from './sanction.service';
+
+import { environment } from '../../enviroments/environment';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -69,11 +71,11 @@ export class UserService{
     }
 
     getBaseURL(){
-        return this.http.getBaseURL();
+        return environment.api;
     }
 
     getBaseURLforImages(){
-        return (this.http.getBaseURL() + "images/");
+        return environment.imagesUrl;
     }
 
     isLogged(){

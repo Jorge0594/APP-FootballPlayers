@@ -63,7 +63,12 @@ export class HttpClient{
         return BASE_URL;
     }
 
-    put(url:any){
+    put(url:any, body:any){
+        return this.http.put((BASE_URL + url), body, {headers: this.authTokens})
+        .map(
+            response => response,
+            error => error
+        );
 
     }
 

@@ -1,11 +1,11 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../enviroments/environment';
 
-import 'rxjs/Rx';
 import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
 
-const BASE_URL = "https://192.168.1.39:8443/";
+const BASE_URL = environment.api;
 
 @Injectable()
 export class HttpClient{

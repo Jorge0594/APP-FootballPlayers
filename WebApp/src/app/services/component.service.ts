@@ -10,7 +10,7 @@ export class ComponentService {
 
   private components: Array<ComponentRef<NewPlayerFormComponent>> = [];//data must be a "Player" type
   private id: number;
-  private playersImages: Array<{id:string, image:File }>;
+  private playersImages: Array<{id:string, image:File }> = [];
 
   constructor(private teamData: TeamDataService) { }
 

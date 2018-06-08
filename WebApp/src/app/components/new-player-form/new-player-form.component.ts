@@ -31,9 +31,6 @@ export class NewPlayerFormComponent implements OnInit {
   private dorsalInputValue: number;
   private positionInputValue: string;
 
-
-
-
   constructor(private formBuilder: FormBuilder, private componentService: ComponentService, private playerService: PlayerService) {
     this.check = false;
     this.captain = false;
@@ -59,7 +56,7 @@ export class NewPlayerFormComponent implements OnInit {
   imageChanged(fileInput: any) {
 
     this.playerImage = fileInput.target.files[0];
-    console.log("Nombre de la foto: " + this.playerImage.name);
+    
     this.player.fotoJugador = this.playerImage.name;
 
   }

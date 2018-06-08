@@ -36,11 +36,11 @@ export class LoginPage {
   presentRecoveryAlert(){
     let alert = this.alertCtrl.create({
       title: "Recuperar usuario y contraseña",
-      message: "Se procederá con el envio de su usuario y una nueva contraseña de acceso a la aplicación. Introduzca su DNI:",
+      message: "Se procederá con el envio de su usuario y una nueva contraseña de acceso a la aplicación. Introduzca su email:",
       inputs:[
         {
-          name:"dni",
-          placeholder:"DNI"
+          name:"email",
+          placeholder:"Email"
         }
       ],
       buttons:[
@@ -52,7 +52,7 @@ export class LoginPage {
         {
           text:"Enviar",
           handler: data =>{
-            this.playerService.forgottenPassword(data.dni).subscribe(
+            this.playerService.forgottenPassword(data.email).subscribe(
               recovery => {
                 this.presentSuccessOrFailAlert(true);
               },
@@ -73,11 +73,11 @@ export class LoginPage {
     let menssage:string;
     let title: string;
     if(success){
-      title = "DNI correcto";
-      menssage = "En breves momentos le llegará un email con la información solicitada.";
+      title = "Email correcto";
+      menssage = "Su usuario y su nueva contraseña han sido enviadas.";
     } else {
-      title = "DNI incorrecto";
-      menssage = "Por favor introduzca su DNI correctamente.";
+      title = "Email incorrecto";
+      menssage = "Por favor introduzca su email correctamente.";
     }
 
     let alert = this.alertCtrl.create({
