@@ -15,7 +15,7 @@ import { TabRanks } from './Tabs/ranks/ranks-tab';
 export class HomeTabsPage {
 
   private tabs: Array<{ title:string, root: any, rootParams:[string], icon:string}>;
-  private rootParams: [string];
+  private rootParams:any;
   private titles: Array<string>;
   private icons: Array<string>;
   private headerTitle: string;
@@ -40,7 +40,7 @@ export class HomeTabsPage {
         this.teamService.getPlayerTeamById(this.navParams.get('id')[1]).subscribe(
           team => this.headerTitle = team.nombre
         );
-        this.rootParams = ["teamsList",this.navParams.get('id')[1]];
+        this.rootParams = ["teamsList", this.navParams.get('id')[1]];
         this.titles = ["Perfil", "Calendario","Plantilla"];
         this.icons = ["home", "calendar", "people"];
       break;

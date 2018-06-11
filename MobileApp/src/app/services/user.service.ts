@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from './httpClient.service';
 import { TeamService } from './team.service';
 import { LeagueService } from './league.service';
-import { MatchService } from './match.service';
 import { SanctionService } from './sanction.service';
 
 import { environment } from '../../enviroments/environment';
@@ -11,54 +10,36 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class UserService{
+
     private user: any;
     private userTeam: any;
     private userLeague: any;
+    private leagueGoals: any;
     private userLeaguePlayers: any;
     private userMatches: any;
     private leagueMaches: any;
     private activeSanctions:any;
     private rounds: number [] = [];
 
-    constructor(private http: HttpClient, private teamService:TeamService,
-        private matchService: MatchService, private leagueService: LeagueService, private sanctionService: SanctionService ){}
+    constructor(private http: HttpClient, private teamService:TeamService, private leagueService: LeagueService, private sanctionService: SanctionService ){}
 
 
     generateUserData(){
         return this.http.get("jugadores/usuario").subscribe(
             response => {
                 this.user = response;
+                this.leagueService.getStandings(response.liga).subscribe(
+                    league => {
+                        this.userLeague = league;
+                        for(let i = 0; i< league.clasificacion.length; i++){
+                            this.rounds.push(i + 1);
+                        }
+                    }
+                );
                 this.teamService.getPlayerTeamById(response.equipo).subscribe(
                     team =>{
                         if(team != null || team != undefined){
                             this.userTeam = team;
-                            this.leagueService.getLeagueByName(team.liga).subscribe(
-                                league =>{
-                                    this.userLeague = league;
-                                    for(let i = 1; i<= ((league.clasificacion.length - 1) * 2); i++){
-                                        this.rounds.push(i);
-                                    };
-                                }
-                            )
-                            //REFACTOR!!!!
-                            /*this.leagueService.getStandings(team.liga).subscribe(
-                                league =>{
-                                    this.userLeague = league;
-                                    for(let i = 1; i<= ((league.length - 1) * 2); i++){
-                                        this.rounds.push(i);
-                                    };
-                                }
-                            );
-
-                            this.leagueService.getTopGoals(team.liga).subscribe(
-                                top => this.userLeaguePlayers = top
-                            );*/
-                            /*this.matchService.getMatchByLeague(team.liga).subscribe( //Unnecesary queries
-                                leagueMatches => this.leagueMaches = leagueMatches
-                            );
-                            this.matchService.getMatchTeamById(response.equipo).subscribe(
-                                matches => this.userMatches = matches
-                            );*/
                         };
                     }
                 )
@@ -68,6 +49,14 @@ export class UserService{
             },
             error => console.error(error)
         )
+    }
+
+    setleagueGoals(goals: any){
+        this.leagueGoals = goals;
+    }
+
+    getLeagueGoals(){
+        return this.leagueGoals;
     }
 
     getBaseURL(){

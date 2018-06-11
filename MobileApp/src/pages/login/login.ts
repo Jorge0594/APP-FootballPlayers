@@ -47,7 +47,6 @@ export class LoginPage {
         {
           text:"Cancelar",
           role:"cancel",
-          handler: data => console.log("Cancel password recovery")
         },
         {
           text:"Enviar",
@@ -57,7 +56,6 @@ export class LoginPage {
                 this.presentSuccessOrFailAlert(true);
               },
               error => {
-                console.error(error);
                 this.presentSuccessOrFailAlert(false);
               }
             );
@@ -104,7 +102,8 @@ export class LoginPage {
     setTimeout(()=>{
       this.navCtrl.setRoot(HomeTabsPage, {id:['league']});
       spinner.dismiss();
-    }, 3500);
+    }, 500);
+
   }
 
   ionViewDidLoad(){

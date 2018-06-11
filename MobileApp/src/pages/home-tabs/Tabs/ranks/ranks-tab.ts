@@ -7,6 +7,7 @@ import { UserService } from '../../../../app/services/user.service';
 import { TeamService } from '../../../../app/services/team.service';
 
 import { PlayerPage } from '../../../player/player';
+import { LeagueService } from '../../../../app/services/league.service';
 
 
 @IonicPage()
@@ -19,12 +20,21 @@ export class TabRanks {
   private rankSelected: string;
   private players: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private app: App, private teamService: TeamService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private app: App, private teamService: TeamService, private leagueService: LeagueService) {
     this.rankSelected = "goals";
 
     switch(this.navParams.data[0]){
       case 'league':
-        this.players = userService.getUserLeague().goleadores;
+        if(this.userService.getLeagueGoals()){
+          this.players = this.userService.getLeagueGoals();
+        } else {
+          this.leagueService.getTopGoals(this.userService.getUserLogged().liga).subscribe(
+            goals => {
+              this.players = goals;
+              this.userService.setleagueGoals(goals);
+            }
+          )
+        }
       break;
       case 'team':
         this.players = this.userService.getUserTeam().plantillaEquipo
