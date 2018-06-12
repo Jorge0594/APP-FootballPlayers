@@ -48,7 +48,7 @@ export class TabRanks {
   }
 
   clickPlayer(id:string, teamID:string){
-    this.app.getRootNav().push(PlayerPage, {playerId: id, teamId: teamID });
+    this.app.getRootNavs()[0].push(PlayerPage, {playerId: id, teamId: teamID });
   }
 
   selectRank(type:string){

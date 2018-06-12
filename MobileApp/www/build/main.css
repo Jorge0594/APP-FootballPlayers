@@ -37622,11 +37622,13 @@ page-profile h2 {
 
 page-profile .ios .scroll-content {
   padding-top: 0px !important;
+  background: #273342;
   color: white;
 }
 
 page-profile .scroll-content {
   color: white;
+  background: #273342;
 }
 
 page-profile .item-md[no-lines], page-profile .item-ios[no-lines] {

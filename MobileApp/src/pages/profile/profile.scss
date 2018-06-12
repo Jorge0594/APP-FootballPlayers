@@ -10,7 +10,6 @@ page-profile {
             border-radius: 50%;
             width: 75px;
             height: 75px;
-            //margin-right: 15px;
         }
     }
 
@@ -22,11 +21,13 @@ page-profile {
 
     .ios .scroll-content{
         padding-top: 0px!important;
+        background:#273342;
         color:white;
     }
 
     .scroll-content{
         color: white;
+        background:#273342;
     }
 
     .item-md[no-lines], .item-ios[no-lines] {
@@ -53,8 +54,7 @@ page-profile {
     }
 
     .spired{
-        background: #55759c!important;
-        
+        background: #55759c!important; 
     }
 
     button.row{

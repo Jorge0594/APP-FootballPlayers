@@ -45,7 +45,7 @@ export class TabRounds {
         this.matchService.getMatchTeamById(this.userService.getUserLogged().equipo).subscribe(
           matches =>{
             this.teamMatches = matches;
-            if(this.teamMatches == null) this.isEmpty = true;
+            if(matches.length == 0) this.isEmpty = true;
           } 
         );
       break;
@@ -53,7 +53,7 @@ export class TabRounds {
         this.matchService.getMatchTeamById(this.navParams.data[1]).subscribe(
           matches =>{
             this.teamMatches = matches;
-            if(this.teamMatches == null) this.isEmpty = true;
+            if(matches.length == 0) this.isEmpty = true;
           } 
         );
       break;
@@ -84,7 +84,7 @@ export class TabRounds {
   }
 
   matchInfo(id:string, status:string){
-    this.app.getRootNav().push(MatchPage, { matchId:id, matchStatus:status });
+    this.app.getRootNavs()[0].push(MatchPage, { matchId:id, matchStatus:status });
   }
 
   private slideToRecursive(index: number): Promise<void> {

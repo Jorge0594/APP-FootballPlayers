@@ -25,9 +25,9 @@ export class LoginPage {
     this.loginService.login(username,password).subscribe(
       reponse => {
         this.loginError = false;
+        this.presentLoading();
         this.userService.generateUserData();
         this.menuController.enable(true);
-        this.presentLoading();
       },
       error => this.loginError = true
     );
@@ -102,7 +102,7 @@ export class LoginPage {
     setTimeout(()=>{
       this.navCtrl.setRoot(HomeTabsPage, {id:['league']});
       spinner.dismiss();
-    }, 500);
+    }, 1500);
 
   }
 
