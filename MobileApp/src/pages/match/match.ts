@@ -21,7 +21,7 @@ export class MatchPage {
     this.status = this.navParams.get('matchStatus');
 
     if(this.status == "Disputado" || this.status == "disputado"){
-      this.minuteService.getMinuteByid(this.navParams.get('matchId')).subscribe(
+      this.minuteService.getMinuteByMatchId(this.navParams.get('matchId')).subscribe(
         minute => this.match = minute
       );
     } else {

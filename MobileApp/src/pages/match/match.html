@@ -22,7 +22,7 @@
       <strong>{{match?.equipoVisitanteNombre}}</strong>
     </ion-col>
   </ion-row>
-  <ion-row *ngIf= "status == 'Pendiente' || status == 'pendiente'" id = "match-info">
+  <ion-row *ngIf= "status != 'Disputado' || status != 'disputado'" id = "match-info">
     <ion-col id = "local-name">
       <strong>{{match?.equipoLocalNombre}}</strong>
     </ion-col>

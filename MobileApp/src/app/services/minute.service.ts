@@ -10,8 +10,8 @@ const BASE_URL = "actas/";
 export class MinuteService{
     constructor(private http:HttpClient){}
 
-    getMinuteByid(id: string){
-        return this.http.get(BASE_URL + id).map(
+    getMinuteByMatchId(id: string){
+        return this.http.get(BASE_URL + "partido/" +  id).map(
             response => response,
             error => console.error(error)
         )
