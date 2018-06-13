@@ -18,18 +18,22 @@ export class ProfilePage {
   private selection:string;
   private header: number;
   private playerSanctions: any;
-  private clickImage: boolean = false;
   private newPasswordMatches: boolean = false;
+  private noSanctions: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private events: Events,
   private sanctionService: SanctionService, private alertCtrl: AlertController,private modalController: ModalController) {
     this.selection = "one";
     this.header = 150;
+    this.noSanctions = false;
   }
 
   findAllPlayerSanctions(id:string){
     this.sanctionService.getPlayerSanctions(id).subscribe(
-      sanctions => this.playerSanctions = sanctions
+      sanctions =>{
+        this.playerSanctions = sanctions;
+        if(sanctions == null) this.noSanctions = true;
+      } 
     );
   }
 
@@ -55,7 +59,7 @@ export class ProfilePage {
   presentAlert(){
     let alert = this.alertCtrl.create({
       title:"Confirmación de cambio",
-      message: "¿Esta seguro de querer cambniar la contraseña?",
+      message: "¿Esta seguro de querer cambiar la contraseña?",
       buttons:[
         {
           text:"NO",

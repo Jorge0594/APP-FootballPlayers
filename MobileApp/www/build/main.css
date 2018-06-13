@@ -37161,7 +37161,6 @@ tab-rounds #no-matches {
   margin-left: auto;
   margin-right: auto;
   color: white;
-  text-align: center;
 }
 
 tab-rounds .triangle {
@@ -37808,6 +37807,13 @@ page-profile #password-error {
 page-profile #send-passwords-button {
   margin: 12px auto;
   width: 92%;
+}
+
+page-profile #no-sanctions {
+  height: 50px;
+  margin-top: 30px;
+  color: white;
+  text-align: center;
 }
 
 page-sanction .ion-scroll {

@@ -42,7 +42,7 @@
         <ion-row *ngIf = "match.estado != 'Disputado' && match.estado != 'disputado'">
             <ion-col col-4 class= "team-local">{{match.equipoLocalNombre}}</ion-col>
             <ion-col col-4><h1>{{match.horaPartido}}</h1></ion-col>
-            <ion-col col-4 class = "team-visitor">{{match.equipoVisitantNombre}}</ion-col>
+            <ion-col col-4 class = "team-visitor">{{match.equipoVisitanteNombre}}</ion-col>
         </ion-row>
         <ion-row *ngIf = "match.estado == 'Disputado' || match.estado == 'disputado'">
             <ion-col col-4 class= "team-local">{{match.equipoLocalNombre}}</ion-col>
