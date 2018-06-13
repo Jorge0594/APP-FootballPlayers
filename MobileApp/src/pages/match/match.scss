@@ -1,8 +1,7 @@
 page-match {
 
-
     .scroll-content{
-        background: rgb(245, 245, 245)!important;
+        background: white!important;
     }
 
     .header-md::after{
@@ -90,8 +89,18 @@ page-match {
 
     .info-lineup{
         font-size: 90%;
-        padding: 0px!important;
+        padding-top:0px;
+        padding-bottom: 0px;
     }
+
+    .player-content{
+        padding: 0px;
+    }
+
+    .label-md{
+        margin:0px;
+    }
+
 
     #no-info{
         display: flex;
@@ -102,6 +111,24 @@ page-match {
 
     ion-item{
         margin:0px!important;
-        text-align: center;
+        padding: 0px!important;
+        text-align: left;
+    }
+
+    #local-dorsal{
+        color: #2980b9;
+    }
+
+    #visitor-dorsal{
+        color: #e74c3c;
+    }
+
+    .player-name{
+       margin: 0px; 
+    }
+
+    #visitor-dorsal, #local-dorsal{
+        text-align: left!important;
+        max-width: 25px;
     }
 }

@@ -7,7 +7,7 @@
   </ion-navbar>
   <ion-row *ngIf ="status == 'Disputado' || status == 'disputado'" id = "match-info">
     <ion-col id = "local-name">
-      <strong>{{match?.equipoLocalNombre}}</strong>
+      <strong>{{match?.nombreEquipoLocal}}</strong>
     </ion-col>
     <ion-col id = "goals-local">
       {{match?.golesLocal}}
@@ -19,7 +19,7 @@
       {{match?.golesVisitante}}
     </ion-col>
     <ion-col id = "visitor-name">
-      <strong>{{match?.equipoVisitanteNombre}}</strong>
+      <strong>{{match?.nombreEquipoVisitante}}</strong>
     </ion-col>
   </ion-row>
   <ion-row *ngIf= "status != 'Disputado' || status != 'disputado'" id = "match-info">
@@ -59,10 +59,16 @@
     <ion-item *ngFor = "let localPlayer of match?.convocadosLocal; let i = index">
       <ion-row>
         <ion-col class = "info-lineup">
-          <strong>{{localPlayer.dorsal}}</strong> {{localPlayer.nombre}}
+          <ion-row>
+              <ion-col col-xs-2 id = "local-dorsal"><strong >{{localPlayer.dorsal}}</strong></ion-col>
+              <ion-col col-xs-10 class = "player-name">{{localPlayer.nombre}}</ion-col>
+          </ion-row>
         </ion-col>
         <ion-col class = "info-lineup" *ngIf = "match?.convocadosVisitante[i] != null && match?.convocadosVisitante[i] != undefined">
-         <strong>{{match?.convocadosVisitante[i].dorsal}}</strong> {{match?.convocadosVisitante[i].nombre}}
+          <ion-row>
+              <ion-col col-xs-2 id = "visitor-dorsal"><strong >{{match?.convocadosVisitante[i].dorsal}}</strong></ion-col>
+              <ion-col col-xs-10 class = "player-name"> {{match?.convocadosVisitante[i].nombre}}</ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
     </ion-item>

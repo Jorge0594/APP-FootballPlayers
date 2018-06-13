@@ -37407,7 +37407,7 @@ page-home .spinner {
 }
 
 page-match .scroll-content {
-  background: whitesmoke !important;
+  background: white !important;
 }
 
 page-match .header-md::after {
@@ -37497,7 +37497,16 @@ page-match p {
 
 page-match .info-lineup {
   font-size: 90%;
-  padding: 0px !important;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+page-match .player-content {
+  padding: 0px;
+}
+
+page-match .label-md {
+  margin: 0px;
 }
 
 page-match #no-info {
@@ -37515,7 +37524,25 @@ page-match #no-info {
 
 page-match ion-item {
   margin: 0px !important;
-  text-align: center;
+  padding: 0px !important;
+  text-align: left;
+}
+
+page-match #local-dorsal {
+  color: #2980b9;
+}
+
+page-match #visitor-dorsal {
+  color: #e74c3c;
+}
+
+page-match .player-name {
+  margin: 0px;
+}
+
+page-match #visitor-dorsal, page-match #local-dorsal {
+  text-align: left !important;
+  max-width: 25px;
 }
 
 page-player ion-title {
