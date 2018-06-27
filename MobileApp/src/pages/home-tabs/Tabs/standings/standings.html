@@ -16,8 +16,8 @@
         <ion-col col-xs-2><strong>PT</strong></ion-col>
     </ion-row>
     <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">
-        <ion-row *ngFor ="let team of userService.getUserLeague()?.clasificacion; let i = index" id= "colum-content">
-            <ion-col col-xs-1 id="team-position" [class.first-position] = "(i + 1) == 1" [class.last-position] = "(i + 1) == userService.getUserLeague()?.clasificacion.length">{{i+1}}</ion-col>
+        <ion-row *ngFor ="let team of userService.getUserLeague(); let i = index" id= "colum-content">
+            <ion-col col-xs-1 id="team-position" [class.first-position] = "(i + 1) == 1" [class.last-position] = "(i + 1) == userService.getUserLeague()?.length">{{i+1}}</ion-col>
             <ion-col col-4 id= "team-name">{{team?.nombre}}</ion-col>
             <ion-col col-xs-1 class="team-info">{{team?.partidosJugados}}</ion-col>
             <ion-col col-xs-1 class="team-info">{{team?.partidosGanados}}</ion-col>

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { HttpClient } from '../../../../app/services/httpClient.service'
-import { LoginService } from '../../../../app/services/login.service';
-import { MatchService } from '../../../../app/services/match.service';
+import { HttpClient } from '../../../../app/services/httpClient.service';
 import { UserService } from  '../../../../app/services/user.service';
 import { TeamService } from '../../../../app/services/team.service';
 
