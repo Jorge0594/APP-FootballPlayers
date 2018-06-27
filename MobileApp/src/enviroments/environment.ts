@@ -5,6 +5,6 @@
  
 export const environment = {
     production: false,
-    api:"https://192.168.1.33:8443/",
-    imagesUrl:"https://192.168.1.33:8443/images/"
+    api:"http://footballleaguemanagmentapi.us-west-2.elasticbeanstalk.com/",
+    imagesUrl:"http://s3.eu-west-2.amazonaws.com/footballleaguemanagmentimages/"
   };

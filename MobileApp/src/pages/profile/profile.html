@@ -66,8 +66,7 @@
           <strong>{{userService.getUserLogged()?.tarjetasRojas}}</strong>
         </ion-col>
    </ion-row>
-   <h2>Sanciones activas:</h2>
-   <p *ngIf = "userService.getActiveSanctions() == undefined || userService.getActiveSanctions() == null"  id = "no-active-sanctions">No tienes sanciones activas</p>
+   <h2 *ngIf = "userService.getActiveSanctions() != undefined || userService.getActiveSanctions() != null">Sanciones activas:</h2>
    <ion-card (click) = "viewSanction(sanction.id)" *ngFor = "let sanction of userService.getActiveSanctions()" id ="sanctions-card">
      <ion-card-content>
        <ion-row>

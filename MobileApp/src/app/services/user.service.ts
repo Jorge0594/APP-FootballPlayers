@@ -31,7 +31,7 @@ export class UserService{
                 this.leagueService.getStandings(response.liga).subscribe(
                     league => {
                         this.userLeague = league;
-                        for(let i = 0; i< league.clasificacion.length; i++){
+                        for(let i = 0; i< (league.clasificacion.length - 1)* 2 ; i++){
                             this.rounds.push(i + 1);
                         }
                     }
