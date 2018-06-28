@@ -9,8 +9,8 @@
 
 
 <ion-content padding>
-  <ion-list *ngIf = "userService.getUserLeague().clasificacion != null">
-    <button ion-item no-lines *ngFor= "let team of userService.getUserLeague().clasificacion" (click)="teamSelect(team.id)">
+  <ion-list *ngIf = "userService.getUserLeague() != null">
+    <button ion-item no-lines *ngFor= "let team of userService.getUserLeague()" (click)="teamSelect(team.id)">
       <ion-avatar item-start>
         <img src = "{{userService.getBaseURLforImages()}}{{team?.imagenEquipo}}">
       </ion-avatar>
@@ -18,5 +18,5 @@
     </button>
   </ion-list>
 
-  <ion-row id = "no-teams" *ngIf = "userService.getUserLeague()?.clasificacion.length == 0">No hay equipos en esta liga</ion-row>
+  <ion-row id = "no-teams" *ngIf = "userService.getUserLeague()?.length == 0">No hay equipos en esta liga</ion-row>
 </ion-content>
