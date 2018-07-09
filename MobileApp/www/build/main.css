@@ -37322,6 +37322,14 @@ page-home .spinner {
   min-width: 60px;
 }
 
+page-stats .scroll-content {
+  background-color: #f4f4f4;
+}
+
+page-stats ion-card-header {
+  font-weight: bold;
+}
+
 .ios page-login .scroll-content, .md page-login .scroll-content {
   padding: 0px !important;
   -webkit-align-content: center;

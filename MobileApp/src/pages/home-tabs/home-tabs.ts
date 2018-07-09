@@ -55,7 +55,7 @@ export class HomeTabsPage {
   changeTabs(id:string){
     switch(id){
       case "league":
-      case "teamList":
+      case "teamsList":
         this.tabs = [
           {title: this.titles[0], root: TabStandings, rootParams: this.rootParams, icon: this.icons[0]},
           {title: this.titles[1], root: TabRounds, rootParams: this.rootParams, icon: this.icons[1]},
