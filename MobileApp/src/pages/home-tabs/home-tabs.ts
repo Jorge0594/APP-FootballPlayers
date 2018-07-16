@@ -25,7 +25,7 @@ export class HomeTabsPage {
    
     switch (this.navParams.get('id')[0]){
       case "league":
-        this.headerTitle = "Liga";
+        this.headerTitle = "Liga " + this.userService.getUserLogged().liga;
         this.rootParams = ["league"];
         this.titles = ["Clasificacion", "Calendario", "Rankings"];
         this.icons = ["trophy", "calendar", "podium"];

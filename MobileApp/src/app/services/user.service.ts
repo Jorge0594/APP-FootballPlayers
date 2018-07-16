@@ -17,7 +17,6 @@ export class UserService{
     private leagueGoals: any;
     private userLeaguePlayers: any;
     private userMatches: any;
-    private leagueMaches: any;
     private activeSanctions:any;
     private rounds: number [] = [];
 
@@ -105,7 +104,6 @@ export class UserService{
         this.userLeague = null;
         this.userLeaguePlayers = null;
         this.userMatches = null;
-        this.leagueMaches = null;
         this.rounds = [];
     }
 }
