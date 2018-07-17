@@ -31,6 +31,7 @@ import { TeamsPage } from '../pages/teams/teams';
 import { SanctionPage } from '../pages/sanction/sanction';
 import { ProfilePage } from '../pages/profile/profile';
 import { TabStats } from '../pages/home-tabs/Tabs/stats/stats';
+import { MapsPage } from '../pages/maps/maps';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { TabStats } from '../pages/home-tabs/Tabs/stats/stats';
     MatchPage,
     TeamsPage,
     ProfilePage,
+    MapsPage,
     TabStats,
     ElasticHeader
   ],
@@ -69,7 +71,8 @@ import { TabStats } from '../pages/home-tabs/Tabs/stats/stats';
     ProfilePage,
     ElasticHeader,
     SanctionPage,
-    TabStats
+    TabStats,
+     MapsPage
   ],
   providers: [
     HttpModule,

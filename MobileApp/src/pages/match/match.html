@@ -22,12 +22,12 @@
       <strong>{{match?.nombreEquipoVisitante}}</strong>
     </ion-col>
   </ion-row>
-  <ion-row *ngIf= "status != 'Disputado' || status != 'disputado'" id = "match-info">
+  <ion-row *ngIf= "status != 'Pendiente' || status != 'pendiente'" id = "match-info">
     <ion-col id = "local-name">
       <strong>{{match?.equipoLocalNombre}}</strong>
     </ion-col>
     <ion-col id = "match-time">
-      {{match?.horaPartido}}
+      {{match?.horaPartido ? match?.horaPartido : '-'}}
     </ion-col>
     <ion-col id = "visitor-name">
       <strong>{{match?.equipoVisitanteNombre}}</strong>
@@ -74,4 +74,12 @@
     </ion-item>
   </ion-list>
   <ion-row id = "no-info" *ngIf = "status == 'Pendiente' || status == 'pendiente'">El partido no se ha disputado.</ion-row>
+  <div id = "map-button">
+      <button ion-button (click) = "viewGoogleMaps()">Cómo llegar</button>
+  </div>
+    
+
+    
+  
+  
 </ion-content>

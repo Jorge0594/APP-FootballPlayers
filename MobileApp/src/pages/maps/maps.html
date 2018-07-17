@@ -1,0 +1,20 @@
+
+<ion-header>
+
+    <ion-navbar color="header">
+      <ion-title>Google maps</ion-title>
+      <ion-buttons end>
+          <button id= "close-modal-button" ion-button (click)= "closeModal()">Cerrar</button>
+      </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+
+
+<ion-content>
+  <div #map *ngIf = "!notMap" id = "map">
+
+  </div>
+  <ion-col *ngIf = "notMap" id = "notMapMessage">No se ha encontrado nigún estadio.</ion-col>
+
+</ion-content>
