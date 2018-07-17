@@ -161,7 +161,7 @@ var MatchService = (function () {
 
 /***/ }),
 
-/***/ 145:
+/***/ 147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -222,7 +222,7 @@ var LoginService = (function () {
 
 /***/ }),
 
-/***/ 173:
+/***/ 174:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -231,7 +231,7 @@ var LoginService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_match__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_match__ = __webpack_require__(175);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -350,16 +350,16 @@ var TabRounds = (function () {
 
 /***/ }),
 
-/***/ 174:
+/***/ 175:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MatchPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_minute_service__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_minute_service__ = __webpack_require__(336);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_maps_maps__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_maps_maps__ = __webpack_require__(176);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -424,13 +424,14 @@ var MatchPage = (function () {
 
 /***/ }),
 
-/***/ 175:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(337);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -442,11 +443,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var MapsPage = (function () {
-    function MapsPage(navCtrl, navParams, viewController) {
+    function MapsPage(navCtrl, navParams, viewController, geolocation) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.viewController = viewController;
+        this.geolocation = geolocation;
         this.notMap = false;
         console.log(this.navParams.get('latitude') + " and " + this.navParams.get('longitude'));
     }
@@ -455,18 +458,48 @@ var MapsPage = (function () {
             this.notMap = true;
         }
         else {
+            this.destination = new google.maps.LatLng(this.navParams.get('longitude'), this.navParams.get('latitude'));
             this.initMap();
+            this.startNavigating();
         }
     };
     MapsPage.prototype.initMap = function () {
-        var latLng = new google.maps.LatLng(this.navParams.get('longitude'), this.navParams.get('latitude'));
         var mapOptions = {
-            center: latLng,
-            zoom: 20,
-            marker: latLng,
+            center: this.destination,
+            zoom: 17,
+            marker: this.destination,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        var marker = new google.maps.Marker({
+            position: this.destination,
+            map: this.map
+        });
+        marker.setMap(this.map);
+    };
+    MapsPage.prototype.startNavigating = function () {
+        var _this = this;
+        this.geolocation.getCurrentPosition().then(function (position) {
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+            directionsDisplay.setMap(_this.map);
+            directionsDisplay.setPanel(_this.directionsPanel.nativeElement);
+            var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            directionsService.route({
+                origin: currentLocation,
+                destination: _this.destination,
+                travelMode: google.maps.TravelMode['DRIVING']
+            }, function (res, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(res);
+                }
+                else {
+                    console.warn(status);
+                }
+            });
+        });
+    };
+    MapsPage.prototype.currentLocation = function () {
     };
     MapsPage.prototype.closeModal = function () {
         this.viewController.dismiss();
@@ -475,21 +508,24 @@ var MapsPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
         __metadata("design:type", Object)
     ], MapsPage.prototype, "mapElement", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('directionsPanel'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
+    ], MapsPage.prototype, "directionsPanel", void 0);
     MapsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-maps',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\maps\maps.html"*/'\n<ion-header>\n\n    <ion-navbar color="header">\n      <ion-title>Google maps</ion-title>\n      <ion-buttons end>\n          <button id= "close-modal-button" ion-button (click)= "closeModal()">Cerrar</button>\n      </ion-buttons>\n    </ion-navbar>\n  \n  </ion-header>\n\n\n<ion-content>\n  <div #map *ngIf = "!notMap" id = "map">\n\n  </div>\n  <ion-col *ngIf = "notMap" id = "notMapMessage">No se ha encontrado nigún estadio.</ion-col>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\maps\maps.html"*/,
+            selector: 'page-maps',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\maps\maps.html"*/'\n<ion-header>\n\n    <ion-navbar color="header">\n      <ion-title>Google maps</ion-title>\n      <ion-buttons end>\n          <button id= "close-modal-button" ion-button (click)= "closeModal()">Cerrar</button>\n      </ion-buttons>\n    </ion-navbar>\n  \n  </ion-header>\n\n\n<ion-content>\n\n  <ion-card *ngIf = "!notMap">\n      <ion-card-content>\n          <div #directionsPanel></div>\n      </ion-card-content>\n  </ion-card>\n  <div #map *ngIf = "!notMap" id = "map">\n\n  </div>\n  <ion-col *ngIf = "notMap" id = "notMapMessage">No se ha encontrado nigún estadio.</ion-col>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\maps\maps.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]])
     ], MapsPage);
     return MapsPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=maps.js.map
 
 /***/ }),
 
-/***/ 176:
+/***/ 177:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -498,7 +534,7 @@ var MapsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__player_player__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__player_player__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_league_service__ = __webpack_require__(142);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -565,7 +601,7 @@ var TabRanks = (function () {
 
 /***/ }),
 
-/***/ 177:
+/***/ 178:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -614,7 +650,7 @@ var PlayerPage = (function () {
 
 /***/ }),
 
-/***/ 178:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -622,7 +658,7 @@ var PlayerPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_tabs_home_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_login_service__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_login_service__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_player_service__ = __webpack_require__(91);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -665,7 +701,7 @@ var LoginPage = (function () {
         var _this = this;
         var alert = this.alertCtrl.create({
             title: "Recuperar usuario y contraseña",
-            message: "Se procederá con el envio de su usuario y una nueva contraseña de acceso a la aplicación. Introduzca su email:",
+            message: "Introduzca su email:",
             inputs: [
                 {
                     name: "email",
@@ -743,7 +779,7 @@ var LoginPage = (function () {
 
 /***/ }),
 
-/***/ 179:
+/***/ 180:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -751,7 +787,7 @@ var LoginPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_tabs_home_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sanction_sanction__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sanction_sanction__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_sanction_service__ = __webpack_require__(90);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -854,7 +890,7 @@ var ProfilePage = (function () {
 
 /***/ }),
 
-/***/ 180:
+/***/ 181:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -901,7 +937,7 @@ var SanctionPage = (function () {
 
 /***/ }),
 
-/***/ 181:
+/***/ 182:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -946,7 +982,7 @@ var TeamsPage = (function () {
 
 /***/ }),
 
-/***/ 194:
+/***/ 195:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -959,52 +995,52 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 194;
+webpackEmptyAsyncContext.id = 195;
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/home-tabs/Tabs/ranks/ranks-tab.module": [
-		899,
+		900,
 		9
 	],
 	"../pages/home-tabs/Tabs/rounds/tab-rounds.module": [
-		900,
+		901,
 		8
 	],
 	"../pages/home-tabs/home-tabs.module": [
-		898,
+		899,
 		7
 	],
 	"../pages/login/login.module": [
-		901,
+		902,
 		6
 	],
 	"../pages/maps/maps.module": [
-		902,
+		903,
 		5
 	],
 	"../pages/match/match.module": [
-		903,
+		904,
 		4
 	],
 	"../pages/player/player.module": [
-		904,
+		905,
 		3
 	],
 	"../pages/profile/profile.module": [
-		905,
+		906,
 		2
 	],
 	"../pages/sanction/sanction.module": [
-		906,
+		907,
 		1
 	],
 	"../pages/teams/teams.module": [
-		907,
+		908,
 		0
 	]
 };
@@ -1019,12 +1055,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 238;
+webpackAsyncContext.id = 239;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 240:
+/***/ 241:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1052,7 +1088,7 @@ var environment = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__league_service__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sanction_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__enviroments_environment__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__enviroments_environment__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Rx__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1153,7 +1189,7 @@ var UserService = (function () {
 
 /***/ }),
 
-/***/ 335:
+/***/ 336:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1193,14 +1229,14 @@ var MinuteService = (function () {
 
 /***/ }),
 
-/***/ 336:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabStats; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js__ = __webpack_require__(821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js__ = __webpack_require__(825);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_chart_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1280,8 +1316,8 @@ var TabStats = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpClient; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__enviroments_environment__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__enviroments_environment__ = __webpack_require__(241);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1353,13 +1389,13 @@ var HttpClient = (function () {
 
 /***/ }),
 
-/***/ 516:
+/***/ 517:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(522);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1407,7 +1443,7 @@ var TeamService = (function () {
 
 /***/ }),
 
-/***/ 521:
+/***/ 522:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1415,34 +1451,35 @@ var TeamService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(505);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(508);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic2_super_tabs__ = __webpack_require__(887);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_img_viewer__ = __webpack_require__(889);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_app_services_player_service__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_app_services_login_service__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_app_services_httpClient_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_app_services_team_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_app_services_match_service__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_app_services_user_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_app_services_league_service__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_app_services_sanction_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_services_minute_service__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_component__ = __webpack_require__(896);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_elastic_header_elastic_header__ = __webpack_require__(897);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_login_login__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_home_tabs_home_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_home_tabs_Tabs_standings_standings__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_home_tabs_Tabs_rounds_tab_rounds__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_home_tabs_Tabs_ranks_ranks_tab__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_player_player__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_match_match__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_teams_teams__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_sanction_sanction__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_profile_profile__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_home_tabs_Tabs_stats_stats__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_maps_maps__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic2_super_tabs__ = __webpack_require__(888);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_img_viewer__ = __webpack_require__(890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_app_services_player_service__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_app_services_login_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_app_services_httpClient_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_app_services_team_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_app_services_match_service__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_app_services_user_service__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_app_services_league_service__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_app_services_sanction_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_services_minute_service__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_component__ = __webpack_require__(897);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_elastic_header_elastic_header__ = __webpack_require__(898);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_login_login__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_home_tabs_home_tabs__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_home_tabs_Tabs_standings_standings__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_home_tabs_Tabs_rounds_tab_rounds__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_home_tabs_Tabs_ranks_ranks_tab__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_player_player__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_match_match__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_teams_teams__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_sanction_sanction__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_profile_profile__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_home_tabs_Tabs_stats_stats__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_maps_maps__ = __webpack_require__(176);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1480,33 +1517,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_17__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_home_tabs_home_tabs__["a" /* HomeTabsPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_home_tabs_Tabs_standings_standings__["a" /* TabStandings */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_home_tabs_Tabs_rounds_tab_rounds__["a" /* TabRounds */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_home_tabs_Tabs_ranks_ranks_tab__["a" /* TabRanks */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_player_player__["a" /* PlayerPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_sanction_sanction__["a" /* SanctionPage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_match_match__["a" /* MatchPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_teams_teams__["a" /* TeamsPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_maps_maps__["a" /* MapsPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_home_tabs_Tabs_stats_stats__["a" /* TabStats */],
-                __WEBPACK_IMPORTED_MODULE_18__components_elastic_header_elastic_header__["a" /* ElasticHeader */]
+                __WEBPACK_IMPORTED_MODULE_18__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_home_tabs_home_tabs__["a" /* HomeTabsPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_home_tabs_Tabs_standings_standings__["a" /* TabStandings */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_home_tabs_Tabs_rounds_tab_rounds__["a" /* TabRounds */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_home_tabs_Tabs_ranks_ranks_tab__["a" /* TabRanks */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_player_player__["a" /* PlayerPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_sanction_sanction__["a" /* SanctionPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_match_match__["a" /* MatchPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_teams_teams__["a" /* TeamsPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_profile_profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_maps_maps__["a" /* MapsPage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_home_tabs_Tabs_stats_stats__["a" /* TabStats */],
+                __WEBPACK_IMPORTED_MODULE_19__components_elastic_header_elastic_header__["a" /* ElasticHeader */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_7_ionic_img_viewer__["a" /* IonicImageViewerModule */],
+                __WEBPACK_IMPORTED_MODULE_6__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_8_ionic_img_viewer__["a" /* IonicImageViewerModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_6_ionic2_super_tabs__["a" /* SuperTabsModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_17__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_7_ionic2_super_tabs__["a" /* SuperTabsModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_18__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/home-tabs/home-tabs.module#HomeTabsPageModule', name: 'HomeTabsPage', segment: 'home-tabs', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home-tabs/Tabs/ranks/ranks-tab.module#LeagueTabPageModule', name: 'TabRanks', segment: 'ranks-tab', priority: 'low', defaultHistory: [] },
@@ -1523,34 +1561,35 @@ var AppModule = (function () {
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_17__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_home_tabs_home_tabs__["a" /* HomeTabsPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_home_tabs_Tabs_standings_standings__["a" /* TabStandings */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_home_tabs_Tabs_rounds_tab_rounds__["a" /* TabRounds */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_home_tabs_Tabs_ranks_ranks_tab__["a" /* TabRanks */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_player_player__["a" /* PlayerPage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_match_match__["a" /* MatchPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_teams_teams__["a" /* TeamsPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_18__components_elastic_header_elastic_header__["a" /* ElasticHeader */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_sanction_sanction__["a" /* SanctionPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_home_tabs_Tabs_stats_stats__["a" /* TabStats */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_maps_maps__["a" /* MapsPage */]
+                __WEBPACK_IMPORTED_MODULE_18__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_home_tabs_home_tabs__["a" /* HomeTabsPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_home_tabs_Tabs_standings_standings__["a" /* TabStandings */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_home_tabs_Tabs_rounds_tab_rounds__["a" /* TabRounds */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_home_tabs_Tabs_ranks_ranks_tab__["a" /* TabRanks */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_player_player__["a" /* PlayerPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_match_match__["a" /* MatchPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_teams_teams__["a" /* TeamsPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_profile_profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_19__components_elastic_header_elastic_header__["a" /* ElasticHeader */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_sanction_sanction__["a" /* SanctionPage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_home_tabs_Tabs_stats_stats__["a" /* TabStats */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_maps_maps__["a" /* MapsPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_8__src_app_services_player_service__["a" /* PlayerService */],
-                __WEBPACK_IMPORTED_MODULE_16__app_services_minute_service__["a" /* MinuteService */],
-                __WEBPACK_IMPORTED_MODULE_9__src_app_services_login_service__["a" /* LoginService */],
-                __WEBPACK_IMPORTED_MODULE_15__src_app_services_sanction_service__["a" /* SanctionService */],
-                __WEBPACK_IMPORTED_MODULE_11__src_app_services_team_service__["a" /* TeamService */],
-                __WEBPACK_IMPORTED_MODULE_12__src_app_services_match_service__["a" /* MatchService */],
-                __WEBPACK_IMPORTED_MODULE_10__src_app_services_httpClient_service__["a" /* HttpClient */],
-                __WEBPACK_IMPORTED_MODULE_13__src_app_services_user_service__["a" /* UserService */],
-                __WEBPACK_IMPORTED_MODULE_14__src_app_services_league_service__["a" /* LeagueService */],
-                __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_6__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_9__src_app_services_player_service__["a" /* PlayerService */],
+                __WEBPACK_IMPORTED_MODULE_17__app_services_minute_service__["a" /* MinuteService */],
+                __WEBPACK_IMPORTED_MODULE_10__src_app_services_login_service__["a" /* LoginService */],
+                __WEBPACK_IMPORTED_MODULE_16__src_app_services_sanction_service__["a" /* SanctionService */],
+                __WEBPACK_IMPORTED_MODULE_12__src_app_services_team_service__["a" /* TeamService */],
+                __WEBPACK_IMPORTED_MODULE_13__src_app_services_match_service__["a" /* MatchService */],
+                __WEBPACK_IMPORTED_MODULE_11__src_app_services_httpClient_service__["a" /* HttpClient */],
+                __WEBPACK_IMPORTED_MODULE_14__src_app_services_user_service__["a" /* UserService */],
+                __WEBPACK_IMPORTED_MODULE_15__src_app_services_league_service__["a" /* LeagueService */],
+                __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* IonicErrorHandler */] }
             ]
         })
@@ -1572,9 +1611,9 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Tabs_standings_standings__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Tabs_rounds_tab_rounds__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Tabs_ranks_ranks_tab__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Tabs_stats_stats__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Tabs_rounds_tab_rounds__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Tabs_ranks_ranks_tab__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Tabs_stats_stats__ = __webpack_require__(339);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1657,256 +1696,256 @@ var HomeTabsPage = (function () {
 
 /***/ }),
 
-/***/ 849:
+/***/ 853:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 343,
-	"./af.js": 343,
-	"./ar": 344,
-	"./ar-dz": 345,
-	"./ar-dz.js": 345,
-	"./ar-kw": 346,
-	"./ar-kw.js": 346,
-	"./ar-ly": 347,
-	"./ar-ly.js": 347,
-	"./ar-ma": 348,
-	"./ar-ma.js": 348,
-	"./ar-sa": 349,
-	"./ar-sa.js": 349,
-	"./ar-tn": 350,
-	"./ar-tn.js": 350,
-	"./ar.js": 344,
-	"./az": 351,
-	"./az.js": 351,
-	"./be": 352,
-	"./be.js": 352,
-	"./bg": 353,
-	"./bg.js": 353,
-	"./bm": 354,
-	"./bm.js": 354,
-	"./bn": 355,
-	"./bn.js": 355,
-	"./bo": 356,
-	"./bo.js": 356,
-	"./br": 357,
-	"./br.js": 357,
-	"./bs": 358,
-	"./bs.js": 358,
-	"./ca": 359,
-	"./ca.js": 359,
-	"./cs": 360,
-	"./cs.js": 360,
-	"./cv": 361,
-	"./cv.js": 361,
-	"./cy": 362,
-	"./cy.js": 362,
-	"./da": 363,
-	"./da.js": 363,
-	"./de": 364,
-	"./de-at": 365,
-	"./de-at.js": 365,
-	"./de-ch": 366,
-	"./de-ch.js": 366,
-	"./de.js": 364,
-	"./dv": 367,
-	"./dv.js": 367,
-	"./el": 368,
-	"./el.js": 368,
-	"./en-au": 369,
-	"./en-au.js": 369,
-	"./en-ca": 370,
-	"./en-ca.js": 370,
-	"./en-gb": 371,
-	"./en-gb.js": 371,
-	"./en-ie": 372,
-	"./en-ie.js": 372,
-	"./en-il": 373,
-	"./en-il.js": 373,
-	"./en-nz": 374,
-	"./en-nz.js": 374,
-	"./eo": 375,
-	"./eo.js": 375,
-	"./es": 376,
-	"./es-do": 377,
-	"./es-do.js": 377,
-	"./es-us": 378,
-	"./es-us.js": 378,
-	"./es.js": 376,
-	"./et": 379,
-	"./et.js": 379,
-	"./eu": 380,
-	"./eu.js": 380,
-	"./fa": 381,
-	"./fa.js": 381,
-	"./fi": 382,
-	"./fi.js": 382,
-	"./fo": 383,
-	"./fo.js": 383,
-	"./fr": 384,
-	"./fr-ca": 385,
-	"./fr-ca.js": 385,
-	"./fr-ch": 386,
-	"./fr-ch.js": 386,
-	"./fr.js": 384,
-	"./fy": 387,
-	"./fy.js": 387,
-	"./gd": 388,
-	"./gd.js": 388,
-	"./gl": 389,
-	"./gl.js": 389,
-	"./gom-latn": 390,
-	"./gom-latn.js": 390,
-	"./gu": 391,
-	"./gu.js": 391,
-	"./he": 392,
-	"./he.js": 392,
-	"./hi": 393,
-	"./hi.js": 393,
-	"./hr": 394,
-	"./hr.js": 394,
-	"./hu": 395,
-	"./hu.js": 395,
-	"./hy-am": 396,
-	"./hy-am.js": 396,
-	"./id": 397,
-	"./id.js": 397,
-	"./is": 398,
-	"./is.js": 398,
-	"./it": 399,
-	"./it.js": 399,
-	"./ja": 400,
-	"./ja.js": 400,
-	"./jv": 401,
-	"./jv.js": 401,
-	"./ka": 402,
-	"./ka.js": 402,
-	"./kk": 403,
-	"./kk.js": 403,
-	"./km": 404,
-	"./km.js": 404,
-	"./kn": 405,
-	"./kn.js": 405,
-	"./ko": 406,
-	"./ko.js": 406,
-	"./ky": 407,
-	"./ky.js": 407,
-	"./lb": 408,
-	"./lb.js": 408,
-	"./lo": 409,
-	"./lo.js": 409,
-	"./lt": 410,
-	"./lt.js": 410,
-	"./lv": 411,
-	"./lv.js": 411,
-	"./me": 412,
-	"./me.js": 412,
-	"./mi": 413,
-	"./mi.js": 413,
-	"./mk": 414,
-	"./mk.js": 414,
-	"./ml": 415,
-	"./ml.js": 415,
-	"./mn": 416,
-	"./mn.js": 416,
-	"./mr": 417,
-	"./mr.js": 417,
-	"./ms": 418,
-	"./ms-my": 419,
-	"./ms-my.js": 419,
-	"./ms.js": 418,
-	"./mt": 420,
-	"./mt.js": 420,
-	"./my": 421,
-	"./my.js": 421,
-	"./nb": 422,
-	"./nb.js": 422,
-	"./ne": 423,
-	"./ne.js": 423,
-	"./nl": 424,
-	"./nl-be": 425,
-	"./nl-be.js": 425,
-	"./nl.js": 424,
-	"./nn": 426,
-	"./nn.js": 426,
-	"./pa-in": 427,
-	"./pa-in.js": 427,
-	"./pl": 428,
-	"./pl.js": 428,
-	"./pt": 429,
-	"./pt-br": 430,
-	"./pt-br.js": 430,
-	"./pt.js": 429,
-	"./ro": 431,
-	"./ro.js": 431,
-	"./ru": 432,
-	"./ru.js": 432,
-	"./sd": 433,
-	"./sd.js": 433,
-	"./se": 434,
-	"./se.js": 434,
-	"./si": 435,
-	"./si.js": 435,
-	"./sk": 436,
-	"./sk.js": 436,
-	"./sl": 437,
-	"./sl.js": 437,
-	"./sq": 438,
-	"./sq.js": 438,
-	"./sr": 439,
-	"./sr-cyrl": 440,
-	"./sr-cyrl.js": 440,
-	"./sr.js": 439,
-	"./ss": 441,
-	"./ss.js": 441,
-	"./sv": 442,
-	"./sv.js": 442,
-	"./sw": 443,
-	"./sw.js": 443,
-	"./ta": 444,
-	"./ta.js": 444,
-	"./te": 445,
-	"./te.js": 445,
-	"./tet": 446,
-	"./tet.js": 446,
-	"./tg": 447,
-	"./tg.js": 447,
-	"./th": 448,
-	"./th.js": 448,
-	"./tl-ph": 449,
-	"./tl-ph.js": 449,
-	"./tlh": 450,
-	"./tlh.js": 450,
-	"./tr": 451,
-	"./tr.js": 451,
-	"./tzl": 452,
-	"./tzl.js": 452,
-	"./tzm": 453,
-	"./tzm-latn": 454,
-	"./tzm-latn.js": 454,
-	"./tzm.js": 453,
-	"./ug-cn": 455,
-	"./ug-cn.js": 455,
-	"./uk": 456,
-	"./uk.js": 456,
-	"./ur": 457,
-	"./ur.js": 457,
-	"./uz": 458,
-	"./uz-latn": 459,
-	"./uz-latn.js": 459,
-	"./uz.js": 458,
-	"./vi": 460,
-	"./vi.js": 460,
-	"./x-pseudo": 461,
-	"./x-pseudo.js": 461,
-	"./yo": 462,
-	"./yo.js": 462,
-	"./zh-cn": 463,
-	"./zh-cn.js": 463,
-	"./zh-hk": 464,
-	"./zh-hk.js": 464,
-	"./zh-tw": 465,
-	"./zh-tw.js": 465
+	"./af": 346,
+	"./af.js": 346,
+	"./ar": 347,
+	"./ar-dz": 348,
+	"./ar-dz.js": 348,
+	"./ar-kw": 349,
+	"./ar-kw.js": 349,
+	"./ar-ly": 350,
+	"./ar-ly.js": 350,
+	"./ar-ma": 351,
+	"./ar-ma.js": 351,
+	"./ar-sa": 352,
+	"./ar-sa.js": 352,
+	"./ar-tn": 353,
+	"./ar-tn.js": 353,
+	"./ar.js": 347,
+	"./az": 354,
+	"./az.js": 354,
+	"./be": 355,
+	"./be.js": 355,
+	"./bg": 356,
+	"./bg.js": 356,
+	"./bm": 357,
+	"./bm.js": 357,
+	"./bn": 358,
+	"./bn.js": 358,
+	"./bo": 359,
+	"./bo.js": 359,
+	"./br": 360,
+	"./br.js": 360,
+	"./bs": 361,
+	"./bs.js": 361,
+	"./ca": 362,
+	"./ca.js": 362,
+	"./cs": 363,
+	"./cs.js": 363,
+	"./cv": 364,
+	"./cv.js": 364,
+	"./cy": 365,
+	"./cy.js": 365,
+	"./da": 366,
+	"./da.js": 366,
+	"./de": 367,
+	"./de-at": 368,
+	"./de-at.js": 368,
+	"./de-ch": 369,
+	"./de-ch.js": 369,
+	"./de.js": 367,
+	"./dv": 370,
+	"./dv.js": 370,
+	"./el": 371,
+	"./el.js": 371,
+	"./en-au": 372,
+	"./en-au.js": 372,
+	"./en-ca": 373,
+	"./en-ca.js": 373,
+	"./en-gb": 374,
+	"./en-gb.js": 374,
+	"./en-ie": 375,
+	"./en-ie.js": 375,
+	"./en-il": 376,
+	"./en-il.js": 376,
+	"./en-nz": 377,
+	"./en-nz.js": 377,
+	"./eo": 378,
+	"./eo.js": 378,
+	"./es": 379,
+	"./es-do": 380,
+	"./es-do.js": 380,
+	"./es-us": 381,
+	"./es-us.js": 381,
+	"./es.js": 379,
+	"./et": 382,
+	"./et.js": 382,
+	"./eu": 383,
+	"./eu.js": 383,
+	"./fa": 384,
+	"./fa.js": 384,
+	"./fi": 385,
+	"./fi.js": 385,
+	"./fo": 386,
+	"./fo.js": 386,
+	"./fr": 387,
+	"./fr-ca": 388,
+	"./fr-ca.js": 388,
+	"./fr-ch": 389,
+	"./fr-ch.js": 389,
+	"./fr.js": 387,
+	"./fy": 390,
+	"./fy.js": 390,
+	"./gd": 391,
+	"./gd.js": 391,
+	"./gl": 392,
+	"./gl.js": 392,
+	"./gom-latn": 393,
+	"./gom-latn.js": 393,
+	"./gu": 394,
+	"./gu.js": 394,
+	"./he": 395,
+	"./he.js": 395,
+	"./hi": 396,
+	"./hi.js": 396,
+	"./hr": 397,
+	"./hr.js": 397,
+	"./hu": 398,
+	"./hu.js": 398,
+	"./hy-am": 399,
+	"./hy-am.js": 399,
+	"./id": 400,
+	"./id.js": 400,
+	"./is": 401,
+	"./is.js": 401,
+	"./it": 402,
+	"./it.js": 402,
+	"./ja": 403,
+	"./ja.js": 403,
+	"./jv": 404,
+	"./jv.js": 404,
+	"./ka": 405,
+	"./ka.js": 405,
+	"./kk": 406,
+	"./kk.js": 406,
+	"./km": 407,
+	"./km.js": 407,
+	"./kn": 408,
+	"./kn.js": 408,
+	"./ko": 409,
+	"./ko.js": 409,
+	"./ky": 410,
+	"./ky.js": 410,
+	"./lb": 411,
+	"./lb.js": 411,
+	"./lo": 412,
+	"./lo.js": 412,
+	"./lt": 413,
+	"./lt.js": 413,
+	"./lv": 414,
+	"./lv.js": 414,
+	"./me": 415,
+	"./me.js": 415,
+	"./mi": 416,
+	"./mi.js": 416,
+	"./mk": 417,
+	"./mk.js": 417,
+	"./ml": 418,
+	"./ml.js": 418,
+	"./mn": 419,
+	"./mn.js": 419,
+	"./mr": 420,
+	"./mr.js": 420,
+	"./ms": 421,
+	"./ms-my": 422,
+	"./ms-my.js": 422,
+	"./ms.js": 421,
+	"./mt": 423,
+	"./mt.js": 423,
+	"./my": 424,
+	"./my.js": 424,
+	"./nb": 425,
+	"./nb.js": 425,
+	"./ne": 426,
+	"./ne.js": 426,
+	"./nl": 427,
+	"./nl-be": 428,
+	"./nl-be.js": 428,
+	"./nl.js": 427,
+	"./nn": 429,
+	"./nn.js": 429,
+	"./pa-in": 430,
+	"./pa-in.js": 430,
+	"./pl": 431,
+	"./pl.js": 431,
+	"./pt": 432,
+	"./pt-br": 433,
+	"./pt-br.js": 433,
+	"./pt.js": 432,
+	"./ro": 434,
+	"./ro.js": 434,
+	"./ru": 435,
+	"./ru.js": 435,
+	"./sd": 436,
+	"./sd.js": 436,
+	"./se": 437,
+	"./se.js": 437,
+	"./si": 438,
+	"./si.js": 438,
+	"./sk": 439,
+	"./sk.js": 439,
+	"./sl": 440,
+	"./sl.js": 440,
+	"./sq": 441,
+	"./sq.js": 441,
+	"./sr": 442,
+	"./sr-cyrl": 443,
+	"./sr-cyrl.js": 443,
+	"./sr.js": 442,
+	"./ss": 444,
+	"./ss.js": 444,
+	"./sv": 445,
+	"./sv.js": 445,
+	"./sw": 446,
+	"./sw.js": 446,
+	"./ta": 447,
+	"./ta.js": 447,
+	"./te": 448,
+	"./te.js": 448,
+	"./tet": 449,
+	"./tet.js": 449,
+	"./tg": 450,
+	"./tg.js": 450,
+	"./th": 451,
+	"./th.js": 451,
+	"./tl-ph": 452,
+	"./tl-ph.js": 452,
+	"./tlh": 453,
+	"./tlh.js": 453,
+	"./tr": 454,
+	"./tr.js": 454,
+	"./tzl": 455,
+	"./tzl.js": 455,
+	"./tzm": 456,
+	"./tzm-latn": 457,
+	"./tzm-latn.js": 457,
+	"./tzm.js": 456,
+	"./ug-cn": 458,
+	"./ug-cn.js": 458,
+	"./uk": 459,
+	"./uk.js": 459,
+	"./ur": 460,
+	"./ur.js": 460,
+	"./uz": 461,
+	"./uz-latn": 462,
+	"./uz-latn.js": 462,
+	"./uz.js": 461,
+	"./vi": 463,
+	"./vi.js": 463,
+	"./x-pseudo": 464,
+	"./x-pseudo.js": 464,
+	"./yo": 465,
+	"./yo.js": 465,
+	"./zh-cn": 466,
+	"./zh-cn.js": 466,
+	"./zh-hk": 467,
+	"./zh-hk.js": 467,
+	"./zh-tw": 468,
+	"./zh-tw.js": 468
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1922,26 +1961,26 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 849;
+webpackContext.id = 853;
 
 /***/ }),
 
-/***/ 896:
+/***/ 897:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(508);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(505);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(508);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_tabs_Tabs_standings_standings__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_tabs_home_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_teams_teams__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_profile_profile__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_teams_teams__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_profile_profile__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_services_user_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_login_service__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_login_service__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_player_service__ = __webpack_require__(91);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2046,7 +2085,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 897:
+/***/ 898:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2203,5 +2242,5 @@ var PlayerService = (function () {
 
 /***/ })
 
-},[516]);
+},[517]);
 //# sourceMappingURL=main.js.map

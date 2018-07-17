@@ -36,7 +36,7 @@ export class LoginPage {
   presentRecoveryAlert(){
     let alert = this.alertCtrl.create({
       title: "Recuperar usuario y contraseña",
-      message: "Se procederá con el envio de su usuario y una nueva contraseña de acceso a la aplicación. Introduzca su email:",
+      message: "Introduzca su email:",
       inputs:[
         {
           name:"email",

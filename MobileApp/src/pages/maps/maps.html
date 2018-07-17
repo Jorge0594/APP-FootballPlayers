@@ -12,6 +12,12 @@
 
 
 <ion-content>
+
+  <ion-card *ngIf = "!notMap">
+      <ion-card-content>
+          <div #directionsPanel></div>
+      </ion-card-content>
+  </ion-card>
   <div #map *ngIf = "!notMap" id = "map">
 
   </div>

@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
 @IonicPage()
@@ -10,10 +11,12 @@ declare var google;
 export class MapsPage {
 
   @ViewChild('map') mapElement;
+  @ViewChild('directionsPanel')directionsPanel: ElementRef;
   private map: any;
   private notMap: boolean;
+  private destination: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewController: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewController: ViewController, private geolocation: Geolocation) {
     this.notMap = false;
     console.log(this.navParams.get('latitude') + " and " + this.navParams.get('longitude'));
   }
@@ -22,23 +25,66 @@ export class MapsPage {
     if(this.navParams.get('latitude') == undefined || this.navParams.get('longitude') == undefined){
       this.notMap = true;
     } else {
+      this.destination = new google.maps.LatLng(this.navParams.get('longitude'), this.navParams.get('latitude'));
       this.initMap();
+      this.startNavigating();
     }
     
   }
 
   initMap(){
-    let latLng = new google.maps.LatLng(this.navParams.get('longitude'), this.navParams.get('latitude'));
 
     let mapOptions = {
-      center: latLng,
-      zoom: 20,
-      marker: latLng,
+      center: this.destination,
+      zoom: 17,
+      marker: this.destination,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+    let marker = new google.maps.Marker({
+      position: this.destination,
+      map:this.map
+    });
+
+    marker.setMap(this.map);
+
+  }
+
+  startNavigating(){
+
+    this.geolocation.getCurrentPosition().then((position)=>{
+      let directionsService = new google.maps.DirectionsService;
+      let directionsDisplay = new google.maps.DirectionsRenderer;
+  
+      directionsDisplay.setMap(this.map);
+      directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+
+      let currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  
+      directionsService.route({
+          origin: currentLocation,
+          destination: this.destination,
+          travelMode: google.maps.TravelMode['DRIVING']
+        },
+        (res, status) => {
+  
+          if(status == google.maps.DirectionsStatus.OK){
+            directionsDisplay.setDirections(res);
+          } else {
+            console.warn(status);
+          }
+  
+        }
+      );
+    });
+
+    
+  }
+
+  currentLocation(): any{
+    
   }
 
   closeModal(){
