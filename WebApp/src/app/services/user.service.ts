@@ -49,15 +49,11 @@ export class UserService{
         return this.http.get("temporales/usuario").subscribe(
             response => {
                 this.user = response;
-                console.log(this.user);
-                if(this.user.equipoId != "" || this.user.equipoId){
+                if(this.user.equipoId || this.user.equipoId != ""){
                     this.teamService.getTeamById(this.user.equipoId).subscribe(
                         team =>{
                             this.userTeam = team;
-                            
-                            if(this.componentService.getComponents() != null){
-                                console.log("Entro en envio de fotos");
-                                console.log("Numero de jugadores " + this.userTeam.plantillaEquipo.length);
+                            if(this.componentService.getComponents() != null && this.componentService.getComponents().length > 0){
 
                                 this.teamService.updateTeamImage(team.id, this.userTeamImage).subscribe(
                                     response => response

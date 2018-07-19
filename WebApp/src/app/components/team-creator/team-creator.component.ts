@@ -108,7 +108,6 @@ export class TeamCreatorComponent implements OnInit {
   }
 
   deletePlayers() {
-    let listComponents: Array<ComponentRef<NewPlayerFormComponent>> = [];
     this.componentService.removeComponents();
   }
 
