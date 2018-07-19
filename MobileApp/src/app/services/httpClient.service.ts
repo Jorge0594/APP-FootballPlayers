@@ -25,7 +25,6 @@ export class HttpClient{
         }
     }
 
-
     //All server request they need to be logged.
     get(url:any){
         return this.http.get((BASE_URL + url),{headers:this.authTokens}).map(

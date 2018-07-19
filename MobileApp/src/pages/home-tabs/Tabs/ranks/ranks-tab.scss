@@ -98,7 +98,7 @@ ranks-tab {
     .spinner{
         margin-left: auto;
         margin-right: auto;
-        margin-top: 50px;;
+        margin-top: 70px;
         width: 60px;
         height: 60px;
         min-height: 60px;
@@ -131,5 +131,53 @@ ranks-tab {
     
     .spinner-md-crescent circle{
         stroke: white!important;
+    }
+
+    .selected{
+        background: #222f3e;
+        p{
+            color:white!important;
+            font-size: 19px!important;
+        }
+    }
+
+    #slide-title{
+        color:rgba(255, 255, 255, 0.5);
+        margin-bottom: 0px!important;
+        margin-top:10px!important;
+    }
+
+    ion-slides{
+        background-color:#353b48;
+        max-height: 45px!important;
+    }
+
+    .triangle{
+        padding-top:2px;
+        margin-left: 47.5%;
+        width: 0px;
+        height: 0px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+    }
+    
+    .colored-traingle{
+        border-bottom: 5px solid #9ed7f8;
+    }
+
+    .tab-icons{
+        margin-top:5px;
+        font-size: 30px;
+        color: white;
+    }
+
+    #rank-selected-title{
+        min-height: 25px!important;
+        background: #9ed7f8;
+    }
+
+    #rank-selected-title ion-col{
+        text-align: center;
     }
 }

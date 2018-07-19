@@ -18,10 +18,18 @@ import { LeagueService } from '../../../../app/services/league.service';
 export class TabRanks {
 
   private rankSelected: string;
+  private rankTypes:any;
   private players: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private app: App, private teamService: TeamService, private leagueService: LeagueService) {
-    this.rankSelected = "goals";
+    this.rankSelected = "Goleadores";
+    //this.rankTypes = ["football", "icon-goalkeeperIcon", "icon-redcard", "icon-yellowcard"];
+    this.rankTypes = [
+      {type: "Goleadores", icon: "football"},
+      {type: "Porteros", icon: "icon-goalkeeperIcon"},
+      {type: "Tarjetas rojas", icon: "icon-redcard"},
+      {type: "Tarjetas amarillas", icon: "icon-yellowcard"},
+    ];
 
     switch(this.navParams.data[0]){
       case 'league':
@@ -53,5 +61,9 @@ export class TabRanks {
 
   selectRank(type:string){
     this.rankSelected = type;
+  }
+
+  rankInfo(rank:string){
+    this.rankSelected = rank;
   }
 }

@@ -53,7 +53,6 @@ export class TabRounds {
         this.matchService.getMatchTeamById(this.navParams.data[1]).subscribe(
           matches =>{
             this.teamMatches = matches;
-            console.log(matches)
             if(matches.length == 0) this.isEmpty = true;
           } 
         );

@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
@@ -11,28 +11,28 @@ declare var google;
 export class MapsPage {
 
   @ViewChild('map') mapElement;
-  @ViewChild('directionsPanel')directionsPanel: ElementRef;
+  @ViewChild('directionsPanel') directionsPanel: ElementRef;
   private map: any;
   private notMap: boolean;
   private destination: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewController: ViewController, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewController: ViewController,
+    private alertCtrl: AlertController, private geolocation: Geolocation) {
     this.notMap = false;
-    console.log(this.navParams.get('latitude') + " and " + this.navParams.get('longitude'));
   }
 
   ionViewDidLoad() {
-    if(this.navParams.get('latitude') == undefined || this.navParams.get('longitude') == undefined){
+    if (this.navParams.get('latitude') == undefined || this.navParams.get('longitude') == undefined) {
       this.notMap = true;
     } else {
       this.destination = new google.maps.LatLng(this.navParams.get('longitude'), this.navParams.get('latitude'));
       this.initMap();
       this.startNavigating();
     }
-    
+
   }
 
-  initMap(){
+  initMap() {
 
     let mapOptions = {
       center: this.destination,
@@ -45,16 +45,17 @@ export class MapsPage {
 
     let marker = new google.maps.Marker({
       position: this.destination,
-      map:this.map
+      map: this.map
     });
 
     marker.setMap(this.map);
 
   }
 
-  startNavigating(){
+  startNavigating() {
 
     this.geolocation.getCurrentPosition().then((position)=>{
+      
       let directionsService = new google.maps.DirectionsService;
       let directionsDisplay = new google.maps.DirectionsRenderer;
   
@@ -69,7 +70,14 @@ export class MapsPage {
           travelMode: google.maps.TravelMode['DRIVING']
         },
         (res, status) => {
-  
+          console.log("Entro aqui");
+          let alert = this.alertCtrl.create({
+            title: "Debugging",
+            message: status
+          });
+
+          alert.present();
+          
           if(status == google.maps.DirectionsStatus.OK){
             directionsDisplay.setDirections(res);
           } else {
@@ -78,16 +86,18 @@ export class MapsPage {
   
         }
       );
-    });
+    },
+    error => console.error(error.message)
+  );
 
-    
+
   }
 
-  currentLocation(): any{
-    
+  currentLocation(): any {
+
   }
 
-  closeModal(){
+  closeModal() {
     this.viewController.dismiss();
   }
 
