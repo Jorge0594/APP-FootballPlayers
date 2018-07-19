@@ -105,5 +105,7 @@ export class UserService{
         this.userLeaguePlayers = null;
         this.userMatches = null;
         this.rounds = [];
+        this.leagueGoals = null;
+        this.activeSanctions = null;
     }
 }

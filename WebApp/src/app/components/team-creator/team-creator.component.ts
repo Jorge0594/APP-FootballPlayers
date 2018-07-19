@@ -39,10 +39,13 @@ export class TeamCreatorComponent implements OnInit {
   constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
     private componentService: ComponentService, private resolver: ComponentFactoryResolver, private teamData: TeamDataService,
     private dialogService: DialogService, private router: Router) {
-    this.inputControls = this.formBuilder.group({
-      inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
-      inputCity: ['', Validators.required]
-    });
+
+      this.teamData.resetTeam();
+    
+      this.inputControls = this.formBuilder.group({
+        inputTeamName: ['', [Validators.required], this.teamNameValidator.bind(this)],
+        inputCity: ['', Validators.required]
+      });
 
   }
 

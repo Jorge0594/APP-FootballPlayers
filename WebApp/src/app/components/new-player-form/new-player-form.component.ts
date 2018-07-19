@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, Validators, FormGroup, ValidatorFn, FormBuilder } from '@angular/forms';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
 import { ComponentService } from '../../services/component.service';
 import { PlayerService } from '../../services/player.service';
@@ -31,7 +32,9 @@ export class NewPlayerFormComponent implements OnInit {
   private dorsalInputValue: number;
   private positionInputValue: string;
 
-  constructor(private formBuilder: FormBuilder, private componentService: ComponentService, private playerService: PlayerService) {
+  constructor(private formBuilder: FormBuilder, private componentService: ComponentService, private playerService: PlayerService, private dateAdapter: DateAdapter<any>) {
+
+    this.dateAdapter.setLocale('es');
     this.check = false;
     this.captain = false;
     this.validationError = true;

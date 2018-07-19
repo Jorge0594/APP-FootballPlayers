@@ -23,7 +23,6 @@ export class TabRanks {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private app: App, private teamService: TeamService, private leagueService: LeagueService) {
     this.rankSelected = "Goleadores";
-    //this.rankTypes = ["football", "icon-goalkeeperIcon", "icon-redcard", "icon-yellowcard"];
     this.rankTypes = [
       {type: "Goleadores", icon: "football"},
       {type: "Porteros", icon: "icon-goalkeeperIcon"},

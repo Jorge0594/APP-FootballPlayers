@@ -28,4 +28,8 @@ export class TeamDataService {
     this.team = team;
   }
 
+  resetTeam(){
+    this.team = new Team();
+  }
+
 }

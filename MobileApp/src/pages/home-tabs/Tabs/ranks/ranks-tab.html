@@ -7,7 +7,7 @@
           <div class = "triangle" [class.colored-traingle]= "rankSelected === rank.type"></div>
       </ion-slide>
   </ion-slides>
-  <ion-row id = "rank-selected-title"><ion-col><strong>{{rankSelected}}</strong></ion-col></ion-row>
+  <ion-row *ngIf = "navParams.data[0] == 'league'" id = "rank-selected-title"><ion-col><strong>{{rankSelected}}</strong></ion-col></ion-row>
 
   <ion-spinner class = "spinner" *ngIf = "players == null" color ="ligth"></ion-spinner>
   <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == 'league'">
