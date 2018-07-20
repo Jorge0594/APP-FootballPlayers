@@ -56,7 +56,7 @@ export class LoginGuestComponent implements OnInit {
           }, 2000);
         },
         error => {
-          this.dialogService.openDialog("Error", "Usuario o contraseña incorrectos", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+          const dialogRef = this.dialogService.openDialog("Error", "Usuario o contraseña incorrectos", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
         }
       )
   }

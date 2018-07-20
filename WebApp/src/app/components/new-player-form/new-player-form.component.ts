@@ -20,9 +20,10 @@ export class NewPlayerFormComponent implements OnInit {
   private playerPositions = [
     "Portero", "Defensa", "Centrocampista", "Delantero"
   ];
+
   check: boolean;
   captain: boolean;
-  player: Player
+  @Input() player: Player
   playerImage: File;
   validationError: boolean;
   inputControls: FormGroup;

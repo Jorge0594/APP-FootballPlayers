@@ -49,4 +49,17 @@
     width: 28%;
 }
 
+.modify-team-button{
+    margin-top: 15px;
+    margin-left: 3.75%;
+    background: #3c40c6;
+    color:white;
+}
+
+.control-buttons{
+    margin-top:15px;
+    color: white;
+    background: #3c40c6;
+}
+
 

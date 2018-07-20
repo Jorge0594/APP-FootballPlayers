@@ -16,7 +16,7 @@
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input (keyup) = "getValue('lastname')" type = "text" matInput  placeholder="Apellidos" formControlName = "lastname" required>
+        <input (keyup) = "getValue('lastname')" type = "text" matInput  placeholder="Apellidos" [value] = "player?.apellidos == undefined ? '' : player?.apellidos" formControlName = "lastname" required>
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('lastname')}}</mat-error>
       </mat-form-field>
   

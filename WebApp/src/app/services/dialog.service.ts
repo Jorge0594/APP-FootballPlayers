@@ -6,10 +6,13 @@ import { DialogComponent } from '../components/dialog/dialog.component';
 @Injectable()
 export class DialogService {
 
+  private dialog: any;
+
   constructor(private matDialog: MatDialog) { }
 
   openDialog(title:string, message:string, error:boolean, multiOption:boolean, spinner:boolean, width:string, height:string){
-    let dialog = this.matDialog.open(DialogComponent, {
+
+    this.dialog = this.matDialog.open(DialogComponent, {
       width: width,
       height: height,
       data:{
@@ -20,10 +23,18 @@ export class DialogService {
         spinner:spinner
       }
     });
+  
   }
 
   closeDialog(){
     this.matDialog.closeAll();
+  }
+
+  getResult(){
+    return this.dialog.afterClosed().map(
+      response => response,
+      error => console.error(error)
+    )
   }
 
 }
