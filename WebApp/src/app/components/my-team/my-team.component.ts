@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { DialogService } from '../../services/dialog.service';
-import { TeamDataService } from '../../services/team-data.service';
+
+import { Player } from '../../models/player.model';
+import { EventService } from '../../services/events.service';
 
 const DIALOG_WIDTH = "400px";
 const DIALOG_HEIGHT = "400px";
@@ -14,20 +16,63 @@ const DIALOG_HEIGHT = "400px";
 export class MyTeamComponent implements OnInit {
 
   private modify: boolean;
+  private id: number;
+  private playersRemoved: Array<Player>;
+  private playersRemovedIds: Array<String>;
+  private playersAdded: Array<Player>;
+  private playersModify: Array<Player>;
 
-  constructor(private userService: UserService, private dialogService : DialogService) { 
-    this.modify = false;
+  constructor(private userService: UserService, private dialogService : DialogService, private eventService: EventService) {
+    
   }
 
   ngOnInit() {
+    this.id = 0;
+    this.modify = false;
+
+    this.initializeModifyVariables();
+
+    this.eventService.checkPlayerComponent.subscribe((event)=>{
+      let index = this.playersRemoved.indexOf(event);
+      if(index > -1){
+        this.playersRemovedIds.splice(index); 
+      } else {
+        this.playersRemovedIds.push(event);
+      }
+    })
   }
 
   modifyTeam(){
     this.modify = true;
+    this.initializeModifyVariables();
+  }
+
+  addPlayer(){
+    let newPlayer = new Player();
+    newPlayer.id = String(this.id);
+    this.id++;
+
+    this.userService.getUserTeam().plantillaEquipo.push(newPlayer);
+    this.playersAdded.push(newPlayer);
+  }
+
+  removePlayer(){
+    let players = this.userService.getUserTeam().plantillaEquipo;
+
+    let removed = players.filter(p => this.playersRemovedIds.indexOf(p.id) > -1);
+    this.playersRemoved = this.playersAdded.concat(removed);
+
+    players = players.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
+
+    this.userService.setTeamPlayers(players);
   }
 
   dontSaveChanges(){
     this.modify = false;
+
+    let players = this.userService.getUserTeam().plantillaEquipo;
+
+    this.userService.setTeamPlayers(players.concat(this.playersRemoved));
   }
 
   saveChanges(){
@@ -47,6 +92,13 @@ export class MyTeamComponent implements OnInit {
     );
 
     this.modify = false;
+  }
+
+  initializeModifyVariables(){
+    this.playersAdded = [];
+    this.playersModify = [];
+    this.playersRemoved = [];
+    this.playersRemovedIds = [];
   }
 
 }

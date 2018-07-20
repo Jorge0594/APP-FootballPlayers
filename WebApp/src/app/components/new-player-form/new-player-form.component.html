@@ -3,7 +3,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header class = "mat-elevation-z0">
       <mat-panel-title>
-          <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "check" class = "checkbox" >Jugador: <strong>{{player?.nombre}}</strong> Dorsal: <strong id = "dorsal"> {{player?.dorsal}}</strong></mat-checkbox>
+          <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "check"  (ngModelChange) = "playerSelected()" class = "checkbox" >Jugador: <strong>{{player?.nombre}}</strong> Dorsal: <strong id = "dorsal"> {{player?.dorsal}}</strong></mat-checkbox>
       </mat-panel-title>
     </mat-expansion-panel-header>
 

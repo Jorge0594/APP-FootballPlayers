@@ -14,6 +14,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/Rx';
 
 const BASE_URL = environment.api;
+const BASE_URL_IMAGES = environment.apiImages;
 
 @Injectable()
 export class HttpClient{
@@ -63,6 +64,10 @@ export class HttpClient{
         return BASE_URL;
     }
 
+    getBaseURLImages(){
+        return BASE_URL_IMAGES;
+    }
+    
     put(url:any, body:any){
         return this.http.put((BASE_URL + url), body, {headers: this.authTokens})
         .map(

@@ -4,6 +4,8 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 
 import { ComponentService } from '../../services/component.service';
 import { PlayerService } from '../../services/player.service';
+import { EventService } from '../../services/events.service';
+
 
 import { Player } from '../../models/player.model';
 import { filter } from 'rxjs/operators';
@@ -33,7 +35,8 @@ export class NewPlayerFormComponent implements OnInit {
   private dorsalInputValue: number;
   private positionInputValue: string;
 
-  constructor(private formBuilder: FormBuilder, private componentService: ComponentService, private playerService: PlayerService, private dateAdapter: DateAdapter<any>) {
+  constructor(private formBuilder: FormBuilder, private componentService: ComponentService, private playerService: PlayerService,
+     private dateAdapter: DateAdapter<any>, private eventService: EventService) {
 
     this.dateAdapter.setLocale('es');
     this.check = false;
@@ -203,6 +206,10 @@ export class NewPlayerFormComponent implements OnInit {
       }
     );
     return promise;
+  }
+
+  playerSelected(){
+    this.eventService.checkPlayerComponent.emit(this.player.id);
   }
 
 }

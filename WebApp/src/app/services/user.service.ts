@@ -6,6 +6,8 @@ import { ComponentService } from './component.service';
 import { PlayerService } from './player.service';
 
 import { Team } from '../models/team.model';
+import { Player } from '../models/player.model';
+
 import { Observer } from 'rxjs/Rx';
 
 import 'rxjs/Rx';
@@ -43,6 +45,10 @@ export class UserService{
 
     setUserTeam(team: Team){
         this.userTeam = team;
+    }
+
+    setTeamPlayers(players: Array<Player>){
+        this.userTeam.plantillaEquipo = players;
     }
 
     generateUserData(){

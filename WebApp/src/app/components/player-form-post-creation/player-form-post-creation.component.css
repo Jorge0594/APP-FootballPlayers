@@ -16,3 +16,8 @@
     margin-left:2px;
     margin-right: 2px;
 }
+
+.player-image{
+    max-width: 85px;
+    max-height: 85px;
+}

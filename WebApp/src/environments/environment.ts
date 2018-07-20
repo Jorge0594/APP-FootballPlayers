@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  api:"http://192.168.1.36:8080/"
+  api:"http://192.168.1.36:8080/",
+  apiImages:"http://192.168.1.36:8080/images/"
 };

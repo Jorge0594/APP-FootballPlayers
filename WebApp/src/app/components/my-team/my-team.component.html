@@ -41,8 +41,8 @@
             <app-new-player-form [player]="playerForm"></app-new-player-form>
         </div>
 
-        <button mat-button class = "control-buttons mat-elevation-z5">Añadir jugador</button>
-        <button mat-button class = "control-buttons mat-elevation-z5">Eliminar jugadores seleccionados</button>
+        <button mat-button class = "control-buttons mat-elevation-z5" (click) = "addPlayer()">Añadir jugador</button>
+        <button mat-button class = "control-buttons mat-elevation-z5" (click) = "removePlayer()">Eliminar jugadores seleccionados</button>
     </div>
 
 </mat-card>
@@ -50,4 +50,4 @@
 <button mat-button *ngIf="userService.getUserTeam() && !modify" class = " modify-team-button mat-elevation-z5" (click) = "modifyTeam()">Modificar equipo</button>
 
 <button mat-button *ngIf="userService.getUserTeam() && modify" class = " modify-team-button mat-elevation-z5" (click) = "saveChanges()">Guardar cambios</button>
-<button mat-button *ngIf="userService.getUserTeam() && modify" class = " modify-team-button mat-elevation-z5" (click) = "dontSaveChanges()">Salir sin modificar</button>
+<button mat-button *ngIf="userService.getUserTeam() && modify" class = " modify-team-button mat-elevation-z5" (click) = "dontSaveChanges()">Cancelar modificación</button>
