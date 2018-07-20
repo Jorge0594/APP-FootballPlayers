@@ -17,6 +17,7 @@ export class MyTeamComponent implements OnInit {
 
   private modify: boolean;
   private id: number;
+  private teamPlayersCopy: Array<Player>;
   private playersRemoved: Array<Player>;
   private playersRemovedIds: Array<String>;
   private playersAdded: Array<Player>;
@@ -45,6 +46,7 @@ export class MyTeamComponent implements OnInit {
   modifyTeam(){
     this.modify = true;
     this.initializeModifyVariables();
+    this.teamPlayersCopy = this.userService.getUserTeam().plantillaEquipo;
   }
 
   addPlayer(){
@@ -57,22 +59,18 @@ export class MyTeamComponent implements OnInit {
   }
 
   removePlayer(){
-    let players = this.userService.getUserTeam().plantillaEquipo;
+    let players = this.teamPlayersCopy;
 
     let removed = players.filter(p => this.playersRemovedIds.indexOf(p.id) > -1);
     this.playersRemoved = this.playersAdded.concat(removed);
 
     players = players.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
 
-    this.userService.setTeamPlayers(players);
+    this.teamPlayersCopy = players;
   }
 
   dontSaveChanges(){
     this.modify = false;
-
-    let players = this.userService.getUserTeam().plantillaEquipo;
-
-    this.userService.setTeamPlayers(players.concat(this.playersRemoved));
   }
 
   saveChanges(){
