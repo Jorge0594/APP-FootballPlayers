@@ -46,7 +46,6 @@ export class MyTeamComponent implements OnInit {
   modifyTeam(){
     this.modify = true;
     this.initializeModifyVariables();
-    this.teamPlayersCopy = this.userService.getUserTeam().plantillaEquipo;
   }
 
   addPlayer(){
@@ -54,7 +53,7 @@ export class MyTeamComponent implements OnInit {
     newPlayer.id = String(this.id);
     this.id++;
 
-    this.userService.getUserTeam().plantillaEquipo.push(newPlayer);
+    this.teamPlayersCopy.push(newPlayer);
     this.playersAdded.push(newPlayer);
   }
 
@@ -97,6 +96,7 @@ export class MyTeamComponent implements OnInit {
     this.playersModify = [];
     this.playersRemoved = [];
     this.playersRemovedIds = [];
+    this.teamPlayersCopy = [].concat(this.userService.getUserTeam().plantillaEquipo);
   }
 
 }
