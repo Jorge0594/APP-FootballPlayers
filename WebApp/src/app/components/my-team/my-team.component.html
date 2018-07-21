@@ -38,7 +38,7 @@
 
     <div *ngIf = "modify">
         <div *ngFor="let playerForm of teamPlayersCopy">
-            <app-new-player-form [player]="playerForm"></app-new-player-form>
+            <app-new-player-form [inputPlayer]="playerForm"></app-new-player-form>
         </div>
 
         <button mat-button class = "control-buttons mat-elevation-z5" (click) = "addPlayer()">Añadir jugador</button>

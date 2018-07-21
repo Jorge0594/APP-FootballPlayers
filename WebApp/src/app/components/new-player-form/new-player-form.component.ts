@@ -25,7 +25,8 @@ export class NewPlayerFormComponent implements OnInit {
 
   check: boolean;
   captain: boolean;
-  @Input() player: Player
+  player: Player
+  @Input() inputPlayer: Player;
   playerImage: File;
   validationError: boolean;
   inputControls: FormGroup;
