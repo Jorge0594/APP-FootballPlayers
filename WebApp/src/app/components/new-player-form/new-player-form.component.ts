@@ -30,6 +30,7 @@ export class NewPlayerFormComponent implements OnInit {
   playerImage: File;
   validationError: boolean;
   inputControls: FormGroup;
+  dateControl: any;
 
   private emailInputValue: string;
   private dniInputValue: string;
@@ -59,6 +60,12 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.inputPlayer){
+
+      console.log("REFORMAT DATE: " + this.reformatDate(this.inputPlayer.fechaNacimiento));
+      this.dateControl = new FormControl(new Date(this.reformatDate(this.inputPlayer.fechaNacimiento)));
+      console.log("FECHA: " + this.dateControl.value);
+    }
   }
 
   imageChanged(fileInput: any) {
@@ -165,7 +172,7 @@ export class NewPlayerFormComponent implements OnInit {
   validatorEmail(formControl: FormControl): Promise<any> {
     const promise = new Promise<any>(
       (resolve, reject) => {
-        this.playerService.existPlayerEmail(this.emailInputValue).subscribe(
+        this.playerService.existPlayerEmail(this.emailInputValue, this.inputPlayer ? this.inputPlayer.id : '').subscribe(
           response => {
             let player = this.componentService.getComponents()
               .filter(comp => comp.instance.player.email == this.emailInputValue);
@@ -188,7 +195,7 @@ export class NewPlayerFormComponent implements OnInit {
   validatorDNI(formControl: FormControl): Promise<any> {
     const promise = new Promise<any>(
       (resolve, reject) => {
-        this.playerService.existDNIPlayer(this.dniInputValue).subscribe(
+        this.playerService.existDNIPlayer(this.dniInputValue, this.inputPlayer ? this.inputPlayer.id : '').subscribe(
           response => {
             let player = this.componentService.getComponents()
               .filter(comp => comp.instance.player.dni == this.dniInputValue);
@@ -210,7 +217,17 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   playerSelected(){
-    this.eventService.checkPlayerComponent.emit(this.player.id);
+    if(this.inputPlayer)
+      this.eventService.checkPlayerComponent.emit(this.inputPlayer.id);
+  }
+
+  reformatDate(date:string): string{
+
+    let dateSplit = date.split("/");
+
+    console.log(dateSplit);
+
+    return dateSplit[2] + "/" +  dateSplit[1] + "/" + dateSplit[0];
   }
 
 }

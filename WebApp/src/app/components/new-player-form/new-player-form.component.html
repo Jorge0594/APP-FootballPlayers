@@ -3,7 +3,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header class = "mat-elevation-z0">
       <mat-panel-title>
-          <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "check"  (ngModelChange) = "playerSelected()" class = "checkbox" >Jugador: <strong>{{player?.nombre}}</strong> Dorsal: <strong id = "dorsal"> {{player?.dorsal}}</strong></mat-checkbox>
+          <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "check"  (ngModelChange) = "playerSelected()" class = "checkbox" >Jugador: <strong>{{inputPlayer ? inputPlayer.nombre : player?.nombre}}</strong> Dorsal: <strong id = "dorsal"> {{inputPlayer ? inputPlayer.dorsal : player?.dorsal}}</strong></mat-checkbox>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
@@ -21,7 +21,7 @@
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input #date [matDatepicker] = "picker" (dateChange) = "getDate(date.value)" [value] = "inputPlayer?.fechaNacimiento == undefined ? '' : inputPlayer?.fechaNacimiento" type = "text" matInput  placeholder="fecha Nacimiento" formControlName = "birthdate" required>
+        <input #date [matDatepicker] = "picker" (dateChange) = "getDate(date.value)" [value] = "dateControl ? dateControl.value : ''" type = "text" matInput  placeholder="fecha Nacimiento" formControlName = "birthdate" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('birthdate')}}</mat-error>
@@ -38,7 +38,7 @@
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <mat-select [(ngModel)] = "positionInputValue" (ngModelChange) = "getValue('position')" placeholder="Posición del jugador" formControlName = "position" required>
+        <mat-select [(ngModel)] = "positionInputValue" (ngModelChange) = "getValue('position')"  [(value)] = "inputPlayer.posicion" placeholder="Posición del jugador" formControlName = "position" required>
           <mat-option value = "{{option}}" *ngFor = "let option of playerPositions">{{option}}</mat-option>
         </mat-select>
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('position')}}</mat-error>
