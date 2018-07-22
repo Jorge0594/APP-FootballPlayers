@@ -44,6 +44,7 @@ import { EventService } from './services/events.service';
 import { PlayerService } from './services/player.service';
 import { TeamDataService } from './services/team-data.service';
 import { RouterSecurityService } from './services/router-security.service';
+import { PlayerDataService } from './services/player-data.service';
 
 import { appRoutes } from './app.routing';
 
@@ -107,7 +108,8 @@ import { PlayerFormPostCreationComponent } from './components/player-form-post-c
     HttpClient,
     UserService,
     LoginService,
-    LeagueService
+    LeagueService,
+    PlayerDataService
   ],
   entryComponents:[
     NewPlayerFormComponent,

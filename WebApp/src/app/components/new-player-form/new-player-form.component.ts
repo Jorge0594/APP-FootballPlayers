@@ -47,25 +47,27 @@ export class NewPlayerFormComponent implements OnInit {
     this.player = new Player();
 
     this.inputControls = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: [''],
       lastname: ['', Validators.required],
       birthdate: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email], this.validatorEmail.bind(this)],
-      dni: ['', [Validators.required], this.validatorDNI.bind(this)],
-      position: ['', Validators.required],
-      birthplace: ['', Validators.required],
-      nacionality: ['', Validators.required],
-      dorsal: ['', [Validators.required, Validators.min(0), Validators.max(99)], this.validatorDorsal.bind(this)]
+      email: [''],
+      dni: [''],
+      position: [''],
+      birthplace: [''],
+      nacionality: [''],
+      dorsal: ['']
     });
   }
 
   ngOnInit() {
     if(this.inputPlayer){
-
-      console.log("REFORMAT DATE: " + this.reformatDate(this.inputPlayer.fechaNacimiento));
-      this.dateControl = new FormControl(new Date(this.reformatDate(this.inputPlayer.fechaNacimiento)));
-      console.log("FECHA: " + this.dateControl.value);
+      if(this.inputPlayer.fechaNacimiento)
+        this.dateControl = new FormControl(new Date(this.reformatDate(this.inputPlayer.fechaNacimiento)));
+      this.player.copy(this.inputPlayer);
+    } else {
+      this.enableValidators();
     }
+    
   }
 
   imageChanged(fileInput: any) {
@@ -84,29 +86,51 @@ export class NewPlayerFormComponent implements OnInit {
     switch (from) {
       case "name":
         this.player.nombre = this.inputControls.value.name;
+        if(this.inputPlayer && !this.inputControls.get('name').validator)
+          this.inputControls.get('name').setValidators(Validators.required);
         break;
       case "lastname":
         this.player.apellidos = this.inputControls.value.lastname;
+        if(this.inputPlayer && !this.inputControls.get('lastname').validator)
+          this.inputControls.get('lastname').setValidators(Validators.required);
         break;
       case "email":
         this.player.email = this.emailInputValue;
+        if(this.inputPlayer && !this.inputControls.get('email').validator){
+          this.inputControls.get('email').setValidators([Validators.required, Validators.email]);
+          this.inputControls.get('email').setAsyncValidators(this.validatorEmail.bind(this));
+        }
         break;
       case "dni":
         this.player.dni = this.dniInputValue;
+        if(this.inputPlayer && !this.inputControls.get('dni').validator){
+          this.inputControls.get('dni').setValidators(Validators.required);
+          this.inputControls.get('dni').setAsyncValidators( this.validatorDNI.bind(this));
+        }
         break;
       case "position":
         this.player.posicion = this.positionInputValue;
+        if(this.inputPlayer && !this.inputControls.get('position').validator)
+          this.inputControls.get('position').setValidators(Validators.required);
         break;
       case "birthplace":
         this.player.lugarNacimiento = this.inputControls.value.birthplace;
+        if(this.inputPlayer && !this.inputControls.get('birthplace').validator)
+          this.inputControls.get('birthplace').setValidators(Validators.required);
         break;
       case "nacionality":
         this.player.nacionalidad = this.inputControls.value.nacionality;
+        if(this.inputPlayer && !this.inputControls.get('nacionality').validator)
+          this.inputControls.get('nacionality').setValidators(Validators.required);
         break;
       case "dorsal":
         this.player.dorsal = this.dorsalInputValue;
+        if(this.inputPlayer && !this.inputControls.get('dorsal').validator)
+          this.inputControls.get('dorsal').setValidators([Validators.required, Validators.min(0), Validators.max(99)]);
         break;
     }
+
+    //if(this.inputPlayer) this.inputPlayer.copy(this.player);
   }
 
   getCheckValue(event) {
@@ -117,8 +141,36 @@ export class NewPlayerFormComponent implements OnInit {
     return this.player;
   }
 
+  disableValidators(){
+    this.inputControls.get('name').clearValidators();
+    this.inputControls.get('lastname').clearValidators();
+    this.inputControls.get('birthdate').clearValidators();
+    this.inputControls.get('birthplace').clearValidators();
+    this.inputControls.get('email').clearValidators();
+    this.inputControls.get('dorsal').clearValidators();
+    this.inputControls.get('dni').clearValidators();
+    this.inputControls.get('position').clearValidators();
+    this.inputControls.get('nacionality').clearValidators();
+  }
+
+  enableValidators(){
+    this.inputControls.get('name').setValidators(Validators.required);
+    this.inputControls.get('lastname').setValidators(Validators.required);
+    this.inputControls.get('email').setValidators([Validators.required, Validators.email]);
+    this.inputControls.get('email').setAsyncValidators(this.validatorEmail.bind(this));
+    this.inputControls.get('dni').setValidators(Validators.required);
+    this.inputControls.get('dni').setAsyncValidators( this.validatorDNI.bind(this));
+    this.inputControls.get('position').setValidators(Validators.required);
+    this.inputControls.get('birthplace').setValidators(Validators.required);
+    this.inputControls.get('nacionality').setValidators(Validators.required);
+    this.inputControls.get('dorsal').setValidators([Validators.required, Validators.min(0), Validators.max(99)]);
+    this.inputControls.get('dorsal').setAsyncValidators(this.validatorDorsal.bind(this));
+
+  }
+
   inputErrors(from: string) {
-    let errMessage: string = ""
+    let errMessage: string = "";
+
     switch (from) {
       case "name":
         errMessage = this.inputControls.get('name').hasError('required') ? "Campo obligatorio" : "";
@@ -149,7 +201,7 @@ export class NewPlayerFormComponent implements OnInit {
         errMessage = this.inputControls.get('birthplace').hasError('required') ? "Campo obligatorio" : "";
         break;
       case "nacionality":
-        errMessage = this.inputControls.get('position').hasError('required') ? "Campo obligatorio" : "";
+        errMessage = this.inputControls.get('nacionality').hasError('required') ? "Campo obligatorio" : "";
         break;
     }
     return errMessage;
@@ -221,12 +273,9 @@ export class NewPlayerFormComponent implements OnInit {
       this.eventService.checkPlayerComponent.emit(this.inputPlayer.id);
   }
 
-  reformatDate(date:string): string{
-
+  //only works with the following format: dd/MM/yyyy
+  reformatDate(date:string): string {
     let dateSplit = date.split("/");
-
-    console.log(dateSplit);
-
     return dateSplit[2] + "/" +  dateSplit[1] + "/" + dateSplit[0];
   }
 

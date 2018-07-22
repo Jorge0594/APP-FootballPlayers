@@ -8,9 +8,9 @@ import { PlayerService } from './player.service';
 import { Team } from '../models/team.model';
 import { Player } from '../models/player.model';
 
-import { Observer } from 'rxjs/Rx';
+import { Observer } from 'rxjs';
 
-import 'rxjs/Rx';
+import 'rxjs';
 
 
 @Injectable()

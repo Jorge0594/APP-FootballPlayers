@@ -5,7 +5,7 @@ import { HttpClient } from './httpClient.service';
 import { UserService } from './user.service';
 import { EventService } from './events.service';
 
-import 'rxjs/Rx';
+import 'rxjs';
 
 
 const role : string = "ROLE_TEMPORAL";

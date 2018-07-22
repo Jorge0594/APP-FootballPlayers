@@ -61,7 +61,7 @@ export class MyTeamComponent implements OnInit {
     let players = this.teamPlayersCopy;
 
     let removed = players.filter(p => this.playersRemovedIds.indexOf(p.id) > -1);
-    this.playersRemoved = this.playersAdded.concat(removed);
+    this.playersRemoved = this.playersRemoved.concat(removed);
 
     players = players.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
 

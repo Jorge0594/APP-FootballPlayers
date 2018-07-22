@@ -3,7 +3,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header class = "mat-elevation-z0">
       <mat-panel-title>
-          <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "check"  (ngModelChange) = "playerSelected()" class = "checkbox" >Jugador: <strong>{{inputPlayer ? inputPlayer.nombre : player?.nombre}}</strong> Dorsal: <strong id = "dorsal"> {{inputPlayer ? inputPlayer.dorsal : player?.dorsal}}</strong></mat-checkbox>
+          <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)] = "check"  (ngModelChange) = "playerSelected()" class = "checkbox" >Jugador: <strong>{{inputPlayer ? inputPlayer?.nombre : player?.nombre}}</strong> Dorsal: <strong id = "dorsal"> {{inputPlayer ? inputPlayer?.dorsal : player?.dorsal}}</strong></mat-checkbox>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
@@ -11,51 +11,51 @@
 
     <form [formGroup] = "inputControls">
       <mat-form-field class = "inputs">
-        <input (keyup) = "getValue('name')" type = "text" matInput placeholder="Nombre" [value] = "inputPlayer?.nombre == undefined ? '' : inputPlayer?.nombre" formControlName = "name" required>
+        <input (keyup) = "getValue('name')" type = "text" matInput placeholder="Nombre" [value] = "inputPlayer?.nombre == undefined ? '' : inputPlayer?.nombre" formControlName = "name">
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('name')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input (keyup) = "getValue('lastname')" type = "text" matInput  placeholder="Apellidos" [value] = "inputPlayer?.apellidos == undefined ? '' : inputPlayer?.apellidos" formControlName = "lastname" required>
+        <input (keyup) = "getValue('lastname')" type = "text" matInput  placeholder="Apellidos" [value] = "inputPlayer?.apellidos == undefined ? '' : inputPlayer?.apellidos" formControlName = "lastname" >
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('lastname')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input #date [matDatepicker] = "picker" (dateChange) = "getDate(date.value)" [value] = "dateControl ? dateControl.value : ''" type = "text" matInput  placeholder="fecha Nacimiento" formControlName = "birthdate" required>
+        <input #date [matDatepicker] = "picker" (dateChange) = "getDate(date.value)" [value] = "dateControl ? dateControl.value : ''" type = "text" matInput  placeholder="fecha Nacimiento" formControlName = "birthdate" >
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('birthdate')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input [(ngModel)] = "emailInputValue" (ngModelChange)="getValue('email')" [value] = "inputPlayer?.email == undefined ? '' : inputPlayer?.email" type = "text" matInput placeholder="Email" formControlName = "email" required>
+        <input [(ngModel)] = "emailInputValue" (ngModelChange)="getValue('email')" [value] = "inputPlayer?.email == undefined ? '' : inputPlayer?.email" type = "text" matInput placeholder="Email" formControlName = "email" >
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('email')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input [(ngModel)] = "dniInputValue" (ngModelChange)="getValue('dni')" [value] = "inputPlayer?.dni == undefined ? '' : inputPlayer?.dni" type = "text" matInput placeholder="DNI" formControlName = "dni" required>
+        <input [(ngModel)] = "dniInputValue" (ngModelChange)="getValue('dni')" [value] = "inputPlayer?.dni == undefined ? '' : inputPlayer?.dni" type = "text" matInput placeholder="DNI" formControlName = "dni" >
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('dni')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <mat-select [(ngModel)] = "positionInputValue" (ngModelChange) = "getValue('position')"  [(value)] = "inputPlayer.posicion" placeholder="Posición del jugador" formControlName = "position" required>
+        <mat-select [(ngModel)] = "positionInputValue" (ngModelChange) = "getValue('position')"  [(value)] = "inputPlayer.posicion" placeholder="Posición del jugador" formControlName = "position" >
           <mat-option value = "{{option}}" *ngFor = "let option of playerPositions">{{option}}</mat-option>
         </mat-select>
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('position')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input (keyup) = "getValue('birthplace')" [value] = "inputPlayer?.lugarNacimiento == undefined ? '' : inputPlayer?.lugarNacimiento" type = "text" matInput placeholder="Lugar de nacimiento" formControlName = "birthplace" required>
+        <input (keyup) = "getValue('birthplace')" [value] = "inputPlayer?.lugarNacimiento == undefined ? '' : inputPlayer?.lugarNacimiento" type = "text" matInput placeholder="Lugar de nacimiento" formControlName = "birthplace" >
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('birthplace')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-        <input (keyup) = "getValue('nacionality')" [value] = "inputPlayer?.nacionalidad == undefined ? '' : inputPlayer?.nacionalidad" type = "text" matInput placeholder="Nacionalidad" formControlName = "nacionality" required>
+        <input (keyup) = "getValue('nacionality')" [value] = "inputPlayer?.nacionalidad == undefined ? '' : inputPlayer?.nacionalidad" type = "text" matInput placeholder="Nacionalidad" formControlName = "nacionality" >
         <mat-error *ngIf="inputControls.invalid">{{inputErrors('nacionality')}}</mat-error>
       </mat-form-field>
   
       <mat-form-field class = "inputs">
-          <input  [(ngModel)] = "dorsalInputValue" (ngModelChange)="getValue('dorsal')" [value] = "inputPlayer?.dorsal == undefined ? '' : inputPlayer?.dorsal" type = "number" min = "0" max = "99" matInput placeholder="Dorsal" formControlName = "dorsal" required>
+          <input  [(ngModel)] = "dorsalInputValue" (ngModelChange)="getValue('dorsal')" [value] = "inputPlayer?.dorsal == undefined ? '' : inputPlayer?.dorsal" type = "number" min = "0" max = "99" matInput placeholder="Dorsal" formControlName = "dorsal" >
           <mat-error *ngIf="inputControls.invalid">{{inputErrors('dorsal')}}</mat-error>
       </mat-form-field>
       

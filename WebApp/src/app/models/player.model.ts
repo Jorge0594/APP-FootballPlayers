@@ -42,4 +42,21 @@ export class Player{
     equals(otherPlayer: Player): boolean{
         return this.id === otherPlayer.id;
     }
+
+    copy(other:Player){
+        this.id = other.id;
+        this.nombre = other.nombre;
+        this.apellidos = other.apellidos;
+        this.fechaNacimiento = other.fechaNacimiento;
+        this.dni = other.dni;
+        this.email = other.email;
+        this.fotoJugador = other.fotoJugador;
+        this.equipo = other.equipo;
+        this.liga = other.liga;
+        this.posicion = other.posicion;
+        this.lugarNacimiento = other.lugarNacimiento;
+        this.nacionalidad = other.nacionalidad;
+        this.dorsal = other.dorsal;
+        this.capitan = other.capitan;
+    }
 }
