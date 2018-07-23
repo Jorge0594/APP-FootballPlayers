@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { DialogService } from '../../services/dialog.service';
+import { EventService } from '../../services/events.service';
+import { PlayerDataService } from '../../services/player-data.service';
 
 import { Player } from '../../models/player.model';
-import { EventService } from '../../services/events.service';
 
 const DIALOG_WIDTH = "400px";
 const DIALOG_HEIGHT = "400px";
@@ -23,50 +24,52 @@ export class MyTeamComponent implements OnInit {
   private playersAdded: Array<Player>;
   private playersModify: Array<Player>;
 
-  constructor(private userService: UserService, private dialogService : DialogService, private eventService: EventService) {
+  constructor(private userService: UserService, private dialogService : DialogService, private eventService: EventService, private playerDataService: PlayerDataService) {
     
   }
 
   ngOnInit() {
     this.id = 0;
     this.modify = false;
+      //this.initializeModifyVariables();
 
-    if(this.userService.getUserTeam())
-      this.initializeModifyVariables();
-
-    this.eventService.checkPlayerComponent.subscribe((event)=>{
+    /*this.eventService.checkPlayerComponent.subscribe((event)=>{
       let index = this.playersRemoved.indexOf(event);
       if(index > -1){
         this.playersRemovedIds.splice(index); 
       } else {
         this.playersRemovedIds.push(event);
       }
-    })
+    })*/
   }
 
   modifyTeam(){
     this.modify = true;
-    this.initializeModifyVariables();
+    this.playerDataService.clearData();
+    this.playerDataService.setTeamPlayers(this.userService.getUserTeam().plantillaEquipo);
+    //this.initializeModifyVariables();
   }
 
   addPlayer(){
-    let newPlayer = new Player();
-    newPlayer.id = String(this.id);
+    /*let newPlayer = new Player();
+    newPlayer.id = String(this.id);*/
+    this.playerDataService.addPlayer(String(this.id));
     this.id++;
 
-    this.teamPlayersCopy.push(newPlayer);
-    this.playersAdded.push(newPlayer);
+    /*this.teamPlayersCopy.push(newPlayer);
+    this.playersAdded.push(newPlayer);*/
   }
 
   removePlayer(){
-    let players = this.teamPlayersCopy;
+    this.playerDataService.removePlayers();
+    /*let players = this.teamPlayersCopy;
 
     let removed = players.filter(p => this.playersRemovedIds.indexOf(p.id) > -1);
     this.playersRemoved = this.playersRemoved.concat(removed);
 
     players = players.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
 
-    this.teamPlayersCopy = players;
+    this.teamPlayersCopy = players;*/
   }
 
   dontSaveChanges(){

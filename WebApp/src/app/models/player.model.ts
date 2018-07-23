@@ -59,4 +59,10 @@ export class Player{
         this.dorsal = other.dorsal;
         this.capitan = other.capitan;
     }
+
+    isEmpty(): boolean{
+        return this.nombre && this.apellidos && this.fechaNacimiento && this.dni && this.email &&
+                this.fotoJugador && this.equipo && this.liga && this.posicion && this.lugarNacimiento &&
+                    this.nacionalidad && this.dorsal && this.capitan;
+    }
 }

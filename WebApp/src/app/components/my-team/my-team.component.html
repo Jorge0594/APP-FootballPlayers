@@ -37,7 +37,7 @@
     </div>
 
     <div *ngIf = "modify">
-        <div *ngFor="let playerForm of teamPlayersCopy">
+        <div *ngFor="let playerForm of playerDataService.teamPlayers">
             <app-new-player-form [inputPlayer]="playerForm"></app-new-player-form>
         </div>
 

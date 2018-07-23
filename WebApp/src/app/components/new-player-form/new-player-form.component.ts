@@ -61,17 +61,16 @@ export class NewPlayerFormComponent implements OnInit {
 
   ngOnInit() {
 
-    if(this.inputPlayer){
+    if(this.inputPlayer && !this.playerIsEmpty(this.inputPlayer)){
       if(this.inputPlayer.fechaNacimiento)
         this.dateControl = new FormControl(new Date(this.reformatDate(this.inputPlayer.fechaNacimiento)));
+      
+      this.positionInputValue = this.inputPlayer.posicion;
       this.player.copy(this.inputPlayer);
-    } 
+    } else {
+      this.enableValidators();
+    }
     
-  }
-
-  ngAfterContentInit(){
-    /*if(!this.inputPlayer)
-      this.enableValidators();*/
   }
 
   imageChanged(fileInput: any) {
@@ -134,8 +133,6 @@ export class NewPlayerFormComponent implements OnInit {
           this.inputControls.get('dorsal').setValidators([Validators.required, Validators.min(0), Validators.max(99)]);
         break;
     }
-
-    //if(this.inputPlayer) this.inputPlayer.copy(this.player);
   }
 
   getCheckValue(event) {
@@ -144,18 +141,6 @@ export class NewPlayerFormComponent implements OnInit {
 
   getPlayer() {
     return this.player;
-  }
-
-  disableValidators(){
-    this.inputControls.get('name').clearValidators();
-    this.inputControls.get('lastname').clearValidators();
-    this.inputControls.get('birthdate').clearValidators();
-    this.inputControls.get('birthplace').clearValidators();
-    this.inputControls.get('email').clearValidators();
-    this.inputControls.get('dorsal').clearValidators();
-    this.inputControls.get('dni').clearValidators();
-    this.inputControls.get('position').clearValidators();
-    this.inputControls.get('nacionality').clearValidators();
   }
 
   enableValidators(){
@@ -283,6 +268,12 @@ export class NewPlayerFormComponent implements OnInit {
   reformatDate(date:string): string {
     let dateSplit = date.split("/");
     return dateSplit[2] + "/" +  dateSplit[1] + "/" + dateSplit[0];
+  }
+
+  playerIsEmpty(player: Player):boolean{
+    return player.nombre == undefined && player.apellidos == undefined && player.fechaNacimiento == undefined && player.dni == undefined && player.email == undefined &&
+      player.fotoJugador == undefined && player.equipo == undefined && player.liga == undefined && player.posicion == undefined && player.lugarNacimiento == undefined &&
+        player.nacionalidad == undefined && player.dorsal == undefined && player.capitan == undefined;
   }
 
 }
