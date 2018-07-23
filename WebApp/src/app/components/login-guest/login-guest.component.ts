@@ -48,7 +48,7 @@ export class LoginGuestComponent implements OnInit {
       this.loginService.login(user, password).subscribe(
         response => {
           this.userService.generateUserData();
-          this.dialogService.openDialog("Iniciando sesión", "Se está accediendo a la aplicación...", false, false, true, DIALOG_WIDTH, DIALOG_HEIGHT);
+          this.dialogService.openDialog("Iniciando sesión", "Accediendo a la aplicación...", false, false, true, DIALOG_WIDTH, DIALOG_HEIGHT);
           setTimeout(()=>{
             this.dialogService.closeDialog();
             this.eventService.changeNavbar.emit('login');

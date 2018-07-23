@@ -31,7 +31,8 @@ export class MyTeamComponent implements OnInit {
     this.id = 0;
     this.modify = false;
 
-    this.initializeModifyVariables();
+    if(this.userService.getUserTeam())
+      this.initializeModifyVariables();
 
     this.eventService.checkPlayerComponent.subscribe((event)=>{
       let index = this.playersRemoved.indexOf(event);

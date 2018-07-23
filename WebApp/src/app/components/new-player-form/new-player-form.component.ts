@@ -48,8 +48,8 @@ export class NewPlayerFormComponent implements OnInit {
 
     this.inputControls = this.formBuilder.group({
       name: [''],
-      lastname: ['', Validators.required],
-      birthdate: ['', Validators.required],
+      lastname: [''],
+      birthdate: [''],
       email: [''],
       dni: [''],
       position: [''],
@@ -60,14 +60,18 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
     if(this.inputPlayer){
       if(this.inputPlayer.fechaNacimiento)
         this.dateControl = new FormControl(new Date(this.reformatDate(this.inputPlayer.fechaNacimiento)));
       this.player.copy(this.inputPlayer);
-    } else {
-      this.enableValidators();
-    }
+    } 
     
+  }
+
+  ngAfterContentInit(){
+    /*if(!this.inputPlayer)
+      this.enableValidators();*/
   }
 
   imageChanged(fileInput: any) {
@@ -96,14 +100,15 @@ export class NewPlayerFormComponent implements OnInit {
         break;
       case "email":
         this.player.email = this.emailInputValue;
-        if(this.inputPlayer && !this.inputControls.get('email').validator){
+        if(this.inputPlayer && !this.inputControls.get('email').validator && this.emailInputValue){
           this.inputControls.get('email').setValidators([Validators.required, Validators.email]);
           this.inputControls.get('email').setAsyncValidators(this.validatorEmail.bind(this));
         }
         break;
       case "dni":
         this.player.dni = this.dniInputValue;
-        if(this.inputPlayer && !this.inputControls.get('dni').validator){
+      
+        if(this.inputPlayer && !this.inputControls.get('dni').validator && this.dniInputValue){
           this.inputControls.get('dni').setValidators(Validators.required);
           this.inputControls.get('dni').setAsyncValidators( this.validatorDNI.bind(this));
         }
@@ -125,7 +130,7 @@ export class NewPlayerFormComponent implements OnInit {
         break;
       case "dorsal":
         this.player.dorsal = this.dorsalInputValue;
-        if(this.inputPlayer && !this.inputControls.get('dorsal').validator)
+        if(this.inputPlayer && !this.inputControls.get('dorsal').validator && this.dorsalInputValue)
           this.inputControls.get('dorsal').setValidators([Validators.required, Validators.min(0), Validators.max(99)]);
         break;
     }
@@ -156,6 +161,7 @@ export class NewPlayerFormComponent implements OnInit {
   enableValidators(){
     this.inputControls.get('name').setValidators(Validators.required);
     this.inputControls.get('lastname').setValidators(Validators.required);
+    this.inputControls.get('birthdate').setValidators(Validators.required);
     this.inputControls.get('email').setValidators([Validators.required, Validators.email]);
     this.inputControls.get('email').setAsyncValidators(this.validatorEmail.bind(this));
     this.inputControls.get('dni').setValidators(Validators.required);
