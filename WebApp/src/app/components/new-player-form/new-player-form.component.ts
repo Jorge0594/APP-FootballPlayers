@@ -5,6 +5,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import { ComponentService } from '../../services/component.service';
 import { PlayerService } from '../../services/player.service';
 import { EventService } from '../../services/events.service';
+import { PlayerDataService } from '../../services/player-data.service';
 
 
 import { Player } from '../../models/player.model';
@@ -27,7 +28,6 @@ export class NewPlayerFormComponent implements OnInit {
   captain: boolean;
   player: Player
   @Input() inputPlayer: Player;
-  playerImage: File;
   validationError: boolean;
   inputControls: FormGroup;
   dateControl: any;
@@ -38,7 +38,7 @@ export class NewPlayerFormComponent implements OnInit {
   private positionInputValue: string;
 
   constructor(private formBuilder: FormBuilder, private componentService: ComponentService, private playerService: PlayerService,
-     private dateAdapter: DateAdapter<any>, private eventService: EventService) {
+     private dateAdapter: DateAdapter<any>, private eventService: EventService, private playerDataService: PlayerDataService) {
 
     this.dateAdapter.setLocale('es');
     this.check = false;
@@ -65,19 +65,31 @@ export class NewPlayerFormComponent implements OnInit {
       if(this.inputPlayer.fechaNacimiento)
         this.dateControl = new FormControl(new Date(this.reformatDate(this.inputPlayer.fechaNacimiento)));
       
-      this.positionInputValue = this.inputPlayer.posicion;
       this.player.copy(this.inputPlayer);
+
+      this.positionInputValue = this.inputPlayer.posicion;
+      this.emailInputValue = this.inputPlayer.email;
+      this.dniInputValue = this.inputPlayer.dni;
+      this.dorsalInputValue = this.inputPlayer.dorsal;
+      this.captain = this.inputPlayer.capitan;
+
     } else {
       this.enableValidators();
     }
-    
   }
 
   imageChanged(fileInput: any) {
+    let fileShow;
 
-    this.playerImage = fileInput.target.files[0];
-    
-    this.player.fotoJugador = this.playerImage.name;
+    let reader = new FileReader();
+
+    reader.onload = (event:any)=>{
+      fileShow = event.target.result;
+      this.playerDataService.addPlayerImage(this.player.id, fileInput.target.files[0], fileShow);
+      this.eventService.changePlayerImage.emit(this.player.id);
+    }
+
+    reader.readAsDataURL(fileInput.target.files[0])
 
   }
 
@@ -129,10 +141,14 @@ export class NewPlayerFormComponent implements OnInit {
         break;
       case "dorsal":
         this.player.dorsal = this.dorsalInputValue;
-        if(this.inputPlayer && !this.inputControls.get('dorsal').validator && this.dorsalInputValue)
+        if(this.inputPlayer && !this.inputControls.get('dorsal').validator && this.dorsalInputValue){
           this.inputControls.get('dorsal').setValidators([Validators.required, Validators.min(0), Validators.max(99)]);
+          this.inputControls.get('dorsal').setAsyncValidators(this.validatorDorsal.bind(this));
+        }
         break;
     }
+    if(this.inputPlayer)
+      this.inputPlayerCopy(this.player);
   }
 
   getCheckValue(event) {
@@ -201,9 +217,15 @@ export class NewPlayerFormComponent implements OnInit {
   validatorDorsal(formControl: FormControl): Promise<any> {
     const promise = new Promise<any>(
       (resolve, reject) => {
-        let player = this.componentService.getComponents()
-          .filter(comp => comp.instance.player.dorsal == this.dorsalInputValue);
-        if (player.length > 1 && this.dorsalInputValue != undefined) {
+        let player;
+        if(this.inputPlayer){
+          player = this.playerDataService.teamPlayers.filter(player => player.dorsal == this.dorsalInputValue);
+        } else {
+          player = this.componentService.getComponents()
+            .filter(comp => comp.instance.player.dorsal == this.dorsalInputValue);
+        }
+       
+        if (player.length > 1 && this.dorsalInputValue != undefined ) {
           resolve({ 'duplicateDorsal': true })
         } else {
           resolve(null);
@@ -215,10 +237,16 @@ export class NewPlayerFormComponent implements OnInit {
   validatorEmail(formControl: FormControl): Promise<any> {
     const promise = new Promise<any>(
       (resolve, reject) => {
-        this.playerService.existPlayerEmail(this.emailInputValue, this.inputPlayer ? this.inputPlayer.id : '').subscribe(
+        this.playerService.existPlayerEmail(this.emailInputValue, this.inputPlayer ? this.inputPlayer.id : "none").subscribe(
           response => {
-            let player = this.componentService.getComponents()
-              .filter(comp => comp.instance.player.email == this.emailInputValue);
+            let player;
+            if(this.inputPlayer){
+              player = this.playerDataService.teamPlayers.filter(player => player.email == this.emailInputValue);
+            } else {
+              player = this.componentService.getComponents()
+                .filter(comp => comp.instance.player.email == this.emailInputValue);
+            }
+
             if (player.length > 1) {
               resolve({ 'duplicateEmail': true });
             } else {
@@ -238,10 +266,16 @@ export class NewPlayerFormComponent implements OnInit {
   validatorDNI(formControl: FormControl): Promise<any> {
     const promise = new Promise<any>(
       (resolve, reject) => {
-        this.playerService.existDNIPlayer(this.dniInputValue, this.inputPlayer ? this.inputPlayer.id : '').subscribe(
+        this.playerService.existDNIPlayer(this.dniInputValue, this.inputPlayer ? this.inputPlayer.id : "none").subscribe(
           response => {
-            let player = this.componentService.getComponents()
-              .filter(comp => comp.instance.player.dni == this.dniInputValue);
+
+            let player;
+            if(this.inputPlayer){
+              player = this.playerDataService.teamPlayers.filter(player => player.dni == this.dniInputValue);
+            } else {
+              player = this.componentService.getComponents()
+                .filter(comp => comp.instance.player.dni == this.dniInputValue);
+            }
 
             if (player.length > 1) {
               resolve({ 'duplicateDNI': true });
@@ -274,6 +308,22 @@ export class NewPlayerFormComponent implements OnInit {
     return player.nombre == undefined && player.apellidos == undefined && player.fechaNacimiento == undefined && player.dni == undefined && player.email == undefined &&
       player.fotoJugador == undefined && player.equipo == undefined && player.liga == undefined && player.posicion == undefined && player.lugarNacimiento == undefined &&
         player.nacionalidad == undefined && player.dorsal == undefined && player.capitan == undefined;
+  }
+
+  inputPlayerCopy(other:Player){
+    this.inputPlayer.nombre = other.nombre;
+    this.inputPlayer.apellidos = other.apellidos;
+    this.inputPlayer.fechaNacimiento = other.fechaNacimiento;
+    this.inputPlayer.dni = other.dni;
+    this.inputPlayer.email = other.email;
+    this.inputPlayer.fotoJugador = other.fotoJugador;
+    this.inputPlayer.equipo = other.equipo;
+    this.inputPlayer.liga = other.liga;
+    this.inputPlayer.posicion = other.posicion;
+    this.inputPlayer.lugarNacimiento = other.lugarNacimiento;
+    this.inputPlayer.nacionalidad = other.nacionalidad;
+    this.inputPlayer.dorsal = other.dorsal;
+    this.inputPlayer.capitan = other.capitan;
   }
 
 }

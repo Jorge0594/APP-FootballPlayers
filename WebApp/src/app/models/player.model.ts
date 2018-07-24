@@ -32,7 +32,7 @@ export class Player{
     }
 
     toString(): string{
-        return "Player: [nombre: " + this.nombre + ", apellidos: " + this.apellidos 
+        return "Player: [id: " + this.id + ", nombre: " + this.nombre + ", apellidos: " + this.apellidos 
         + ", fechaNacimiento: " + this.fechaNacimiento + ", dni: " + this.dni + ", email: " + this.email + 
         ", fotoJugador: " + this.fotoJugador + ", equipo: " + this.equipo + ", liga: " + this.liga + 
         ", posicion: " + this.posicion + ", lugarNacimiento: " + this.lugarNacimiento + ", nacionalidad: " + this.nacionalidad + 

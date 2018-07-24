@@ -5,6 +5,7 @@ export class EventService {
 
   changeNavbar = new EventEmitter<any>();
   checkPlayerComponent = new EventEmitter<any>();
+  changePlayerImage = new EventEmitter<any>();
 
   constructor() { }
 

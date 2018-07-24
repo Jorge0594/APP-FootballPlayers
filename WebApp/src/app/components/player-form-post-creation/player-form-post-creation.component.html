@@ -60,7 +60,7 @@
     </mat-form-field>
 
     <mat-label class = "inputs-labels">Foto jugador:</mat-label>
-    <img class = "player-image" src="{{urlImages}}{{player?.fotoJugador}}" alt="Player photo">
+    <img class = "player-image" [src]= "urlImages" (error) = "loadImageError()" alt="Player photo">
     
 
   </mat-expansion-panel>

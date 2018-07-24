@@ -9,8 +9,6 @@ export class PlayerService {
   constructor(private http: HttpClient) { }
 
   existPlayerEmail(email:string, id:string){
-    if(!id)
-      id = "none";
     return this.http.get(BASE_URL + "validar/email/" + email + "/" + id)
     .map(
       response => response,
@@ -19,8 +17,6 @@ export class PlayerService {
   }
 
   existDNIPlayer(dni:string, id:string){
-    if(!id)
-      id = "none";
     return this.http.get(BASE_URL + "validar/dni/" + dni + "/" + id)
     .map(
       response => response,
