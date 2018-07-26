@@ -4,15 +4,15 @@ import { Player } from '../models/player.model';
 
 import { NewPlayerFormComponent } from '../components/new-player-form/new-player-form.component';
 import { TeamDataService } from './team-data.service';
+import { PlayerDataService } from './player-data.service';
 
 @Injectable()
 export class ComponentService {
 
   private components: Array<ComponentRef<NewPlayerFormComponent>> = [];//data must be a "Player" type
   private id: number = 0;
-  private playersImages: Array<{id:string, image:File }> = [];
 
-  constructor(private teamData: TeamDataService) { }
+  constructor(private teamData: TeamDataService, private playerDataService: PlayerDataService) { }
 
   addNewComponent(component: ComponentRef<NewPlayerFormComponent>) {//rest to add player's photos
     component.instance.player.id = String(this.id);
@@ -31,6 +31,7 @@ export class ComponentService {
 
     for(let remove of removed){
       let it = 0;
+      this.playerDataService.removePlayerImage(remove.instance.player.id);
       for(let comp of this.teamData.getTeam().plantillaEquipo){
         if(comp.equals(remove.instance.player)){
           this.teamData.getTeam().plantillaEquipo.splice(it);
@@ -42,16 +43,17 @@ export class ComponentService {
 
   }
 
-  getPlayersImages():Array<{id:string, image:File}>{
-    return this.playersImages;
-  }
-
   getComponents(): Array<ComponentRef<NewPlayerFormComponent>>{
     return this.components;
   }
 
   setComponents(componentsList: Array<ComponentRef<NewPlayerFormComponent>>) {
     this.components = componentsList;
+  }
+
+  clearData(){
+    this.components = [];
+    this.id = 0;
   }
 
   hasErrors(): boolean{

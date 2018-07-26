@@ -15,6 +15,8 @@ export class PlayerDataService {
   playersModify: Array<Player> = [];
   playerImages: Array<{id:string, file:File, filePreview: any}> = [];
 
+  imagesSaved:number = 0;
+
   constructor(private eventService: EventService) { 
 
     this.eventService.checkPlayerComponent.subscribe((event) => {
@@ -28,6 +30,12 @@ export class PlayerDataService {
       }
     });
 
+    this.eventService.imageSaved.subscribe(()=>{
+      this.imagesSaved++;
+      if(this.imagesSaved == this.playerImages.length)
+        this.clearData();
+    });
+
   }
 
   getImageById(id:string):any{
@@ -36,13 +44,19 @@ export class PlayerDataService {
 
   addPlayerImage(id:string, file:File, filePreview:any){
     this.playerImages.push({id:id, file:file, filePreview:filePreview});
+    this.eventService.changePlayerImage.emit(id);
   }
 
   setTeamPlayers(players: Array<Player>){
    this.teamPlayers =  this.teamPlayers.concat(players);
   }
 
+  getPlayerById(id:string): Player{
+    return this.teamPlayers.find(p => p.id == id);
+  }
+
   clearData(){
+    console.log("CLEAR DATA");
     this.teamPlayers = [];
     this.playersRemoved = [];
     this.playersRemovedIds = [];
@@ -67,7 +81,10 @@ export class PlayerDataService {
     this.playersRemoved = this.playersRemoved.concat(removed);
 
     this.teamPlayers = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
+  }
 
+  removePlayerImage(id:string){
+    this.playerImages = this.playerImages.filter(img => img.id != id);
   }
 
 

@@ -20,6 +20,10 @@ export class TeamDataService {
     this.team.plantillaEquipo.push(player);
   }
 
+  clearData(){
+    this.team = new Team();
+  }
+
   addPlayers(players: Array<Player>){
     this.team.plantillaEquipo = players;
   }

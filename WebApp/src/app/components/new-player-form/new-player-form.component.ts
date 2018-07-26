@@ -86,7 +86,6 @@ export class NewPlayerFormComponent implements OnInit {
     reader.onload = (event:any)=>{
       fileShow = event.target.result;
       this.playerDataService.addPlayerImage(this.player.id, fileInput.target.files[0], fileShow);
-      this.eventService.changePlayerImage.emit(this.player.id);
     }
 
     reader.readAsDataURL(fileInput.target.files[0])

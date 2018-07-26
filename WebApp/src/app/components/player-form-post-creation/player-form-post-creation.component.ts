@@ -16,14 +16,19 @@ export class PlayerFormPostCreationComponent implements OnInit {
   private urlImages:any;
 
 
-  constructor(private playerDataService: PlayerDataService, private eventService: EventService) {}
+  constructor(private playerDataService: PlayerDataService, private eventService: EventService) {
+  }
 
   ngOnInit() {
-    this.urlImages = environment.apiImages + this.player.fotoJugador;
 
     this.eventService.changePlayerImage.subscribe(event => {
-      this.urlImages = this.playerDataService.getImageById(this.player.id);
+      if(event == this.player.id)
+        this.urlImages = this.playerDataService.getImageById(this.player.id);
     });
+
+    this.urlImages = environment.apiImages + this.player.fotoJugador;
+
+   
   }
 
   loadImageError(){

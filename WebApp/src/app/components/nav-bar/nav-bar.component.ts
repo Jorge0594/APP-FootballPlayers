@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router/src/router_state';
 import { EventService } from '../../services/events.service';
 import { LoginService } from '../../services/login.service';
 import { DialogService } from '../../services/dialog.service';
+import { PlayerDataService } from '../../services/player-data.service';
+import { TeamDataService } from '../../services/team-data.service';
+import { ComponentService } from '../../services/component.service';
 
 const DIALOG_WIDTH = "400px";
 const DIALOG_HEIGHT = "400px";
@@ -17,7 +20,8 @@ export class NavBarComponent implements OnInit {
 
   private options: { left: Array<{ name: string, path: string }>, right: Array<{ name: string, path: string }> };
 
-  constructor(private userService: UserService, private eventService: EventService, private loginService: LoginService, private dialogService: DialogService) {
+  constructor(private userService: UserService, private eventService: EventService, private loginService: LoginService, private dialogService: DialogService,
+  private playerDataService: PlayerDataService, private teamDataService: TeamDataService, private componentService: ComponentService) {
     
   }
 
@@ -59,6 +63,9 @@ export class NavBarComponent implements OnInit {
 
     setTimeout(()=>{
       this.loginService.logout();
+      this.playerDataService.clearData();
+      this.teamDataService.clearData();
+      this.componentService.clearData();
       this.dialogService.closeDialog();
     }, 2000);
   }

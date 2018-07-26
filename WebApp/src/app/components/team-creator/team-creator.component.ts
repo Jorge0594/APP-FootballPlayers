@@ -13,6 +13,9 @@ import { TeamService } from '../../services/team.service';
 import { ComponentService } from '../../services/component.service';
 import { TeamDataService } from '../../services/team-data.service';
 import { DialogService } from '../../services/dialog.service';
+import { PlayerDataService } from '../../services/player-data.service';
+import { PlayerService } from '../../services/player.service';
+import { EventService } from '../../services/events.service';
 
 const DIALOG_WIDTH = "400px";
 const DIALOG_HEIGHT = "400px";
@@ -38,7 +41,8 @@ export class TeamCreatorComponent implements OnInit {
 
   constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
     private componentService: ComponentService, private resolver: ComponentFactoryResolver, private teamData: TeamDataService,
-    private dialogService: DialogService, private router: Router) {
+    private dialogService: DialogService, private router: Router, private playerDataService: PlayerDataService, private playerService: PlayerService,
+    private eventService: EventService) {
 
       this.teamData.resetTeam();
     
@@ -47,6 +51,9 @@ export class TeamCreatorComponent implements OnInit {
         inputCity: ['', Validators.required]
       });
 
+  }
+
+  ngOnInit() {
   }
 
 
@@ -116,12 +123,19 @@ export class TeamCreatorComponent implements OnInit {
     if (this.componentService.hasErrors()) {
       this.teamService.createTeam(this.teamData.getTeam()).subscribe(
         response => {
-          console.log(response);
           if(this.file != null){
             this.userService.setUserTeamImage(this.file);
           }
+          this.playerDataService.playerImages.forEach(data =>{
+            this.playerService.updatePlayerImage(this.playerDataService.getPlayerById(data.id).dni, data.file).subscribe(
+              response => {
+                this.eventService.imageSaved.emit();
+              },
+              error => console.error("DONT CHANGE IMAGE:" + error)
+            );
+          });
           this.userService.generateUserData();
-          //this.userService.setUserTeam(this.teamData.getTeam());
+          this.userService.setUserTeam(this.teamData.getTeam());
         }
       )
       this.dialogService.openDialog("Creación correcta", "Creación del equipo correcta.\n\n Puedes visualizar los datos de su equipo pulsando en el botón 'Mi equipo' situado en la barra de navegación. \n\n Durante los proximos 7 días puedes modificar los datos de su equipo. Una vez el equipo se aceptado o rechazado en la liga no podrá modificar ningún campo.", false, false, false, "700px", "600px");
@@ -132,7 +146,8 @@ export class TeamCreatorComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  testImageTeam(){
+    this.playerDataService.playerImages.forEach(comp => console.log("ID:" + comp.id + " FILE:" + comp.file));
   }
 
 }

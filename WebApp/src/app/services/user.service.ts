@@ -14,68 +14,57 @@ import 'rxjs';
 
 
 @Injectable()
-export class UserService{
+export class UserService {
 
-    private userTeam:Team;
+    private userTeam: Team;
     private userTeamImage: File;
-    private user:any;
+    private user: any;
 
-    constructor(private http: HttpClient, private teamService: TeamService, private componentService: ComponentService, private playerService: PlayerService){}
+    constructor(private http: HttpClient, private teamService: TeamService, private componentService: ComponentService, private playerService: PlayerService) { }
 
-    logout(){
+    logout() {
         this.userTeam = null;
         this.user = null;
     }
 
-    isUserLogged(): boolean{
+    isUserLogged(): boolean {
         return this.http.isLogged();
     }
 
-    getUserLogged(): any{
+    getUserLogged(): any {
         return this.user;
     }
 
-    setUserTeamImage(img: File){
+    setUserTeamImage(img: File) {
         this.userTeamImage = img;
     }
 
-    getUserTeam(): Team{
+    getUserTeam(): Team {
         return this.userTeam;
     }
 
-    setUserTeam(team: Team){
+    setUserTeam(team: Team) {
         this.userTeam = team;
     }
 
-    setTeamPlayers(players: Array<Player>){
+    setTeamPlayers(players: Array<Player>) {
         this.userTeam.plantillaEquipo = players;
     }
 
-    generateUserData(){
+    generateUserData() {
         return this.http.get("temporales/usuario").subscribe(
             response => {
                 this.user = response;
-                if(this.user.equipoId || this.user.equipoId != ""){
+                if (this.user.equipoId || this.user.equipoId != "") {
                     this.teamService.getTeamById(this.user.equipoId).subscribe(
-                        team =>{
+                        team => {
                             this.userTeam = team;
-                            if(this.componentService.getComponents() != null && this.componentService.getComponents().length > 0){
-
+                            if (this.userTeamImage) {
                                 this.teamService.updateTeamImage(team.id, this.userTeamImage).subscribe(
                                     response => response
                                 )
-
-                                for (var i = 0; i < this.userTeam.plantillaEquipo.length; i++){
-                                    console.log("Jugador imagen: " + this.componentService.getPlayersImages()[i].image);
-                                    if(this.componentService.getPlayersImages()[i].image != null){
-                                        this.playerService.updatePlayerImage(this.userTeam.plantillaEquipo[i].id, this.componentService.getPlayersImages()[i].image)
-                                        .subscribe(
-                                            response => response
-                                        );
-                                    }
-                                }
                             }
-                        } 
+                        }
                     )
                 }
             }
