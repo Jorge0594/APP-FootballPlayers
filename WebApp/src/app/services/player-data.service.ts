@@ -76,10 +76,10 @@ export class PlayerDataService {
   }
 
   removePlayers(){
-    let removed = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) > -1);
+    let removed = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) > -1 && this.playersAdded.indexOf(p) == -1);
 
+    this.playersAdded = this.playersAdded.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
     this.playersRemoved = this.playersRemoved.concat(removed);
-
     this.teamPlayers = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
   }
 
