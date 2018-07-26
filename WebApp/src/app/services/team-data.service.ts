@@ -28,6 +28,10 @@ export class TeamDataService {
     this.team.plantillaEquipo = players;
   }
 
+  getPlayerById(id:string): Player{
+    return this.team.plantillaEquipo.find(p => p.id == id);
+  }
+
   addTeam(team:Team){
     this.team = team;
   }

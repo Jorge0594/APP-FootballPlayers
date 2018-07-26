@@ -126,28 +126,30 @@ export class TeamCreatorComponent implements OnInit {
           if(this.file != null){
             this.userService.setUserTeamImage(this.file);
           }
-          this.playerDataService.playerImages.forEach(data =>{
-            this.playerService.updatePlayerImage(this.playerDataService.getPlayerById(data.id).dni, data.file).subscribe(
-              response => {
-                this.eventService.imageSaved.emit();
-              },
-              error => console.error("DONT CHANGE IMAGE:" + error)
-            );
-          });
-          this.userService.generateUserData();
-          this.userService.setUserTeam(this.teamData.getTeam());
-        }
-      )
-      this.dialogService.openDialog("Creación correcta", "Creación del equipo correcta.\n\n Puedes visualizar los datos de su equipo pulsando en el botón 'Mi equipo' situado en la barra de navegación. \n\n Durante los proximos 7 días puedes modificar los datos de su equipo. Una vez el equipo se aceptado o rechazado en la liga no podrá modificar ningún campo.", false, false, false, "700px", "600px");
-      this.router.navigateByUrl("/equipo");
+          try {
+            this.playerDataService.playerImages.forEach(data =>{
+              this.playerService.updatePlayerImage(this.teamData.getPlayerById(data.id).dni, data.file).subscribe(
+                response => {
+                  this.eventService.imageSaved.emit();
+                },
+                error => {
+                  throw new Error();
+              });
+            });
+
+            this.userService.generateUserData();
+            this.userService.setUserTeam(this.teamData.getTeam());
+
+            this.dialogService.openDialog("Creación correcta", "El equipo se ha creado de manera correcta. Tendrá 7 días para modificar los datos de su equipo", false, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+            this.router.navigateByUrl("/equipo");
+          } catch(error){
+            this.dialogService.openDialog("Error", "Se ha producido un error al intentar guardar las imágenes de los jugadores. ERROR CODE: " + error, true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+          }
+      });
     } else {
-      this.dialogService.openDialog("Error", "Por favor revise que ha rellenado todos los campos correctamente", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+      this.dialogService.openDialog("Error", "Por favor rellene todos los campos correctamente", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
     }
 
-  }
-
-  testImageTeam(){
-    this.playerDataService.playerImages.forEach(comp => console.log("ID:" + comp.id + " FILE:" + comp.file));
   }
 
 }
