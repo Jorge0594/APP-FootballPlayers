@@ -7,6 +7,7 @@ export class EventService {
   checkPlayerComponent = new EventEmitter<any>();
   changePlayerImage = new EventEmitter<any>();
   imageSaved = new EventEmitter<any>();
+  saveChanges = new EventEmitter<any>();
 
   constructor() { }
 

@@ -57,6 +57,10 @@ export class NewPlayerFormComponent implements OnInit {
       nacionality: [''],
       dorsal: ['']
     });
+
+    this.eventService.saveChanges.subscribe(() => {
+      this.inputPlayerCopy(this.player);
+    });
   }
 
   ngOnInit() {
@@ -146,8 +150,8 @@ export class NewPlayerFormComponent implements OnInit {
         break;
     }
 
-    if(this.inputPlayer)
-      this.inputPlayerCopy(this.player);
+    /*if(this.inputPlayer)
+      this.inputPlayerCopy(this.player);*/
 
     this.addError();
 

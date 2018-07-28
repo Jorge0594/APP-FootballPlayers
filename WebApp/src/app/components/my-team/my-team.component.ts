@@ -55,6 +55,8 @@ export class MyTeamComponent implements OnInit {
               throw new Error();
             }
             this.dialogService.openDialog("Guardando cambios", "Actualizando datos del equipo...", false, false, true, DIALOG_WIDTH, DIALOG_HEIGHT);
+            this.eventService.saveChanges.emit();
+            this.userService.getUserTeam().plantillaEquipo = this.playerDataService.teamPlayers;
   
             setTimeout(() =>{
               this.dialogService.closeDialog();
