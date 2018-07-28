@@ -41,8 +41,9 @@
             <app-new-player-form [inputPlayer]="playerForm"></app-new-player-form>
         </div>
 
-        <button mat-button class = "control-buttons mat-elevation-z5" (click) = "addPlayer()">Añadir jugador</button>
-        <button mat-button class = "control-buttons mat-elevation-z5" (click) = "removePlayer()">Eliminar jugadores seleccionados</button>
+        <button mat-button class = "control-buttons mat-elevation-z5" (click) = "addPlayer()"><mat-icon>add_circle</mat-icon> Añadir</button>
+        <button mat-button class = "control-buttons mat-elevation-z5" *ngIf = "playerDataService.playersRemoved.length > 0" (click) = "undoPlayerRemove()"><mat-icon>undo</mat-icon> Deshacer</button>
+        <button mat-button class = "control-buttons mat-elevation-z5" (click) = "removePlayer()"><mat-icon>remove_circle</mat-icon> Eliminar Seleccionados</button>
     </div>
 
 </mat-card>

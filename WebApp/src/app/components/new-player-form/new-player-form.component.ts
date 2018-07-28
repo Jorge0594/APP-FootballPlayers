@@ -66,7 +66,6 @@ export class NewPlayerFormComponent implements OnInit {
         this.dateControl = new FormControl(new Date(this.reformatDate(this.inputPlayer.fechaNacimiento)));
       
       this.player.copy(this.inputPlayer);
-
       this.positionInputValue = this.inputPlayer.posicion;
       this.emailInputValue = this.inputPlayer.email;
       this.dniInputValue = this.inputPlayer.dni;
@@ -146,8 +145,12 @@ export class NewPlayerFormComponent implements OnInit {
         }
         break;
     }
+
     if(this.inputPlayer)
       this.inputPlayerCopy(this.player);
+
+    this.addError();
+
   }
 
   getCheckValue(event) {
@@ -210,6 +213,8 @@ export class NewPlayerFormComponent implements OnInit {
         errMessage = this.inputControls.get('nacionality').hasError('required') ? "Campo obligatorio" : "";
         break;
     }
+
+    this.addError();
     return errMessage;
   }
 
@@ -323,6 +328,16 @@ export class NewPlayerFormComponent implements OnInit {
     this.inputPlayer.nacionalidad = other.nacionalidad;
     this.inputPlayer.dorsal = other.dorsal;
     this.inputPlayer.capitan = other.capitan;
+  }
+
+  addError(){
+    if(this.inputPlayer) {
+      if(this.inputControls.invalid && this.playerDataService.playersErrors.indexOf(this.inputPlayer.id) == -1){
+        this.playerDataService.playersErrors.push(this.inputPlayer.id);
+      } else if (!this.inputControls.invalid){
+        this.playerDataService.removeError(this.inputPlayer.id);
+      }
+    }
   }
 
 }

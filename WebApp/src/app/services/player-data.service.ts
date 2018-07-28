@@ -12,7 +12,7 @@ export class PlayerDataService {
   playersRemoved: Array<Player> = [];
   playersRemovedIds: Array<string> = [];
   playersAdded: Array<Player> = [];
-  playersModify: Array<Player> = [];
+  playersErrors: Array<string> = [];
   playerImages: Array<{id:string, file:File, filePreview: any}> = [];
 
   imagesSaved:number = 0;
@@ -61,7 +61,7 @@ export class PlayerDataService {
     this.playersRemoved = [];
     this.playersRemovedIds = [];
     this.playersAdded = [];
-    this.playersModify = [];
+    this.playersErrors = [];
     this.playerImages = [];
   }
 
@@ -76,17 +76,53 @@ export class PlayerDataService {
   }
 
   removePlayers(){
-    let removed = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) > -1 && this.playersAdded.indexOf(p) == -1);
+    let removed = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) > -1);
+    let removedIdsAux = [].concat(this.playersRemovedIds);
+
+    this.removeErrorByList(removed);
+
+    removedIdsAux = removedIdsAux.filter(id => this.playersAdded.find(p => p.id == id) == undefined)
 
     this.playersAdded = this.playersAdded.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
-    this.playersRemoved = this.playersRemoved.concat(removed);
+    this.playersRemoved = removed.concat(this.playersRemoved);
     this.teamPlayers = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
+    this.playersRemovedIds = removedIdsAux;
   }
 
   removePlayerImage(id:string){
     this.playerImages = this.playerImages.filter(img => img.id != id);
   }
 
+  removeError(id:string){
+    let index = this.playersErrors.indexOf(id);
 
+    if(index > -1)
+      this.playersErrors.splice(index);
+  }
+
+  removeErrorByList(players: Array<Player>){
+    players = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) > -1);
+
+    players.forEach(p => {
+      this.removeError(p.id);
+    });
+  }
+
+  containsId(id:string, list: Array<any>){
+    let elem = list.find(p => p.id == id);
+
+    return elem == undefined;
+  }
+
+  undoRemove(){
+    let player = this.playersRemoved.pop();
+
+    this.playersRemovedIds = this.playersRemovedIds.filter(id => player.id != id);
+    this.teamPlayers.push(player);
+  }
+
+  hasErrors(){
+    return this.playersErrors.length > 0 ;
+  }
 
 }

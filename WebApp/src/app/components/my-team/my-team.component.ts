@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { UserService } from '../../services/user.service';
 import { DialogService } from '../../services/dialog.service';
 import { EventService } from '../../services/events.service';
 import { PlayerDataService } from '../../services/player-data.service';
-
-import { Player } from '../../models/player.model';
 
 const DIALOG_WIDTH = "400px";
 const DIALOG_HEIGHT = "400px";
@@ -19,7 +18,6 @@ export class MyTeamComponent implements OnInit {
   private modify: boolean;
 
   constructor(private userService: UserService, private dialogService : DialogService, private eventService: EventService, private playerDataService: PlayerDataService) {
-    
   }
 
   ngOnInit() {
@@ -51,16 +49,29 @@ export class MyTeamComponent implements OnInit {
     this.dialogService.getResult().subscribe(
       response => {
         if(response == true){
-          this.dialogService.openDialog("Guardando cambios", "Actualizando datos del equipo...", false, false, true, DIALOG_WIDTH, DIALOG_HEIGHT);
 
-          setTimeout(() =>{
-            this.dialogService.closeDialog();
-          }, 2000)
+          try{
+            if(this.playerDataService.hasErrors()){
+              throw new Error();
+            }
+            this.dialogService.openDialog("Guardando cambios", "Actualizando datos del equipo...", false, false, true, DIALOG_WIDTH, DIALOG_HEIGHT);
+  
+            setTimeout(() =>{
+              this.dialogService.closeDialog();
+            }, 2000)
+  
+            this.modify = false;
+          } catch(error) {
+            this.dialogService.openDialog("Error", "Compruebe que todos los campos son correctos", true, false, false, DIALOG_WIDTH, DIALOG_WIDTH);
+          }
+          
         }
       }
     );
+  }
 
-    this.modify = false;
+  undoPlayerRemove(){
+    this.playerDataService.undoRemove();
   }
 
 }
