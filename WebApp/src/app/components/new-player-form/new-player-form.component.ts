@@ -150,8 +150,8 @@ export class NewPlayerFormComponent implements OnInit {
         break;
     }
 
-    /*if(this.inputPlayer)
-      this.inputPlayerCopy(this.player);*/
+    if(this.inputPlayer)
+      this.inputPlayerCopy(this.player);
 
     this.addError();
 

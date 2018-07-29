@@ -9,6 +9,7 @@ export class PlayerDataService {
 
   id:number = 0;
   teamPlayers: Array<Player> = [];
+  playersModify: Array<Player> = []; 
   playersRemoved: Array<Player> = [];
   playersRemovedIds: Array<string> = [];
   playersAdded: Array<Player> = [];
@@ -48,11 +49,24 @@ export class PlayerDataService {
   }
 
   setTeamPlayers(players: Array<Player>){
-   this.teamPlayers =  this.teamPlayers.concat(players);
+   this.teamPlayers = this.copyPlayers(players);
+   this.playersModify = this.teamPlayers;
   }
 
   getPlayerById(id:string): Player{
     return this.teamPlayers.find(p => p.id == id);
+  }
+
+  copyPlayers(players: Array<Player>):Array<Player>{
+    let list: Array<Player> = [];
+
+    players.forEach(p =>{
+      let aux = new Player();
+      aux.copy(p);
+      list.push(aux);
+    });
+
+    return list;
   }
 
   clearData(){
@@ -63,6 +77,7 @@ export class PlayerDataService {
     this.playersAdded = [];
     this.playersErrors = [];
     this.playerImages = [];
+    this.playersModify = [];
   }
 
   addPlayer(){
@@ -86,6 +101,7 @@ export class PlayerDataService {
     this.playersAdded = this.playersAdded.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
     this.playersRemoved = removed.concat(this.playersRemoved);
     this.teamPlayers = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
+    this.playersModify = this.playersModify.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
     this.playersRemovedIds = removedIdsAux;
   }
 

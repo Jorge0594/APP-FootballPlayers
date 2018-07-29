@@ -46,4 +46,12 @@ export class TeamService {
     );
   }
 
+  updateTeam(id:string, requestBody:any){
+    return this.http.put((BASE_URL + id + "/temporal"), requestBody)
+    .map(
+      response => response,
+      error => console.error(error)
+    );
+  }
+
 }
