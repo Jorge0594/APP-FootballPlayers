@@ -60,9 +60,11 @@ export class MyTeamComponent implements OnInit {
             }
            
             this.eventService.saveChanges.emit();
-            this.userService.getUserTeam().plantillaEquipo = this.playerDataService.teamPlayers;
+            this.eventService.modifyTeam.emit();
 
             let requestBody = this.requestBodyMapping();
+
+            console.log(requestBody);
 
             this.teamService.updateTeam(this.userService.getUserTeam().id, requestBody).subscribe(
               response => {

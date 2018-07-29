@@ -8,6 +8,7 @@ export class EventService {
   changePlayerImage = new EventEmitter<any>();
   imageSaved = new EventEmitter<any>();
   saveChanges = new EventEmitter<any>();
+  modifyTeam = new EventEmitter<any>();
 
   constructor() { }
 

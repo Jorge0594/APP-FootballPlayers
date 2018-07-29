@@ -37,6 +37,13 @@ export class PlayerDataService {
         this.clearData();
     });
 
+    this.eventService.modifyTeam.subscribe(() => {
+
+      this.playersModify = this.playersModify.filter(p => this.playersAdded.indexOf(p) == -1);
+      this.playersRemovedIds = this.playersRemovedIds.filter(id => this.playersRemoved.find(p => p.id == id));
+
+    });
+
   }
 
   getImageById(id:string):any{

@@ -25,7 +25,7 @@ export class NewPlayerFormComponent implements OnInit {
   ];
 
   check: boolean;
-  captain: boolean;
+  delegate: boolean;
   player: Player
   @Input() inputPlayer: Player;
   validationError: boolean;
@@ -42,7 +42,7 @@ export class NewPlayerFormComponent implements OnInit {
 
     this.dateAdapter.setLocale('es');
     this.check = false;
-    this.captain = false;
+    this.delegate= false;
     this.validationError = true;
     this.player = new Player();
 
@@ -74,7 +74,7 @@ export class NewPlayerFormComponent implements OnInit {
       this.emailInputValue = this.inputPlayer.email;
       this.dniInputValue = this.inputPlayer.dni;
       this.dorsalInputValue = this.inputPlayer.dorsal;
-      this.captain = this.inputPlayer.capitan;
+      this.delegate = this.inputPlayer.capitan;
 
     } else {
       this.enableValidators();
@@ -158,7 +158,7 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   getCheckValue(event) {
-    this.player.capitan = this.captain;
+    this.player.capitan = this.delegate;
   }
 
   getPlayer() {
@@ -331,7 +331,7 @@ export class NewPlayerFormComponent implements OnInit {
     this.inputPlayer.lugarNacimiento = other.lugarNacimiento;
     this.inputPlayer.nacionalidad = other.nacionalidad;
     this.inputPlayer.dorsal = other.dorsal;
-    this.inputPlayer.capitan = other.capitan;
+    this.inputPlayer.capitan = this.delegate;
   }
 
   addError(){
