@@ -60,15 +60,18 @@ export class NewPlayerFormComponent implements OnInit {
 
     this.eventService.saveChanges.subscribe(() => {
       this.inputPlayerCopy(this.player);
+      this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "/", "-");
     });
   }
 
   ngOnInit() {
 
     if(this.inputPlayer && !this.playerIsEmpty(this.inputPlayer)){
-      if(this.inputPlayer.fechaNacimiento)
-        this.dateControl = new FormControl(new Date(this.reformatDate(this.inputPlayer.fechaNacimiento)));
-      
+      if(this.inputPlayer.fechaNacimiento){
+        this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "-", "/");
+        this.dateControl = new FormControl(new Date(this.reformatToEuropeanDate(this.inputPlayer.fechaNacimiento)));
+      }
+        
       this.player.copy(this.inputPlayer);
       this.positionInputValue = this.inputPlayer.posicion;
       this.emailInputValue = this.inputPlayer.email;
@@ -307,7 +310,7 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   //only works with the following format: dd/MM/yyyy
-  reformatDate(date:string): string {
+  reformatToEuropeanDate(date:string): string {
     let dateSplit = date.split("/");
     return dateSplit[2] + "/" +  dateSplit[1] + "/" + dateSplit[0];
   }

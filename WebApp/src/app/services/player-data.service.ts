@@ -148,4 +148,9 @@ export class PlayerDataService {
     return this.playersErrors.length > 0 ;
   }
 
+  reformatDate(date:string, separator:string, union:string):string{
+    let dateSplit = date.split(separator);
+    return dateSplit[0] + union + dateSplit[1] + union + dateSplit[2]; 
+  }
+
 }

@@ -64,8 +64,6 @@ export class MyTeamComponent implements OnInit {
 
             let requestBody = this.requestBodyMapping();
 
-            console.log(requestBody);
-
             this.teamService.updateTeam(this.userService.getUserTeam().id, requestBody).subscribe(
               response => {
                 this.userService.generateUserData();
