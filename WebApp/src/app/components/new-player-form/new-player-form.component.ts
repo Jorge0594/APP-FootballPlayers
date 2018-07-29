@@ -60,7 +60,7 @@ export class NewPlayerFormComponent implements OnInit {
 
     this.eventService.saveChanges.subscribe(() => {
       this.inputPlayerCopy(this.player);
-      this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "/", "-");
+      this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "/", "-", true);
     });
   }
 
@@ -68,7 +68,7 @@ export class NewPlayerFormComponent implements OnInit {
 
     if(this.inputPlayer && !this.playerIsEmpty(this.inputPlayer)){
       if(this.inputPlayer.fechaNacimiento){
-        this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "-", "/");
+        this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "-", "/", false);
         this.dateControl = new FormControl(new Date(this.reformatToEuropeanDate(this.inputPlayer.fechaNacimiento)));
       }
         

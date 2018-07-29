@@ -121,9 +121,9 @@ export class TeamCreatorComponent implements OnInit {
   createTeam() {
 
     if (this.componentService.hasErrors()) {
-      
+
       this.teamData.getTeam().plantillaEquipo.forEach(p => {
-        p.fechaNacimiento = this.playerDataService.reformatDate(p.fechaNacimiento, "/", "-");
+        p.fechaNacimiento = this.playerDataService.reformatDate(p.fechaNacimiento, "/", "-", true);
       });
 
       this.teamService.createTeam(this.teamData.getTeam()).subscribe(
