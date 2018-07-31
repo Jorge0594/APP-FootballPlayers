@@ -38,8 +38,8 @@
   <mat-step>
     <ng-template matStepLabel>Jugadores</ng-template>
     <template #panel id="player-form"></template>
-    <button mat-button class="control-buttons mat-elevation-z5" (click)="addPlayer()">Añadir jugador</button>
-    <button mat-button class="control-buttons mat-elevation-z5" (click)="deletePlayers()">Eliminar jugadores seleccionados</button>
+    <button mat-button class="control-buttons mat-elevation-z5" (click)="addPlayer()"><mat-icon>add_circle</mat-icon> Añadir jugador</button>
+    <button mat-button class="control-buttons mat-elevation-z5" (click)="deletePlayers()"><mat-icon>remove_circle</mat-icon> Eliminar seleccionados</button>
     <mat-divider class="divider"></mat-divider>
     <div>
       <button mat-button class="stepper-button mat-elevation-z5" matStepperPrevious>Atrás</button>

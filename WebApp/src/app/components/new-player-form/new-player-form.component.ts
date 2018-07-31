@@ -59,8 +59,11 @@ export class NewPlayerFormComponent implements OnInit {
     });
 
     this.eventService.saveChanges.subscribe(() => {
-      this.inputPlayerCopy(this.player);
-      this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "/", "-", true);
+      if(this.playerDataService.getPlayerById(this.player.id)){
+        this.inputPlayerCopy(this.player);
+        this.addError();
+        this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "/", "-", true);
+      }
     });
   }
 
@@ -80,6 +83,7 @@ export class NewPlayerFormComponent implements OnInit {
       this.delegate = this.inputPlayer.capitan;
 
     } else {
+      this.player.copy(this.inputPlayer);
       this.enableValidators();
     }
   }
@@ -100,6 +104,7 @@ export class NewPlayerFormComponent implements OnInit {
 
   getDate(date: string) {
     this.player.fechaNacimiento = date;
+    this.inputControls.get('birthdate').setValidators(Validators.required);
   }
 
   getValue(from: string) {
@@ -155,8 +160,6 @@ export class NewPlayerFormComponent implements OnInit {
 
     if(this.inputPlayer)
       this.inputPlayerCopy(this.player);
-
-    this.addError();
 
   }
 
@@ -220,8 +223,6 @@ export class NewPlayerFormComponent implements OnInit {
         errMessage = this.inputControls.get('nacionality').hasError('required') ? "Campo obligatorio" : "";
         break;
     }
-
-    this.addError();
     return errMessage;
   }
 
@@ -338,13 +339,21 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   addError(){
-    if(this.inputPlayer) {
-      if(this.inputControls.invalid && this.playerDataService.playersErrors.indexOf(this.inputPlayer.id) == -1){
-        this.playerDataService.playersErrors.push(this.inputPlayer.id);
-      } else if (!this.inputControls.invalid){
-        this.playerDataService.removeError(this.inputPlayer.id);
-      }
+    if(this.inputControls.invalid && this.playerDataService.playersErrors.indexOf(this.inputPlayer.id) == -1){
+      this.playerDataService.playersErrors.push(this.inputPlayer.id);
+    } else if (!this.inputControls.invalid){
+      this.playerDataService.removeError(this.inputPlayer.id);
     }
+  }
+
+  getInvalidControl(): any{
+    console.log("CONTROLS OF: " + this.player.nombre);
+    const controls = this.inputControls.controls;
+
+    for(const name in controls){
+      if(controls[name].invalid)
+        console.log("ERROR IN CONTROL: " + name);
+    } 
   }
 
 }

@@ -5,6 +5,7 @@ import { DialogService } from '../../services/dialog.service';
 import { EventService } from '../../services/events.service';
 import { PlayerDataService } from '../../services/player-data.service';
 import { TeamService } from '../../services/team.service';
+import { PlayerService } from '../../services/player.service';
 
 import  { Player } from '../../models/player.model';
 
@@ -21,7 +22,7 @@ export class MyTeamComponent implements OnInit {
   private modify: boolean;
 
   constructor(private userService: UserService, private dialogService : DialogService, private eventService: EventService, private playerDataService: PlayerDataService,
-  private teamService: TeamService) {
+  private teamService: TeamService, private playerService: PlayerService) {
   }
 
   ngOnInit() {
@@ -55,17 +56,26 @@ export class MyTeamComponent implements OnInit {
         if(response == true){
 
           try{
+            this.eventService.saveChanges.emit();
+
             if(this.playerDataService.hasErrors()){
               throw new Error();
             }
            
-            this.eventService.saveChanges.emit();
             this.eventService.modifyTeam.emit();
 
             let requestBody = this.requestBodyMapping();
 
             this.teamService.updateTeam(this.userService.getUserTeam().id, requestBody).subscribe(
               response => {
+                this.playerDataService.playerImages.forEach(data => {
+                  this.playerService.updatePlayerImage(this.playerDataService.getPlayerById(data.id).dni, data.file).subscribe(
+                    response => this.eventService.imageSaved.emit(),
+                    error =>{
+                      console.log(error);
+                    } 
+                  );
+                });
                 this.userService.generateUserData();
                 this.dialogService.openDialog("Guardando cambios", "Actualizando datos del equipo...", false, false, true, DIALOG_WIDTH, DIALOG_HEIGHT);
                 setTimeout(() =>{
@@ -76,10 +86,11 @@ export class MyTeamComponent implements OnInit {
                 this.dialogService.openDialog("Error", "No se ha podido actualizar el equipo. ERROR_CODE: " + error, true, false, false, DIALOG_WIDTH, DIALOG_WIDTH);
               }
             );
-
+            
             this.modify = false;
           } catch(error) {
-            this.dialogService.openDialog("Error", "Compruebe que todos los campos son correctos", true, false, false, DIALOG_WIDTH, DIALOG_WIDTH);
+            console.error(error);
+            this.dialogService.openDialog("Error", "Compruebe que todos los campos son correctos. ERROR_CODE: " + error, true, false, false, DIALOG_WIDTH, DIALOG_WIDTH);
           }
           
         }

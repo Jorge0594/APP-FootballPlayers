@@ -41,6 +41,7 @@ export class PlayerDataService {
 
       this.playersModify = this.playersModify.filter(p => this.playersAdded.indexOf(p) == -1);
       this.playersRemovedIds = this.playersRemovedIds.filter(id => this.playersRemoved.find(p => p.id == id));
+      this.playerImages.forEach(img => console.log(img.id));
 
     });
 
@@ -77,7 +78,6 @@ export class PlayerDataService {
   }
 
   clearData(){
-    console.log("CLEAR DATA");
     this.teamPlayers = [];
     this.playersRemoved = [];
     this.playersRemovedIds = [];
