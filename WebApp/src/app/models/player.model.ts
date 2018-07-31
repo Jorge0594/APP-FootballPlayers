@@ -7,15 +7,14 @@ export class Player{
     email:string;
     fotoJugador:string;
     equipo:string;
-    liga:string;
     posicion:string;
     lugarNacimiento:string;
     nacionalidad:string;
     dorsal:number;
-    capitan:boolean;
+    delegado:boolean;
 
     constructor();
-    constructor(nombre?, apellidos?, fechaNacimiento?, dni?, email?, fotoJugador?, equipo?, liga?, posicion?, lugarNacimiento?, nacionalidad?, dorsal?, capitan?){
+    constructor(nombre?, apellidos?, fechaNacimiento?, dni?, email?, fotoJugador?, equipo?, liga?, posicion?, lugarNacimiento?, nacionalidad?, dorsal?, delegado?){
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
@@ -23,20 +22,19 @@ export class Player{
         this.email = email;
         this.fotoJugador = fotoJugador;
         this.equipo = equipo;
-        this.liga = liga;
         this.posicion = posicion;
         this.lugarNacimiento = lugarNacimiento;
         this.nacionalidad = nacionalidad;
         this.dorsal = dorsal;
-        this.capitan = capitan;
+        this.delegado = delegado;
     }
 
     toString(): string{
         return "Player: [id: " + this.id + ", nombre: " + this.nombre + ", apellidos: " + this.apellidos 
         + ", fechaNacimiento: " + this.fechaNacimiento + ", dni: " + this.dni + ", email: " + this.email + 
-        ", fotoJugador: " + this.fotoJugador + ", equipo: " + this.equipo + ", liga: " + this.liga + 
+        ", fotoJugador: " + this.fotoJugador + ", equipo: " + this.equipo +
         ", posicion: " + this.posicion + ", lugarNacimiento: " + this.lugarNacimiento + ", nacionalidad: " + this.nacionalidad + 
-        ", dorsal: " + this.dorsal + ", capitan: " + this.capitan; 
+        ", dorsal: " + this.dorsal + ", capitan: " + this.delegado; 
     }
 
     equals(otherPlayer: Player): boolean{
@@ -52,17 +50,16 @@ export class Player{
         this.email = other.email;
         this.fotoJugador = other.fotoJugador;
         this.equipo = other.equipo;
-        this.liga = other.liga;
         this.posicion = other.posicion;
         this.lugarNacimiento = other.lugarNacimiento;
         this.nacionalidad = other.nacionalidad;
         this.dorsal = other.dorsal;
-        this.capitan = other.capitan;
+        this.delegado = other.delegado;
     }
 
     isEmpty(): boolean{
         return this.nombre && this.apellidos && this.fechaNacimiento && this.dni && this.email &&
-                this.fotoJugador && this.equipo && this.liga && this.posicion && this.lugarNacimiento &&
-                    this.nacionalidad && this.dorsal && this.capitan;
+                this.fotoJugador && this.equipo && this.posicion && this.lugarNacimiento &&
+                    this.nacionalidad && this.dorsal && this.delegado;
     }
 }

@@ -119,8 +119,8 @@ export class TeamCreatorComponent implements OnInit {
   }
 
   createTeam() {
-
-    if (this.componentService.hasErrors()) {
+    let response = this.teamData.delegateRestrictions();
+    if (this.componentService.hasErrors() && response.error == false && this.teamData.getTeam().plantillaEquipo.length > 0) {
 
       this.teamData.getTeam().plantillaEquipo.forEach(p => {
         p.fechaNacimiento = this.playerDataService.reformatDate(p.fechaNacimiento, "/", "-", true);
@@ -152,7 +152,18 @@ export class TeamCreatorComponent implements OnInit {
           }
       });
     } else {
-      this.dialogService.openDialog("Error", "Por favor rellene todos los campos correctamente", true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+      let error;
+
+      if(this.teamData.getTeam().plantillaEquipo.length == 0){
+        error = "El equipo debe tener jugadores asociados";
+      } else if(response.error == true){
+        error = response.numDelegates == 0 ? "El equipo debe tener un delegado" : "El equipo no puede tener más de un delegado";
+      } else {
+        error = "Rellene todos los campos correctamente";
+      }
+
+      this.dialogService.openDialog("Error", error, true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+      
     }
 
   }

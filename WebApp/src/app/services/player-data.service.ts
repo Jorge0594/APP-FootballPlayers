@@ -106,7 +106,7 @@ export class PlayerDataService {
     removedIdsAux = removedIdsAux.filter(id => this.playersAdded.find(p => p.id == id) == undefined)
 
     this.playersAdded = this.playersAdded.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
-    this.playersRemoved = removed.concat(this.playersRemoved);
+    this.playersRemoved = this.playersRemoved.concat(removed);
     this.teamPlayers = this.teamPlayers.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
     this.playersModify = this.playersModify.filter(p => this.playersRemovedIds.indexOf(p.id) == -1);
     this.playersRemovedIds = removedIdsAux;

@@ -69,23 +69,27 @@ export class NewPlayerFormComponent implements OnInit {
 
   ngOnInit() {
 
+    if(this.inputPlayer){
+      this.player.copy(this.inputPlayer);
+    }
+
     if(this.inputPlayer && !this.playerIsEmpty(this.inputPlayer)){
       if(this.inputPlayer.fechaNacimiento){
         this.inputPlayer.fechaNacimiento = this.playerDataService.reformatDate(this.inputPlayer.fechaNacimiento, "-", "/", false);
         this.dateControl = new FormControl(new Date(this.reformatToEuropeanDate(this.inputPlayer.fechaNacimiento)));
       }
-        
+      
       this.player.copy(this.inputPlayer);
       this.positionInputValue = this.inputPlayer.posicion;
       this.emailInputValue = this.inputPlayer.email;
       this.dniInputValue = this.inputPlayer.dni;
       this.dorsalInputValue = this.inputPlayer.dorsal;
-      this.delegate = this.inputPlayer.capitan;
+      this.delegate = this.inputPlayer.delegado;
 
     } else {
-      this.player.copy(this.inputPlayer);
       this.enableValidators();
     }
+    
   }
 
   imageChanged(fileInput: any) {
@@ -164,7 +168,7 @@ export class NewPlayerFormComponent implements OnInit {
   }
 
   getCheckValue(event) {
-    this.player.capitan = this.delegate;
+    this.player.delegado = this.delegate;
   }
 
   getPlayer() {
@@ -318,8 +322,8 @@ export class NewPlayerFormComponent implements OnInit {
 
   playerIsEmpty(player: Player):boolean{
     return player.nombre == undefined && player.apellidos == undefined && player.fechaNacimiento == undefined && player.dni == undefined && player.email == undefined &&
-      player.fotoJugador == undefined && player.equipo == undefined && player.liga == undefined && player.posicion == undefined && player.lugarNacimiento == undefined &&
-        player.nacionalidad == undefined && player.dorsal == undefined && player.capitan == undefined;
+      player.fotoJugador == undefined && player.equipo == undefined && player.posicion == undefined && player.lugarNacimiento == undefined &&
+        player.nacionalidad == undefined && player.dorsal == undefined && player.delegado == undefined;
   }
 
   inputPlayerCopy(other:Player){
@@ -330,12 +334,11 @@ export class NewPlayerFormComponent implements OnInit {
     this.inputPlayer.email = other.email;
     this.inputPlayer.fotoJugador = other.fotoJugador;
     this.inputPlayer.equipo = other.equipo;
-    this.inputPlayer.liga = other.liga;
     this.inputPlayer.posicion = other.posicion;
     this.inputPlayer.lugarNacimiento = other.lugarNacimiento;
     this.inputPlayer.nacionalidad = other.nacionalidad;
     this.inputPlayer.dorsal = other.dorsal;
-    this.inputPlayer.capitan = this.delegate;
+    this.inputPlayer.delegado = this.delegate;
   }
 
   addError(){

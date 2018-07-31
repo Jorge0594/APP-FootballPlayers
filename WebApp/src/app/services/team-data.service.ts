@@ -40,4 +40,22 @@ export class TeamDataService {
     this.team = new Team();
   }
 
+  delegateRestrictions(){
+    let delegate = this.team.plantillaEquipo.filter(p => p.delegado == true);
+    let response =  {
+      error: false,
+      numDelegates: 1
+    };
+
+    if(delegate.length == 0){
+      response.error = true;
+      response.numDelegates = 0;
+    } else if (delegate.length > 1){
+      response.error = true;
+      response.numDelegates = delegate.length;
+    }
+    
+    return response;
+  }
+
 }

@@ -54,9 +54,9 @@
       <input [value]="player?.dorsal == undefined ? '' : player?.dorsal" type="number" matInput readonly>
     </mat-form-field>
 
-    <mat-form-field class="inputs" *ngIf="player?.capitan">
+    <mat-form-field class="inputs" *ngIf="player?.delegado">
       <mat-label class = "inputs-labels">Delegado:</mat-label>
-      <input [value]="'Capitan'" type="text" matInput readonly>
+      <input [value]="'Delegado'" type="text" matInput readonly>
     </mat-form-field>
 
     <mat-label class = "inputs-labels">Foto jugador:</mat-label>
