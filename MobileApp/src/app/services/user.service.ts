@@ -19,6 +19,8 @@ export class UserService{
     private userMatches: any;
     private activeSanctions:any;
     private rounds: number [] = [];
+    private leagueGroups: any;
+    private currentGroup: string;
 
     constructor(private http: HttpClient, private teamService:TeamService, private leagueService: LeagueService, private sanctionService: SanctionService ){}
 
@@ -27,19 +29,24 @@ export class UserService{
         return this.http.get("jugadores/usuario").subscribe(
             response => {
                 this.user = response;
-                this.leagueService.getStandings(response.liga).subscribe(
-                    league => {
-                        this.userLeague = league;
-                        for(let i = 0; i< (league.length - 1)* 2 ; i++){
-                            this.rounds.push(i + 1);
-                        }
-                    }
-                );
+                
                 this.teamService.getPlayerTeamById(response.equipo).subscribe(
                     team =>{
                         if(team != null || team != undefined){
                             this.userTeam = team;
                         };
+
+                        this.currentGroup = team.grupo;
+
+                        this.leagueService.getStandings(team.grupo).subscribe(
+                            group => {
+                                this.userLeague = group;
+
+                                for(let i = 0; i< (group.length - 1)* 2 ; i++){
+                                    this.rounds.push(i + 1);
+                                }
+                            }
+                        );
                     }
                 )
                 this.sanctionService.getActivePlayerSanctions(response.id).subscribe(
@@ -52,6 +59,14 @@ export class UserService{
 
     setleagueGoals(goals: any){
         this.leagueGoals = goals;
+    }
+
+    getCurrentGroup(){
+        return this.currentGroup;
+    }
+
+    getLeagueGroups(){
+        return this.leagueGroups;
     }
 
     getLeagueGoals(){

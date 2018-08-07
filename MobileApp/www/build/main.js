@@ -21,7 +21,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var BASE_URL = "ligas/";
+var BASE_URL = 'grupos/';
 var LeagueService = (function () {
     function LeagueService(http) {
         this.http = http;
@@ -32,14 +32,24 @@ var LeagueService = (function () {
     LeagueService.prototype.getStandings = function (name) {
         return this.http.get(BASE_URL + name + '/clasificacion').map(function (response) { return response; }, function (error) { return console.error(error); });
     };
-    LeagueService.prototype.getTopGoals = function (name) {
-        return this.http.get(BASE_URL + name + '/goleadores').map(function (response) { return response; }, function (error) { return console.error(error); });
+    LeagueService.prototype.getGroups = function (league) {
+        return this.http.get('ligas/' + league + '/grupos').map(function (response) { return response; }, function (error) { return console.error(error); });
+    };
+    LeagueService.prototype.getTopGoals = function (league, group) {
+        return this.http.get(BASE_URL + 'goleadores/' + league + '/' + group).map(function (response) { return response; }, function (error) { return console.error(error); });
+    };
+    LeagueService.prototype.getTopYellowCards = function (league, group) {
+        return this.http.get(BASE_URL + 'amarillas/' + league + '/' + group).map(function (response) { return response; }, function (error) { return console.error(error); });
+    };
+    LeagueService.prototype.getTopRedCards = function (league, group) {
+        return this.http.get(BASE_URL + 'rojas/' + league + '/' + group).map(function (response) { return response; }, function (error) { return console.error(error); });
     };
     LeagueService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]) === "function" && _a || Object])
     ], LeagueService);
     return LeagueService;
+    var _a;
 }());
 
 //# sourceMappingURL=league.service.js.map
@@ -580,10 +590,7 @@ var TabRanks = (function () {
                     this.players = this.userService.getLeagueGoals();
                 }
                 else {
-                    this.leagueService.getTopGoals(this.userService.getUserLogged().liga).subscribe(function (goals) {
-                        _this.players = goals;
-                        _this.userService.setleagueGoals(goals);
-                    });
+                    this.getRanks();
                 }
                 break;
             case 'team':
@@ -597,19 +604,36 @@ var TabRanks = (function () {
     TabRanks.prototype.clickPlayer = function (id, teamID) {
         this.app.getRootNavs()[0].push(__WEBPACK_IMPORTED_MODULE_4__player_player__["a" /* PlayerPage */], { playerId: id, teamId: teamID });
     };
-    TabRanks.prototype.selectRank = function (type) {
-        this.rankSelected = type;
-    };
     TabRanks.prototype.rankInfo = function (rank) {
         this.rankSelected = rank;
+        this.players = null;
+        this.getRanks();
+    };
+    TabRanks.prototype.getRanks = function () {
+        var _this = this;
+        var selection = this.rankSelected.replace(" ", "");
+        switch (selection) {
+            case "Goleadores":
+                this.leagueService.getTopGoals(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(function (response) { return _this.players = response; });
+                break;
+            case "Porteros":
+                break;
+            case "Tarjetasrojas":
+                this.leagueService.getTopRedCards(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(function (response) { return _this.players = response; });
+                break;
+            case "Tarjetasamarillas":
+                this.leagueService.getTopYellowCards(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(function (response) { return _this.players = response; });
+                break;
+        }
     };
     TabRanks = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'ranks-tab',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\Tabs\ranks\ranks-tab.html"*/'\n\n<ion-content>\n  <ion-slides #slides slidesPerView="3" *ngIf = "navParams.data[0] == \'league\'">\n      <ion-slide *ngFor="let rank of rankTypes" [class.selected] = "rankSelected === rank.type" (click)="rankInfo(rank.type)">\n          <ion-icon class = "tab-icons" [name] = "rank.icon"></ion-icon>\n          <div class = "triangle" [class.colored-traingle]= "rankSelected === rank.type"></div>\n      </ion-slide>\n  </ion-slides>\n  <ion-row *ngIf = "navParams.data[0] == \'league\'" id = "rank-selected-title"><ion-col><strong>{{rankSelected}}</strong></ion-col></ion-row>\n\n  <ion-spinner class = "spinner" *ngIf = "players == null" color ="ligth"></ion-spinner>\n  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == \'league\'">\n    <ion-grid *ngFor = "let player of players; let position = index;">\n      <ion-row class = "lines"></ion-row>\n      <ion-row (click)="clickPlayer(player.id, player.equipo)" class = "player-info">\n        <ion-col col-xs-1 id="player-position" [class.first-position]= "position == 0">{{position+1}}</ion-col>\n        <ion-col col-xs-3 id="col-player-image">\n            <img id = "player-image" class = "player-image-rank-position" src="{{userService.getBaseURLforImages()}}{{player?.fotoJugador}}">\n        </ion-col>\n        <ion-col col-6 id="player-name">{{player.nombre}}</ion-col>\n        <ion-col col-xs-2 id ="player-goals"><h1>{{player.goles}}</h1></ion-col>\n      </ion-row>\n      <ion-row *ngIf = "(position+1) == players.length" class = "lines"></ion-row>\n    </ion-grid>\n  </ion-scroll>\n  <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true" *ngIf = "navParams.data[0] == \'team\' || navParams.data[0] == \'teamsList\'">\n    <ion-grid (click)="clickPlayer(player.id, player.equipo)" *ngFor = "let player of players; let i = index" class = "player-info-team">\n      <ion-row class = "lines"></ion-row>\n      <ion-row>\n        <ion-col col-xs-1 id="col-player-image">\n            {{player?.dorsal}}\n            <img id = "player-image" src="{{userService.getBaseURLforImages()}}{{player?.fotoJugador}}">\n        </ion-col>\n        <ion-col col-6 id="player-info-titles">\n          <p>Nombre</p>\n          <p>Edad</p>\n          <p>Posición</p>\n          <p>Nacionalidad</p>\n        </ion-col>\n        <ion-col col-xs-5 id ="player-data">\n          <p>{{player?.nombre}} {{player?.apellidos}}</p>\n          <p>{{player?.edad}}</p>\n          <p>{{player?.posicion}}</p>\n          <p>{{player?.nacionalidad}}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row *ngIf = "(i+1) == players.length" class = "lines"></ion-row>\n  </ion-grid>\n  </ion-scroll>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\Tabs\ranks\ranks-tab.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */], __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_5__app_services_league_service__["a" /* LeagueService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__app_services_league_service__["a" /* LeagueService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_services_league_service__["a" /* LeagueService */]) === "function" && _f || Object])
     ], TabRanks);
     return TabRanks;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=ranks-tab.js.map
@@ -1043,15 +1067,15 @@ var map = {
 		4
 	],
 	"../pages/player/player.module": [
-		907,
+		905,
 		3
 	],
 	"../pages/profile/profile.module": [
-		905,
+		906,
 		2
 	],
 	"../pages/sanction/sanction.module": [
-		906,
+		907,
 		1
 	],
 	"../pages/teams/teams.module": [
@@ -1134,23 +1158,30 @@ var UserService = (function () {
         var _this = this;
         return this.http.get("jugadores/usuario").subscribe(function (response) {
             _this.user = response;
-            _this.leagueService.getStandings(response.liga).subscribe(function (league) {
-                _this.userLeague = league;
-                for (var i = 0; i < (league.length - 1) * 2; i++) {
-                    _this.rounds.push(i + 1);
-                }
-            });
             _this.teamService.getPlayerTeamById(response.equipo).subscribe(function (team) {
                 if (team != null || team != undefined) {
                     _this.userTeam = team;
                 }
                 ;
+                _this.currentGroup = team.grupo;
+                _this.leagueService.getStandings(team.grupo).subscribe(function (group) {
+                    _this.userLeague = group;
+                    for (var i = 0; i < (group.length - 1) * 2; i++) {
+                        _this.rounds.push(i + 1);
+                    }
+                });
             });
             _this.sanctionService.getActivePlayerSanctions(response.id).subscribe(function (sanctions) { return _this.activeSanctions = sanctions; });
         }, function (error) { return console.error(error); });
     };
     UserService.prototype.setleagueGoals = function (goals) {
         this.leagueGoals = goals;
+    };
+    UserService.prototype.getCurrentGroup = function () {
+        return this.currentGroup;
+    };
+    UserService.prototype.getLeagueGroups = function () {
+        return this.leagueGroups;
     };
     UserService.prototype.getLeagueGoals = function () {
         return this.leagueGoals;
@@ -1569,9 +1600,9 @@ var AppModule = (function () {
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/maps/maps.module#MapsPageModule', name: 'MapsPage', segment: 'maps', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/match/match.module#MatchPageModule', name: 'MatchPage', segment: 'match', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/player/player.module#PlayerPageModule', name: 'PlayerPage', segment: 'player', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sanction/sanction.module#SanctionPageModule', name: 'SanctionPage', segment: 'sanction', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/player/player.module#PlayerPageModule', name: 'PlayerPage', segment: 'player', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/teams/teams.module#TeamsPageModule', name: 'TeamsPage', segment: 'teams', priority: 'low', defaultHistory: [] }
                     ]
                 })
@@ -1656,11 +1687,11 @@ var HomeTabsPage = (function () {
         this.menuController = menuController;
         this.userService = userService;
         this.teamService = teamService;
+        this.groupSelected = this.userService.getCurrentGroup();
         switch (this.navParams.get('id')[0]) {
             case "league":
-                this.headerTitle = "Liga " + this.userService.getUserLogged().liga;
                 this.rootParams = ["league"];
-                this.titles = ["Clasificacion", "Calendario", "Rankings"];
+                this.titles = ["Clasificación", "Calendario", "Rankings"];
                 this.icons = ["trophy", "calendar", "podium"];
                 break;
             case "profile":
@@ -1702,7 +1733,7 @@ var HomeTabsPage = (function () {
     };
     HomeTabsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home-tabs',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\home-tabs.html"*/'<ion-header>\n    <ion-navbar height="20px" color="header">\n      <button ion-button menuToggle id="button-toggle">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>{{headerTitle}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content overflow-scroll="false">\n  <ion-tabs id = "tabbar" height="100%" swipeEnable ="false" color="header" tabsPlacement = "top">\n    <ion-tab *ngFor ="let tab of tabs" [root]="tab.root" [rootParams] = "tab.rootParams" [tabTitle]="tab.title" [tabIcon] = "tab.icon"></ion-tab>\n  </ion-tabs>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\home-tabs.html"*/,
+            selector: 'page-home-tabs',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\home-tabs.html"*/'<ion-header>\n    <ion-navbar height="20px" color="header">\n      <button ion-button menuToggle id="button-toggle">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>\n        {{this.navParams.get(\'id\')[0] != \'league\' ? headerTitle : \'Liga \' + userService.getUserTeam()?.liga + " - " + this.userService.getUserTeam()?.grupo}}\n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content overflow-scroll="false">\n  <ion-tabs id = "tabbar" height="100%" swipeEnable ="false" color="header" tabsPlacement = "top">\n    <ion-tab *ngFor ="let tab of tabs" [root]="tab.root" [rootParams] = "tab.rootParams" [tabTitle]="tab.title" [tabIcon] = "tab.icon"></ion-tab>\n  </ion-tabs>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\home-tabs.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* MenuController */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__["a" /* TeamService */]])
     ], HomeTabsPage);

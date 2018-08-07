@@ -18,51 +18,67 @@ import { LeagueService } from '../../../../app/services/league.service';
 export class TabRanks {
 
   private rankSelected: string;
-  private rankTypes:any;
+  private rankTypes: any;
   private players: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private app: App, private teamService: TeamService, private leagueService: LeagueService) {
     this.rankSelected = "Goleadores";
     this.rankTypes = [
-      {type: "Goleadores", icon: "football"},
-      {type: "Porteros", icon: "icon-goalkeeperIcon"},
-      {type: "Tarjetas rojas", icon: "icon-redcard"},
-      {type: "Tarjetas amarillas", icon: "icon-yellowcard"},
+      { type: "Goleadores", icon: "football" },
+      { type: "Porteros", icon: "icon-goalkeeperIcon" },
+      { type: "Tarjetas rojas", icon: "icon-redcard" },
+      { type: "Tarjetas amarillas", icon: "icon-yellowcard" },
     ];
 
-    switch(this.navParams.data[0]){
+    switch (this.navParams.data[0]) {
       case 'league':
-        if(this.userService.getLeagueGoals()){
+        if (this.userService.getLeagueGoals()) {
           this.players = this.userService.getLeagueGoals();
         } else {
-          this.leagueService.getTopGoals(this.userService.getUserLogged().liga).subscribe(
-            goals => {
-              this.players = goals;
-              this.userService.setleagueGoals(goals);
-            }
-          )
+          this.getRanks();
         }
-      break;
+        break;
       case 'team':
         this.players = this.userService.getUserTeam().plantillaEquipo
-      break;
+        break;
       case 'teamsList':
         this.teamService.getPlayerTeamById(this.navParams.data[1]).subscribe(
           team => this.players = team.plantillaEquipo
         );
-      break;
+        break;
     }
   }
 
-  clickPlayer(id:string, teamID:string){
-    this.app.getRootNavs()[0].push(PlayerPage, {playerId: id, teamId: teamID });
+  clickPlayer(id: string, teamID: string) {
+    this.app.getRootNavs()[0].push(PlayerPage, { playerId: id, teamId: teamID });
   }
 
-  selectRank(type:string){
-    this.rankSelected = type;
-  }
-
-  rankInfo(rank:string){
+  rankInfo(rank: string) {
     this.rankSelected = rank;
+    this.players = null;
+    this.getRanks();
+  }
+
+  getRanks() {
+    let selection = this.rankSelected.replace(" ", "");
+    switch (selection) {
+      case "Goleadores":
+        this.leagueService.getTopGoals(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(
+          response => this.players = response
+        )
+        break;
+      case "Porteros":
+        break;
+      case "Tarjetasrojas":
+        this.leagueService.getTopRedCards(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(
+          response => this.players = response
+        )
+        break;
+      case "Tarjetasamarillas":
+        this.leagueService.getTopYellowCards(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(
+          response => this.players = response
+        )
+        break;
+    }
   }
 }

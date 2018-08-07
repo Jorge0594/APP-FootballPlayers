@@ -3,7 +3,9 @@
       <button ion-button menuToggle id="button-toggle">
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>{{headerTitle}}</ion-title>
+      <ion-title>
+        {{this.navParams.get('id')[0] != 'league' ? headerTitle : 'Liga ' + userService.getUserTeam()?.liga + " - " + this.userService.getUserTeam()?.grupo}}
+      </ion-title>
     </ion-navbar>
 </ion-header>
 

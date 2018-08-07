@@ -20,14 +20,16 @@ export class HomeTabsPage {
   private titles: Array<string>;
   private icons: Array<string>;
   private headerTitle: string;
+  private groupSelected:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController, private userService:UserService, private teamService: TeamService) {
    
+    this.groupSelected = this.userService.getCurrentGroup();
+
     switch (this.navParams.get('id')[0]){
       case "league":
-        this.headerTitle = "Liga " + this.userService.getUserLogged().liga;
         this.rootParams = ["league"];
-        this.titles = ["Clasificacion", "Calendario", "Rankings"];
+        this.titles = ["Clasificación", "Calendario", "Rankings"];
         this.icons = ["trophy", "calendar", "podium"];
       break;
       case "profile":
@@ -73,7 +75,7 @@ export class HomeTabsPage {
       break;
   
     }
-      }
+  }
 
   
 }
