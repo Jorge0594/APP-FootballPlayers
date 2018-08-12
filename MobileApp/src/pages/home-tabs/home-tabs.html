@@ -4,7 +4,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
       <ion-title>
-        {{this.navParams.get('id')[0] != 'league' ? headerTitle : 'Liga ' + userService.getUserTeam()?.liga + " - " + this.userService.getUserTeam()?.grupo}}
+        {{this.navParams.get('id')[0] != 'league' ? headerTitle : 'Liga ' + userService.getUserTeam()?.liga + " - " + this.userService.getUserTeam()?.grupo.nombre}}
       </ion-title>
     </ion-navbar>
 </ion-header>

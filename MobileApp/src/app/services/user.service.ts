@@ -38,11 +38,13 @@ export class UserService{
 
                         this.currentGroup = team.grupo;
 
-                        this.leagueService.getStandings(team.grupo).subscribe(
+                        this.leagueService.getStandings(team.grupo.idGrupo).subscribe(
                             group => {
                                 this.userLeague = group;
 
-                                for(let i = 0; i< (group.length - 1)* 2 ; i++){
+                                let groupLength = group.length % 2 == 0 ? (group.length * 2) - 1 : group.length * 2;
+
+                                for(let i = 0; i < groupLength; i++){
                                     this.rounds.push(i + 1);
                                 }
                             }

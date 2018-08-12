@@ -24,8 +24,8 @@ export class MatchService{
         )
     }
 
-    getMatchByRoundAndLeague(round:number, league:string){
-        return this.http.get(BASE_URL + 'jornada/' + round + '/' + league).map(
+    getMatchByRoundAndGroup(round:number, groupId:string){
+        return this.http.get(BASE_URL + 'jornada/' + round + '/' + groupId).map(
             response => response,
             error => console.error(error)
         );

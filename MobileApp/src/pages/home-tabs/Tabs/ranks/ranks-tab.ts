@@ -63,19 +63,22 @@ export class TabRanks {
     let selection = this.rankSelected.replace(" ", "");
     switch (selection) {
       case "Goleadores":
-        this.leagueService.getTopGoals(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(
+        this.leagueService.getTopGoals(this.userService.getUserLogged().grupo.idGrupo).subscribe(
           response => this.players = response
         )
         break;
       case "Porteros":
+        this.leagueService.getTopGoalkeepers(this.userService.getUserLogged().grupo.idGrupo).subscribe(
+          response => this.players = response
+        )
         break;
       case "Tarjetasrojas":
-        this.leagueService.getTopRedCards(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(
+        this.leagueService.getTopRedCards(this.userService.getUserLogged().grupo.idGrupo).subscribe(
           response => this.players = response
         )
         break;
       case "Tarjetasamarillas":
-        this.leagueService.getTopYellowCards(this.userService.getUserLogged().liga, this.userService.getUserLogged().grupo).subscribe(
+        this.leagueService.getTopYellowCards(this.userService.getUserLogged().grupo.idGrupo).subscribe(
           response => this.players = response
         )
         break;

@@ -17,8 +17,8 @@ export class LeagueService{
         )
     }
 
-    getStandings(name:string){
-        return this.http.get(BASE_URL + name + '/clasificacion').map(
+    getStandings(groupId:string){
+        return this.http.get(BASE_URL + groupId + '/clasificacion').map(
             response => response,
             error => console.error(error)
         )
@@ -31,22 +31,29 @@ export class LeagueService{
         )
     }
 
-    getTopGoals(league:string, group:string){
-        return this.http.get(BASE_URL + 'goleadores/' + league + '/' + group ).map(
+    getTopGoals(group:string){
+        return this.http.get(BASE_URL + 'goleadores/' + group ).map(
             response => response,
             error => console.error(error)
         )
     }
 
-    getTopYellowCards(league:string, group:string){
-        return this.http.get(BASE_URL + 'amarillas/' + league + '/' + group).map(
+    getTopYellowCards(group:string){
+        return this.http.get(BASE_URL + 'amarillas/' + group).map(
             response => response,
             error => console.error(error)
         )
     }
 
-    getTopRedCards(league:string, group:string){
-        return this.http.get(BASE_URL + 'rojas/' + league + '/' + group).map(
+    getTopGoalkeepers(group:string){
+        return this.http.get(BASE_URL + 'porteros/' + group).map(
+            response => response,
+            error => console.error(error)
+        )
+    }
+
+    getTopRedCards(group:string){
+        return this.http.get(BASE_URL + 'rojas/' + group).map(
             response => response,
             error => console.error(error)
         )

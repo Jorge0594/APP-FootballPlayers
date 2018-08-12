@@ -31,7 +31,7 @@ export class TabRounds {
       case 'league':
         this.roundSelected = 1;
         if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
-          this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
+          this.matchService.getMatchByRoundAndGroup(this.roundSelected, this.userService.getUserTeam().grupo.idGrupo).subscribe(
             matches =>{
               this.roundMatches = matches;
               if(this.roundMatches == null) this.isEmpty = true;
@@ -69,7 +69,7 @@ export class TabRounds {
       this.roundSelected = day;
     }
 
-    this.matchService.getMatchByRoundAndLeague(this.roundSelected, this.userService.getUserTeam().liga).subscribe(
+    this.matchService.getMatchByRoundAndGroup(this.roundSelected, this.userService.getUserTeam().grupo.idGrupo).subscribe(
       matches =>{
         if(matches != null){
           if (this.roundSelected == matches[0].jornada){
