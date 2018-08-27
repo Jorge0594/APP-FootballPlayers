@@ -24,5 +24,12 @@ export class PlayerService{
             error => console.error(error)
         )
     }
+
+    changePassword(id:string, password:string){
+        return this.http.put((BASE_URL + "clave/" + id), password).map(
+            response => response,
+            error => console.error(error)
+        )
+    }
    
 };

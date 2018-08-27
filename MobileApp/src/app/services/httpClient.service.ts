@@ -37,7 +37,8 @@ export class HttpClient{
     getRecoveredPasword(url:any){
         return this.http.get((BASE_URL + url)).map(
             response => {
-                return response.json()},
+                return response.json();
+            },
             error => console.error(error.json())
         );
     }
@@ -46,8 +47,13 @@ export class HttpClient{
         return BASE_URL;
     }
 
-    put(url:any){
-
+    put(url:any, body:any){
+        return this.http.put((BASE_URL + url), body).map(
+            response =>{
+                return response.json();
+            },
+            error => console.error(error.json())
+        )
     }
 
     post(url:any){

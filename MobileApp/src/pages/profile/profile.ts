@@ -6,6 +6,7 @@ import { SanctionPage } from '../sanction/sanction';
 
 import { UserService } from '../../app/services/user.service';
 import { SanctionService } from '../../app/services/sanction.service';
+import { PlayerService } from '../../app/services/player.service';
 
 @IonicPage()
 @Component({
@@ -22,7 +23,7 @@ export class ProfilePage {
   private noSanctions: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private events: Events,
-  private sanctionService: SanctionService, private alertCtrl: AlertController,private modalController: ModalController) {
+  private sanctionService: SanctionService, private alertCtrl: AlertController,private modalController: ModalController, private playerService: PlayerService) {
     this.selection = "one";
     this.header = 150;
     this.noSanctions = false;
@@ -49,11 +50,54 @@ export class ProfilePage {
   }
 
   changePassword(oldPassword:string, newPassword:string, newPasswordRepeat:string){
-    if(newPassword != newPasswordRepeat){
-      this.newPasswordMatches = true;
-    } else{
-      this.presentAlert();
-    }
+    let alert = this.alertCtrl.create({
+      title:"Cambio de contraseña",
+      inputs: [
+        {
+          name: "oldPassword",
+          placeholder: "Contraseña antigua"
+        },
+        {
+          name: "newPassword",
+          placeholder: "Nueva contraseña"
+        },
+        {
+          name:"passwordConfirm",
+          placeholder:"Confirmar contraseña nueva"
+        }
+      ],
+      buttons: [
+        {
+          text: "Cancelar",
+          role: "cancel"
+        },
+        {
+          text: "Confirmar",
+          handler: data => {
+            if(data.newPassword === data.passwordConfirm && data.newPassword.length > 0){
+              this.playerService.changePassword(this.userService.getUserLogged().id, data.newPassword).subscribe(
+                response => response,
+                error => {
+                  let alertNotFound = this.alertCtrl.create({
+                    title: "Error cambio contraseña",
+                    message: "El cambio de contraseña no podido realizarse",
+                    buttons: [
+                      {
+                        text: "Cerrar",
+                        role: "cancel"
+                      }
+                    ]
+                  });
+                  alertNotFound.present();
+                }
+              )
+            } 
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
   presentAlert(){
