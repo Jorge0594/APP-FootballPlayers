@@ -59,4 +59,11 @@ export class LeagueService{
         )
     }
 
+    getGroupProfile(id:string){
+        return this.http.get(BASE_URL + 'perfil/' + id).map(
+            response => response,
+            error => console.error(error)
+        )
+    }
+
 }

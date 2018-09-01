@@ -20,11 +20,9 @@ export class HomeTabsPage {
   private titles: Array<string>;
   private icons: Array<string>;
   private headerTitle: string;
-  private groupSelected:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuController: MenuController, private userService:UserService, private teamService: TeamService) {
    
-    this.groupSelected = this.userService.getCurrentGroup();
 
     switch (this.navParams.get('id')[0]){
       case "league":

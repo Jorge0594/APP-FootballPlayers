@@ -14,7 +14,6 @@ export class PlayerPage {
 
   private player: any;
   private playerTeam: any;
-  private isResize: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private playerService: PlayerService,
      private teamService:TeamService, private userService: UserService) {

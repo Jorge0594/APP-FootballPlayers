@@ -70,13 +70,6 @@ export class MapsPage {
           travelMode: google.maps.TravelMode['DRIVING']
         },
         (res, status) => {
-          console.log("Entro aqui");
-          let alert = this.alertCtrl.create({
-            title: "Debugging",
-            message: status
-          });
-
-          alert.present();
           
           if(status == google.maps.DirectionsStatus.OK){
             directionsDisplay.setDirections(res);

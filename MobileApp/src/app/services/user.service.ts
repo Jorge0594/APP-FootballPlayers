@@ -20,7 +20,7 @@ export class UserService{
     private activeSanctions:any;
     private rounds: number [] = [];
     private leagueGroups: any;
-    private currentGroup: string;
+    private currentGroup: any;
 
     constructor(private http: HttpClient, private teamService:TeamService, private leagueService: LeagueService, private sanctionService: SanctionService ){}
 
@@ -36,7 +36,9 @@ export class UserService{
                             this.userTeam = team;
                         };
 
-                        this.currentGroup = team.grupo;
+                        this.leagueService.getGroupProfile(team.grupo.idGrupo).subscribe(
+                            group => this.currentGroup = group
+                        );
 
                         this.leagueService.getStandings(team.grupo.idGrupo).subscribe(
                             group => {
@@ -63,7 +65,7 @@ export class UserService{
         this.leagueGoals = goals;
     }
 
-    getCurrentGroup(){
+    getUserGroup(){
         return this.currentGroup;
     }
 

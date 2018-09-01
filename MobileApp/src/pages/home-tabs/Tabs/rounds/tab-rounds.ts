@@ -29,7 +29,7 @@ export class TabRounds {
 
     switch (this.navParams.data[0]){
       case 'league':
-        this.roundSelected = 1;
+        this.roundSelected = this.userService.getUserGroup().jornadaActual;
         if(this.userService.getUserTeam() != undefined || this.userService.getUserTeam() != null){
           this.matchService.getMatchByRoundAndGroup(this.roundSelected, this.userService.getUserTeam().grupo.idGrupo).subscribe(
             matches =>{
@@ -83,8 +83,14 @@ export class TabRounds {
     );
   }
 
-  matchInfo(id:string, status:string){
-    this.app.getRootNavs()[0].push(MatchPage, { matchId:id, matchStatus:status });
+  matchInfo(id:string, idActa:string, status:string){
+    status = status.toLowerCase();
+    console.log("ID:" + id + " IDACTA:" + idActa + " STATUS:" + status);
+    if(status == "disputado" || status == "acta pendiente"){
+      this.app.getRootNavs()[0].push(MatchPage, { matchId:idActa, matchStatus:status });
+    } else {
+      this.app.getRootNavs()[0].push(MatchPage, { matchId:id, matchStatus:status });
+    }
   }
 
   private slideToRecursive(index: number): Promise<void> {

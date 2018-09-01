@@ -22,9 +22,11 @@ export class MatchPage {
     this.statSelected = "stats"
     this.status = this.navParams.get('matchStatus');
 
-    if(this.status == "Disputado" || this.status == "disputado"){
+    if(this.status == "disputado" || this.status == "acta pendiente"){
       this.minuteService.getMinuteByMatchId(this.navParams.get('matchId')).subscribe(
-        minute => this.match = minute
+        minute => {
+          this.match = minute;
+        }
       );
     } else {
       this.matchService.getMatchById(this.navParams.get('matchId')).subscribe(
