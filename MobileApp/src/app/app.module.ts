@@ -17,6 +17,7 @@ import { UserService } from '../../src/app/services/user.service';
 import { LeagueService } from '../../src/app/services/league.service';
 import { SanctionService } from '../../src/app/services/sanction.service';
 import { MinuteService } from '../app/services/minute.service';
+import { HistoricalTeamService } from '../app/services/historicalTeam.service';
 import { MyApp } from './app.component';
 
 import { ElasticHeader } from '../components/elastic-header/elastic-header'
@@ -81,6 +82,7 @@ import { MapsPage } from '../pages/maps/maps';
     MinuteService,
     LoginService,
     SanctionService,
+    HistoricalTeamService,
     TeamService,
     MatchService,
     HttpClient,

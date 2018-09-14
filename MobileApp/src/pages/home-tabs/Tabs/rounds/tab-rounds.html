@@ -39,7 +39,7 @@
             <ion-col>{{match.fechaPartido}}</ion-col>
         </ion-row>
         <ion-row class = "lines"></ion-row>
-        <ion-row *ngIf = "match.estado.toLowerCase() != 'disputado' && match.estado.toLowerCase() == 'acta pendiente'">
+        <ion-row *ngIf = "match.estado.toLowerCase() != 'disputado' && match.estado.toLowerCase() != 'acta pendiente'">
             <ion-col col-4 class= "team-local">{{match.equipoLocalNombre}}</ion-col>
             <ion-col col-4><h1>{{match.horaPartido ? match.horaPartido : '-'}}</h1></ion-col>
             <ion-col col-4 class = "team-visitor">{{match.equipoVisitanteNombre}}</ion-col>
