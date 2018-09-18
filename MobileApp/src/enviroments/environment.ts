@@ -5,6 +5,6 @@
  //http://footballleaguemanagmentapi.us-west-2.elasticbeanstalk.com
 export const environment = {
     production: false,
-    api:"http://footballleaguemanagmentapi.us-west-2.elasticbeanstalk.com/",
+    api:"http://192.168.1.36:8080/",
     imagesUrl:"http://s3.eu-west-2.amazonaws.com/footballleaguemanagmentimages/"
 };

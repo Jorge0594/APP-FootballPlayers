@@ -50,6 +50,25 @@ export class TabStats {
                             borderWidth: 1
                         }]
                     },
+                    options: {
+                        legend:{
+                            labels:{
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                        }
+                    }
                 });
 
                 this.barChart = new Chart(this.barCanvasPoints.nativeElement, {
@@ -74,6 +93,25 @@ export class TabStats {
                             borderWidth: 1
                         }]
                     },
+                    options: {
+                        legend:{
+                            labels:{
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                        }
+                    }
                 });
 
                 this.barChart = new Chart(this.barCanvasStanding.nativeElement, {
@@ -98,6 +136,25 @@ export class TabStats {
                             borderWidth: 1
                         }]
                     },
+                    options: {
+                        legend:{
+                            labels:{
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                        }
+                    }
                 });
 
                 this.barChart = new Chart(this.barCanvasConcededGoals.nativeElement, {
@@ -122,6 +179,25 @@ export class TabStats {
                             borderWidth: 1
                         }]
                     },
+                    options: {
+                        legend:{
+                            labels:{
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                        }
+                    }
                 });
 
                 this.barChart = new Chart(this.barCanvasWins.nativeElement, {
@@ -146,6 +222,25 @@ export class TabStats {
                             borderWidth: 1
                         }]
                     },
+                    options: {
+                        legend:{
+                            labels:{
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                        }
+                    }
                 });
 
                 this.barChart = new Chart(this.barCanvasTies.nativeElement, {
@@ -170,6 +265,25 @@ export class TabStats {
                             borderWidth: 1
                         }]
                     },
+                    options: {
+                        legend:{
+                            labels:{
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                        }
+                    }
                 });
 
                 this.barChart = new Chart(this.barCanvasLoses.nativeElement, {
@@ -194,6 +308,25 @@ export class TabStats {
                             borderWidth: 1
                         }]
                     },
+                    options: {
+                        legend:{
+                            labels:{
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                        }
+                    }
                 });
 
                 this.barChart = new Chart(this.barCanvasPlayed.nativeElement, {
@@ -218,6 +351,25 @@ export class TabStats {
                             borderWidth: 1
                         }]
                     },
+                    options: {
+                        legend:{
+                            labels:{
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: 'white'
+                                }
+                            }],
+                        }
+                    }
                 });
             }//if
         }//response

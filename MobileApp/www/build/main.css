@@ -38378,6 +38378,10 @@ page-stats .hist-titles {
   margin-bottom: 15px;
 }
 
+page-stats .canvas {
+  color: white;
+}
+
 .ios page-login .scroll-content, .md page-login .scroll-content {
   padding: 0px !important;
   -webkit-align-content: center;
