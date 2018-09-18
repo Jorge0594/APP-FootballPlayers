@@ -25,10 +25,13 @@ export class PlayerFormPostCreationComponent implements OnInit {
       if(event == this.player.id)
         this.urlImages = this.playerDataService.getImageById(this.player.id);
     });
+    if(this.playerDataService.getImageById(this.player.id)){
+      this.urlImages = this.playerDataService.getImageById(this.player.id);
+    } else {
+      this.urlImages = environment.apiImages + this.player.fotoJugador;
+    }
+    
 
-    this.urlImages = environment.apiImages + this.player.fotoJugador;
-
-   
   }
 
   loadImageError(){

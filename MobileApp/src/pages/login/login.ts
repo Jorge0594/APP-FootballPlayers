@@ -102,7 +102,7 @@ export class LoginPage {
     setTimeout(()=>{
       this.navCtrl.setRoot(HomeTabsPage, {id:['league']});
       spinner.dismiss();
-    }, 750);
+    }, 2000);
 
   }
 

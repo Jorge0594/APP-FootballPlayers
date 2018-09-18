@@ -41,14 +41,12 @@ export class PlayerDataService {
 
       this.playersModify = this.playersModify.filter(p => this.playersAdded.indexOf(p) == -1);
       this.playersRemovedIds = this.playersRemovedIds.filter(id => this.playersRemoved.find(p => p.id == id));
-      this.playerImages.forEach(img => console.log(img.id));
-
     });
 
   }
 
   getImageById(id:string):any{
-    return this.playerImages.find(img => img.id == id).filePreview;
+    return this.playerImages.find(img => img.id == id) ? this.playerImages.find(img => img.id == id).filePreview : null;
   }
 
   addPlayerImage(id:string, file:File, filePreview:any){
