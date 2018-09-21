@@ -2,54 +2,66 @@
   <div id = "team-shield-background"></div>
   <div><img id="shield-team-image" src = "http://192.168.1.39:8080/images/shield.png"></div>
 </ion-header-->
-<ion-content width ="100%" [class.team-info-content] = "navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'" >
-  <ion-grid *ngIf = "navParams.data[0] == 'league' && userService.getUserLeague() != undefined">
+<ion-content width="100%" [class.team-info-content]="navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'">
+  <ion-grid *ngIf="navParams.data[0] == 'league' && userService.getUserLeague() != undefined">
     <ion-row id="colum-titles">
-        <ion-col col-xs-1>#</ion-col>
-        <ion-col col-4 id="title-team">Equipo</ion-col>
-        <ion-col col-xs-1>PJ</ion-col>
-        <ion-col col-xs-1>G</ion-col>
-        <ion-col col-xs-1>E</ion-col>
-        <ion-col col-xs-1>P</ion-col>
-        <ion-col col-xs-1>GF</ion-col>
-        <ion-col col-xs-1>GC</ion-col>
-        <ion-col col-xs-2><strong>PT</strong></ion-col>
+      <ion-col col-xs-1>#</ion-col>
+      <ion-col col-4 id="title-team">Equipo</ion-col>
+      <ion-col col-xs-1>PJ</ion-col>
+      <ion-col col-xs-1>G</ion-col>
+      <ion-col col-xs-1>E</ion-col>
+      <ion-col col-xs-1>P</ion-col>
+      <ion-col col-xs-1>GF</ion-col>
+      <ion-col col-xs-1>GC</ion-col>
+      <ion-col col-xs-2>
+        <strong>PT</strong>
+      </ion-col>
     </ion-row>
-    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll= "true">
-        <ion-row *ngFor ="let team of userService.getUserLeague(); let i = index" id= "colum-content">
-            <ion-col col-xs-1 id="team-position" [class.first-position] = "(i + 1) == 1" [class.last-position] = "(i + 1) == userService.getUserLeague()?.length">{{i+1}}</ion-col>
-            <ion-col col-4 id= "team-name">{{team?.nombre}}</ion-col>
-            <ion-col col-xs-1 class="team-info">{{team?.partidosJugados}}</ion-col>
-            <ion-col col-xs-1 class="team-info">{{team?.partidosGanados}}</ion-col>
-            <ion-col col-xs-1 class="team-info">{{team?.partidosEmpatados}}</ion-col>
-            <ion-col col-xs-1 class="team-info">{{team?.partidosPerdidos}}</ion-col>
-            <ion-col col-xs-1 class="team-info">{{team?.goles}}</ion-col>
-            <ion-col col-xs-1 class="team-info">{{team?.golesEncajados}}</ion-col>
-            <ion-col col-xs-2 class="team-info"><strong>{{team?.puntos}}</strong></ion-col>
-        </ion-row>
+    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll="true">
+      <ion-row *ngFor="let team of userService.getUserLeague(); let i = index" id="colum-content">
+        <ion-col col-xs-1 id="team-position" [class.first-position]="(i + 1) == 1" [class.last-position]="(i + 1) == userService.getUserLeague()?.length">{{i+1}}</ion-col>
+        <ion-col col-4 id="team-name">{{team?.nombre}}</ion-col>
+        <ion-col col-xs-1 class="team-info">{{team?.partidosJugados}}</ion-col>
+        <ion-col col-xs-1 class="team-info">{{team?.partidosGanados}}</ion-col>
+        <ion-col col-xs-1 class="team-info">{{team?.partidosEmpatados}}</ion-col>
+        <ion-col col-xs-1 class="team-info">{{team?.partidosPerdidos}}</ion-col>
+        <ion-col col-xs-1 class="team-info">{{team?.goles}}</ion-col>
+        <ion-col col-xs-1 class="team-info">{{team?.golesEncajados}}</ion-col>
+        <ion-col col-xs-2 class="team-info">
+          <strong>{{team?.puntos}}</strong>
+        </ion-col>
+      </ion-row>
     </ion-scroll>
   </ion-grid>
 
-  <div *ngIf = "navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'">
-    <div id = "team-shield-background"></div>
-    <div><img id="shield-team-image" src = "{{userService.getBaseURLforImages()}}{{team?.imagenEquipo}}"></div>
+  <div *ngIf="navParams.data[0] == 'team' || navParams.data[0] == 'teamsList'">
+    <div id="team-shield-background"></div>
+    <div>
+      <img id="shield-team-image" src="{{userService.getBaseURLforImages()}}{{team?.imagenEquipo}}">
+    </div>
   </div>
-  <ion-spinner *ngIf = "userService.getUserLeague() == null || (team == null && navParams.data[0] == 'teamsList')" class = "spinner"></ion-spinner>
-  <ion-grid *ngIf = "navParams.data[0] =='team' || navParams.data[0] == 'teamsList' && team != undefined">
+  <ion-spinner *ngIf="userService.getUserLeague() == null || (team == null && navParams.data[0] == 'teamsList')" class="spinner"></ion-spinner>
+  <ion-grid *ngIf="navParams.data[0] =='team' || navParams.data[0] == 'teamsList' && team != undefined">
     <ion-row>
-      <ion-col id ="profile-team-name"><strong>{{team?.nombre}}</strong></ion-col>
+      <ion-col id="profile-team-name">
+        <strong>{{team?.nombre}}</strong>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class = "profile-team-titles">Delegado:</ion-col>
+      <ion-col class="profile-team-titles">Delegado:</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class = "profile-team"> {{delegate?.nombre}} {{delegate?.apellidos}}</ion-col>
+      <ion-col class="profile-team"> {{delegate?.nombre}} {{delegate?.apellidos}}</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class = "profile-team-titles">Estadio:</ion-col>
+      <ion-col class="profile-team-titles">Estadio:</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class = "profile-team">Nombre del estadio</ion-col>
+      <ion-col class="profile-team">{{team.estadioEquipo ? team.estadioEquipo.nombre : 'No tiene estadio'}}</ion-col>
     </ion-row>
+
+    <div id="map-button" *ngIf = "team.estadioEquipo">
+      <button ion-button class="map-button" (click) = "viewGoogleMaps()">Cómo llegar</button>
+    </div>
   </ion-grid>
 </ion-content>
