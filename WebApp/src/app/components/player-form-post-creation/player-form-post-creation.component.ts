@@ -13,7 +13,7 @@ import { EventService } from '../../services/events.service';
 export class PlayerFormPostCreationComponent implements OnInit {
 
   @Input() player: Player;
-  private urlImages:any;
+  urlImages:any;
 
 
   constructor(private playerDataService: PlayerDataService, private eventService: EventService) {

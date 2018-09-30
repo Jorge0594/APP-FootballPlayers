@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events, Content, AlertController, 
 
 import { HomeTabsPage } from '../home-tabs/home-tabs';
 import { SanctionPage } from '../sanction/sanction';
+import { ChartsPage } from '../charts/charts';
 
 import { UserService } from '../../app/services/user.service';
 import { SanctionService } from '../../app/services/sanction.service';
@@ -25,7 +26,7 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private events: Events,
   private sanctionService: SanctionService, private alertCtrl: AlertController,private modalController: ModalController, private playerService: PlayerService) {
     this.selection = "one";
-    this.header = 150;
+    this.header = 127;
     this.noSanctions = false;
   }
 
@@ -131,6 +132,14 @@ export class ProfilePage {
     let modal = this.modalController.create(SanctionPage, {idSanction:id});
     modal.present();
     //this.navCtrl.push(SanctionPage, {idSanction:id});
+  }
+
+  showCharts(){
+    let modalCharts;
+
+    modalCharts = this.modalController.create(ChartsPage);
+
+    modalCharts.present();
   }
 
   

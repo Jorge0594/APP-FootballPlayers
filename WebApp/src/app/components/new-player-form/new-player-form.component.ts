@@ -20,7 +20,7 @@ import { reject } from 'q';
 })
 export class NewPlayerFormComponent implements OnInit {
 
-  private playerPositions = [
+  playerPositions = [
     "Portero", "Defensa", "Centrocampista", "Delantero"
   ];
 
@@ -32,10 +32,10 @@ export class NewPlayerFormComponent implements OnInit {
   inputControls: FormGroup;
   dateControl: any;
 
-  private emailInputValue: string;
-  private dniInputValue: string;
-  private dorsalInputValue: number;
-  private positionInputValue: string;
+  emailInputValue: string;
+  dniInputValue: string;
+  dorsalInputValue: number;
+  positionInputValue: string;
 
   constructor(private formBuilder: FormBuilder, private componentService: ComponentService, private playerService: PlayerService,
      private dateAdapter: DateAdapter<any>, private eventService: EventService, private playerDataService: PlayerDataService) {

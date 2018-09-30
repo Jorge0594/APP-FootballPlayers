@@ -20,10 +20,10 @@ const DIALOG_HEIGHT = "400px";
 
 export class LoginGuestComponent implements OnInit {
 
-  private hide: boolean = true;
-  private userInput = new FormControl('', Validators.required);
-  private passwordInput = new FormControl('', Validators.required);
-  private showSpinner:boolean;
+  hide: boolean = true;
+  userInput = new FormControl('', Validators.required);
+  passwordInput = new FormControl('', Validators.required);
+  showSpinner:boolean;
   
 
   constructor(private loginService: LoginService, private dialogService: DialogService,

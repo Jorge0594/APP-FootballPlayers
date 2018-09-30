@@ -1,6 +1,49 @@
-webpackJsonp([10],{
+webpackJsonp([11],{
 
-/***/ 142:
+/***/ 128:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoricalTeamService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__httpClient_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var BASE_URL = 'histEquipos/';
+var HistoricalTeamService = (function () {
+    function HistoricalTeamService(http) {
+        this.http = http;
+    }
+    HistoricalTeamService.prototype.getTeamHistorials = function (id) {
+        return this.http.get(BASE_URL + "/equipo/" + id).map(function (response) { return response; }, function (error) { return console.error(error); });
+    };
+    HistoricalTeamService.prototype.getPlayerHistorials = function (id) {
+        return this.http.get("histJugadores/jugador/" + id).map(function (response) { return response; }, function (error) { return console.error(error); });
+    };
+    HistoricalTeamService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]])
+    ], HistoricalTeamService);
+    return HistoricalTeamService;
+}());
+
+//# sourceMappingURL=historicalTeam.service.js.map
+
+/***/ }),
+
+/***/ 144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61,7 +104,7 @@ var LeagueService = (function () {
 
 /***/ }),
 
-/***/ 143:
+/***/ 145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72,7 +115,7 @@ var LeagueService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_team_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_player_service__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__maps_maps__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__maps_maps__ = __webpack_require__(97);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -128,17 +171,16 @@ var TabStandings = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\Tabs\standings\standings.html"*/'<!--ion-header *ngIf = "navParams.data[0] == \'team\' || navParams.data[0] == \'teamsList\'">\n\n  <div id = "team-shield-background"></div>\n\n  <div><img id="shield-team-image" src = "http://192.168.1.39:8080/images/shield.png"></div>\n\n</ion-header-->\n\n<ion-content width="100%" [class.team-info-content]="navParams.data[0] == \'team\' || navParams.data[0] == \'teamsList\'">\n\n  <ion-grid *ngIf="navParams.data[0] == \'league\' && userService.getUserLeague() != undefined">\n\n    <ion-row id="colum-titles">\n\n      <ion-col col-xs-1>#</ion-col>\n\n      <ion-col col-4 id="title-team">Equipo</ion-col>\n\n      <ion-col col-xs-1>PJ</ion-col>\n\n      <ion-col col-xs-1>G</ion-col>\n\n      <ion-col col-xs-1>E</ion-col>\n\n      <ion-col col-xs-1>P</ion-col>\n\n      <ion-col col-xs-1>GF</ion-col>\n\n      <ion-col col-xs-1>GC</ion-col>\n\n      <ion-col col-xs-2>\n\n        <strong>PT</strong>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll="true">\n\n      <ion-row *ngFor="let team of userService.getUserLeague(); let i = index" id="colum-content">\n\n        <ion-col col-xs-1 id="team-position" [class.first-position]="(i + 1) == 1" [class.last-position]="(i + 1) == userService.getUserLeague()?.length">{{i+1}}</ion-col>\n\n        <ion-col col-4 id="team-name">{{team?.nombre}}</ion-col>\n\n        <ion-col col-xs-1 class="team-info">{{team?.partidosJugados}}</ion-col>\n\n        <ion-col col-xs-1 class="team-info">{{team?.partidosGanados}}</ion-col>\n\n        <ion-col col-xs-1 class="team-info">{{team?.partidosEmpatados}}</ion-col>\n\n        <ion-col col-xs-1 class="team-info">{{team?.partidosPerdidos}}</ion-col>\n\n        <ion-col col-xs-1 class="team-info">{{team?.goles}}</ion-col>\n\n        <ion-col col-xs-1 class="team-info">{{team?.golesEncajados}}</ion-col>\n\n        <ion-col col-xs-2 class="team-info">\n\n          <strong>{{team?.puntos}}</strong>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-scroll>\n\n  </ion-grid>\n\n\n\n  <div *ngIf="navParams.data[0] == \'team\' || navParams.data[0] == \'teamsList\'">\n\n    <div id="team-shield-background"></div>\n\n    <div>\n\n      <img id="shield-team-image" src="{{userService.getBaseURLforImages()}}{{team?.imagenEquipo}}">\n\n    </div>\n\n  </div>\n\n  <ion-spinner *ngIf="userService.getUserLeague() == null || (team == null && navParams.data[0] == \'teamsList\')" class="spinner"></ion-spinner>\n\n  <ion-grid *ngIf="navParams.data[0] ==\'team\' || navParams.data[0] == \'teamsList\' && team != undefined">\n\n    <ion-row>\n\n      <ion-col id="profile-team-name">\n\n        <strong>{{team?.nombre}}</strong>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col class="profile-team-titles">Delegado:</ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col class="profile-team"> {{delegate?.nombre}} {{delegate?.apellidos}}</ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col class="profile-team-titles">Estadio:</ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col class="profile-team">{{team.estadioEquipo ? team.estadioEquipo.nombre : \'No tiene estadio\'}}</ion-col>\n\n    </ion-row>\n\n\n\n    <div id="map-button" *ngIf = "team.estadioEquipo">\n\n      <button ion-button class="map-button" (click) = "viewGoogleMaps()">Cómo llegar</button>\n\n    </div>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\Tabs\standings\standings.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__app_services_httpClient_service__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__app_services_httpClient_service__["a" /* HttpClient */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__app_services_team_service__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_services_team_service__["a" /* TeamService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__app_services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_services_player_service__["a" /* PlayerService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ModalController */]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_httpClient_service__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_4__app_services_team_service__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_5__app_services_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ModalController */]])
     ], TabStandings);
     return TabStandings;
-    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=standings.js.map
 
 /***/ }),
 
-/***/ 144:
+/***/ 148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -187,7 +229,7 @@ var MatchService = (function () {
 
 /***/ }),
 
-/***/ 147:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -248,7 +290,212 @@ var LoginService = (function () {
 
 /***/ }),
 
-/***/ 174:
+/***/ 176:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChartsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_ionic_angular_navigation_view_controller__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chart_js__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_chart_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_historicalTeam_service__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_user_service__ = __webpack_require__(25);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ChartsPage = (function () {
+    function ChartsPage(navCtrl, navParams, userService, viewController, historicalTeamService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.userService = userService;
+        this.viewController = viewController;
+        this.historicalTeamService = historicalTeamService;
+    }
+    ChartsPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.historicalTeamService.getPlayerHistorials(this.userService.getUserLogged().id).subscribe(function (response) {
+            var historials = response;
+            if (historials.length > 0) {
+                _this.hasCharts = true;
+                _this.barChart = new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"](_this.barCanvasGoals.nativeElement, {
+                    type: 'bar',
+                    data: {
+                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        datasets: [{
+                                label: 'Nº Puntos',
+                                data: [historials[0] == null ? 0 : historials[0].jugador.goles, historials[1] == null ? 0 : historials[1].jugador.goles, historials[2] == null ? 0 : historials[2].jugador.goles, historials[3] == null ? 0 : historials[3].jugador.goles],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                    },
+                    options: {
+                        legend: {
+                            labels: {
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                    ticks: {
+                                        fontColor: 'white'
+                                    }
+                                }],
+                            yAxes: [{
+                                    ticks: {
+                                        fontColor: 'white'
+                                    }
+                                }],
+                        }
+                    }
+                });
+                _this.barChart = new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"](_this.barCanvasYellowCards.nativeElement, {
+                    type: 'bar',
+                    data: {
+                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        datasets: [{
+                                label: 'Nº Puntos',
+                                data: [historials[0] == null ? 0 : historials[0].jugador.tarjetasAmarillas, historials[1] == null ? 0 : historials[1].jugador.tarjetasAmarillas, historials[2] == null ? 0 : historials[2].jugador.tarjetasAmarillas, historials[3] == null ? 0 : historials[3].jugador.tarjetasAmarillas],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                    },
+                    options: {
+                        legend: {
+                            labels: {
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                    ticks: {
+                                        fontColor: 'white'
+                                    }
+                                }],
+                            yAxes: [{
+                                    ticks: {
+                                        fontColor: 'white'
+                                    }
+                                }],
+                        }
+                    }
+                });
+                _this.barChart = new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"](_this.barCanvasRedCards.nativeElement, {
+                    type: 'bar',
+                    data: {
+                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        datasets: [{
+                                label: 'Nº Puntos',
+                                data: [historials[0] == null ? 0 : historials[0].jugador.tarjetasRojas, historials[1] == null ? 0 : historials[1].jugador.tarjetasRojas, historials[2] == null ? 0 : historials[2].jugador.tarjetasRojas, historials[3] == null ? 0 : historials[3].jugador.tarjetasRojas],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                    },
+                    options: {
+                        legend: {
+                            labels: {
+                                fontColor: 'white'
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                    ticks: {
+                                        fontColor: 'white'
+                                    }
+                                }],
+                            yAxes: [{
+                                    ticks: {
+                                        fontColor: 'white'
+                                    }
+                                }],
+                        }
+                    }
+                });
+            }
+            else {
+                _this.hasCharts = false;
+            }
+        } //response
+        );
+    };
+    ChartsPage.prototype.ionViewDidLoad = function () {
+    };
+    ChartsPage.prototype.closeModal = function () {
+        this.viewController.dismiss();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('goals'),
+        __metadata("design:type", Object)
+    ], ChartsPage.prototype, "barCanvasGoals", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('yellowCards'),
+        __metadata("design:type", Object)
+    ], ChartsPage.prototype, "barCanvasYellowCards", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('redCards'),
+        __metadata("design:type", Object)
+    ], ChartsPage.prototype, "barCanvasRedCards", void 0);
+    ChartsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-charts',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\charts\charts.html"*/'<ion-header>\n\n  <ion-navbar color="header">\n    <ion-title>Historicos</ion-title>\n    <ion-buttons end>\n      <button id="close-modal-button" ion-button (click)="closeModal()">Cerrar</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <div id = "spinner-container">\n      <ion-spinner class = "spinner" *ngIf = "hasCharts == undefined || hasCharts == null"></ion-spinner>\n  </div>\n  \n  <div>\n    <h1 *ngIf = "hasCharts == true" class = "hist-title">Goles</h1>\n    <canvas #goals></canvas>\n    <h1 *ngIf = "hasCharts == true" class = "hist-title">Tarjetas Amarillas</h1>\n    <canvas #yellowCards></canvas>\n    <h1 *ngIf = "hasCharts == true" class = "hist-title">Tarjetas Rojas</h1>\n    <canvas #redCards></canvas>\n  </div>\n\n  <h1 id = "error-message" *ngIf = "hasCharts == false">No dispone de ningún hisotrico</h1>\n  \n\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\charts\charts.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__node_modules_ionic_angular_navigation_view_controller__["a" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__node_modules_ionic_angular_navigation_view_controller__["a" /* ViewController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__app_services_historicalTeam_service__["a" /* HistoricalTeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_services_historicalTeam_service__["a" /* HistoricalTeamService */]) === "function" && _e || Object])
+    ], ChartsPage);
+    return ChartsPage;
+    var _a, _b, _c, _d, _e;
+}());
+
+//# sourceMappingURL=charts.js.map
+
+/***/ }),
+
+/***/ 177:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -256,8 +503,8 @@ var LoginService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_match__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_match__ = __webpack_require__(178);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -382,16 +629,16 @@ var TabRounds = (function () {
 
 /***/ }),
 
-/***/ 175:
+/***/ 178:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MatchPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_minute_service__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_maps_maps__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_minute_service__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_match_service__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_maps_maps__ = __webpack_require__(97);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -458,109 +705,7 @@ var MatchPage = (function () {
 
 /***/ }),
 
-/***/ 176:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(337);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var MapsPage = (function () {
-    function MapsPage(navCtrl, navParams, viewController, alertCtrl, geolocation) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.viewController = viewController;
-        this.alertCtrl = alertCtrl;
-        this.geolocation = geolocation;
-        this.notMap = false;
-    }
-    MapsPage.prototype.ionViewDidLoad = function () {
-        if (this.navParams.get('latitude') == undefined || this.navParams.get('longitude') == undefined) {
-            this.notMap = true;
-        }
-        else {
-            this.destination = new google.maps.LatLng(this.navParams.get('longitude'), this.navParams.get('latitude'));
-            this.initMap();
-            this.startNavigating();
-        }
-    };
-    MapsPage.prototype.initMap = function () {
-        var mapOptions = {
-            center: this.destination,
-            zoom: 17,
-            marker: this.destination,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        var marker = new google.maps.Marker({
-            position: this.destination,
-            map: this.map
-        });
-        marker.setMap(this.map);
-    };
-    MapsPage.prototype.startNavigating = function () {
-        var _this = this;
-        this.geolocation.getCurrentPosition().then(function (position) {
-            var directionsService = new google.maps.DirectionsService;
-            var directionsDisplay = new google.maps.DirectionsRenderer;
-            directionsDisplay.setMap(_this.map);
-            directionsDisplay.setPanel(_this.directionsPanel.nativeElement);
-            var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            directionsService.route({
-                origin: currentLocation,
-                destination: _this.destination,
-                travelMode: google.maps.TravelMode['DRIVING']
-            }, function (res, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsDisplay.setDirections(res);
-                }
-                else {
-                    console.warn(status);
-                }
-            });
-        }, function (error) { return console.error(error.message); });
-    };
-    MapsPage.prototype.currentLocation = function () {
-    };
-    MapsPage.prototype.closeModal = function () {
-        this.viewController.dismiss();
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", Object)
-    ], MapsPage.prototype, "mapElement", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('directionsPanel'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
-    ], MapsPage.prototype, "directionsPanel", void 0);
-    MapsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-maps',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\maps\maps.html"*/'\n<ion-header>\n\n    <ion-navbar color="header">\n      <ion-title>Google maps</ion-title>\n      <ion-buttons end>\n          <button id= "close-modal-button" ion-button (click)= "closeModal()">Cerrar</button>\n      </ion-buttons>\n    </ion-navbar>\n  \n  </ion-header>\n\n\n<ion-content>\n\n  <ion-card *ngIf = "!notMap">\n      <ion-card-content>\n          <div #directionsPanel></div>\n      </ion-card-content>\n  </ion-card>\n  <div #map *ngIf = "!notMap" id = "map">\n\n  </div>\n  <ion-col *ngIf = "notMap" id = "notMapMessage">No se ha encontrado nigún estadio.</ion-col>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\maps\maps.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]])
-    ], MapsPage);
-    return MapsPage;
-}());
-
-//# sourceMappingURL=maps.js.map
-
-/***/ }),
-
-/***/ 177:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -569,8 +714,8 @@ var MapsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__player_player__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_league_service__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__player_player__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_league_service__ = __webpack_require__(144);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -659,7 +804,7 @@ var TabRanks = (function () {
 
 /***/ }),
 
-/***/ 178:
+/***/ 180:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -708,7 +853,7 @@ var PlayerPage = (function () {
 
 /***/ }),
 
-/***/ 179:
+/***/ 181:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -716,7 +861,7 @@ var PlayerPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_tabs_home_tabs__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_login_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_login_service__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_player_service__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -837,18 +982,15 @@ var LoginPage = (function () {
 
 /***/ }),
 
-/***/ 180:
+/***/ 182:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_tabs_home_tabs__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sanction_sanction__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_sanction_service__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_services_player_service__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_tabs_home_tabs__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -858,6 +1000,103 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
+
+
+var TeamsPage = (function () {
+    function TeamsPage(navCtrl, navParams, userService, app) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.userService = userService;
+        this.app = app;
+    }
+    TeamsPage.prototype.teamSelect = function (id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__home_tabs_home_tabs__["a" /* HomeTabsPage */], { id: [this.navParams.get('id')[0], id] });
+    };
+    TeamsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-teams',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\teams\teams.html"*/'<ion-header>\n    <ion-navbar height="20px" color="header">\n      <button ion-button menuToggle id="button-toggle">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Equipos</ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list *ngIf = "userService.getUserLeague() != null">\n    <button ion-item no-lines *ngFor= "let team of userService.getUserLeague()" (click)="teamSelect(team.id)">\n      <ion-avatar item-start>\n        <img src = "{{userService.getBaseURLforImages()}}{{team?.imagenEquipo}}">\n      </ion-avatar>\n      <p id ="team-name">{{team?.nombre}}</p>\n    </button>\n  </ion-list>\n\n  <ion-row id = "no-teams" *ngIf = "userService.getUserLeague()?.length == 0">No hay equipos en esta liga</ion-row>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\teams\teams.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]])
+    ], TeamsPage);
+    return TeamsPage;
+}());
+
+//# sourceMappingURL=teams.js.map
+
+/***/ }),
+
+/***/ 183:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SanctionPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_sanction_service__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__ = __webpack_require__(25);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SanctionPage = (function () {
+    function SanctionPage(navParams, sanctionService, userService, viewController) {
+        var _this = this;
+        this.navParams = navParams;
+        this.sanctionService = sanctionService;
+        this.userService = userService;
+        this.viewController = viewController;
+        this.sanctionService.getSanctionById(this.navParams.get('idSanction')).subscribe(function (sanction) { return _this.sanction = sanction; });
+    }
+    SanctionPage.prototype.closeModal = function () {
+        this.viewController.dismiss();
+    };
+    SanctionPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sanction',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\sanction\sanction.html"*/'\n<ion-header>\n\n  <ion-navbar color="header">\n    <ion-title>Sanción</ion-title>\n    <ion-buttons end>\n        <button id= "close-modal-button" ion-button (click)= "closeModal()">Cerrar</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n <ion-grid *ngIf = "sanction != undefined">\n  <ion-row>\n      <ion-col class = "sanction-titles">Jugador sancionado:</ion-col>\n      <ion-col class = "sanction-content"><strong>{{userService?.getUserLogged().nombre}}</strong></ion-col>\n  </ion-row>\n\n  <ion-row>\n      <ion-col class = "sanction-titles">Sancionado por:</ion-col>\n      <ion-col class = "sanction-content"><strong>Nombre del arbitro</strong></ion-col>\n  </ion-row>\n\n  <ion-row>\n    <ion-col class = "sanction-titles">Fecha inicio:</ion-col>\n    <ion-col class = "sanction-content"><strong>{{sanction?.inicioSancion}}</strong></ion-col>\n  </ion-row>\n  \n  <ion-row>\n      <ion-col class = "sanction-titles">Fecha fin:</ion-col>\n      <ion-col class = "sanction-content"><strong>{{sanction?.finSancion}}</strong></ion-col>\n  </ion-row>\n\n  <ion-row>\n      <ion-col class = "sanction-titles">Estado:</ion-col>\n        <ion-col id = "operative" class = "sanction-content"  [class.operative] = "sanction?.enVigor" ><strong>{{sanction?.enVigor ? \'En vigor\' : \'Cumplida\'}}</strong></ion-col>\n  </ion-row>\n\n  <ion-row>\n      <ion-col class = "sanction-titles">Partidos sancionados:</ion-col>\n      <ion-col class = "sanction-content">{{sanction?.partidosSancionados}}</ion-col>\n  </ion-row>\n\n  <ion-row *ngIf = "sanction?.enVigor">\n      <ion-col class = "sanction-titles">Partidos restantes:</ion-col>\n      <ion-col class = "sanction-content">{{sanction?.partidosRestantes}}</ion-col>\n  </ion-row>\n\n  <ion-row id = "description-title">Descripción:</ion-row>\n  <ion-card id = "description">\n      <ion-card-content>\n          {{sanction?.descripcion}}\n      </ion-card-content>\n  </ion-card>\n </ion-grid>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\sanction\sanction.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_sanction_service__["a" /* SanctionService */], __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */]])
+    ], SanctionPage);
+    return SanctionPage;
+}());
+
+//# sourceMappingURL=sanction.js.map
+
+/***/ }),
+
+/***/ 184:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_tabs_home_tabs__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sanction_sanction__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__charts_charts__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_user_service__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_services_sanction_service__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_services_player_service__ = __webpack_require__(53);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 
 
@@ -877,7 +1116,7 @@ var ProfilePage = (function () {
         this.playerService = playerService;
         this.newPasswordMatches = false;
         this.selection = "one";
-        this.header = 150;
+        this.header = 127;
         this.noSanctions = false;
     }
     ProfilePage.prototype.findAllPlayerSanctions = function (id) {
@@ -972,16 +1211,21 @@ var ProfilePage = (function () {
         modal.present();
         //this.navCtrl.push(SanctionPage, {idSanction:id});
     };
+    ProfilePage.prototype.showCharts = function () {
+        var modalCharts;
+        modalCharts = this.modalController.create(__WEBPACK_IMPORTED_MODULE_4__charts_charts__["a" /* ChartsPage */]);
+        modalCharts.present();
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Content */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Content */])
     ], ProfilePage.prototype, "content", void 0);
     ProfilePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-profile',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\profile\profile.html"*/'<ion-header>\n\n  <ion-navbar height="20px" color="header">\n\n    <button ion-button menuToggle id="button-toggle">\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Mi perfil</ion-title>\n\n  </ion-navbar>\n\n\n\n  <elastic-header [scrollArea] = "component" [headerHeight] = "header">\n\n      <img id="profile-image" src="{{userService.getBaseURLforImages()}}{{userService.getUserLogged()?.fotoJugador}}" imageViewer/>\n\n  </elastic-header>\n\n\n\n  <ion-toolbar color="header" mode="md" id = "toolbar-options">\n\n    <ion-segment color="underline" mode="md" [(ngModel)]= "selection">\n\n      <ion-segment-button (click) = "clickButton(\'one\')" class = "text-on-botton" value="one">\n\n        <ion-icon name="home"></ion-icon>\n\n        Perfil\n\n      </ion-segment-button>\n\n      <ion-segment-button (click) = "clickButton(\'two\')" class = "text-on-botton" value="two">\n\n          <ion-icon name="chatbubbles"></ion-icon>\n\n          Sanciones\n\n      </ion-segment-button>\n\n      <ion-segment-button (click) = "clickButton(\'three\')" class = "text-on-botton" value="three">\n\n          <ion-icon name="cog"></ion-icon>\n\n          Ajustes\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content  fullscreen #component [ngSwitch] = "selection" >\n\n <ion-item no-lines *ngSwitchCase = "\'one\'">\n\n   <ion-item id = "team-image-container" (click) = "goTeam()">\n\n      <img id = "user-team-image" src = "{{userService.getBaseURLforImages()}}shield.png">\n\n      <h1 id = "user-team-name">{{userService.getUserTeam()?.nombre}}</h1>\n\n   </ion-item>\n\n   <ion-row>\n\n    <ion-col>\n\n      Dorsal\n\n    </ion-col>\n\n    <ion-col class = "info-content">\n\n      <strong>{{userService.getUserLogged().dorsal}}</strong>\n\n    </ion-col>\n\n  </ion-row>\n\n   <ion-row lines>\n\n     <ion-col>\n\n       Goles\n\n     </ion-col>\n\n     <ion-col class = "info-content">\n\n       <strong>{{userService.getUserLogged().goles}}</strong>\n\n     </ion-col>\n\n   </ion-row>\n\n   <ion-row>\n\n      <ion-col>\n\n        Tartejas Amarillas\n\n      </ion-col>\n\n      <ion-col class = "info-content">\n\n        <strong>{{userService.getUserLogged()?.tarjetasAmarillas}}</strong>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n          Tarjetas Rojas\n\n        </ion-col>\n\n        <ion-col class = "info-content">\n\n          <strong>{{userService.getUserLogged()?.tarjetasRojas}}</strong>\n\n        </ion-col>\n\n   </ion-row>\n\n   <h2 *ngIf = "userService.getActiveSanctions() != undefined || userService.getActiveSanctions() != null">Sanciones activas:</h2>\n\n   <ion-card (click) = "viewSanction(sanction.id)" *ngFor = "let sanction of userService.getActiveSanctions()" id ="sanctions-card">\n\n     <ion-card-content>\n\n       <ion-row>\n\n         <ion-col class = "card-titles">Fecha de sanción</ion-col>\n\n         <ion-col class ="card-info" >{{sanction?.inicioSancion}}</ion-col>\n\n       </ion-row>\n\n       <ion-row>\n\n         <ion-col class = "card-titles">Partidos restantes: </ion-col>\n\n         <ion-col class ="card-info">{{sanction.partidosRestantes}}</ion-col>\n\n       </ion-row>\n\n     </ion-card-content>\n\n   </ion-card>\n\n </ion-item>\n\n\n\n <ion-item no-lines *ngSwitchCase = "\'two\'">\n\n    <ion-spinner class = "spinner" *ngIf = "playerSanctions == null && !noSanctions" color ="ligth"></ion-spinner>\n\n    <p id = "no-sanctions" *ngIf = "noSanctions">No has recibido ninguna sanción.</p>\n\n    <ion-card (click) = "viewSanction(sanction.id)" *ngFor = "let sanction of playerSanctions" id ="sanctions-card" [class.spired] = "sanction?.partidosRestantes == 0">\n\n        <ion-card-content >\n\n          <ion-row>\n\n            <ion-col class = "card-titles">Fecha de sanción</ion-col>\n\n            <ion-col class ="card-info" >{{sanction?.inicioSancion}}</ion-col>\n\n          </ion-row>\n\n          <ion-row>\n\n            <ion-col class = "card-titles">Partidos restantes: </ion-col>\n\n            <ion-col class ="card-info">{{sanction.partidosRestantes}}</ion-col>\n\n          </ion-row>\n\n        </ion-card-content>\n\n      </ion-card>\n\n </ion-item>\n\n\n\n <ion-list no-lines *ngSwitchCase = "\'three\'">\n\n   <p class = "settings-titles">Notificaciones: </p>\n\n   <ion-item class = "notifications">\n\n      <ion-label>Nuevas sanciones</ion-label>\n\n      <ion-toggle></ion-toggle>\n\n   </ion-item>\n\n   <ion-item class = "notifications">\n\n      <ion-label>Fin de sanciones</ion-label>\n\n      <ion-toggle></ion-toggle>\n\n   </ion-item>\n\n   <ion-item class = "notifications">\n\n      <ion-label>Resultados de partidos</ion-label>\n\n      <ion-toggle></ion-toggle>\n\n   </ion-item>\n\n\n\n   <button ion-button block outline color = "light" id = "password-button"(click) = "changePassword()">Cambiar contraseña</button>\n\n </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\profile\profile.html"*/,
+            selector: 'page-profile',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\profile\profile.html"*/'<ion-header>\n\n  <ion-navbar height="20px" color="header">\n\n    <button ion-button menuToggle id="button-toggle">\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Mi perfil</ion-title>\n\n  </ion-navbar>\n\n\n\n  <elastic-header [scrollArea]="component" [headerHeight]="header">\n\n    <img id="profile-image" src="{{userService.getBaseURLforImages()}}{{userService.getUserLogged()?.fotoJugador}}" imageViewer/>\n\n  </elastic-header>\n\n\n\n  <ion-toolbar color="header" mode="md" id="toolbar-options">\n\n    <ion-segment color="underline" mode="md" [(ngModel)]="selection">\n\n      <ion-segment-button (click)="clickButton(\'one\')" class="text-on-botton" value="one">\n\n        <ion-icon name="home"></ion-icon>\n\n        Perfil\n\n      </ion-segment-button>\n\n      <ion-segment-button (click)="clickButton(\'two\')" class="text-on-botton" value="two">\n\n        <ion-icon name="chatbubbles"></ion-icon>\n\n        Sanciones\n\n      </ion-segment-button>\n\n      <ion-segment-button (click)="clickButton(\'three\')" class="text-on-botton" value="three">\n\n        <ion-icon name="cog"></ion-icon>\n\n        Ajustes\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content fullscreen #component [ngSwitch]="selection">\n\n  <ion-item no-lines *ngSwitchCase="\'one\'">\n\n    <ion-item id="team-image-container" (click)="goTeam()">\n\n      <img id="user-team-image" src="{{userService.getBaseURLforImages()}}shield.png">\n\n      <h1 id="user-team-name">{{userService.getUserTeam()?.nombre}}</h1>\n\n    </ion-item>\n\n    <ion-row>\n\n      <ion-col>\n\n        Dorsal\n\n      </ion-col>\n\n      <ion-col class="info-content">\n\n        <strong>{{userService.getUserLogged().dorsal}}</strong>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row lines>\n\n      <ion-col>\n\n        Goles\n\n      </ion-col>\n\n      <ion-col class="info-content">\n\n        <strong>{{userService.getUserLogged().goles}}</strong>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n        Tartejas Amarillas\n\n      </ion-col>\n\n      <ion-col class="info-content">\n\n        <strong>{{userService.getUserLogged()?.tarjetasAmarillas}}</strong>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n        Tarjetas Rojas\n\n      </ion-col>\n\n      <ion-col class="info-content">\n\n        <strong>{{userService.getUserLogged()?.tarjetasRojas}}</strong>\n\n      </ion-col>\n\n    </ion-row>\n\n    <div id = "charts-button">\n\n      <button ion-button (click) = "showCharts()">Ver historico</button>\n\n    </div>\n\n    <h2 *ngIf="userService.getActiveSanctions() != undefined || userService.getActiveSanctions() != null">Sanciones activas:</h2>\n\n    <ion-card (click)="viewSanction(sanction.id)" *ngFor="let sanction of userService.getActiveSanctions()" id="sanctions-card">\n\n      <ion-card-content>\n\n        <ion-row>\n\n          <ion-col class="card-titles">Fecha de sanción</ion-col>\n\n          <ion-col class="card-info">{{sanction?.inicioSancion}}</ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col class="card-titles">Partidos restantes: </ion-col>\n\n          <ion-col class="card-info">{{sanction.partidosRestantes}}</ion-col>\n\n        </ion-row>\n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-item>\n\n\n\n  <ion-item no-lines *ngSwitchCase="\'two\'">\n\n    <ion-spinner class="spinner" *ngIf="playerSanctions == null && !noSanctions" color="ligth"></ion-spinner>\n\n    <p id="no-sanctions" *ngIf="noSanctions">No has recibido ninguna sanción.</p>\n\n    <ion-card (click)="viewSanction(sanction.id)" *ngFor="let sanction of playerSanctions" id="sanctions-card" [class.spired]="sanction?.partidosRestantes == 0">\n\n      <ion-card-content>\n\n        <ion-row>\n\n          <ion-col class="card-titles">Fecha de sanción</ion-col>\n\n          <ion-col class="card-info">{{sanction?.inicioSancion}}</ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col class="card-titles">Partidos restantes: </ion-col>\n\n          <ion-col class="card-info">{{sanction.partidosRestantes}}</ion-col>\n\n        </ion-row>\n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-item>\n\n\n\n  <ion-list no-lines *ngSwitchCase="\'three\'">\n\n    <p class="settings-titles">Notificaciones: </p>\n\n    <ion-item class="notifications">\n\n      <ion-label>Nuevas sanciones</ion-label>\n\n      <ion-toggle></ion-toggle>\n\n    </ion-item>\n\n    <ion-item class="notifications">\n\n      <ion-label>Fin de sanciones</ion-label>\n\n      <ion-toggle></ion-toggle>\n\n    </ion-item>\n\n    <ion-item class="notifications">\n\n      <ion-label>Resultados de partidos</ion-label>\n\n      <ion-toggle></ion-toggle>\n\n    </ion-item>\n\n\n\n    <button ion-button block outline color="light" id="password-button" (click)="changePassword()">Cambiar contraseña</button>\n\n  </ion-list>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\profile\profile.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_5__app_services_sanction_service__["a" /* SanctionService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ModalController */], __WEBPACK_IMPORTED_MODULE_6__app_services_player_service__["a" /* PlayerService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_6__app_services_sanction_service__["a" /* SanctionService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ModalController */], __WEBPACK_IMPORTED_MODULE_7__app_services_player_service__["a" /* PlayerService */]])
     ], ProfilePage);
     return ProfilePage;
 }());
@@ -990,99 +1234,7 @@ var ProfilePage = (function () {
 
 /***/ }),
 
-/***/ 181:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SanctionPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_sanction_service__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__ = __webpack_require__(25);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var SanctionPage = (function () {
-    function SanctionPage(navParams, sanctionService, userService, viewController) {
-        var _this = this;
-        this.navParams = navParams;
-        this.sanctionService = sanctionService;
-        this.userService = userService;
-        this.viewController = viewController;
-        this.sanctionService.getSanctionById(this.navParams.get('idSanction')).subscribe(function (sanction) { return _this.sanction = sanction; });
-    }
-    SanctionPage.prototype.closeModal = function () {
-        this.viewController.dismiss();
-    };
-    SanctionPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-sanction',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\sanction\sanction.html"*/'\n<ion-header>\n\n  <ion-navbar color="header">\n    <ion-title>Sanción</ion-title>\n    <ion-buttons end>\n        <button id= "close-modal-button" ion-button (click)= "closeModal()">Cerrar</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n <ion-grid *ngIf = "sanction != undefined">\n  <ion-row>\n      <ion-col class = "sanction-titles">Jugador sancionado:</ion-col>\n      <ion-col class = "sanction-content"><strong>{{userService?.getUserLogged().nombre}}</strong></ion-col>\n  </ion-row>\n\n  <ion-row>\n      <ion-col class = "sanction-titles">Sancionado por:</ion-col>\n      <ion-col class = "sanction-content"><strong>Nombre del arbitro</strong></ion-col>\n  </ion-row>\n\n  <ion-row>\n    <ion-col class = "sanction-titles">Fecha inicio:</ion-col>\n    <ion-col class = "sanction-content"><strong>{{sanction?.inicioSancion}}</strong></ion-col>\n  </ion-row>\n  \n  <ion-row>\n      <ion-col class = "sanction-titles">Fecha fin:</ion-col>\n      <ion-col class = "sanction-content"><strong>{{sanction?.finSancion}}</strong></ion-col>\n  </ion-row>\n\n  <ion-row>\n      <ion-col class = "sanction-titles">Estado:</ion-col>\n        <ion-col id = "operative" class = "sanction-content"  [class.operative] = "sanction?.enVigor" ><strong>{{sanction?.enVigor ? \'En vigor\' : \'Cumplida\'}}</strong></ion-col>\n  </ion-row>\n\n  <ion-row>\n      <ion-col class = "sanction-titles">Partidos sancionados:</ion-col>\n      <ion-col class = "sanction-content">{{sanction?.partidosSancionados}}</ion-col>\n  </ion-row>\n\n  <ion-row *ngIf = "sanction?.enVigor">\n      <ion-col class = "sanction-titles">Partidos restantes:</ion-col>\n      <ion-col class = "sanction-content">{{sanction?.partidosRestantes}}</ion-col>\n  </ion-row>\n\n  <ion-row id = "description-title">Descripción:</ion-row>\n  <ion-card id = "description">\n      <ion-card-content>\n          {{sanction?.descripcion}}\n      </ion-card-content>\n  </ion-card>\n </ion-grid>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\sanction\sanction.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_sanction_service__["a" /* SanctionService */], __WEBPACK_IMPORTED_MODULE_3__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */]])
-    ], SanctionPage);
-    return SanctionPage;
-}());
-
-//# sourceMappingURL=sanction.js.map
-
-/***/ }),
-
-/***/ 182:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_tabs_home_tabs__ = __webpack_require__(54);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var TeamsPage = (function () {
-    function TeamsPage(navCtrl, navParams, userService, app) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.userService = userService;
-        this.app = app;
-    }
-    TeamsPage.prototype.teamSelect = function (id) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__home_tabs_home_tabs__["a" /* HomeTabsPage */], { id: [this.navParams.get('id')[0], id] });
-    };
-    TeamsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-teams',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\teams\teams.html"*/'<ion-header>\n    <ion-navbar height="20px" color="header">\n      <button ion-button menuToggle id="button-toggle">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Equipos</ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list *ngIf = "userService.getUserLeague() != null">\n    <button ion-item no-lines *ngFor= "let team of userService.getUserLeague()" (click)="teamSelect(team.id)">\n      <ion-avatar item-start>\n        <img src = "{{userService.getBaseURLforImages()}}{{team?.imagenEquipo}}">\n      </ion-avatar>\n      <p id ="team-name">{{team?.nombre}}</p>\n    </button>\n  </ion-list>\n\n  <ion-row id = "no-teams" *ngIf = "userService.getUserLeague()?.length == 0">No hay equipos en esta liga</ion-row>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\teams\teams.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]])
-    ], TeamsPage);
-    return TeamsPage;
-}());
-
-//# sourceMappingURL=teams.js.map
-
-/***/ }),
-
-/***/ 195:
+/***/ 197:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -1095,48 +1247,52 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 195;
+webpackEmptyAsyncContext.id = 197;
 
 /***/ }),
 
-/***/ 239:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"../pages/home-tabs/Tabs/ranks/ranks-tab.module": [
+	"../pages/charts/charts.module": [
 		901,
+		10
+	],
+	"../pages/home-tabs/Tabs/ranks/ranks-tab.module": [
+		903,
 		9
 	],
 	"../pages/home-tabs/Tabs/rounds/tab-rounds.module": [
-		902,
+		904,
 		8
 	],
 	"../pages/home-tabs/home-tabs.module": [
-		900,
+		902,
 		7
 	],
 	"../pages/login/login.module": [
-		903,
+		905,
 		6
 	],
 	"../pages/maps/maps.module": [
-		904,
+		906,
 		5
 	],
 	"../pages/match/match.module": [
-		905,
+		907,
 		4
 	],
 	"../pages/player/player.module": [
-		906,
+		908,
 		3
 	],
 	"../pages/profile/profile.module": [
-		907,
+		911,
 		2
 	],
 	"../pages/sanction/sanction.module": [
-		908,
+		910,
 		1
 	],
 	"../pages/teams/teams.module": [
@@ -1155,27 +1311,8 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 239;
+webpackAsyncContext.id = 241;
 module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ 241:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `angular-cli.json`.
-//http://footballleaguemanagmentapi.us-west-2.elasticbeanstalk.com
-var environment = {
-    production: false,
-    api: "http://192.168.1.36:8080/",
-    imagesUrl: "http://s3.eu-west-2.amazonaws.com/footballleaguemanagmentimages/"
-};
-//# sourceMappingURL=environment.js.map
 
 /***/ }),
 
@@ -1187,9 +1324,9 @@ var environment = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__httpClient_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__league_service__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sanction_service__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__enviroments_environment__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__league_service__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sanction_service__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__enviroments_environment__ = __webpack_require__(373);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Rx__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1306,8 +1443,8 @@ var UserService = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpClient; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__enviroments_environment__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__enviroments_environment__ = __webpack_require__(373);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1382,7 +1519,26 @@ var HttpClient = (function () {
 
 /***/ }),
 
-/***/ 336:
+/***/ 373:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `angular-cli.json`.
+//http://footballleaguemanagmentapi.us-west-2.elasticbeanstalk.com
+var environment = {
+    production: false,
+    api: "http://192.168.1.36:8080/",
+    imagesUrl: "http://s3.eu-west-2.amazonaws.com/footballleaguemanagmentimages/"
+};
+//# sourceMappingURL=environment.js.map
+
+/***/ }),
+
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1422,16 +1578,16 @@ var MinuteService = (function () {
 
 /***/ }),
 
-/***/ 339:
+/***/ 471:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabStats; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js__ = __webpack_require__(826);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_chart_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_historicalTeam_service__ = __webpack_require__(469);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_historicalTeam_service__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__ = __webpack_require__(25);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1844,60 +2000,6 @@ var TabStats = (function () {
 
 /***/ }),
 
-/***/ 469:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoricalTeamService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__httpClient_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var BASE_URL = 'histEquipos/';
-var HistoricalTeamService = (function () {
-    function HistoricalTeamService(http) {
-        this.http = http;
-    }
-    HistoricalTeamService.prototype.getTeamHistorials = function (id) {
-        return this.http.get(BASE_URL + "/equipo/" + id).map(function (response) { return response; }, function (error) { return console.error(); });
-    };
-    HistoricalTeamService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]])
-    ], HistoricalTeamService);
-    return HistoricalTeamService;
-}());
-
-//# sourceMappingURL=historicalTeam.service.js.map
-
-/***/ }),
-
-/***/ 518:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(523);
-
-
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
-//# sourceMappingURL=main.js.map
-
-/***/ }),
-
 /***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1938,7 +2040,21 @@ var TeamService = (function () {
 
 /***/ }),
 
-/***/ 523:
+/***/ 520:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(525);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 525:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1946,42 +2062,44 @@ var TeamService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(509);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(510);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic2_super_tabs__ = __webpack_require__(889);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_img_viewer__ = __webpack_require__(891);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(468);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic2_super_tabs__ = __webpack_require__(890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_img_viewer__ = __webpack_require__(892);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_app_services_player_service__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_app_services_login_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_app_services_login_service__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_app_services_httpClient_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_app_services_team_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_app_services_match_service__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_app_services_match_service__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_app_services_user_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_app_services_league_service__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_app_services_sanction_service__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_services_minute_service__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_services_historicalTeam_service__ = __webpack_require__(469);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(898);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_elastic_header_elastic_header__ = __webpack_require__(899);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_login_login__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_app_services_league_service__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_app_services_sanction_service__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_services_minute_service__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_services_historicalTeam_service__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(899);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_elastic_header_elastic_header__ = __webpack_require__(900);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_login_login__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_home_tabs_home_tabs__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_home_tabs_Tabs_standings_standings__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_home_tabs_Tabs_rounds_tab_rounds__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_home_tabs_Tabs_ranks_ranks_tab__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_player_player__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_match_match__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_home_tabs_Tabs_standings_standings__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_home_tabs_Tabs_rounds_tab_rounds__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_home_tabs_Tabs_ranks_ranks_tab__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_player_player__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_match_match__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_teams_teams__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_sanction_sanction__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_home_tabs_Tabs_stats_stats__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_maps_maps__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_sanction_sanction__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_home_tabs_Tabs_stats_stats__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_maps_maps__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_charts_charts__ = __webpack_require__(176);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2034,6 +2152,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile__["a" /* ProfilePage */],
                 __WEBPACK_IMPORTED_MODULE_32__pages_maps_maps__["a" /* MapsPage */],
                 __WEBPACK_IMPORTED_MODULE_31__pages_home_tabs_Tabs_stats_stats__["a" /* TabStats */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_charts_charts__["a" /* ChartsPage */],
                 __WEBPACK_IMPORTED_MODULE_20__components_elastic_header_elastic_header__["a" /* ElasticHeader */]
             ],
             imports: [
@@ -2043,6 +2162,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_7_ionic2_super_tabs__["a" /* SuperTabsModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_19__app_component__["a" /* MyApp */], {}, {
                     links: [
+                        { loadChildren: '../pages/charts/charts.module#ChartsPageModule', name: 'ChartsPage', segment: 'charts', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home-tabs/home-tabs.module#HomeTabsPageModule', name: 'HomeTabsPage', segment: 'home-tabs', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home-tabs/Tabs/ranks/ranks-tab.module#LeagueTabPageModule', name: 'TabRanks', segment: 'ranks-tab', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home-tabs/Tabs/rounds/tab-rounds.module#TabTeamPageModule', name: 'TabRounds', segment: 'tab-rounds', priority: 'low', defaultHistory: [] },
@@ -2050,9 +2170,9 @@ var AppModule = (function () {
                         { loadChildren: '../pages/maps/maps.module#MapsPageModule', name: 'MapsPage', segment: 'maps', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/match/match.module#MatchPageModule', name: 'MatchPage', segment: 'match', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/player/player.module#PlayerPageModule', name: 'PlayerPage', segment: 'player', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/teams/teams.module#TeamsPageModule', name: 'TeamsPage', segment: 'teams', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sanction/sanction.module#SanctionPageModule', name: 'SanctionPage', segment: 'sanction', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/teams/teams.module#TeamsPageModule', name: 'TeamsPage', segment: 'teams', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -2071,6 +2191,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_20__components_elastic_header_elastic_header__["a" /* ElasticHeader */],
                 __WEBPACK_IMPORTED_MODULE_29__pages_sanction_sanction__["a" /* SanctionPage */],
                 __WEBPACK_IMPORTED_MODULE_31__pages_home_tabs_Tabs_stats_stats__["a" /* TabStats */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_charts_charts__["a" /* ChartsPage */],
                 __WEBPACK_IMPORTED_MODULE_32__pages_maps_maps__["a" /* MapsPage */]
             ],
             providers: [
@@ -2156,10 +2277,10 @@ var PlayerService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_services_team_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Tabs_standings_standings__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Tabs_rounds_tab_rounds__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Tabs_ranks_ranks_tab__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Tabs_stats_stats__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Tabs_standings_standings__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Tabs_rounds_tab_rounds__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Tabs_ranks_ranks_tab__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Tabs_stats_stats__ = __webpack_require__(471);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2241,256 +2362,256 @@ var HomeTabsPage = (function () {
 
 /***/ }),
 
-/***/ 854:
+/***/ 572:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 346,
-	"./af.js": 346,
-	"./ar": 347,
-	"./ar-dz": 348,
-	"./ar-dz.js": 348,
-	"./ar-kw": 349,
-	"./ar-kw.js": 349,
-	"./ar-ly": 350,
-	"./ar-ly.js": 350,
-	"./ar-ma": 351,
-	"./ar-ma.js": 351,
-	"./ar-sa": 352,
-	"./ar-sa.js": 352,
-	"./ar-tn": 353,
-	"./ar-tn.js": 353,
-	"./ar.js": 347,
-	"./az": 354,
-	"./az.js": 354,
-	"./be": 355,
-	"./be.js": 355,
-	"./bg": 356,
-	"./bg.js": 356,
-	"./bm": 357,
-	"./bm.js": 357,
-	"./bn": 358,
-	"./bn.js": 358,
-	"./bo": 359,
-	"./bo.js": 359,
-	"./br": 360,
-	"./br.js": 360,
-	"./bs": 361,
-	"./bs.js": 361,
-	"./ca": 362,
-	"./ca.js": 362,
-	"./cs": 363,
-	"./cs.js": 363,
-	"./cv": 364,
-	"./cv.js": 364,
-	"./cy": 365,
-	"./cy.js": 365,
-	"./da": 366,
-	"./da.js": 366,
-	"./de": 367,
-	"./de-at": 368,
-	"./de-at.js": 368,
-	"./de-ch": 369,
-	"./de-ch.js": 369,
-	"./de.js": 367,
-	"./dv": 370,
-	"./dv.js": 370,
-	"./el": 371,
-	"./el.js": 371,
-	"./en-au": 372,
-	"./en-au.js": 372,
-	"./en-ca": 373,
-	"./en-ca.js": 373,
-	"./en-gb": 374,
-	"./en-gb.js": 374,
-	"./en-ie": 375,
-	"./en-ie.js": 375,
-	"./en-il": 376,
-	"./en-il.js": 376,
-	"./en-nz": 377,
-	"./en-nz.js": 377,
-	"./eo": 378,
-	"./eo.js": 378,
-	"./es": 379,
-	"./es-do": 380,
-	"./es-do.js": 380,
-	"./es-us": 381,
-	"./es-us.js": 381,
-	"./es.js": 379,
-	"./et": 382,
-	"./et.js": 382,
-	"./eu": 383,
-	"./eu.js": 383,
-	"./fa": 384,
-	"./fa.js": 384,
-	"./fi": 385,
-	"./fi.js": 385,
-	"./fo": 386,
-	"./fo.js": 386,
-	"./fr": 387,
-	"./fr-ca": 388,
-	"./fr-ca.js": 388,
-	"./fr-ch": 389,
-	"./fr-ch.js": 389,
-	"./fr.js": 387,
-	"./fy": 390,
-	"./fy.js": 390,
-	"./gd": 391,
-	"./gd.js": 391,
-	"./gl": 392,
-	"./gl.js": 392,
-	"./gom-latn": 393,
-	"./gom-latn.js": 393,
-	"./gu": 394,
-	"./gu.js": 394,
-	"./he": 395,
-	"./he.js": 395,
-	"./hi": 396,
-	"./hi.js": 396,
-	"./hr": 397,
-	"./hr.js": 397,
-	"./hu": 398,
-	"./hu.js": 398,
-	"./hy-am": 399,
-	"./hy-am.js": 399,
-	"./id": 400,
-	"./id.js": 400,
-	"./is": 401,
-	"./is.js": 401,
-	"./it": 402,
-	"./it.js": 402,
-	"./ja": 403,
-	"./ja.js": 403,
-	"./jv": 404,
-	"./jv.js": 404,
-	"./ka": 405,
-	"./ka.js": 405,
-	"./kk": 406,
-	"./kk.js": 406,
-	"./km": 407,
-	"./km.js": 407,
-	"./kn": 408,
-	"./kn.js": 408,
-	"./ko": 409,
-	"./ko.js": 409,
-	"./ky": 410,
-	"./ky.js": 410,
-	"./lb": 411,
-	"./lb.js": 411,
-	"./lo": 412,
-	"./lo.js": 412,
-	"./lt": 413,
-	"./lt.js": 413,
-	"./lv": 414,
-	"./lv.js": 414,
-	"./me": 415,
-	"./me.js": 415,
-	"./mi": 416,
-	"./mi.js": 416,
-	"./mk": 417,
-	"./mk.js": 417,
-	"./ml": 418,
-	"./ml.js": 418,
-	"./mn": 419,
-	"./mn.js": 419,
-	"./mr": 420,
-	"./mr.js": 420,
-	"./ms": 421,
-	"./ms-my": 422,
-	"./ms-my.js": 422,
-	"./ms.js": 421,
-	"./mt": 423,
-	"./mt.js": 423,
-	"./my": 424,
-	"./my.js": 424,
-	"./nb": 425,
-	"./nb.js": 425,
-	"./ne": 426,
-	"./ne.js": 426,
-	"./nl": 427,
-	"./nl-be": 428,
-	"./nl-be.js": 428,
-	"./nl.js": 427,
-	"./nn": 429,
-	"./nn.js": 429,
-	"./pa-in": 430,
-	"./pa-in.js": 430,
-	"./pl": 431,
-	"./pl.js": 431,
-	"./pt": 432,
-	"./pt-br": 433,
-	"./pt-br.js": 433,
-	"./pt.js": 432,
-	"./ro": 434,
-	"./ro.js": 434,
-	"./ru": 435,
-	"./ru.js": 435,
-	"./sd": 436,
-	"./sd.js": 436,
-	"./se": 437,
-	"./se.js": 437,
-	"./si": 438,
-	"./si.js": 438,
-	"./sk": 439,
-	"./sk.js": 439,
-	"./sl": 440,
-	"./sl.js": 440,
-	"./sq": 441,
-	"./sq.js": 441,
-	"./sr": 442,
-	"./sr-cyrl": 443,
-	"./sr-cyrl.js": 443,
-	"./sr.js": 442,
-	"./ss": 444,
-	"./ss.js": 444,
-	"./sv": 445,
-	"./sv.js": 445,
-	"./sw": 446,
-	"./sw.js": 446,
-	"./ta": 447,
-	"./ta.js": 447,
-	"./te": 448,
-	"./te.js": 448,
-	"./tet": 449,
-	"./tet.js": 449,
-	"./tg": 450,
-	"./tg.js": 450,
-	"./th": 451,
-	"./th.js": 451,
-	"./tl-ph": 452,
-	"./tl-ph.js": 452,
-	"./tlh": 453,
-	"./tlh.js": 453,
-	"./tr": 454,
-	"./tr.js": 454,
-	"./tzl": 455,
-	"./tzl.js": 455,
-	"./tzm": 456,
-	"./tzm-latn": 457,
-	"./tzm-latn.js": 457,
-	"./tzm.js": 456,
-	"./ug-cn": 458,
-	"./ug-cn.js": 458,
-	"./uk": 459,
-	"./uk.js": 459,
-	"./ur": 460,
-	"./ur.js": 460,
-	"./uz": 461,
-	"./uz-latn": 462,
-	"./uz-latn.js": 462,
-	"./uz.js": 461,
-	"./vi": 463,
-	"./vi.js": 463,
-	"./x-pseudo": 464,
-	"./x-pseudo.js": 464,
-	"./yo": 465,
-	"./yo.js": 465,
-	"./zh-cn": 466,
-	"./zh-cn.js": 466,
-	"./zh-hk": 467,
-	"./zh-hk.js": 467,
-	"./zh-tw": 468,
-	"./zh-tw.js": 468
+	"./af": 249,
+	"./af.js": 249,
+	"./ar": 250,
+	"./ar-dz": 251,
+	"./ar-dz.js": 251,
+	"./ar-kw": 252,
+	"./ar-kw.js": 252,
+	"./ar-ly": 253,
+	"./ar-ly.js": 253,
+	"./ar-ma": 254,
+	"./ar-ma.js": 254,
+	"./ar-sa": 255,
+	"./ar-sa.js": 255,
+	"./ar-tn": 256,
+	"./ar-tn.js": 256,
+	"./ar.js": 250,
+	"./az": 257,
+	"./az.js": 257,
+	"./be": 258,
+	"./be.js": 258,
+	"./bg": 259,
+	"./bg.js": 259,
+	"./bm": 260,
+	"./bm.js": 260,
+	"./bn": 261,
+	"./bn.js": 261,
+	"./bo": 262,
+	"./bo.js": 262,
+	"./br": 263,
+	"./br.js": 263,
+	"./bs": 264,
+	"./bs.js": 264,
+	"./ca": 265,
+	"./ca.js": 265,
+	"./cs": 266,
+	"./cs.js": 266,
+	"./cv": 267,
+	"./cv.js": 267,
+	"./cy": 268,
+	"./cy.js": 268,
+	"./da": 269,
+	"./da.js": 269,
+	"./de": 270,
+	"./de-at": 271,
+	"./de-at.js": 271,
+	"./de-ch": 272,
+	"./de-ch.js": 272,
+	"./de.js": 270,
+	"./dv": 273,
+	"./dv.js": 273,
+	"./el": 274,
+	"./el.js": 274,
+	"./en-au": 275,
+	"./en-au.js": 275,
+	"./en-ca": 276,
+	"./en-ca.js": 276,
+	"./en-gb": 277,
+	"./en-gb.js": 277,
+	"./en-ie": 278,
+	"./en-ie.js": 278,
+	"./en-il": 279,
+	"./en-il.js": 279,
+	"./en-nz": 280,
+	"./en-nz.js": 280,
+	"./eo": 281,
+	"./eo.js": 281,
+	"./es": 282,
+	"./es-do": 283,
+	"./es-do.js": 283,
+	"./es-us": 284,
+	"./es-us.js": 284,
+	"./es.js": 282,
+	"./et": 285,
+	"./et.js": 285,
+	"./eu": 286,
+	"./eu.js": 286,
+	"./fa": 287,
+	"./fa.js": 287,
+	"./fi": 288,
+	"./fi.js": 288,
+	"./fo": 289,
+	"./fo.js": 289,
+	"./fr": 290,
+	"./fr-ca": 291,
+	"./fr-ca.js": 291,
+	"./fr-ch": 292,
+	"./fr-ch.js": 292,
+	"./fr.js": 290,
+	"./fy": 293,
+	"./fy.js": 293,
+	"./gd": 294,
+	"./gd.js": 294,
+	"./gl": 295,
+	"./gl.js": 295,
+	"./gom-latn": 296,
+	"./gom-latn.js": 296,
+	"./gu": 297,
+	"./gu.js": 297,
+	"./he": 298,
+	"./he.js": 298,
+	"./hi": 299,
+	"./hi.js": 299,
+	"./hr": 300,
+	"./hr.js": 300,
+	"./hu": 301,
+	"./hu.js": 301,
+	"./hy-am": 302,
+	"./hy-am.js": 302,
+	"./id": 303,
+	"./id.js": 303,
+	"./is": 304,
+	"./is.js": 304,
+	"./it": 305,
+	"./it.js": 305,
+	"./ja": 306,
+	"./ja.js": 306,
+	"./jv": 307,
+	"./jv.js": 307,
+	"./ka": 308,
+	"./ka.js": 308,
+	"./kk": 309,
+	"./kk.js": 309,
+	"./km": 310,
+	"./km.js": 310,
+	"./kn": 311,
+	"./kn.js": 311,
+	"./ko": 312,
+	"./ko.js": 312,
+	"./ky": 313,
+	"./ky.js": 313,
+	"./lb": 314,
+	"./lb.js": 314,
+	"./lo": 315,
+	"./lo.js": 315,
+	"./lt": 316,
+	"./lt.js": 316,
+	"./lv": 317,
+	"./lv.js": 317,
+	"./me": 318,
+	"./me.js": 318,
+	"./mi": 319,
+	"./mi.js": 319,
+	"./mk": 320,
+	"./mk.js": 320,
+	"./ml": 321,
+	"./ml.js": 321,
+	"./mn": 322,
+	"./mn.js": 322,
+	"./mr": 323,
+	"./mr.js": 323,
+	"./ms": 324,
+	"./ms-my": 325,
+	"./ms-my.js": 325,
+	"./ms.js": 324,
+	"./mt": 326,
+	"./mt.js": 326,
+	"./my": 327,
+	"./my.js": 327,
+	"./nb": 328,
+	"./nb.js": 328,
+	"./ne": 329,
+	"./ne.js": 329,
+	"./nl": 330,
+	"./nl-be": 331,
+	"./nl-be.js": 331,
+	"./nl.js": 330,
+	"./nn": 332,
+	"./nn.js": 332,
+	"./pa-in": 333,
+	"./pa-in.js": 333,
+	"./pl": 334,
+	"./pl.js": 334,
+	"./pt": 335,
+	"./pt-br": 336,
+	"./pt-br.js": 336,
+	"./pt.js": 335,
+	"./ro": 337,
+	"./ro.js": 337,
+	"./ru": 338,
+	"./ru.js": 338,
+	"./sd": 339,
+	"./sd.js": 339,
+	"./se": 340,
+	"./se.js": 340,
+	"./si": 341,
+	"./si.js": 341,
+	"./sk": 342,
+	"./sk.js": 342,
+	"./sl": 343,
+	"./sl.js": 343,
+	"./sq": 344,
+	"./sq.js": 344,
+	"./sr": 345,
+	"./sr-cyrl": 346,
+	"./sr-cyrl.js": 346,
+	"./sr.js": 345,
+	"./ss": 347,
+	"./ss.js": 347,
+	"./sv": 348,
+	"./sv.js": 348,
+	"./sw": 349,
+	"./sw.js": 349,
+	"./ta": 350,
+	"./ta.js": 350,
+	"./te": 351,
+	"./te.js": 351,
+	"./tet": 352,
+	"./tet.js": 352,
+	"./tg": 353,
+	"./tg.js": 353,
+	"./th": 354,
+	"./th.js": 354,
+	"./tl-ph": 355,
+	"./tl-ph.js": 355,
+	"./tlh": 356,
+	"./tlh.js": 356,
+	"./tr": 357,
+	"./tr.js": 357,
+	"./tzl": 358,
+	"./tzl.js": 358,
+	"./tzm": 359,
+	"./tzm-latn": 360,
+	"./tzm-latn.js": 360,
+	"./tzm.js": 359,
+	"./ug-cn": 361,
+	"./ug-cn.js": 361,
+	"./uk": 362,
+	"./uk.js": 362,
+	"./ur": 363,
+	"./ur.js": 363,
+	"./uz": 364,
+	"./uz-latn": 365,
+	"./uz-latn.js": 365,
+	"./uz.js": 364,
+	"./vi": 366,
+	"./vi.js": 366,
+	"./x-pseudo": 367,
+	"./x-pseudo.js": 367,
+	"./yo": 368,
+	"./yo.js": 368,
+	"./zh-cn": 369,
+	"./zh-cn.js": 369,
+	"./zh-hk": 370,
+	"./zh-hk.js": 370,
+	"./zh-tw": 371,
+	"./zh-tw.js": 371
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -2506,26 +2627,26 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 854;
+webpackContext.id = 572;
 
 /***/ }),
 
-/***/ 898:
+/***/ 899:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(510);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(509);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_tabs_Tabs_standings_standings__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_tabs_Tabs_standings_standings__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_tabs_home_tabs__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_teams_teams__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_profile_profile__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_profile_profile__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_services_user_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_login_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_login_service__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_player_service__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2630,7 +2751,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 899:
+/***/ 900:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2696,7 +2817,7 @@ var ElasticHeader = (function () {
 
 /***/ }),
 
-/***/ 91:
+/***/ 92:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2740,7 +2861,109 @@ var SanctionService = (function () {
 
 //# sourceMappingURL=sanction.service.js.map
 
+/***/ }),
+
+/***/ 97:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(468);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var MapsPage = (function () {
+    function MapsPage(navCtrl, navParams, viewController, alertCtrl, geolocation) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.viewController = viewController;
+        this.alertCtrl = alertCtrl;
+        this.geolocation = geolocation;
+        this.notMap = false;
+    }
+    MapsPage.prototype.ionViewDidLoad = function () {
+        if (this.navParams.get('latitude') == undefined || this.navParams.get('longitude') == undefined) {
+            this.notMap = true;
+        }
+        else {
+            this.destination = new google.maps.LatLng(this.navParams.get('longitude'), this.navParams.get('latitude'));
+            this.initMap();
+            this.startNavigating();
+        }
+    };
+    MapsPage.prototype.initMap = function () {
+        var mapOptions = {
+            center: this.destination,
+            zoom: 17,
+            marker: this.destination,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        var marker = new google.maps.Marker({
+            position: this.destination,
+            map: this.map
+        });
+        marker.setMap(this.map);
+    };
+    MapsPage.prototype.startNavigating = function () {
+        var _this = this;
+        this.geolocation.getCurrentPosition().then(function (position) {
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+            directionsDisplay.setMap(_this.map);
+            directionsDisplay.setPanel(_this.directionsPanel.nativeElement);
+            var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            directionsService.route({
+                origin: currentLocation,
+                destination: _this.destination,
+                travelMode: google.maps.TravelMode['DRIVING']
+            }, function (res, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(res);
+                }
+                else {
+                    console.warn(status);
+                }
+            });
+        }, function (error) { return console.error(error.message); });
+    };
+    MapsPage.prototype.currentLocation = function () {
+    };
+    MapsPage.prototype.closeModal = function () {
+        this.viewController.dismiss();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
+        __metadata("design:type", Object)
+    ], MapsPage.prototype, "mapElement", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('directionsPanel'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
+    ], MapsPage.prototype, "directionsPanel", void 0);
+    MapsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-maps',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\maps\maps.html"*/'\n<ion-header>\n\n    <ion-navbar color="header">\n      <ion-title>Google maps</ion-title>\n      <ion-buttons end>\n          <button id= "close-modal-button" ion-button (click)= "closeModal()">Cerrar</button>\n      </ion-buttons>\n    </ion-navbar>\n  \n  </ion-header>\n\n\n<ion-content>\n\n  <ion-card *ngIf = "!notMap">\n      <ion-card-content>\n          <div #directionsPanel></div>\n      </ion-card-content>\n  </ion-card>\n  <div #map *ngIf = "!notMap" id = "map">\n\n  </div>\n  <ion-col *ngIf = "notMap" id = "notMapMessage">No se ha encontrado nigún estadio.</ion-col>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\maps\maps.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]])
+    ], MapsPage);
+    return MapsPage;
+}());
+
+//# sourceMappingURL=maps.js.map
+
 /***/ })
 
-},[518]);
+},[520]);
 //# sourceMappingURL=main.js.map

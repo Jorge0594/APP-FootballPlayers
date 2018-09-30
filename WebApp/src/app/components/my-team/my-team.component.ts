@@ -19,9 +19,9 @@ const DIALOG_HEIGHT = "400px";
 })
 export class MyTeamComponent implements OnInit {
 
-  private modify: boolean;
+  modify: boolean;
 
-  constructor(private userService: UserService, private dialogService : DialogService, private eventService: EventService, private playerDataService: PlayerDataService,
+  constructor(public userService: UserService, private dialogService : DialogService, private eventService: EventService, private playerDataService: PlayerDataService,
   private teamService: TeamService, private playerService: PlayerService) {
   }
 

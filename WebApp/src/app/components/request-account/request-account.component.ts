@@ -22,21 +22,21 @@ const DIALOG_HEIGHT = "400px";
 
 export class RequestAccountComponent{
 
-  private options: Array<string> = [
+  options: Array<string> = [
     "Alcorcón", "Aranjuez", "Fuenlabrada", "Madrid", "Móstoles", "Online"
   ];
   
-  private inputName = new FormControl('', Validators.required);
-  private inputLastname = new FormControl('', Validators.required);
-  private inputEmail = new FormControl('',[Validators.required, Validators.email]);
-  private inputCampus = new FormControl('', Validators.required);
-  private inputTeamName = new FormControl('', Validators.required);
-  private inputLeague = new FormControl('', Validators.required);
+  inputName = new FormControl('', Validators.required);
+  inputLastname = new FormControl('', Validators.required);
+  inputEmail = new FormControl('',[Validators.required, Validators.email]);
+  inputCampus = new FormControl('', Validators.required);
+  inputTeamName = new FormControl('', Validators.required);
+  inputLeague = new FormControl('', Validators.required);
 
-  private listLeagueNames:any;
+  listLeagueNames:any;
 
-  private error: boolean = false;
-  private showDialog:boolean = false;
+  error: boolean = false;
+  showDialog:boolean = false;
 
   constructor(private ipService: IpClientService, private leagueService: LeagueService, private requestFormService: RequestFormService,
   private dialogService: DialogService, private router: Router) { 

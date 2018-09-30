@@ -8,9 +8,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DialogComponent implements OnInit {
 
-  private error: boolean;
-  private multioption:boolean;
-  private spinner:boolean;
+  error: boolean;
+  multioption:boolean;
+  spinner:boolean;
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.error = data.error;

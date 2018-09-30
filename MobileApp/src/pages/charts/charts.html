@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar color="header">
+    <ion-title>Historicos</ion-title>
+    <ion-buttons end>
+      <button id="close-modal-button" ion-button (click)="closeModal()">Cerrar</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div id = "spinner-container">
+      <ion-spinner class = "spinner" *ngIf = "hasCharts == undefined || hasCharts == null"></ion-spinner>
+  </div>
+  
+  <div>
+    <h1 *ngIf = "hasCharts == true" class = "hist-title">Goles</h1>
+    <canvas #goals></canvas>
+    <h1 *ngIf = "hasCharts == true" class = "hist-title">Tarjetas Amarillas</h1>
+    <canvas #yellowCards></canvas>
+    <h1 *ngIf = "hasCharts == true" class = "hist-title">Tarjetas Rojas</h1>
+    <canvas #redCards></canvas>
+  </div>
+
+  <h1 id = "error-message" *ngIf = "hasCharts == false">No dispone de ningún hisotrico</h1>
+  
+
+</ion-content>

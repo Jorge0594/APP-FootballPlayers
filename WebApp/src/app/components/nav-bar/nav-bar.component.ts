@@ -18,7 +18,7 @@ const DIALOG_HEIGHT = "400px";
 })
 export class NavBarComponent implements OnInit {
 
-  private options: { left: Array<{ name: string, path: string }>, right: Array<{ name: string, path: string }> };
+  options: { left: Array<{ name: string, path: string }>, right: Array<{ name: string, path: string }> };
 
   constructor(private userService: UserService, private eventService: EventService, private loginService: LoginService, private dialogService: DialogService,
   private playerDataService: PlayerDataService, private teamDataService: TeamDataService, private componentService: ComponentService) {

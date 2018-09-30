@@ -27,19 +27,19 @@ const DIALOG_HEIGHT = "400px";
 })
 export class TeamCreatorComponent implements OnInit {
 
-  private teamError: boolean = false;
-  private inputControls: FormGroup;
-  private showPreview: boolean = false;
-  private file: File;
-  private fileShow: File;
+  teamError: boolean = false;
+  inputControls: FormGroup;
+  showPreview: boolean = false;
+  file: File;
+  fileShow: File;
 
-  private teamName: string;
-  private teamCity: string;
+  teamName: string;
+  teamCity: string;
 
   @ViewChild('panel', { read: ViewContainerRef }) private component;
-  private componentRef: ComponentRef<any>;
+  componentRef: ComponentRef<any>;
 
-  constructor(private userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
+  constructor(public userService: UserService, private teamService: TeamService, private formBuilder: FormBuilder,
     private componentService: ComponentService, private resolver: ComponentFactoryResolver, private teamData: TeamDataService,
     private dialogService: DialogService, private router: Router, private playerDataService: PlayerDataService, private playerService: PlayerService,
     private eventService: EventService) {

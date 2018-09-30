@@ -1,0 +1,39 @@
+page-charts {
+    #close-modal-button{
+        color:#86bbda;
+        font-size: 95%;
+    }
+
+    .hist-title{
+        color: white;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    #error-message{
+        color: white;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .spinner{
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 50px;;
+		width: 60px;
+		height: 60px;
+		min-height: 60px;
+        min-width: 60px;
+    }
+
+    #spinner-container{
+        justify-content: center;
+        display:flex;
+    }
+    
+    .spinner-md-crescent circle{
+		stroke: white!important;
+	}
+}

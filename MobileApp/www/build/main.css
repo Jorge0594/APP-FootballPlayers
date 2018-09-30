@@ -37887,6 +37887,50 @@ elastic-header {
   display: block;
 }
 
+page-charts #close-modal-button {
+  color: #86bbda;
+  font-size: 95%;
+}
+
+page-charts .hist-title {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+page-charts #error-message {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+page-charts .spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
+}
+
+page-charts #spinner-container {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-charts .spinner-md-crescent circle {
+  stroke: white !important;
+}
+
 page-home-tabs .scroll-content {
   background-color: #ffffff;
   display: -webkit-box;
@@ -38937,6 +38981,18 @@ page-profile #password-button {
   display: block;
   max-width: 75%;
   min-height: 50px;
+}
+
+page-profile #charts-button {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 15px;
 }
 
 page-sanction .ion-scroll {

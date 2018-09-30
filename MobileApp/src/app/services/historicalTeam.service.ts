@@ -12,7 +12,14 @@ export class HistoricalTeamService{
     getTeamHistorials(id: string){
         return this.http.get(BASE_URL + "/equipo/" + id).map(
             response => response,
-            error => console.error()
+            error => console.error(error)
+        )
+    }
+
+    getPlayerHistorials(id: string){
+        return this.http.get("histJugadores/jugador/" + id).map(
+            response => response,
+            error => console.error(error)
         )
     }
 }

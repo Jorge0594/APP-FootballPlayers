@@ -34,6 +34,7 @@ import { SanctionPage } from '../pages/sanction/sanction';
 import { ProfilePage } from '../pages/profile/profile';
 import { TabStats } from '../pages/home-tabs/Tabs/stats/stats';
 import { MapsPage } from '../pages/maps/maps';
+import { ChartsPage } from '../pages/charts/charts';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MapsPage } from '../pages/maps/maps';
     ProfilePage,
     MapsPage,
     TabStats,
+    ChartsPage,
     ElasticHeader
   ],
   imports: [
@@ -74,7 +76,8 @@ import { MapsPage } from '../pages/maps/maps';
     ElasticHeader,
     SanctionPage,
     TabStats,
-     MapsPage
+    ChartsPage,
+    MapsPage
   ],
   providers: [
     HttpModule,
