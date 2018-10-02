@@ -20,20 +20,10 @@ export class TabStandings {
   constructor(public navCtrl: NavController, private navParams :NavParams, private http:HttpClient, private userService: UserService, private teamService: TeamService, private playerService: PlayerService, private modalController: ModalController) {
     if(this.navParams.data[0] == 'team'){
         this.team = userService.getUserTeam();
-        this.playerService.getPlayerById(this.team.delegado).subscribe(
-          response => {
-            this.delegate = response
-          }
-        )
     } else if (this.navParams.data[0] == 'teamsList'){
         this.teamService.getPlayerTeamById(this.navParams.data[1]).subscribe(
           team =>{
             this.team = team;
-            this.playerService.getPlayerById(team.delegado).subscribe(
-              response => {
-                this.delegate = response
-              }
-            )
           }
         );
     }

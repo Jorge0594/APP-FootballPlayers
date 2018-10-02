@@ -11,11 +11,21 @@ import { HomeTabsPage } from '../home-tabs/home-tabs';
 })
 export class TeamsPage {
 
+  private urlImages: string
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private app: App) {
   }
 
   teamSelect(id:string){
     this.navCtrl.push(HomeTabsPage, { id:[this.navParams.get('id')[0], id] });
+  }
+
+  getImage(url:any, error:boolean){
+    if(error){
+      return "./assets/imgs/shield.png"
+    } 
+
+    return this.userService.getBaseURLforImages() + url;
   }
 
 }

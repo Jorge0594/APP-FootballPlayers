@@ -19,6 +19,7 @@ export class TabStats {
   @ViewChild ('played')barCanvasPlayed;
   @ViewChild ('standing')barCanvasStanding;
   private barChart :any;
+  private showHistorials: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private historicalTeamService: HistoricalTeamService, private userService: UserService) {
   }
@@ -28,6 +29,7 @@ export class TabStats {
         response => {
             let historials = response;
             if(historials.length > 0){
+                this.showHistorials = true;
                 this.barChart = new Chart(this.barCanvas.nativeElement, {
                     type: 'bar',
                     data: {

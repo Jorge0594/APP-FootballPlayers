@@ -1,20 +1,21 @@
 <ion-content>
       <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll="true">
-            <h1 class="hist-titles">Historial de clasificaciones</h1>
+            <h3 *ngIf = "showHistorials == false" class="dont-found">No se ha encontrado ningún histórico</h3>
+            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de clasificaciones</h3>
             <canvas #standing></canvas>
-            <h3 class="hist-titles">Historial de historial de puntos obtenidos</h3>
+            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de historial de puntos obtenidos</h3>
             <canvas #points></canvas>
-            <h3 class="hist-titles">Historial de goles</h3>
+            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de goles</h3>
             <canvas #goals></canvas>
-            <h3 class="hist-titles">Historial de goles encajados</h3>
+            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de goles encajados</h3>
             <canvas #concededGoals></canvas>
-            <h3 class="hist-titles">Historial de partidos ganados</h3>
+            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de partidos ganados</h3>
             <canvas #wins></canvas>
-            <h3 class="hist-titles">Historial de partidos perdidos</h3>
+            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de partidos perdidos</h3>
             <canvas #loses></canvas>
-            <h3 class="hist-titles">Historial de partidos empatados</h3>
+            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de partidos empatados</h3>
             <canvas #ties></canvas>
-            <h3 class="hist-titles">Historial de partidos jugados</h3>
+            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de partidos jugados</h3>
             <canvas #played></canvas>
       </ion-scroll>
 

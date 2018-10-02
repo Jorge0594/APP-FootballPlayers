@@ -12,7 +12,7 @@
   <ion-list *ngIf = "userService.getUserLeague() != null">
     <button ion-item no-lines *ngFor= "let team of userService.getUserLeague()" (click)="teamSelect(team.id)">
       <ion-avatar item-start>
-        <img src = "{{userService.getBaseURLforImages()}}{{team?.imagenEquipo}}">
+        <img [src] = "getImage(team.imagenEquipo, false)" (error) = "getImage('', true)">
       </ion-avatar>
       <p id ="team-name">{{team?.nombre}}</p>
     </button>

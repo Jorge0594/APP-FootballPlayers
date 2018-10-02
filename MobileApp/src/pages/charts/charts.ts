@@ -23,150 +23,144 @@ export class ChartsPage {
   }
 
   ngOnInit() {
-      this.historicalTeamService.getPlayerHistorials(this.userService.getUserLogged().id).subscribe(
-        response => {
-          let historials = response;
-          if (historials.length > 0) {
-            this.hasCharts = true;
-            this.barChart = new Chart(this.barCanvasGoals.nativeElement, {
-              type: 'bar',
-              data: {
-                labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
-                datasets: [{
-                  label: 'Nº Puntos',
-                  data: [historials[0] == null ? 0 : historials[0].jugador.goles, historials[1] == null ? 0 : historials[1].jugador.goles, historials[2] == null ? 0 : historials[2].jugador.goles, historials[3] == null ? 0 : historials[3].jugador.goles],
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                  ],
-                  borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                  ],
-                  borderWidth: 1
-                }]
+    this.historicalTeamService.getPlayerHistorials(this.userService.getUserLogged().id).subscribe(
+      response => {
+        let historials = response;
+        if (historials.length > 0) {
+          this.hasCharts = true;
+          this.barChart = new Chart(this.barCanvasGoals.nativeElement, {
+            type: 'bar',
+            data: {
+              labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+              datasets: [{
+                label: 'Nº Puntos',
+                data: [historials[0] == null ? 0 : historials[0].jugador.goles, historials[1] == null ? 0 : historials[1].jugador.goles, historials[2] == null ? 0 : historials[2].jugador.goles, historials[3] == null ? 0 : historials[3].jugador.goles],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              legend: {
+                labels: {
+                  fontColor: 'white'
+                }
               },
-              options: {
-                legend: {
-                  labels: {
+              scales: {
+                xAxes: [{
+                  ticks: {
                     fontColor: 'white'
                   }
-                },
-                scales: {
-                  xAxes: [{
-                    ticks: {
-                      fontColor: 'white'
-                    }
-                  }],
-                  yAxes: [{
-                    ticks: {
-                      fontColor: 'white'
-                    }
-                  }],
-                }
-              }
-            });
-  
-            this.barChart = new Chart(this.barCanvasYellowCards.nativeElement, {
-              type: 'bar',
-              data: {
-                labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
-                datasets: [{
-                  label: 'Nº Puntos',
-                  data: [historials[0] == null ? 0 : historials[0].jugador.tarjetasAmarillas, historials[1] == null ? 0 : historials[1].jugador.tarjetasAmarillas, historials[2] == null ? 0 : historials[2].jugador.tarjetasAmarillas, historials[3] == null ? 0 : historials[3].jugador.tarjetasAmarillas],
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                  ],
-                  borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                  ],
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                legend: {
-                  labels: {
+                }],
+                yAxes: [{
+                  ticks: {
                     fontColor: 'white'
                   }
-                },
-                scales: {
-                  xAxes: [{
-                    ticks: {
-                      fontColor: 'white'
-                    }
-                  }],
-                  yAxes: [{
-                    ticks: {
-                      fontColor: 'white'
-                    }
-                  }],
-                }
+                }],
               }
-            });
-  
-            this.barChart = new Chart(this.barCanvasRedCards.nativeElement, {
-              type: 'bar',
-              data: {
-                labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
-                datasets: [{
-                  label: 'Nº Puntos',
-                  data: [historials[0] == null ? 0 : historials[0].jugador.tarjetasRojas, historials[1] == null ? 0 : historials[1].jugador.tarjetasRojas, historials[2] == null ? 0 : historials[2].jugador.tarjetasRojas, historials[3] == null ? 0 : historials[3].jugador.tarjetasRojas],
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                  ],
-                  borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                  ],
-                  borderWidth: 1
-                }]
+            }
+          });
+
+          this.barChart = new Chart(this.barCanvasYellowCards.nativeElement, {
+            type: 'bar',
+            data: {
+              labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+              datasets: [{
+                label: 'Nº Puntos',
+                data: [historials[0] == null ? 0 : historials[0].jugador.tarjetasAmarillas, historials[1] == null ? 0 : historials[1].jugador.tarjetasAmarillas, historials[2] == null ? 0 : historials[2].jugador.tarjetasAmarillas, historials[3] == null ? 0 : historials[3].jugador.tarjetasAmarillas],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              legend: {
+                labels: {
+                  fontColor: 'white'
+                }
               },
-              options: {
-                legend: {
-                  labels: {
+              scales: {
+                xAxes: [{
+                  ticks: {
                     fontColor: 'white'
                   }
-                },
-                scales: {
-                  xAxes: [{
-                    ticks: {
-                      fontColor: 'white'
-                    }
-                  }],
-                  yAxes: [{
-                    ticks: {
-                      fontColor: 'white'
-                    }
-                  }],
-                }
+                }],
+                yAxes: [{
+                  ticks: {
+                    fontColor: 'white'
+                  }
+                }],
               }
-            });
-          } else {
-            this.hasCharts = false;
-          }
-        }//response
-      );
+            }
+          });
 
-    
-  }
-
-  ionViewDidLoad() {
-
+          this.barChart = new Chart(this.barCanvasRedCards.nativeElement, {
+            type: 'bar',
+            data: {
+              labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+              datasets: [{
+                label: 'Nº Puntos',
+                data: [historials[0] == null ? 0 : historials[0].jugador.tarjetasRojas, historials[1] == null ? 0 : historials[1].jugador.tarjetasRojas, historials[2] == null ? 0 : historials[2].jugador.tarjetasRojas, historials[3] == null ? 0 : historials[3].jugador.tarjetasRojas],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              legend: {
+                labels: {
+                  fontColor: 'white'
+                }
+              },
+              scales: {
+                xAxes: [{
+                  ticks: {
+                    fontColor: 'white'
+                  }
+                }],
+                yAxes: [{
+                  ticks: {
+                    fontColor: 'white'
+                  }
+                }],
+              }
+            }
+          });
+        } else {
+          this.hasCharts = false;
+        }
+      }//response
+    );
   }
 
   closeModal() {

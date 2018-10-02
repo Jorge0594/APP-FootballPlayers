@@ -38438,6 +38438,13 @@ page-stats .canvas {
   color: white;
 }
 
+page-stats .dont-found {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 45px;
+}
+
 .ios page-login .scroll-content, .md page-login .scroll-content {
   padding: 0px !important;
   -webkit-align-content: center;
