@@ -5,6 +5,7 @@ import { MinuteService } from '../../app/services/minute.service';
 import { MatchService } from '../../app/services/match.service';
 
 import { MapsPage } from '../../pages/maps/maps';
+import { IncidenceService } from '../../app/services/inicidence.service';
 
 @IonicPage()
 @Component({
@@ -17,8 +18,9 @@ export class MatchPage {
   private status: string;
   private match: any;
   private statSelected: string;
+  private incidences: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private minuteService: MinuteService, private matchService: MatchService, private modalController: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private minuteService: MinuteService, private matchService: MatchService, private modalController: ModalController, private inicidenceService:IncidenceService) {
     this.statSelected = "stats"
     this.status = this.navParams.get('matchStatus');
 
@@ -26,6 +28,11 @@ export class MatchPage {
       this.minuteService.getMinuteByMatchId(this.navParams.get('matchId')).subscribe(
         minute => {
           this.match = minute;
+          this.inicidenceService.getMatchIncidences(this.match.idPartido).subscribe(
+            response => {
+              this.incidences = response;
+            }
+          );
         }
       );
     } else {
@@ -41,6 +48,19 @@ export class MatchPage {
 
   selectStat(stat:string){
     this.statSelected = stat;
+  }
+
+  localPlayer(id:string){
+    let exist = false;
+    console.log(id);
+    for(let elem of this.match.convocadosLocal){
+      console.log("ID:" + elem.id);
+      if(elem.id == id){
+        console.log("Enter here with id: " + id);
+        exist = true;
+      } 
+    }
+    return exist;
   }
 
   viewGoogleMaps(){

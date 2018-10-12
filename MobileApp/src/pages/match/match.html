@@ -45,20 +45,26 @@
         </ion-slide>
     </ion-slides>
   <ion-list *ngIf = "statSelected == 'stats' && (status == 'disputado' || status == 'acta pendiente')">
-      <ion-row>
-        <ion-col col-xs-4 class = "stats-info-local"><strong>5</strong></ion-col>
-        <ion-col col-xs-4 class = "stats-title">InfoTitle</ion-col>
-        <ion-col col-xs-4 class = "stats-info-visitor"><strong>4</strong></ion-col>
+    <div *ngIf = "incidences != undefined && incidences != null">
+      <ion-row *ngFor = "let incidence of incidences" class = "info-rows">
+        <ion-col col-xs-6 class = "stats-info-local"><strong>{{localPlayer(incidence.idJugador) == true ? incidence.jugador.nombre : ""}}</strong></ion-col>
+        <ion-col col-xs-1 class = "stats-title">
+          <img *ngIf = "incidence.tipo != 'GOL'" class = "cards" src = "assets/imgs/{{incidence.tipo}}.png">
+          <ion-icon *ngIf = "incidence.tipo == 'GOL'" name = "football"></ion-icon>
+          {{incidence.minuto}}"
+        </ion-col>
+        <ion-col col-xs-5 class = "stats-info-visitor"><strong>{{localPlayer(incidence.idJugador) == false ? incidence.jugador.nombre : ""}}</strong></ion-col>
       </ion-row>
+    </div>
   </ion-list>
 
   <ion-list *ngIf = "statSelected == 'lineUp' && (status == 'disputado' || status == 'acta pendiente')">
-    <ion-item *ngFor = "let localPlayer of match?.convocadosLocal; let i = index">
+    <ion-item *ngFor = "let local of match?.convocadosLocal; let i = index">
       <ion-row>
         <ion-col class = "info-lineup">
           <ion-row>
-              <ion-col col-xs-2 id = "local-dorsal"><strong >{{localPlayer.dorsal}}</strong></ion-col>
-              <ion-col col-xs-10 class = "player-name">{{localPlayer.nombre}}</ion-col>
+              <ion-col col-xs-2 id = "local-dorsal"><strong >{{local.dorsal}}</strong></ion-col>
+              <ion-col col-xs-10 class = "player-name">{{local.nombre}}</ion-col>
           </ion-row>
         </ion-col>
         <ion-col class = "info-lineup" *ngIf = "match?.convocadosVisitante[i] != null && match?.convocadosVisitante[i] != undefined">

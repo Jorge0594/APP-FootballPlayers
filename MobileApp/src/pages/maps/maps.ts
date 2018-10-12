@@ -25,7 +25,7 @@ export class MapsPage {
     if (this.navParams.get('latitude') == undefined || this.navParams.get('longitude') == undefined) {
       this.notMap = true;
     } else {
-      this.destination = new google.maps.LatLng(this.navParams.get('longitude'), this.navParams.get('latitude'));
+      this.destination = new google.maps.LatLng(this.navParams.get('latitude'), this.navParams.get('longitude'));
       this.initMap();
       this.startNavigating();
     }

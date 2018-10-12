@@ -35,6 +35,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { TabStats } from '../pages/home-tabs/Tabs/stats/stats';
 import { MapsPage } from '../pages/maps/maps';
 import { ChartsPage } from '../pages/charts/charts';
+import { IncidenceService } from './services/inicidence.service';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { ChartsPage } from '../pages/charts/charts';
     PlayerService,
     MinuteService,
     LoginService,
+    IncidenceService,
     SanctionService,
     HistoricalTeamService,
     TeamService,
