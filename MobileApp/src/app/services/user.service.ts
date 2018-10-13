@@ -44,7 +44,7 @@ export class UserService{
                             group => {
                                 this.userLeague = group;
 
-                                let groupLength = group.length % 2 == 0 ? (group.length * 2) - 1 : group.length * 2;
+                                let groupLength = group.length % 2 == 0 ? (group.length -1) * 2 : group.length * 2;
 
                                 for(let i = 0; i < groupLength; i++){
                                     this.rounds.push(i + 1);

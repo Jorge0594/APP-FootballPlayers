@@ -37887,6 +37887,50 @@ elastic-header {
   display: block;
 }
 
+page-charts #close-modal-button {
+  color: #86bbda;
+  font-size: 95%;
+}
+
+page-charts .hist-title {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+page-charts #error-message {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+page-charts .spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  min-width: 60px;
+}
+
+page-charts #spinner-container {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-charts .spinner-md-crescent circle {
+  stroke: white !important;
+}
+
 page-home-tabs .scroll-content {
   background-color: #ffffff;
   display: -webkit-box;
@@ -38363,6 +38407,18 @@ page-home .spinner {
   min-width: 60px;
 }
 
+page-home #map-button {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 page-stats .scroll-content {
   background-color: #f4f4f4;
 }
@@ -38376,6 +38432,17 @@ page-stats .hist-titles {
   font-size: 14px;
   text-align: center;
   margin-bottom: 15px;
+}
+
+page-stats .canvas {
+  color: white;
+}
+
+page-stats .dont-found {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 45px;
 }
 
 .ios page-login .scroll-content, .md page-login .scroll-content {
@@ -38445,7 +38512,7 @@ page-stats .hist-titles {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("../assets/imgs/login-background2.jpg");
+  background-image: url("../assets/imgs/login-background.jpg");
   background-size: cover;
   background-position: fixed;
   background-position: center center;
@@ -38566,7 +38633,7 @@ page-match .stats-info-local {
 }
 
 page-match .stats-info-visitor {
-  text-align: right;
+  text-align: left;
 }
 
 page-match #not-data-icon {
@@ -38640,6 +38707,20 @@ page-match #map-button {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+page-match .cards {
+  max-width: 45%;
+  max-height: 45%;
+}
+
+page-match .info-rows {
+  margin-bottom: 5px;
+}
+
+page-match .time-event {
+  margin-bottom: auto;
+  margin-top: auto;
 }
 
 page-player ion-title {
@@ -38921,6 +39002,18 @@ page-profile #password-button {
   display: block;
   max-width: 75%;
   min-height: 50px;
+}
+
+page-profile #charts-button {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 15px;
 }
 
 page-sanction .ion-scroll {

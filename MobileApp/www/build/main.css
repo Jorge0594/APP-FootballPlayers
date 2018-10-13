@@ -38512,7 +38512,7 @@ page-stats .dont-found {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("../assets/imgs/login-background2.jpg");
+  background-image: url("../assets/imgs/login-background.jpg");
   background-size: cover;
   background-position: fixed;
   background-position: center center;
@@ -38715,7 +38715,7 @@ page-match .cards {
 }
 
 page-match .info-rows {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 page-match .time-event {

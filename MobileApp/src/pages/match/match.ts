@@ -52,13 +52,8 @@ export class MatchPage {
 
   localPlayer(id:string){
     let exist = false;
-    console.log(id);
     for(let elem of this.match.convocadosLocal){
-      console.log("ID:" + elem.id);
-      if(elem.id == id){
-        console.log("Enter here with id: " + id);
-        exist = true;
-      } 
+      if(elem.id == id) exist = true;
     }
     return exist;
   }
