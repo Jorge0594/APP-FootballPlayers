@@ -120,12 +120,12 @@ export class TeamCreatorComponent implements OnInit {
 
   createTeam() {
     let response = this.teamData.delegateRestrictions();
+    
     if (this.componentService.hasErrors() && response.error == false && this.teamData.getTeam().plantillaEquipo.length > 0) {
-
+      this.teamData.getTeam().delegado = this.teamData.getTeam().plantillaEquipo.filter(player => player.delegado == true)[0].nombre + " " + this.teamData.getTeam().plantillaEquipo.filter(player => player.delegado == true)[0].apellidos
       this.teamData.getTeam().plantillaEquipo.forEach(p => {
         p.fechaNacimiento = this.playerDataService.reformatDate(p.fechaNacimiento, "/", "-", true);
       });
-
       this.teamService.createTeam(this.teamData.getTeam()).subscribe(
         response => {
           if(this.file != null){
@@ -145,7 +145,7 @@ export class TeamCreatorComponent implements OnInit {
             this.userService.generateUserData();
             this.userService.setUserTeam(this.teamData.getTeam());
 
-            this.dialogService.openDialog("Creación correcta", "El equipo se ha creado de manera correcta. Tendrá 7 días para modificar los datos de su equipo", false, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
+            this.dialogService.openDialog("Creación correcta", "El equipo se ha creado de manera correcta.", false, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);
             this.router.navigateByUrl("/equipo");
           } catch(error){
             this.dialogService.openDialog("Error", "Se ha producido un error al intentar guardar las imágenes de los jugadores. ERROR CODE: " + error, true, false, false, DIALOG_WIDTH, DIALOG_HEIGHT);

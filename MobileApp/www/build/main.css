@@ -38709,11 +38709,6 @@ page-match #map-button {
   display: flex;
 }
 
-page-match .cards {
-  max-width: 45%;
-  max-height: 45%;
-}
-
 page-match .info-rows {
   margin-bottom: 5px;
 }
@@ -38744,6 +38739,8 @@ page-player .item-ios {
 page-player #player-image {
   width: 100px;
   height: 100px;
+  min-width: 100px;
+  min-height: 100px;
   border-radius: 100%;
   text-align: center;
 }

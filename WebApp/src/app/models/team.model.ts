@@ -4,6 +4,7 @@ export class Team {
     id:string
     nombre:string;
     ciudad:string;
+    delegado:string;
     plantillaEquipo: Array<Player> = [];
 
     constructor(nombre?, ciudad?){

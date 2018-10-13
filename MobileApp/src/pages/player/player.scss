@@ -20,6 +20,8 @@ page-player {
     #player-image{
         width: 100px;
         height: 100px;
+        min-width: 100px;
+        min-height: 100px;
         border-radius: 100%;
         text-align: center;
     }
