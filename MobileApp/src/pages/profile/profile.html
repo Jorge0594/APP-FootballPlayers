@@ -31,7 +31,7 @@
 <ion-content fullscreen #component [ngSwitch]="selection">
   <ion-item no-lines *ngSwitchCase="'one'">
     <ion-item id="team-image-container" (click)="goTeam()">
-      <img id="user-team-image" src="{{userService.getBaseURLforImages()}}shield.png">
+      <img id="user-team-image" src="{{userService.getBaseURLforImages()}}{{userService.getUserTeam().imagenEquipo}}">
       <h1 id="user-team-name">{{userService.getUserTeam()?.nombre}}</h1>
     </ion-item>
     <ion-row>

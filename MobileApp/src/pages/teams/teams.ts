@@ -17,7 +17,11 @@ export class TeamsPage {
   }
 
   teamSelect(id:string){
-    this.navCtrl.push(HomeTabsPage, { id:[this.navParams.get('id')[0], id] });
+    if(id == this.userService.getUserTeam().id){
+      this.navCtrl.push(HomeTabsPage, { id:["team", id] });
+    } else {
+      this.navCtrl.push(HomeTabsPage, { id:[this.navParams.get('id')[0], id] });
+    }
   }
 
   getImage(url:any, error:boolean){
