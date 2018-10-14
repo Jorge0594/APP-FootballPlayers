@@ -21,7 +21,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var BASE_URL = 'histEquipos/';
+var BASE_URL = 'histEquipos';
 var HistoricalTeamService = (function () {
     function HistoricalTeamService(http) {
         this.http = http;
@@ -34,9 +34,10 @@ var HistoricalTeamService = (function () {
     };
     HistoricalTeamService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__httpClient_service__["a" /* HttpClient */]) === "function" && _a || Object])
     ], HistoricalTeamService);
     return HistoricalTeamService;
+    var _a;
 }());
 
 //# sourceMappingURL=historicalTeam.service.js.map
@@ -328,10 +329,10 @@ var ChartsPage = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"](_this.barCanvasGoals.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
-                                label: 'Nº Puntos',
-                                data: [historials[0] == null ? 0 : historials[0].jugador.goles, historials[1] == null ? 0 : historials[1].jugador.goles, historials[2] == null ? 0 : historials[2].jugador.goles, historials[3] == null ? 0 : historials[3].jugador.goles],
+                                label: 'Nº Goles',
+                                data: [historials[0] == null ? 0 : historials[0].jugador.goles, historials[1] == null ? 0 : historials[1].jugador.goles, historials[3] == null ? 0 : historials[2].jugador.goles, historials[3] == null ? 0 : historials[3].jugador.goles],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -370,9 +371,9 @@ var ChartsPage = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"](_this.barCanvasYellowCards.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
-                                label: 'Nº Puntos',
+                                label: 'Nº T.Amarillas',
                                 data: [historials[0] == null ? 0 : historials[0].jugador.tarjetasAmarillas, historials[1] == null ? 0 : historials[1].jugador.tarjetasAmarillas, historials[2] == null ? 0 : historials[2].jugador.tarjetasAmarillas, historials[3] == null ? 0 : historials[3].jugador.tarjetasAmarillas],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
@@ -412,9 +413,9 @@ var ChartsPage = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"](_this.barCanvasRedCards.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
-                                label: 'Nº Puntos',
+                                label: 'Nº T.Rojas',
                                 data: [historials[0] == null ? 0 : historials[0].jugador.tarjetasRojas, historials[1] == null ? 0 : historials[1].jugador.tarjetasRojas, historials[2] == null ? 0 : historials[2].jugador.tarjetasRojas, historials[3] == null ? 0 : historials[3].jugador.tarjetasRojas],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
@@ -477,9 +478,10 @@ var ChartsPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-charts',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\charts\charts.html"*/'<ion-header>\n\n  <ion-navbar color="header">\n    <ion-title>Historicos</ion-title>\n    <ion-buttons end>\n      <button id="close-modal-button" ion-button (click)="closeModal()">Cerrar</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <div id = "spinner-container">\n      <ion-spinner class = "spinner" *ngIf = "hasCharts == undefined || hasCharts == null"></ion-spinner>\n  </div>\n\n  <h1 id = "error-message" *ngIf = "hasCharts == false">No dispone de ningún hisotrico</h1>\n  \n  <div>\n    <h1 *ngIf = "hasCharts == true" class = "hist-title">Goles</h1>\n    <canvas #goals></canvas>\n    <h1 *ngIf = "hasCharts == true" class = "hist-title">Tarjetas Amarillas</h1>\n    <canvas #yellowCards></canvas>\n    <h1 *ngIf = "hasCharts == true" class = "hist-title">Tarjetas Rojas</h1>\n    <canvas #redCards></canvas>\n  </div>\n  \n\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\charts\charts.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_2__node_modules_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_4__app_services_historicalTeam_service__["a" /* HistoricalTeamService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__node_modules_ionic_angular_navigation_view_controller__["a" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__node_modules_ionic_angular_navigation_view_controller__["a" /* ViewController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__app_services_historicalTeam_service__["a" /* HistoricalTeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_services_historicalTeam_service__["a" /* HistoricalTeamService */]) === "function" && _e || Object])
     ], ChartsPage);
     return ChartsPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=charts.js.map
@@ -1242,10 +1244,9 @@ var TeamsPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-teams',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\teams\teams.html"*/'<ion-header>\n    <ion-navbar height="20px" color="header">\n      <button ion-button menuToggle id="button-toggle">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Equipos</ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list *ngIf = "userService.getUserLeague() != null">\n    <button ion-item no-lines *ngFor= "let team of userService.getUserLeague()" (click)="teamSelect(team.id)">\n      <ion-avatar item-start>\n        <img [src] = "getImage(team.imagenEquipo, false)" (error) = "getImage(\'\', true)">\n      </ion-avatar>\n      <p id ="team-name">{{team?.nombre}}</p>\n    </button>\n  </ion-list>\n\n  <ion-row id = "no-teams" *ngIf = "userService.getUserLeague()?.length == 0">No hay equipos en esta liga</ion-row>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\teams\teams.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__app_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]])
     ], TeamsPage);
     return TeamsPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=teams.js.map
@@ -1678,7 +1679,7 @@ var TabStats = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](_this.barCanvas.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                                 label: 'Nº Goles',
                                 data: [historials[0] == null ? 0 : historials[0].equipo.goles, historials[1] == null ? 0 : historials[1].equipo.goles, historials[2] == null ? 0 : historials[2].equipo.goles, historials[3] == null ? 0 : historials[3].equipo.goles],
@@ -1720,7 +1721,7 @@ var TabStats = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](_this.barCanvasPoints.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                                 label: 'Nº Puntos',
                                 data: [historials[0] == null ? 0 : historials[0].equipo.puntos, historials[1] == null ? 0 : historials[1].equipo.puntos, historials[2] == null ? 0 : historials[2].equipo.puntos, historials[3] == null ? 0 : historials[3].equipo.puntos],
@@ -1762,7 +1763,7 @@ var TabStats = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](_this.barCanvasStanding.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                                 label: 'Posición en la Clasificación',
                                 data: [historials[0] == null ? 0 : historials[0].equipo.posicion, historials[1] == null ? 0 : historials[1].equipo.posicion, historials[2] == null ? 0 : historials[2].equipo.posicion, historials[3] == null ? 0 : historials[3].equipo.posicion],
@@ -1804,7 +1805,7 @@ var TabStats = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](_this.barCanvasConcededGoals.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                                 label: 'Nº Goles en contra',
                                 data: [historials[0] == null ? 0 : historials[0].equipo.golesEncajados, historials[1] == null ? 0 : historials[1].equipo.golesEncajados, historials[2] == null ? 0 : historials[2].equipo.golesEncajados, historials[3] == null ? 0 : historials[3].equipo.golesEncajados],
@@ -1846,7 +1847,7 @@ var TabStats = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](_this.barCanvasWins.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                                 label: 'Nº Vistorias',
                                 data: [historials[0] == null ? 0 : historials[0].equipo.partidosGanados, historials[1] == null ? 0 : historials[1].equipo.partidosGanados, historials[2] == null ? 0 : historials[2].equipo.partidosGanados, historials[3] == null ? 0 : historials[3].equipo.partidosGanados],
@@ -1888,7 +1889,7 @@ var TabStats = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](_this.barCanvasTies.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                                 label: 'Nº Empates',
                                 data: [historials[0] == null ? 0 : historials[0].equipo.partidosEmpatados, historials[1] == null ? 0 : historials[1].equipo.partidosEmpatados, historials[2] == null ? 0 : historials[2].equipo.partidosEmpatados, historials[3] == null ? 0 : historials[3].equipo.partidosEmpatados],
@@ -1930,7 +1931,7 @@ var TabStats = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](_this.barCanvasLoses.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                                 label: 'Nº Derrotas',
                                 data: [historials[0] == null ? 0 : historials[0].equipo.partidosPerdidos, historials[1] == null ? 0 : historials[1].equipo.partidosPerdidos, historials[2] == null ? 0 : historials[2].equipo.partidosPerdidos, historials[3] == null ? 0 : historials[3].equipo.partidosPerdidos],
@@ -1972,7 +1973,7 @@ var TabStats = (function () {
                 _this.barChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](_this.barCanvasPlayed.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                                 label: 'Nº Partidos jugados',
                                 data: [historials[0] == null ? 0 : historials[0].equipo.partidosJugados, historials[1] == null ? 0 : historials[1].equipo.partidosJugados, historials[2] == null ? 0 : historials[2].equipo.partidosJugados, historials[3] == null ? 0 : historials[3].equipo.partidosJugados],
@@ -2051,9 +2052,10 @@ var TabStats = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-stats',template:/*ion-inline-start:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\Tabs\stats\stats.html"*/'<ion-content>\n      <ion-scroll style="width:100%;height:100vh" scrollY="true" hideScroll="true">\n            <h3 *ngIf = "showHistorials == false" class="dont-found">No se ha encontrado ningún histórico</h3>\n            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de clasificaciones</h3>\n            <canvas #standing></canvas>\n            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de historial de puntos obtenidos</h3>\n            <canvas #points></canvas>\n            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de goles</h3>\n            <canvas #goals></canvas>\n            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de goles encajados</h3>\n            <canvas #concededGoals></canvas>\n            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de partidos ganados</h3>\n            <canvas #wins></canvas>\n            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de partidos perdidos</h3>\n            <canvas #loses></canvas>\n            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de partidos empatados</h3>\n            <canvas #ties></canvas>\n            <h3 *ngIf = "showHistorials" class="hist-titles">Historial de partidos jugados</h3>\n            <canvas #played></canvas>\n      </ion-scroll>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Jorge\Documents\GitHub\APP-FootballPlayers\MobileApp\src\pages\home-tabs\Tabs\stats\stats.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__app_services_historicalTeam_service__["a" /* HistoricalTeamService */], __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__["a" /* UserService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__app_services_historicalTeam_service__["a" /* HistoricalTeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_services_historicalTeam_service__["a" /* HistoricalTeamService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_services_user_service__["a" /* UserService */]) === "function" && _d || Object])
     ], TabStats);
     return TabStats;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=stats.js.map

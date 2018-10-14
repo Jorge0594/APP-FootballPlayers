@@ -33,7 +33,7 @@ export class TabStats {
                 this.barChart = new Chart(this.barCanvas.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                             label: 'Nº Goles',
                             data: [historials[0] == null ? 0 : historials[0].equipo.goles, historials[1] == null ? 0 : historials[1].equipo.goles, historials[2] == null ? 0 : historials[2].equipo.goles, historials[3] == null ? 0 : historials[3].equipo.goles],
@@ -76,7 +76,7 @@ export class TabStats {
                 this.barChart = new Chart(this.barCanvasPoints.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                             label: 'Nº Puntos',
                             data: [historials[0] == null ? 0 : historials[0].equipo.puntos, historials[1] == null ? 0 : historials[1].equipo.puntos, historials[2] == null ? 0 : historials[2].equipo.puntos, historials[3] == null ? 0 : historials[3].equipo.puntos],
@@ -119,7 +119,7 @@ export class TabStats {
                 this.barChart = new Chart(this.barCanvasStanding.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                             label: 'Posición en la Clasificación',
                             data: [historials[0] == null ? 0 : historials[0].equipo.posicion, historials[1] == null ? 0 : historials[1].equipo.posicion, historials[2] == null ? 0 : historials[2].equipo.posicion, historials[3] == null ? 0 : historials[3].equipo.posicion],
@@ -162,7 +162,7 @@ export class TabStats {
                 this.barChart = new Chart(this.barCanvasConcededGoals.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                             label: 'Nº Goles en contra',
                             data: [historials[0] == null ? 0 : historials[0].equipo.golesEncajados, historials[1] == null ? 0 : historials[1].equipo.golesEncajados, historials[2] == null ? 0 : historials[2].equipo.golesEncajados, historials[3] == null ? 0 : historials[3].equipo.golesEncajados],
@@ -205,7 +205,7 @@ export class TabStats {
                 this.barChart = new Chart(this.barCanvasWins.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                             label: 'Nº Vistorias',
                             data: [historials[0] == null ? 0 : historials[0].equipo.partidosGanados, historials[1] == null ? 0 : historials[1].equipo.partidosGanados, historials[2] == null ? 0 : historials[2].equipo.partidosGanados, historials[3] == null ? 0 : historials[3].equipo.partidosGanados],
@@ -248,7 +248,7 @@ export class TabStats {
                 this.barChart = new Chart(this.barCanvasTies.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                             label: 'Nº Empates',
                             data: [historials[0] == null ? 0 : historials[0].equipo.partidosEmpatados, historials[1] == null ? 0 : historials[1].equipo.partidosEmpatados, historials[2] == null ? 0 : historials[2].equipo.partidosEmpatados, historials[3] == null ? 0 : historials[3].equipo.partidosEmpatados],
@@ -291,7 +291,7 @@ export class TabStats {
                 this.barChart = new Chart(this.barCanvasLoses.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                             label: 'Nº Derrotas',
                             data: [historials[0] == null ? 0 : historials[0].equipo.partidosPerdidos, historials[1] == null ? 0 : historials[1].equipo.partidosPerdidos, historials[2] == null ? 0 : historials[2].equipo.partidosPerdidos, historials[3] == null ? 0 : historials[3].equipo.partidosPerdidos],
@@ -334,7 +334,7 @@ export class TabStats {
                 this.barChart = new Chart(this.barCanvasPlayed.nativeElement, {
                     type: 'bar',
                     data: {
-                        labels: ["2017/2018", "2018/2019", "2019/2020", "2020/2021"],
+                        labels: [historials[0] == null ? "-" : historials[0].temporada.nombre, historials[1] == null ? "-" : historials[1].temporada.nombre, historials[2] == null ? "-" : historials[2].temporada.nombre, historials[3] == null ? "-" : historials[3].temporada.nombre],
                         datasets: [{
                             label: 'Nº Partidos jugados',
                             data: [historials[0] == null ? 0 : historials[0].equipo.partidosJugados, historials[1] == null ? 0 : historials[1].equipo.partidosJugados, historials[2] == null ? 0 : historials[2].equipo.partidosJugados, historials[3] == null ? 0 : historials[3].equipo.partidosJugados],

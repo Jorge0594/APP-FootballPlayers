@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from './httpClient.service';
 import 'rxjs/Rx';
 
-const BASE_URL: string = 'histEquipos/';
+const BASE_URL: string = 'histEquipos';
 @Injectable()
 export class HistoricalTeamService{
     constructor(private http: HttpClient){}
