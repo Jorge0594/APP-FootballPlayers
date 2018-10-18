@@ -87,7 +87,7 @@
   <ion-item no-lines *ngSwitchCase="'two'">
     <ion-spinner class="spinner" *ngIf="playerSanctions == null && !noSanctions" color="ligth"></ion-spinner>
     <p id="no-sanctions" *ngIf="noSanctions">No has recibido ninguna sanción.</p>
-    <ion-card (click)="viewSanction(sanction.id)" *ngFor="let sanction of playerSanctions" id="sanctions-card" [class.spired]="sanction?.partidosRestantes == 0">
+    <ion-card (click)="viewSanction(sanction.id)" *ngFor="let sanction of playerSanctions" id="sanctions-card" [class.spired]="sanction?.partidosRestantes == 0 || sanction?.enVigor == false">
       <ion-card-content>
         <ion-row>
           <ion-col class="card-titles">Fecha de sanción</ion-col>

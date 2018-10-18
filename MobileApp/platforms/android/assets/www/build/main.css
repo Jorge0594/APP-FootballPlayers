@@ -37896,6 +37896,7 @@ page-charts .hist-title {
   color: white;
   font-size: 14px;
   text-align: center;
+  margin-top: 15px;
   margin-bottom: 15px;
 }
 
@@ -38896,7 +38897,6 @@ page-profile #user-team-image {
   display: block;
   width: 75px;
   height: 75px;
-  border-radius: 50%;
 }
 
 page-profile #user-team-name {
